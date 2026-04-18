@@ -1,0 +1,157 @@
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "../globals.css";
+import { ThemeProvider } from "@/components/shared/ThemeProvider";
+import { Toaster } from "react-hot-toast";
+import { getDictionary, isRTL, locales } from "@/i18n";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
+import { MegaFooterMap } from "@/components/layout/MegaFooterMap";
+import { TrackVisit } from "@/components/shared/TrackVisit";
+import { ProgressBar } from "@/components/shared/ProgressBar";
+import { InstallPWA } from "@/components/ui/InstallPWA";
+import { Suspense } from "react";
+import Script from "next/script";
+import type { Viewport } from "next";
+
+import { ScrollToTop } from "@/components/shared/ScrollToTop";
+
+const inter = Inter({ 
+  subsets: ["latin"],
+  display: "swap", // "Fast/Smooth": Prevent layout shift by swapping fonts smoothly
+  variable: "--font-inter" 
+});
+
+const SITE_URL = "https://instasnap.net";
+
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const params = await props.params;
+  const locale = params.locale;
+  const dict = await getDictionary(locale);
+  
+  const title = dict.seo?.title || "InstaSnap - Best Instagram Downloader";
+  const description = dict.seo?.description || "Download Instagram Reels, Stories, Posts, and Music easily with InstaSnap.";
+  
+  return {
+    title: {
+      default: title,
+      template: `%s | InstaSnap`
+    },
+    description: description,
+    keywords: dict.seo?.keywords || "instagram downloader, reels download, story downloader",
+    metadataBase: new URL(SITE_URL),
+    alternates: {
+      canonical: `/${locale}`,
+      languages: Object.fromEntries(locales.map(l => [l, `/${l}`]))
+    },
+    openGraph: {
+      title: title,
+      description: description,
+      url: SITE_URL,
+      siteName: "InstaSnap",
+      locale: locale,
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: title,
+      description: description,
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+    manifest: "/manifest.json",
+    appleWebApp: {
+      capable: true,
+      statusBarStyle: "default",
+      title: "InstaSnap",
+    },
+  };
+}
+
+export const viewport: Viewport = {
+  themeColor: "#ec4899",
+  width: "device-width",
+  initialScale: 1,
+};
+
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
+
+export default async function RootLayout(props: {
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+}) {
+  const params = await props.params;
+  const locale = params.locale;
+  const direction = isRTL(locale) ? "rtl" : "ltr";
+  const fullDict = await getDictionary(locale);
+  
+  // Filter out heavy SEO content for the layout to prevent massive HTML payloads
+  const { platforms, ...rest } = fullDict;
+  const layoutDict = {
+    ...rest,
+    platforms: platforms ? Object.fromEntries(
+      Object.entries(platforms).filter(([key]) => key !== 'seo_pages')
+    ) : {}
+  };
+
+  return (
+    <html lang={locale} dir={direction} suppressHydrationWarning>
+      <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <Script
+          id="service-worker-registration"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                  navigator.serviceWorker.register('/sw.js').then(function(registration) {
+                    console.log('ServiceWorker registration successful');
+                  }, function(err) {
+                    console.log('ServiceWorker registration failed: ', err);
+                  });
+                });
+              }
+            `,
+          }}
+        />
+      </head>
+      <body suppressHydrationWarning className={`${inter.variable} font-sans bg-white text-neutral-900 antialiased dark:bg-black dark:text-neutral-100 transition-colors duration-300`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Suspense fallback={null}>
+            <ProgressBar />
+          </Suspense>
+          <ScrollToTop />
+          <Toaster 
+            position="bottom-center" 
+            reverseOrder={false}
+            toastOptions={{
+              className: 'font-sans font-bold rounded-2xl shadow-2xl ring-1 ring-black/5 dark:ring-white/10 dark:bg-neutral-900 dark:text-white',
+              duration: 4000,
+            }}
+          />
+          <div className="flex min-h-screen flex-col overflow-x-hidden">
+            <Navbar dict={layoutDict} />
+            <main className="flex-1">
+              <Suspense fallback={null}>
+                {props.children}
+              </Suspense>
+            </main>
+            <Footer locale={locale} dict={layoutDict}>
+              <MegaFooterMap locale={locale} dict={fullDict} />
+            </Footer>
+          </div>
+        </ThemeProvider>
+      </body>
+    </html>
+  );
+}

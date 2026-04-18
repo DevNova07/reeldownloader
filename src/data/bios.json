@@ -1,0 +1,327 @@
+{
+  "categories": [
+    { "id": "boys-attitude", "name": "Boys Attitude", "icon": "Zap", "color": "text-lime-400" },
+    { "id": "girls-attitude", "name": "Girls Attitude", "icon": "Flame", "color": "text-rose-400" },
+    { "id": "savage", "name": "Savage Bio", "icon": "Zap", "color": "text-orange-400" },
+    { "id": "royal", "name": "Royal Bio", "icon": "Trophy", "color": "text-amber-500" },
+    { "id": "killer", "name": "Killer Lines", "icon": "Flame", "color": "text-red-500" },
+    { "id": "cute-love", "name": "Cute Love Bio", "icon": "Heart", "color": "text-pink-400" },
+    { "id": "deep-love", "name": "Deep Love Bio", "icon": "Heart", "color": "text-rose-600" },
+    { "id": "couple", "name": "Couple Bio", "icon": "Heart", "color": "text-red-400" },
+    { "id": "crush", "name": "Crush Bio", "icon": "Sparkles", "color": "text-pink-300" },
+    { "id": "flirty", "name": "Flirty Bio", "icon": "Sparkles", "color": "text-purple-400" },
+    { "id": "alone", "name": "Alone Bio", "icon": "Frown", "color": "text-blue-400" },
+    { "id": "heartbroken", "name": "Heartbroken", "icon": "Frown", "color": "text-neutral-500" },
+    { "id": "emotional", "name": "Emotional Lines", "icon": "Sparkles", "color": "text-indigo-400" },
+    { "id": "depression", "name": "Depression Feel", "icon": "Frown", "color": "text-neutral-600" },
+    { "id": "broken", "name": "Broken Quotes", "icon": "Frown", "color": "text-gray-400" },
+    { "id": "professional", "name": "Professional Bio", "icon": "Briefcase", "color": "text-blue-500" },
+    { "id": "business", "name": "Business Bio", "icon": "Briefcase", "color": "text-neutral-500" },
+    { "id": "entrepreneur", "name": "Entrepreneur Bio", "icon": "Zap", "color": "text-amber-400" },
+    { "id": "freelancer", "name": "Freelancer Bio", "icon": "Milestone", "color": "text-emerald-400" },
+    { "id": "linkedin", "name": "LinkedIn Style", "icon": "Briefcase", "color": "text-blue-600" },
+    { "id": "gaming", "name": "Gaming Bio", "icon": "Gamepad2", "color": "text-purple-400" },
+    { "id": "gamer", "name": "Gamer Bio", "icon": "Gamepad2", "color": "text-indigo-400" },
+    { "id": "pubg", "name": "PUBG / BGMI", "icon": "Trophy", "color": "text-orange-500" },
+    { "id": "freefire", "name": "Free Fire", "icon": "Flame", "color": "text-red-400" },
+    { "id": "pro-player", "name": "Pro Player Style", "icon": "Star", "color": "text-amber-400" },
+    { "id": "fitness", "name": "Fitness & Gym Bio", "icon": "Dumbbell", "color": "text-emerald-400" },
+    { "id": "gym-lover", "name": "Gym Lover", "icon": "Dumbbell", "color": "text-rose-500" },
+    { "id": "bodybuilding", "name": "Bodybuilding", "icon": "Dumbbell", "color": "text-neutral-400" },
+    { "id": "athlete", "name": "Athlete Bio", "icon": "Trophy", "color": "text-blue-400" },
+    { "id": "motivation", "name": "Fitness Motivation", "icon": "Zap", "color": "text-yellow-400" },
+    { "id": "creator", "name": "Creator / Influencer", "icon": "Star", "color": "text-pink-400" },
+    { "id": "content-creator", "name": "Content Creator", "icon": "Gamepad2", "color": "text-purple-400" },
+    { "id": "youtuber", "name": "YouTuber Bio", "icon": "Zap", "color": "text-red-600" },
+    { "id": "tiktok", "name": "TikTok Creator", "icon": "Sparkles", "color": "text-neutral-400" },
+    { "id": "instagram", "name": "Instagram Influencer", "icon": "Heart", "color": "text-pink-500" },
+    { "id": "instagram-boy", "name": "Bio for boys", "icon": "Zap", "color": "text-blue-400" },
+    { "id": "instagram-stylish", "name": "Stylish bio", "icon": "Sparkles", "color": "text-amber-400" },
+    { "id": "instagram-vip", "name": "VIP bio", "icon": "Trophy", "color": "text-amber-500" },
+    { "id": "instagram-emoji", "name": "Emoji bio", "icon": "Smile", "color": "text-lime-400" },
+    { "id": "tiktok-viral", "name": "Viral bio", "icon": "Flame", "color": "text-rose-400" },
+    { "id": "tiktok-short", "name": "Short bio", "icon": "Zap", "color": "text-neutral-400" },
+    { "id": "tiktok-trendy", "name": "Trendy bio", "icon": "Sparkles", "color": "text-purple-400" },
+    { "id": "youtube-channel", "name": "Channel description", "icon": "Zap", "color": "text-red-600" },
+    { "id": "youtube-intro", "name": "Creator intro", "icon": "Star", "color": "text-amber-400" },
+    { "id": "youtube-about", "name": "About me", "icon": "Briefcase", "color": "text-neutral-500" },
+    { "id": "twitter-witty", "name": "Short witty bio", "icon": "Zap", "color": "text-blue-400" },
+    { "id": "twitter-pro", "name": "Professional short bio", "icon": "Briefcase", "color": "text-neutral-400" },
+    { "id": "spiritual", "name": "Spiritual Bio", "icon": "Sparkles", "color": "text-indigo-300" },
+    { "id": "islamic", "name": "Islamic Bio", "icon": "Star", "color": "text-emerald-500" },
+    { "id": "hindu", "name": "Hindu Bio", "icon": "Sun", "color": "text-orange-500" },
+    { "id": "motivational-spirit", "name": "Motivational Spiritual", "icon": "Flame", "color": "text-amber-300" },
+    { "id": "quotes-based", "name": "Quotes Based", "icon": "Sparkles", "color": "text-neutral-400" },
+    { "id": "funny", "name": "Funny Bio", "icon": "Smile", "color": "text-yellow-400" },
+    { "id": "sarcastic", "name": "Sarcastic Bio", "icon": "Frown", "color": "text-purple-300" },
+    { "id": "meme", "name": "Meme Bio", "icon": "Smile", "color": "text-orange-400" },
+    { "id": "funny-savage", "name": "Savage Funny", "icon": "Zap", "color": "text-rose-400" },
+    { "id": "one-liners", "name": "One-liners", "icon": "Briefcase", "color": "text-neutral-400" },
+    { "id": "travel", "name": "Travel Bio", "icon": "Sun", "color": "text-blue-400" },
+    { "id": "wanderlust", "name": "Wanderlust", "icon": "Sun", "color": "text-emerald-400" },
+    { "id": "explorer", "name": "Explorer", "icon": "Milestone", "color": "text-amber-500" },
+    { "id": "adventure", "name": "Adventure Bio", "icon": "Zap", "color": "text-rose-500" },
+    { "id": "minimal", "name": "Minimal Bio", "icon": "Sparkles", "color": "text-neutral-500" }
+  ],
+  "bios": {
+    "boys-attitude": [
+      "🔥 King of my World\n🚀 Silent Success\n🕶️ Attitude is Signature\n📍 Mumbai | Born to Rule",
+      "🕶️ Making my own Rules\n🔥 Not here to Fit in\n🚀 Built for Greatness\n🎯 Focused on Goals",
+      "👑 Born to Lead\n🕶️ Stay Classy\n🔥 Respect Earned\n🚀 High Standards Only",
+      "🕶️ Silence is the Best Answer\n🔥 Working for a Dream\n🚀 Boss Mindset\n📍 Zero Excuses",
+      "🔥 Keep it Simple but Significant\n🕶️ Living Life my Way\n🚀 Sky-High Ambitions\n🎯 Winner Spirit"
+    ],
+    "girls-attitude": [
+      "👑 Queen Spirit\n✨ Sparkle & Shine\n🔥 Unapologetically Me\n📍 Delhi | Magic is Real",
+      "💅 Diamond in the Rough\n✨ Elegance & Authority\n🔥 Fearless Soul\n💌 Collabs DM",
+      "✨ Creating my own Sunshine\n👑 Confidence is my Outfit\n🔥 Boss Lady Vibes\n📍 World Traveler",
+      "💄 Pretty in Pink, Savage in Mind\n✨ Dream Big, Work Hard\n👑 Royal Vibe\n🌟 Stay Rare",
+      "✨ Glow Getter\n🔥 Fire & Grace\n👑 Own your Power\n💌 Always Smiling"
+    ],
+    "savage": [
+      "🔥 Burn the Bridges\n🕶️ Zero F's Given\n🚀 Savage Mindset\n🎯 Winning is Habit",
+      "🕶️ My Rules, My Life\n🔥 No Explanations\n🚀 Built to Last\n📍 Global Vibe",
+      "🔥 Hated by Many, Wanted by Plenty\n🕶️ Stay Mad\n🚀 High Score Living\n🎯 One of One",
+      "🔥 Your Opinion is not my Reality\n🕶️ Simply Irreplaceable\n🚀 Savage energy\n🎯 Top Tier",
+      "🔥 Not a Backup Plan\n🕶️ Legend in the Making\n🚀 Bold & Beautiful\n📍 Excellence Only"
+    ],
+    "royal": [
+      "👑 Royal Blood\n💎 Living the Elite Life\n🏰 Building my Kingdom\n📍 Pure Luxury",
+      "💎 Quality over Everything\n👑 Born to be Royal\n✨ Masterful Living\n📍 Private World",
+      "👑 Excellence is a Habit\n💎 Standard of Leadership\n🏰 Legacy Builder\n🌟 Simply Royal"
+    ],
+    "killer": [
+      "🔥 Killer Vibe\n🗡️ Sharp Mind\n🚀 Unstoppable Force\n🎯 One Goal: Success",
+      "🗡️ Execution over Excuses\n🔥 Dangerous Ambition\n🚀 High Speed Life\n📍 Redline",
+      "🔥 Silent but Deadly\n🗡️ Precision & Power\n🚀 Aiming High\n🎯 Mastery Only"
+    ],
+    "cute-love": [
+      "✨ Choosing You Always\n💖 Sunshine in my Heart\n🌹 Moments with You\n💍 Forever",
+      "💖 Your Smile is my Favorite\n✨ Sweetest Connection\n🌹 Love & Laughter\n📍 Wherever You Are"
+    ],
+    "deep-love": [
+      "❤️ Soul to Soul\n✨ Infinite Connection\n🌊 Deepest Love\n💍 Beyond Forever",
+      "✨ My Universe is You\n❤️ Sincere Devotion\n🌹 Heartfelt Journey\n📍 Deeply in Love"
+    ],
+    "couple": [
+      "💍 Two Souls, One Goal\n❤️ Connected Forever\n✨ Building our Empire\n📍 Since [Year]",
+      "✨ Better Together\n❤️ My Favorite Person\n💍 Couple Goals\n📍 Travel Partners"
+    ],
+    "crush": [
+      "✨ Lost in thought (of you)\n💖 Heart vs Head\n🌟 Dreaming Wide Awake\n📍 Somewhere in Love",
+      "🌟 Secret Admirer\n✨ Catching Feelings\n💖 Simply Chasing Stars\n📍 My Own World"
+    ],
+    "flirty": [
+      "✨ Single but Taken by You\n🔥 High Voltage Vibe\n🌟 DM for a Surprise\n📍 Reality Check",
+      "🔥 Charm & Chaos\n✨ Making You Blush\n🌟 Rules were meant to be broken\n📍 Your Timeline"
+    ],
+    "alone": [
+      "🌑 Solo Voyager\n🌫️ Peace in Solitude\n🥀 Finding Myself\n⏳ Healing Space",
+      "🥀 Alone but not Lonely\n🌑 Silent Strength\n🌫️ Ocean of Thoughts\n📍 My Own World"
+    ],
+    "heartbroken": [
+      "💔 Broken but Brave\n🥀 Healing in Silence\n🌑 Deepest Scars\n⏳ Learning to Let Go",
+      "🌑 Moon Child in Pain\n💔 Fragile Heart\n🥀 Soulful Wanderer\n📍 Solitude"
+    ],
+    "emotional": [
+      "✨ A Soul that Feels Everything\n🥀 Sincere Hearts Only\n🌊 Deep Perspective\n📍 Healing Journey",
+      "🌊 Ocean of Emotions\n✨ Real over Perfect\n🥀 Silent Strength\n📍 Inner Peace"
+    ],
+    "depression": [
+      "🌑 Finding Light in the Dark\n🌫️ Quiet Struggle\n🕯️ One Day at a Time\n📍 Resilience",
+      "🕯️ Keep Breathing\n🌑 Silent Battle\n🌫️ Hope is a Choice\n📍 Patient Soul"
+    ],
+    "broken": [
+      "🥀 Scars tell Stories\n🌑 Beautifully Broken\n✨ Finding the Pieces\n📍 Silent Growth",
+      "🌑 The Night is Deepest\n🥀 Still Standing\n✨ Resilience first\n📍 Inner World"
+    ],
+    "professional": [
+      "💼 Strategy & Innovation\n🚀 Building the Future\n📈 Performance Pro\n📍 Corporate Hub",
+      "📊 Data Driven Leader\n💼 Digital Growth\n📈 Strategic Mindset\n💌 Professional Only"
+    ],
+    "business": [
+      "🚀 Venture Scale Mindset\n💼 Creating Local Value\n📈 Global Vision\n📍 Tech Hub",
+      "💼 Scaling Empires\n🚀 Disruptive Thinker\n📈 Integrity first\n📍 Business District"
+    ],
+    "entrepreneur": [
+      "🚀 Building from Scratch\n💡 Solving Problems\n📈 Persistence wins\n📍 Founder Life",
+      "💡 Innovation is Oxygen\n🚀 High Growth Mindset\n📈 Legacy Seeker\n📍 Stealth Mode"
+    ],
+    "freelancer": [
+      "💻 Code & Coffee\n🌐 Remote Voyager\n🎨 Creating Digital Art\n📍 Global Talent",
+      "🎨 Design. Deploy. Repeat.\n💻 Freedom in Work\n🌐 Multi-Passionate\n📍 Digital Nomad"
+    ],
+    "linkedin": [
+      "👔 Professional Excellence\n📈 Strategic Leadership\n🚀 Impact Driven\n🌐 Connecting Dots",
+      "🚀 Industry Expert\n👔 Senior Advisor\n📈 Building Systems\n📍 LinkedIn Certified"
+    ],
+    "gaming": [
+      "🎮 Leveling Up\n👾 Pro Player Elite\n🖥️ RGB Life\n🏆 Clutch Expert",
+      "🕹️ One More Game\n🎮 Gaming is Art\n👾 Competitive Grind\n📍 In the Lobby"
+    ],
+    "gamer": [
+      "🎮 In the Zone\n👾 Mastering the Craft\n🖥️ High FPS Life\n🏆 Simply the Best",
+      "👾 Gaming & Growth\n🎮 Controller Pro\n🖥️ Setup Vibe\n📍 Broadcast Room"
+    ],
+    "pubg": [
+      "🔫 Winner Winner Chicken Dinner\n🏆 PUBG Master\n🔥 Pro Sniper\n📍 Miramar to Erangel",
+      "🔥 Rush King\n🔫 Squad Leader\n🏆 Dominating the Circle\n📍 Battleground Life"
+    ],
+    "freefire": [
+      "🔥 Free Fire Pro\n🔫 Survival Expert\n🏆 Booyah King\n📍 Battle Arena",
+      "🏆 Master of Airdrops\n🔥 Fast Reflexes\n🔫 Squad Sniper\n📍 Garena Hub"
+    ],
+    "pro-player": [
+      "🏆 Elite Gameplay\n🎮 Strategic Mastery\n✨ High Skill Vibe\n📍 Global Leaderboard",
+      "✨ Tournament Winner\n🏆 Pro Only\n🎮 Precision Play\n📍 E-Sports Elite"
+    ],
+    "fitness": [
+      "💪 Stronger Every Day\n🏋️‍♂️ Gym Sanctuary\n🔥 No Excuses\n🛡️ Discipline First",
+      "🏋️‍♂️ Iron Paradise\n💪 Body Architect\n🔥 Sweating Success\n📍 Fit Life"
+    ],
+    "gym-lover": [
+      "🏋️‍♂️ Gym is my Home\n💪 Muscle over Mood\n🔥 Grinding in Iron\n📍 Heavy Weight Area",
+      "💪 100% Focused\n🏋️‍♂️ Reps for Results\n🔥 Fitness Addict\n📍 Gym Vibe"
+    ],
+    "bodybuilding": [
+      "🍗 High Protein Life\n💪 Mass & Definition\n🏋️‍♂️ Classic Physique\n📍 Iron Paradise",
+      "💪 Building the Beast\n🏋️‍♂️ Discipline & Diet\n🔥 Hardcore Training\n📍 Stage Ready"
+    ],
+    "athlete": [
+      "🏃‍♂️ Powered by Passion\n🥇 Tracking Progress\n🛡️ Olympic Mindset\n📍 Field of Dreams",
+      "🥇 Heart of a Champion\n🏃‍♂️ Continuous Grind\n🛡️ Elite Athlete\n📍 Global Ranks"
+    ],
+    "motivation": [
+      "🔥 Your Only Limit is You\n🚀 Sky-High Ambition\n🛡️ Resilience Pro\n📍 Excellence City",
+      "🛡️ Stay Hungry\n🔥 Work hard, stay humble\n🚀 Future Focus\n📍 Victory Lane"
+    ],
+    "creator": [
+      "✨ Creating for You\n📸 Visual Storyteller\n🌟 Spreading Joy\n📍 Creative Studio",
+      "🌟 Magic in the Making\n✨ Content Architect\n📸 Lens & Life\n📍 Design Hub"
+    ],
+    "content-creator": [
+      "🎥 Digital Architect\n✨ High Vibe Creative\n🌟 Influencing Positive\n📍 Creation Room",
+      "🌟 Your Daily Dose of Inspo\n✨ Sincere Creator\n🎥 Studio Vibe\n📍 Online"
+    ],
+    "youtuber": [
+      "🎥 Storytelling in 4K\n🔔 Subscribe to the Journey\n✨ Creating for You\n📍 Studio Life",
+      "✨ Visionary Creator\n🎥 Documenting Life\n🌍 Global Audience\n💌 Collabs Open"
+    ],
+    "tiktok": [
+      "✨ Viral Vibes Only\n🎥 Creating Smiles\n🌈 60 Seconds of Magic\n📍 For You Page",
+      "🌈 Trend Chaser\n✨ Dynamic Energy\n🎥 Pure Entertainment\n📍 TikTok World"
+    ],
+    "instagram": [
+      "✨ Aesthetic Soul\n📸 Life in Frames\n💖 Spreading Vibes\n📍 Instagram Grid",
+      "💖 Model & Maker\n✨ Curated Moments\n📸 Visual Diary\n📍 Location: Joy"
+    ],
+    "instagram-boy": [
+      "🔥 Just a boy with big dreams\n🚀 Making moves in silence\n✨ Vibe Check: 100%\n📍 [City Name]",
+      "👑 Born to lead, not follow\n🔥 Stay Classy\n🚀 Living my best life\n📍 Zero Excuses"
+    ],
+    "instagram-stylish": [
+      "✨ Life isn't perfect, but my outfit is\n🌟 Style is a reflection of your soul\n💄 Classic but current\n📍 Fashion Hub",
+      "🌟 Elegance is the only beauty that never fades\n✨ Simple but Significant\n💄 Curating my life\n📍 Global"
+    ],
+    "instagram-vip": [
+      "💎 VIP Access Only\n🏛️ Standard of Quality\n🚀 Elite Mindset\n📍 Private Office",
+      "💎 Limited Edition\n🏛️ Royal Heritage\n🚀 Building an Empire\n📍 Exclusive"
+    ],
+    "instagram-emoji": [
+      "✨🌈🌻🌙\n🎨📸🎭💖\n📍🌍🚀🔥\n💌💎🌟🦋",
+      "👑🔥🚀🎯\n🕶️💼📈📉\n📍🌍🎮🕹️\n🏆🏅✨🌈"
+    ],
+    "tiktok-viral": [
+      "✨ 60 Seconds of Magic\n🎥 Viral Vibe Only\n🌈 Spreading Joy\n📍 For You Page",
+      "🎥 Storytelling in Motion\n✨ Creating Trends\n🌈 Pure Entertainment\n📍 TikTok World"
+    ],
+    "tiktok-short": [
+      "✨ Just Vibe.\n🎥 Creating.\n🌈 Love life.\n📍 FYP.",
+      "🎥 Real Talk.\n✨ Simple Life.\n🌈 Stay Kind.\n📍 Digital."
+    ],
+    "tiktok-trendy": [
+      "🌈 Dancing through life\n✨ Always on trend\n🎥 Creating Smiles\n📍 Trending Now",
+      "✨ Aesthetic Content\n🌈 Visual Diary\n🎥 Trendy Vibe\n📍 Global Feed"
+    ],
+    "youtube-channel": [
+      "🎥 Weekly Tech & Lifestyle\n🔔 Subscribe for the Journey\n✨ Creating Value\n📍 Studio Room",
+      "✨ Building something Great\n🎥 Documenting the Grind\n🔔 New Video every [Day]\n📍 HQ"
+    ],
+    "youtube-intro": [
+      "👋 Hey, I'm [Name]!\n🎥 Passionate about [Topic]\n✨ Join the Community\n📍 Earth",
+      "✨ Welcome to my World\n👋 Sharing my Story\n🎥 Visual Art & Life\n📍 Creative Studio"
+    ],
+    "youtube-about": [
+      "✨ Focused on [Topic]\n🎥 [Number] Years of Experience\n🌍 Reaching Millions\n💌 Collabs: [Email]",
+      "📸 Photographer & Maker\n✨ Sharing Knowledge\n🌍 Based in [Location]\n💌 Let's Connect"
+    ],
+    "twitter-witty": [
+      "🐦 Professional Sarcasm Expert\n✨ Typing... but usually late\n🚀 Opinions are my own\n📍 X",
+      "🚀 I'm not lazy, I'm energy efficient\n🐦 Witty by Choice\n✨ Living the Dream\n📍 Global"
+    ],
+    "twitter-pro": [
+      "💼 Industry Analyst & Founder\n🚀 Future Focused\n📈 Strategy Pro\n📍 Corporate X",
+      "📈 Scaling Companies\n💼 Executive Builder\n🚀 Tech Enthusiast\n📍 Silicon Valley"
+    ],
+    "spiritual": [
+      "✨ Soul over Everything\n🕯️ Seeking Truth\n🕊️ Peace Within\n📍 Inner World",
+      "🕊️ Radiant Energy\n✨ Mindful Living\n🌻 Grateful Heart\n📍 Home of Zen"
+    ],
+    "islamic": [
+      "✨ Alhumdullilah for Everything\n🕋 Heart in Makkah\n🤲 Pray. Sabr. Shukr.\n📍 Deen over Dunya",
+      "🤲 Seeking Allah's Mercy\n✨ Guided by Faith\n🕋 Simple Life\n📍 Pure Soul"
+    ],
+    "hindu": [
+      "✨ Har Har Mahadev\n🌸 Spiritual Soul\n🚩 Sanatan Dharma\n📍 Divine Connection",
+      "🌸 Radhe Radhe\n✨ Seeking Knowledge\n🚩 Devoted to Dharma\n📍 Spiritual Journey"
+    ],
+    "motivational-spirit": [
+      "🔥 Divine Fire Within\n✨ Awakening the Soul\n🕊️ Power of Sabr\n📍 Peace of Mind",
+      "🕊️ Guided by Grace\n✨ Inner Strength\n🔥 Motivational Spark\n📍 Soul Journey"
+    ],
+    "quotes-based": [
+      "📖 Living by the Word\n✨ Deeply Quoted\n🌟 Wisdom Seeker\n📍 Library of Life",
+      "🌟 Simple Words, Deep Meaning\n✨ Quote of the Day\n📖 Mindful Reader\n📍 Thought Hub"
+    ],
+    "funny": [
+      "😂 Expert at doing Nothing\n🍕 Powered by Pizza\n✨ Meme Consultant\n📍 My Own World",
+      "🤣 Life is a Joke, Join me\n✨ Sarcastic King\n🍕 Foodie 24/7\n💌 DM for Laughs"
+    ],
+    "sarcastic": [
+      "🙄 Professional Eye-Roller\n✨ Fluent in Sarcasm\n🍕 Smart but Lazy\n📍 Not Interested",
+      "✨ Sorry did I roll my eyes out loud?\n🙄 Sarcastic Queen\n🍕 Reality is optional\n📍 Earth"
+    ],
+    "meme": [
+      "🐸 Meme Lord\n😂 Life is just a Sh*tpost\n✨ Laughing at my own jokes\n📍 The Internet",
+      "✨ Powered by Memes\n😂 Professional Scroller\n🐸 Content of Choice\n📍 Online"
+    ],
+    "funny-savage": [
+      "😂 Savage but Sweet\n🔥 My Life is a Meme\n✨ Expert in Sarcasm\n📍 Reality is Optional",
+      "🔥 I'm not lazy, I'm energy efficient\n😂 Savage humor\n✨ One of a Kind\n📍 Now"
+    ],
+    "one-liners": [
+      "✨ Less Talk, More Walk.\n🚀 Zero Limits.\n💼 Simple Standard.\n📍 Done.",
+      "🚀 One Goal: Success.\n✨ Stay Rare.\n💼 Classy Vibe.\n📍 Mumbai."
+    ],
+    "travel": [
+      "🌍 Global Explorer\n✈️ Next stop: Everywhere\n📸 Journey over Destination\n📍 Wanderlust",
+      "✈️ Frequent Flyer\n🌍 Nature's Child\n📸 Capturing the World\n📍 Hidden Gems"
+    ],
+    "wanderlust": [
+      "✈️ Born to Wander\n🌍 Seeking Adventures\n📸 Passport is Life\n📍 Global Soul",
+      "🌍 Lost in Travel\n✈️ Wanderlust in my Veins\n📸 Nature's Diary\n📍 Destination: Anywhere"
+    ],
+    "explorer": [
+      "🗺️ Mapping the Unmapped\n🌍 True Explorer\n📸 Discovery over Comfort\n📍 Beyond Borders",
+      "🌍 Finding Hidden Paths\n🗺️ Soulful Journey\n📸 Exploring within\n📍 Unknown Space"
+    ],
+    "adventure": [
+      "🚠 Adrenaline Rush\n🏔️ Adventure calls\n🔥 Brave heart\n📍 The Summit",
+      "🏔️ Mountain Soul\n🚠 Scaling Heights\n🔥 Living the Adventure\n📍 Base Camp"
+    ],
+    "minimal": [
+      "✨ Simply Me\n⚪ Minimalist Heart\n🌿 Clean Living\n📍 Essentialism",
+      "🌿 Less is More\n✨ Pure Vibe\n⚪ Small Moments\n📍 Clarity"
+    ]
+  }
+}

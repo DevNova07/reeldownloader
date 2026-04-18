@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles/popup.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <span class="insta">Insta</span><span class="snap">Snap</span>
+            </div>
+            <p class="tagline">The ultimate downloader</p>
+        </header>
+
+        <main>
+            <div class="input-group">
+                <input type="text" id="urlInput" placeholder="Paste link here..." autocomplete="off">
+                <button id="downloadBtn" class="btn-primary">
+                    <span class="btn-text">Download Now</span>
+                </button>
+            </div>
+            
+            <div class="detect-badge" id="detectInfo">
+                <span class="dot"></span>
+                <span id="platformName">No platform detected</span>
+            </div>
+        </main>
+
+        <footer>
+            <div class="links">
+                <a href="#" id="openHistory">History</a>
+                <span class="sep">•</span>
+                <a href="#" id="openWeb">Website</a>
+            </div>
+            <p class="copyright">v1.0.0 • Secured</p>
+        </footer>
+    </div>
+    <script src="popup.js"></script>
+</body>
+</html>

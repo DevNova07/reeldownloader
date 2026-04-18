@@ -1,0 +1,417 @@
+{
+  "totalRequests": 92,
+  "successfulRequests": 46,
+  "failedRequests": 46,
+  "savedRequests": 13,
+  "totalVisits": 259,
+  "platforms": {
+    "instagram": {
+      "total": 10,
+      "success": 10,
+      "fail": 0,
+      "keys": {
+        "71b678b386mshfbf8544ef27b963p18d3fbjsn9603ed997f89": {
+          "name": "API 1",
+          "status": "active",
+          "remaining": "2904",
+          "limit": "3000",
+          "used": 10,
+          "lastCheck": "2026-04-18T18:36:21.727Z"
+        },
+        "b78e8528e0msh7075b487371fff1p1bcb3jsn155f6f378608": {
+          "name": "API 1",
+          "status": "exhausted",
+          "remaining": "unkn",
+          "limit": "100",
+          "used": 2,
+          "lastCheck": "2026-04-18T18:36:18.270Z"
+        }
+      }
+    },
+    "instagram_v2": {
+      "total": 13,
+      "success": 6,
+      "fail": 7,
+      "keys": {
+        "71b678b386mshfbf8544ef27b963p18d3fbjsn9603ed997f89": {
+          "name": "API 1",
+          "status": "exhausted",
+          "remaining": "unkn",
+          "limit": "unkn",
+          "used": 4,
+          "lastCheck": "2026-04-18T18:36:24.649Z"
+        },
+        "30cfff0008mshcd9738405b90602p1718bbjsn76a163aaa269": {
+          "name": "API 2",
+          "status": "exhausted",
+          "remaining": "0",
+          "limit": "100",
+          "used": 9,
+          "lastCheck": "2026-04-18T18:36:24.774Z"
+        },
+        "90681a6f3cmsh11960059bfa010dp119547jsna49deca7951b": {
+          "name": "API 3",
+          "status": "exhausted",
+          "remaining": "unkn",
+          "limit": "100",
+          "used": 3,
+          "lastCheck": "2026-04-18T18:36:25.807Z"
+        },
+        "9e56ba0f6ab940b68e652ad87f843134": {
+          "name": "API 4",
+          "status": "exhausted",
+          "remaining": "unkn",
+          "limit": "100",
+          "used": 3,
+          "lastCheck": "2026-04-18T18:36:26.559Z"
+        },
+        "8fc0481165e348109029f0530e821626": {
+          "name": "API 5",
+          "status": "exhausted",
+          "remaining": "unkn",
+          "limit": "100",
+          "used": 3,
+          "lastCheck": "2026-04-18T18:36:27.139Z"
+        },
+        "2b499efe85msh77757d93ebe633fp16285bjsndfe8c19a6694": {
+          "name": "API 6",
+          "status": "exhausted",
+          "remaining": "unkn",
+          "limit": "100",
+          "used": 3,
+          "lastCheck": "2026-04-18T18:36:27.850Z"
+        },
+        "b78e8528e0msh7075b487371fff1p1bcb3jsn155f6f378608": {
+          "name": "API 1",
+          "status": "exhausted",
+          "remaining": "unkn",
+          "limit": "100",
+          "used": 2,
+          "lastCheck": "2026-04-18T18:36:23.694Z"
+        }
+      }
+    },
+    "tiktok": {
+      "total": 9,
+      "success": 9,
+      "fail": 0,
+      "keys": {
+        "2b499efe85msh77757d93ebe633fp16285bjsndfe8c19a6694": {
+          "name": "API 1",
+          "status": "active",
+          "remaining": "7672",
+          "limit": "7690",
+          "used": 9,
+          "lastCheck": "2026-04-18T18:36:39.760Z"
+        }
+      }
+    },
+    "youtube": {
+      "total": 20,
+      "success": 0,
+      "fail": 20,
+      "keys": {
+        "b78e8528e0msh7075b487371fff1p1bcb3jsn155f6f378608": {
+          "name": "API 1",
+          "status": "exhausted",
+          "remaining": "unkn",
+          "limit": "100",
+          "used": 2,
+          "lastCheck": "2026-04-18T18:37:04.686Z"
+        },
+        "71b678b386mshfbf8544ef27b963p18d3fbjsn9603ed997f89": {
+          "name": "API 2",
+          "status": "exhausted",
+          "remaining": "unkn",
+          "limit": "100",
+          "used": 2,
+          "lastCheck": "2026-04-18T18:37:06.086Z"
+        },
+        "30cfff0008mshcd9738405b90602p1718bbjsn76a163aaa269": {
+          "name": "API 3",
+          "status": "exhausted",
+          "remaining": "unkn",
+          "limit": "100",
+          "used": 2,
+          "lastCheck": "2026-04-18T18:37:06.791Z"
+        },
+        "90681a6f3cmsh11960059bfa010dp119547jsna49deca7951b": {
+          "name": "API 4",
+          "status": "exhausted",
+          "remaining": "unkn",
+          "limit": "100",
+          "used": 2,
+          "lastCheck": "2026-04-18T18:37:07.724Z"
+        },
+        "9e56ba0f6ab940b68e652ad87f843134": {
+          "name": "API 5",
+          "status": "exhausted",
+          "remaining": "unkn",
+          "limit": "100",
+          "used": 2,
+          "lastCheck": "2026-04-18T18:37:08.304Z"
+        },
+        "8fc0481165e348109029f0530e821626": {
+          "name": "API 6",
+          "status": "exhausted",
+          "remaining": "unkn",
+          "limit": "100",
+          "used": 2,
+          "lastCheck": "2026-04-18T18:37:08.977Z"
+        },
+        "2b499efe85msh77757d93ebe633fp16285bjsndfe8c19a6694": {
+          "name": "API 7",
+          "status": "exhausted",
+          "remaining": "unkn",
+          "limit": "100",
+          "used": 2,
+          "lastCheck": "2026-04-18T18:37:09.656Z"
+        }
+      }
+    },
+    "youtube_backup1": {
+      "total": 5,
+      "success": 0,
+      "fail": 5,
+      "keys": {
+        "71b678b386mshfbf8544ef27b963p18d3fbjsn9603ed997f89": {
+          "name": "API 1",
+          "status": "exhausted",
+          "remaining": "unkn",
+          "limit": "unkn",
+          "used": 2,
+          "lastCheck": "2026-04-18T18:37:12.769Z"
+        },
+        "b78e8528e0msh7075b487371fff1p1bcb3jsn155f6f378608": {
+          "name": "API 1",
+          "status": "exhausted",
+          "remaining": "unkn",
+          "limit": "100",
+          "used": 2,
+          "lastCheck": "2026-04-18T18:37:11.312Z"
+        },
+        "30cfff0008mshcd9738405b90602p1718bbjsn76a163aaa269": {
+          "name": "API 3",
+          "status": "exhausted",
+          "remaining": "-2",
+          "limit": "100",
+          "used": 2,
+          "lastCheck": "2026-04-18T18:37:12.923Z"
+        },
+        "90681a6f3cmsh11960059bfa010dp119547jsna49deca7951b": {
+          "name": "API 4",
+          "status": "exhausted",
+          "remaining": "unkn",
+          "limit": "100",
+          "used": 2,
+          "lastCheck": "2026-04-18T18:37:13.868Z"
+        },
+        "9e56ba0f6ab940b68e652ad87f843134": {
+          "name": "API 5",
+          "status": "exhausted",
+          "remaining": "unkn",
+          "limit": "100",
+          "used": 2,
+          "lastCheck": "2026-04-18T18:37:14.511Z"
+        },
+        "8fc0481165e348109029f0530e821626": {
+          "name": "API 6",
+          "status": "exhausted",
+          "remaining": "unkn",
+          "limit": "100",
+          "used": 3,
+          "lastCheck": "2026-04-18T18:37:15.488Z"
+        },
+        "2b499efe85msh77757d93ebe633fp16285bjsndfe8c19a6694": {
+          "name": "API 7",
+          "status": "exhausted",
+          "remaining": "unkn",
+          "limit": "100",
+          "used": 3,
+          "lastCheck": "2026-04-18T18:37:16.538Z"
+        }
+      }
+    },
+    "facebook": {
+      "total": 14,
+      "success": 10,
+      "fail": 4,
+      "keys": {
+        "71b678b386mshfbf8544ef27b963p18d3fbjsn9603ed997f89": {
+          "name": "API 1",
+          "status": "exhausted",
+          "remaining": "unkn",
+          "limit": "unkn",
+          "used": 5,
+          "lastCheck": "2026-04-18T18:37:45.817Z"
+        },
+        "30cfff0008mshcd9738405b90602p1718bbjsn76a163aaa269": {
+          "name": "API 2",
+          "status": "active",
+          "remaining": "4976",
+          "limit": "5000",
+          "used": 12,
+          "lastCheck": "2026-04-18T18:37:48.685Z"
+        },
+        "b78e8528e0msh7075b487371fff1p1bcb3jsn155f6f378608": {
+          "name": "API 1",
+          "status": "exhausted",
+          "remaining": "unkn",
+          "limit": "100",
+          "used": 2,
+          "lastCheck": "2026-04-18T18:37:44.690Z"
+        },
+        "90681a6f3cmsh11960059bfa010dp119547jsna49deca7951b": {
+          "name": "API 4",
+          "status": "active",
+          "remaining": "unkn",
+          "limit": "100",
+          "used": 2,
+          "lastCheck": "2026-04-14T20:06:50.241Z"
+        },
+        "9e56ba0f6ab940b68e652ad87f843134": {
+          "name": "API 5",
+          "status": "active",
+          "remaining": "unkn",
+          "limit": "100",
+          "used": 2,
+          "lastCheck": "2026-04-14T20:06:50.553Z"
+        },
+        "8fc0481165e348109029f0530e821626": {
+          "name": "API 6",
+          "status": "active",
+          "remaining": "unkn",
+          "limit": "100",
+          "used": 2,
+          "lastCheck": "2026-04-14T20:06:50.982Z"
+        },
+        "2b499efe85msh77757d93ebe633fp16285bjsndfe8c19a6694": {
+          "name": "API 7",
+          "status": "active",
+          "remaining": "unkn",
+          "limit": "100",
+          "used": 2,
+          "lastCheck": "2026-04-14T20:06:51.814Z"
+        }
+      }
+    },
+    "snapchat": {
+      "total": 0,
+      "success": 0,
+      "fail": 0,
+      "keys": {
+        "71b678b386mshfbf8544ef27b963p18d3fbjsn9603ed997f89": {
+          "name": "API 1",
+          "status": "active",
+          "remaining": "unkn",
+          "limit": "unkn",
+          "used": 0,
+          "lastCheck": null
+        }
+      }
+    },
+    "telegram": {
+      "total": 0,
+      "success": 0,
+      "fail": 0,
+      "keys": {
+        "71b678b386mshfbf8544ef27b963p18d3fbjsn9603ed997f89": {
+          "name": "API 1",
+          "status": "active",
+          "remaining": "unkn",
+          "limit": "unkn",
+          "used": 0,
+          "lastCheck": null
+        }
+      }
+    },
+    "twitter": {
+      "total": 0,
+      "success": 0,
+      "fail": 0,
+      "keys": {
+        "71b678b386mshfbf8544ef27b963p18d3fbjsn9603ed997f89": {
+          "name": "API 1",
+          "status": "active",
+          "remaining": "unkn",
+          "limit": "unkn",
+          "used": 0,
+          "lastCheck": null
+        }
+      }
+    },
+    "instagram_premium": {
+      "total": 10,
+      "success": 0,
+      "fail": 10,
+      "keys": {
+        "2b499efe85msh77757d93ebe633fp16285bjsndfe8c19a6694": {
+          "name": "API 1",
+          "status": "active",
+          "remaining": "0",
+          "limit": "100",
+          "used": 10,
+          "lastCheck": "2026-04-18T18:36:22.682Z"
+        }
+      }
+    }
+  },
+  "topLinks": [
+    {
+      "url": "https://www.tiktok.com/@scout2015/video/6718335390845095173",
+      "title": "Scramble up ur name & I’ll try to guess it😍❤️ #foryoupage #PetsOfTikTok #aesthetic",
+      "platform": "tiktok",
+      "count": 3,
+      "lastDownload": "2026-04-18T18:36:39.763Z"
+    },
+    {
+      "url": "https://www.facebook.com/watch/?v=10153231379946729",
+      "title": "How to share with just friends.",
+      "platform": "facebook",
+      "count": 2,
+      "lastDownload": "2026-04-18T18:37:48.687Z"
+    },
+    {
+      "url": "https://www.facebook.com/share/v/1DmPMKkGVA/",
+      "title": "Facebook",
+      "platform": "facebook",
+      "count": 1,
+      "lastDownload": "2026-04-13T11:04:41.409Z"
+    },
+    {
+      "url": "https://www.facebook.com/share/r/18eE5gU1Tf/",
+      "title": "Facebook",
+      "platform": "facebook",
+      "count": 1,
+      "lastDownload": "2026-04-13T11:05:16.394Z"
+    },
+    {
+      "url": "https://www.facebook.com/share/v/19PY9tqtQD/",
+      "title": "Facebook",
+      "platform": "facebook",
+      "count": 1,
+      "lastDownload": "2026-04-13T12:04:10.701Z"
+    },
+    {
+      "url": "https://www.facebook.com/share/v/1D7vvrTzV5/",
+      "title": "Facebook",
+      "platform": "facebook",
+      "count": 1,
+      "lastDownload": "2026-04-13T12:25:33.980Z"
+    },
+    {
+      "url": "https://www.facebook.com/share/v/18JDWzpVLh/",
+      "title": "Facebook",
+      "platform": "facebook",
+      "count": 1,
+      "lastDownload": "2026-04-13T12:28:36.718Z"
+    },
+    {
+      "url": "https://www.facebook.com/share/r/1CU6We1n5t/",
+      "title": "Facebook",
+      "platform": "facebook",
+      "count": 1,
+      "lastDownload": "2026-04-14T06:07:25.477Z"
+    }
+  ]
+}
