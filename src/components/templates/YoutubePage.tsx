@@ -54,14 +54,14 @@ function YoutubeContent({
   const pageSeo = content?.seo || { title: pageTitle, desc: "Fast and secure media extraction tool." };
   const [downloadData, setDownloadData] = React.useState<PlatformResult | null>(null)
   const [isLoading, setIsLoading] = React.useState(false)
+  const [autoTriggerDownload, setAutoTriggerDownload] = React.useState(false)
   
   const dict = (dictionaries as Record<string, typeof dictionaries.en>)[locale] || dictionaries.en;
   const { addToHistory } = useDownloadHistory("youtube");
   const searchParams = useSearchParams()
 
-
-
-  const handleSearch = async (url: string) => {
+  const handleSearch = async (url: string, isAutoTrigger = false) => {
+    setAutoTriggerDownload(isAutoTrigger)
     const cached = getCached(url)
     if (cached) {
       setDownloadData(cached)
@@ -172,6 +172,7 @@ function YoutubeContent({
               isLoading={isLoading} 
               dict={dict}
               validate={isAnyPlatformUrl}
+              initialValue={searchParams.get('url') || ""}
               buttonClass={`bg-white text-red-600 hover:bg-neutral-100 shadow-2xl`}
               iconClass="text-red-600"
             />
@@ -184,9 +185,11 @@ function YoutubeContent({
             
             <LoadingBar isLoading={isLoading} label={dict.common?.analyzing || "Analyzing..."} gradient={cx.gradient} />
           </div>
+
           <DownloadPreview 
             data={downloadData} 
             isLoading={isLoading} 
+            autoTriggerDownload={autoTriggerDownload}
             buttonStyle={`bg-white text-red-600 hover:bg-neutral-100 shadow-2xl`}
             accentText={cx.text}
             accentBg={cx.bgAccent}

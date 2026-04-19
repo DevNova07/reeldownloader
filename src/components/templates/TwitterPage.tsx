@@ -32,11 +32,14 @@ interface TwitterPageProps {
 export default function TwitterPage({ content, locale }: TwitterPageProps) {
   const [downloadData, setDownloadData] = React.useState<PlatformResult | null>(null)
   const [isLoading, setIsLoading] = React.useState(false)
+  const [autoTriggerDownload, setAutoTriggerDownload] = React.useState(false)
   
   const dict = (dictionaries as any)[locale] || dictionaries.en
   const { addToHistory } = useDownloadHistory("twitter")
+  const searchParams = useSearchParams()
 
-  const handleSearch = async (url: string) => {
+  const handleSearch = async (url: string, isAutoTrigger = false) => {
+    setAutoTriggerDownload(isAutoTrigger)
     const cached = getCached(url)
     if (cached) {
       setDownloadData(cached)
@@ -65,6 +68,9 @@ export default function TwitterPage({ content, locale }: TwitterPageProps) {
       setIsLoading(false)
     }
   }
+
+  // Auto-download logic for PWA Share Target
+  useAutoDownload(handleSearch, locale, "twitter")
 
   return (
     <div className="flex flex-col">
@@ -112,6 +118,7 @@ export default function TwitterPage({ content, locale }: TwitterPageProps) {
               onSearch={handleSearch} 
               isLoading={isLoading} 
               dict={dict}
+              initialValue={searchParams.get('url') || ""}
               buttonClass="bg-white text-black hover:bg-neutral-200"
               iconClass="text-slate-800"
             />
@@ -127,6 +134,7 @@ export default function TwitterPage({ content, locale }: TwitterPageProps) {
           <DownloadPreview 
             data={downloadData} 
             isLoading={isLoading} 
+            autoTriggerDownload={autoTriggerDownload}
             buttonStyle="bg-white text-black hover:bg-neutral-200"
             accentText="text-slate-600"
             accentBg="bg-slate-500/10"

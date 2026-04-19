@@ -131,13 +131,14 @@ export default function TelegramPage({ content, locale }: TelegramPageProps) {
           </motion.div>
           
           <div className="mx-auto max-w-3xl">
-            <SearchBar
-              onSearch={handleSearch}
-              isLoading={isLoading}
+            <SearchBar 
+              onSearch={handleSearch} 
+              isLoading={isLoading} 
               dict={dict}
               validate={isAnyPlatformUrl}
-              buttonClass="bg-linear-to-br from-blue-600 to-indigo-600 text-white shadow-2xl"
-              iconClass="text-blue-500"
+              buttonClass={`bg-sky-500 text-white shadow-2xl`}
+              iconClass="text-sky-500"
+              initialValue={searchParams.get('url') || ""}
             />
             <TrustBadges dict={dict} />
             <TrendingBar accentColor="bg-sky-400" />

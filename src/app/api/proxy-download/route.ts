@@ -31,6 +31,10 @@ export async function GET(request: Request) {
     const inline = searchParams.get("inline") === "true";
     if (inline) {
       headers.set("Content-Disposition", `inline; filename="${filename}"`);
+      // Cache images for a long time to improve performance
+      if (type === "image") {
+        headers.set("Cache-Control", "public, max-age=31536000, immutable");
+      }
     } else {
       headers.set("Content-Disposition", `attachment; filename="${filename}"`);
     }

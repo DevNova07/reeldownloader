@@ -53,6 +53,7 @@ interface DownloadPreviewProps {
   accentText?: string
   accentBg?: string
   accentBorder?: string
+  autoTriggerDownload?: boolean
 }
 
 export function DownloadPreview({
@@ -60,12 +61,31 @@ export function DownloadPreview({
   isLoading,
   audioButtonStyle = "bg-linear-to-r from-red-600 to-amber-500 hover:from-red-500 hover:to-amber-400",
   accentText = "text-[#f01783]",
+  autoTriggerDownload = false
 }: DownloadPreviewProps) {
   const [isDownloading, setIsDownloading] = React.useState<string | null>(null);
   const [isSharing, setIsSharing] = React.useState(false);
   const [showFullCaption, setShowFullCaption] = React.useState(false);
 
   const scrollRef = React.useRef<HTMLDivElement>(null);
+
+  // Auto-trigger download for PWA Share Target
+  React.useEffect(() => {
+    if (data && !isLoading && autoTriggerDownload && !isDownloading) {
+      const visualMedias = data.medias?.filter((m: Media) => m.type !== "audio") || [];
+      const videos = visualMedias.filter((m: Media) => m.type === "video");
+      const targetMedia = videos.length > 0 ? videos[0] : visualMedias[0];
+
+      if (targetMedia) {
+        const proxyUrl = `/api/proxy-download?url=${encodeURIComponent(targetMedia.url)}&type=${targetMedia.type}`;
+        handleDownload(proxyUrl, targetMedia.type, targetMedia.id || 0);
+        toast.success("Starting direct download...", { 
+          icon: '📥',
+          style: { borderRadius: '16px', background: '#111', color: '#fff' }
+        });
+      }
+    }
+  }, [data, isLoading, autoTriggerDownload]);
 
   React.useEffect(() => {
     if (data && !isLoading) {

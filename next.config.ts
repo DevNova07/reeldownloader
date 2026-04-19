@@ -1,15 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  compress: true,
+  poweredByHeader: false,
+  reactStrictMode: true,
   images: {
     localPatterns: [
       {
         pathname: '/**',
-      },
-      {
-        pathname: '/**',
-        search: '',
       },
     ],
     remotePatterns: [
@@ -19,6 +17,9 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
     ],
+  },
+  experimental: {
+    optimizePackageImports: ['lucide-react', 'framer-motion'],
   },
 };
 

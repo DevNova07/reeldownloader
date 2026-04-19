@@ -55,14 +55,14 @@ function TiktokContent({
   const pageSeo = content?.seo || { title: pageTitle, desc: "Fast and secure media extraction tool." };
   const [downloadData, setDownloadData] = React.useState<PlatformResult | null>(null)
   const [isLoading, setIsLoading] = React.useState(false)
+  const [autoTriggerDownload, setAutoTriggerDownload] = React.useState(false)
   
   const dict = (dictionaries as Record<string, typeof dictionaries.en>)[locale] || dictionaries.en;
   const { addToHistory } = useDownloadHistory("tiktok");
   const searchParams = useSearchParams()
 
-
-
-  const handleSearch = async (url: string) => {
+  const handleSearch = async (url: string, isAutoTrigger = false) => {
+    setAutoTriggerDownload(isAutoTrigger)
     const cached = getCached(url)
     if (cached) {
       setDownloadData(cached)
@@ -176,6 +176,7 @@ function TiktokContent({
               validate={isAnyPlatformUrl}
               buttonClass={`bg-linear-to-br ${cx.ribbonAcc} text-white ${cx.shadow} ring-1 ring-inset ring-white/20`}
               iconClass={cx.text}
+              initialValue={searchParams.get('url') || ""}
             />
 
             <HeroQuickGuide steps={dict?.guide?.steps || []} accentColor={cx.text} />
@@ -189,6 +190,7 @@ function TiktokContent({
           <DownloadPreview 
             data={downloadData} 
             isLoading={isLoading} 
+            autoTriggerDownload={autoTriggerDownload}
             buttonStyle={`bg-linear-to-br ${cx.ribbonAcc} text-white ${cx.shadow} hover:brightness-110 active:scale-95`}
             accentText={cx.text}
             accentBg={cx.bgAccent}

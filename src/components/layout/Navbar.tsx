@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { Camera, ChevronDown, Menu, X, Globe, Ghost, Send, Play, Hash, Music, History, Sparkles, Compass } from "lucide-react"
+import { Camera, ChevronDown, Menu, X, Globe, Ghost, Send, Play, Hash, Music, History, Sparkles, Compass, CloudDownload } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/utils/cn"
 import { usePathname, useRouter } from "next/navigation"

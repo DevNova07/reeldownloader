@@ -22,6 +22,7 @@ import { DownloadCounter } from "@/components/ui/DownloadCounter"
 const RelatedTools = dynamic(() => import("@/components/shared/RelatedTools").then(mod => mod.RelatedTools))
 import { useDownloadHistory, getCached, setCached } from "@/hooks/useDownloadHistory"
 import { HeroEffect } from "@/components/shared/HeroEffect"
+import { SocialProof } from "@/components/shared/SocialProof"
 import { Camera, PlaySquare, StopCircle, Film, CheckCircle2, ShieldCheck, Zap, HelpCircle, Info, Music as MusicIcon } from "lucide-react"
 import { isValidInstaUrl } from "@/utils/cn"
 import { ToolSubNav } from "@/components/layout/ToolSubNav"
@@ -40,14 +41,16 @@ function HomeContent() {
   const router = useRouter()
   const [downloadData, setDownloadData] = React.useState<PlatformResult | null>(null)
   const [isLoading, setIsLoading] = React.useState(false)
+  const [autoTriggerDownload, setAutoTriggerDownload] = React.useState(false)
 
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const locale = pathname.split('/')[1] as Locale
-    const dict = (dictionaries as Record<string, typeof dictionaries.en>)[locale] || dictionaries.en
+  const dict = (dictionaries as Record<string, typeof dictionaries.en>)[locale] || dictionaries.en
   const { history: recentDownloads, addToHistory, clearHistory } = useDownloadHistory("instagram")
 
-  const handleSearch = async (url: string) => {
+  const handleSearch = async (url: string, isAutoTrigger = false) => {
+    setAutoTriggerDownload(isAutoTrigger)
     setIsLoading(true)
     const cached = getCached(url)
     if (cached) {
@@ -166,6 +169,7 @@ function HomeContent() {
           <DownloadPreview
             data={downloadData}
             isLoading={isLoading}
+            autoTriggerDownload={autoTriggerDownload}
             buttonStyle="bg-linear-to-br from-rose-600 via-pink-600 to-purple-600 text-white shadow-[0_20px_50px_rgba(225,10,94,0.3)] ring-1 ring-inset ring-white/20 hover:brightness-110 active:scale-95"
             accentText="text-pink-600"
             accentBg="bg-pink-600/10"
@@ -254,6 +258,8 @@ function HomeContent() {
           { title: dict.guide.steps[2].title.replace('{platform}', dict.categories.insta), desc: instaDict.howTo.steps[3], image: "/images/how-to/step3.webp" },
         ]}
       />
+
+      <SocialProof dict={dict} />
 
       <ChromeExtensionBanner dict={dict} />
 

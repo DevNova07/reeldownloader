@@ -25,8 +25,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
 
     // 2. Dynamic Tool Pages from Dictionary
-    // Limit to top 50 slugs per locale to prevent sitemap bloat and build timeouts
-    slugKeys.slice(0, 50).forEach((key) => {
+    // All slugs are included to ensure full indexation of the 8,000+ generated pages.
+    slugKeys.forEach((key) => {
       const slug = key.replace(/_/g, "-")
       sitemapEntries.push({
         url: `${SITE_URL}/${locale}/${slug}`,

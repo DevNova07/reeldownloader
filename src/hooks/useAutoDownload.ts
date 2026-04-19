@@ -41,8 +41,11 @@ export function useAutoDownload(
         router.replace(`${targetRoute}?url=${encodeURIComponent(sharedUrl)}`)
       }
     } else {
-      // Correct platform or root page - let SearchBar handle it via initialValue
+      // Correct platform or root page - trigger search directly with a slight delay for reliability
       hasTriggered.current = sharedUrl
+      setTimeout(() => {
+        onSearch(sharedUrl, true)
+      }, 300) // Small delay to ensure everything is initialized
     }
-  }, [searchParams, locale, router, currentPlatform])
+  }, [searchParams, locale, router, currentPlatform, onSearch])
 }

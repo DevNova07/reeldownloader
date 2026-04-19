@@ -88,14 +88,20 @@ export const PLATFORM_NAV_CONFIG: Record<string, PlatformNav> = {
         links: [
           { href: "/tiktok-video-download", label: "TikTok Video Download" },
           { href: "/tiktok-downloader", label: "TikTok Downloader" },
-          { href: "/tiktok-download-without-watermark", label: "No Watermark Download" },
-          { href: "/tiktok-mp4-download", label: "TikTok MP4 Download" },
+          { href: "/tiktok-video-downloader", label: "TikTok Video Downloader" },
+          { href: "/tiktok-download", label: "TikTok Download" },
+          { href: "/tiktok-video-downloader-without-login", label: "TikTok No Login" },
+          { href: "/tiktok-4k-video-downloader", label: "TikTok 4K Downloader" },
         ]
       },
       {
-        titleKey: "reels_downloader",
+        titleKey: "reels_viral",
         links: [
-          { href: "/tiktok-reels-download", label: "TikTok Reels" },
+          { href: "/tiktok-video-download-without-watermark", label: "TikTok No Watermark" },
+          { href: "/tiktok-private-video-download", label: "TikTok Private Downloader" },
+          { href: "/tiktok-hd-audio-downloader", label: "TikTok HD Audio" },
+          { href: "/tiktok-mp3-converter-downloader", label: "TikTok MP3 Converter" },
+          { href: "/tiktok-no-ads-downloader", label: "TikTok No Ads Saver" },
         ]
       }
     ],
@@ -112,6 +118,8 @@ export const PLATFORM_NAV_CONFIG: Record<string, PlatformNav> = {
           { href: "/youtube-downloader", label: "YouTube Downloader" },
           { href: "/youtube-mp4-download", label: "YouTube MP4 Download" },
           { href: "/youtube-to-mp4", label: "YouTube to MP4" },
+          { href: "/youtube-4k-video-downloader", label: "YouTube 4K Downloader" },
+          { href: "/youtube-video-downloader-without-login", label: "YouTube No Login" },
         ]
       },
       {
@@ -119,6 +127,14 @@ export const PLATFORM_NAV_CONFIG: Record<string, PlatformNav> = {
         links: [
           { href: "/youtube-shorts-download", label: "YouTube Shorts Download" },
           { href: "/youtube-playlist-download", label: "YouTube Playlist Download" },
+          { href: "/youtube-channel-video-download", label: "YouTube Channel Download" },
+          { href: "/youtube-private-video-download", label: "YouTube Private Downloader" },
+          { href: "/youtube-to-mp3-320kbps", label: "YouTube to MP3 320kbps" },
+          { href: "/youtube-video-clips", label: "YouTube Video Clips" },
+          { href: "/youtube-video-saver", label: "YouTube Video Saver" },
+          { href: "/youtube-hd-audio-downloader", label: "YouTube HD Audio" },
+          { href: "/youtube-mp4-converter-downloader", label: "YouTube MP4 Converter" },
+          { href: "/youtube-mp3-converter-downloader", label: "YouTube MP3 Converter" },
         ]
       }
     ],
@@ -182,5 +198,66 @@ export const PLATFORM_NAV_CONFIG: Record<string, PlatformNav> = {
     ],
     hoverColor: "hover:text-neutral-600 dark:hover:text-neutral-400",
     borderColor: "border-neutral-500/20"
+  },
+  regional: {
+    id: "regional",
+    categories: [
+      {
+        titleKey: "top_locations",
+        links: [
+          { href: "/instagram-downloader-india", label: "Instagram India" },
+          { href: "/facebook-downloader-usa", label: "Facebook USA" },
+          { href: "/instagram-downloader-brazil", label: "Instagram Brazil" },
+          { href: "/instagram-downloader-indonesia", label: "Instagram Indonesia" },
+          { href: "/reels-downloader-pakistan", label: "Reels Pakistan" },
+          { href: "/instagram-reels-download-bangladesh", label: "Reels Bangladesh" },
+          { href: "/tiktok-download-usa", label: "TikTok USA" },
+          { href: "/facebook-video-download-india", label: "FB Video India" },
+        ]
+      },
+      {
+        titleKey: "global_reach",
+        links: [
+          { href: "/instagram-downloader-mexico", label: "Mexico" },
+          { href: "/instagram-downloader-germany", label: "Germany" },
+          { href: "/instagram-downloader-france", label: "France" },
+          { href: "/instagram-downloader-turkey", label: "Turkey" },
+          { href: "/instagram-downloader-japan", label: "Japan" },
+          { href: "/instagram-downloader-korea", label: "South Korea" },
+          { href: "/instagram-downloader-russia", label: "Russia" },
+        ]
+      }
+    ],
+    hoverColor: "hover:text-emerald-600 dark:hover:text-emerald-500",
+    borderColor: "border-emerald-500/20"
+  },
+  features: {
+    id: "features",
+    categories: [
+      {
+        titleKey: "advanced_tools",
+        links: [
+          { href: "/instagram-4k-video-downloader", label: "Insta 4K Downloader" },
+          { href: "/facebook-no-ads-downloader", label: "FB No Ads Saver" },
+          { href: "/youtube-mp3-320kbps", label: "YT to MP3 320kbps" },
+          { href: "/tiktok-video-saver-no-login", label: "TikTok No Login" },
+          { href: "/instagram-bulk-reels-download", label: "Bulk Reels Saver" },
+          { href: "/snapchat-spotlight-saver-hd", label: "Snapchat Spotlight" },
+        ]
+      },
+      {
+        titleKey: "pro_features",
+        links: [
+          { href: "/instagram-high-speed-downloader", label: "High Speed Insta" },
+          { href: "/facebook-hd-audio-downloader", label: "FB HD Audio" },
+          { href: "/snapchat-gallery-saver-downloader", label: "Snapchat Gallery" },
+          { href: "/instagram-private-instagram-video-saver", label: "Private Insta Saver" },
+          { href: "/youtube-mp4-downloader-hd", label: "YouTube MP4 HD" },
+          { href: "/twitter-video-saver-x", label: "Twitter X Saver" },
+        ]
+      }
+    ],
+    hoverColor: "hover:text-amber-600 dark:hover:text-amber-500",
+    borderColor: "border-amber-500/20"
   }
 };

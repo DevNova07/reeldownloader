@@ -172,6 +172,7 @@ function SnapchatContent({
               validate={isAnyPlatformUrl}
               buttonClass={`bg-linear-to-br ${cx.ribbonAcc} text-white ${cx.shadow} ring-1 ring-inset ring-white/20`}
               iconClass={cx.text}
+              initialValue={searchParams.get('url') || ""}
             />
 
             <HeroQuickGuide steps={dict?.guide?.steps || []} accentColor={cx.text} />

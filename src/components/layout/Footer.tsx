@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { Camera, Send, Mail, Globe, ShieldCheck, Zap, HelpCircle, HardDrive, Share2 } from "lucide-react"
+import { Camera, Send, Mail, Globe, ShieldCheck, Zap, HelpCircle, HardDrive, Share2, CloudDownload, Apple as AppleIcon } from "lucide-react"
 import { useParams } from "next/navigation"
 import { locales, type Locale } from "@/i18n"
 import { ReactNode } from "react"
@@ -35,11 +35,11 @@ export function Footer({ children, locale, dict }: { children?: React.ReactNode,
           <div className="lg:col-span-4 space-y-8">
             <Link href={getLocalizedHref("/")} className="flex items-center gap-3 group">
               <div className="relative flex h-14 w-14 items-center justify-center overflow-hidden rounded-[1.25rem] bg-linear-to-tr from-[#cc00ff] to-[#ff0080] shadow-2xl group-hover:scale-105 transition-transform duration-500">
-                 <Camera className="h-7 w-7 text-white" />
+                 <CloudDownload className="h-7 w-7 text-white" />
                  <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
               <span className="text-3xl font-black tracking-tighter text-neutral-900 dark:text-white uppercase italic">
-                Insta<span className="text-pink-600">Snap</span>
+                Sav<span className="text-pink-600">Clip</span>
               </span>
             </Link>
             
@@ -49,6 +49,28 @@ export function Footer({ children, locale, dict }: { children?: React.ReactNode,
             <p className="max-w-sm text-sm font-bold leading-relaxed text-neutral-500 dark:text-neutral-400 opacity-90">
               {branding.desc}
             </p>
+
+            {/* App Badges */}
+            <div className="flex flex-wrap gap-3 pt-2">
+               <div className="h-9 w-28 bg-black rounded-lg border border-white/10 flex items-center justify-center p-1.5 cursor-pointer hover:bg-neutral-900 transition-colors">
+                  <div className="flex items-center gap-1.5">
+                     <Globe className="w-3.5 h-3.5 text-white" />
+                     <div className="flex flex-col">
+                        <span className="text-[5px] font-black text-white/50 uppercase leading-none">Get it on</span>
+                        <span className="text-[10px] font-black text-white leading-none">Google Play</span>
+                     </div>
+                  </div>
+               </div>
+               <div className="h-9 w-28 bg-black rounded-lg border border-white/10 flex items-center justify-center p-1.5 cursor-pointer hover:bg-neutral-900 transition-colors">
+                  <div className="flex items-center gap-1.5">
+                     <AppleIcon className="w-3.5 h-3.5 text-white" />
+                     <div className="flex flex-col">
+                        <span className="text-[5px] font-black text-white/50 uppercase leading-none">Download on</span>
+                        <span className="text-[10px] font-black text-white leading-none">App Store</span>
+                     </div>
+                  </div>
+               </div>
+            </div>
 
             <div className="pt-4 flex items-center gap-6">
                <div className="flex flex-col">
@@ -103,7 +125,6 @@ export function Footer({ children, locale, dict }: { children?: React.ReactNode,
                   { name: "Terms & Service", href: "/terms" },
                   { name: "Disclaimer", href: "/disclaimer" },
                   { name: "DMCA", href: "/dmca" },
-                  { name: "Admin Dashboard", href: "/admin" }
                 ].map((link) => (
                   <li key={link.name}>
                     <Link href={getLocalizedHref(link.href)} className="text-sm font-bold text-neutral-500 hover:text-pink-600 dark:text-neutral-400 transition-all hover:translate-x-1 inline-block">
@@ -114,17 +135,51 @@ export function Footer({ children, locale, dict }: { children?: React.ReactNode,
              </ul>
           </div>
 
-          {/* Column 4: Key Features */}
+          {/* New Column: Top Locations */}
           <div className="lg:col-span-3">
              <h3 className="text-[11px] font-black uppercase tracking-[0.3em] text-neutral-900 dark:text-white mb-8 bg-neutral-50 dark:bg-neutral-800 px-3 py-1 rounded inline-block">
-                {branding.features_title}
+                Top Locations
              </h3>
-             <div className="grid grid-cols-1 gap-4">
-                {branding.features.map((feat: string, i: number) => (
-                  <div key={i} className="flex items-center gap-3 p-4 rounded-2xl bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 group hover:bg-white dark:hover:bg-neutral-900 transition-all shadow-sm hover:shadow-xl">
-                    <ShieldCheck className="h-5 w-5 text-pink-600 opacity-60 group-hover:opacity-100" />
-                    <span className="text-xs font-black uppercase italic tracking-tighter text-neutral-900 dark:text-white">{feat}</span>
-                  </div>
+             <ul className="grid grid-cols-2 gap-x-4 gap-y-4">
+                {[
+                  { name: "India", href: "/instagram-downloader-india" },
+                  { name: "USA", href: "/facebook-downloader-usa" },
+                  { name: "Brazil", href: "/instagram-downloader-brazil" },
+                  { name: "Indonesia", href: "/instagram-downloader-indonesia" },
+                  { name: "Pakistan", href: "/reels-downloader-pakistan" },
+                  { name: "Mexico", href: "/instagram-downloader-mexico" },
+                  { name: "Turkey", href: "/instagram-downloader-turkey" },
+                  { name: "Germany", href: "/instagram-downloader-germany" },
+                ].map((link) => (
+                  <li key={link.name}>
+                    <Link href={getLocalizedHref(link.href)} className="text-[12px] font-bold text-neutral-500 hover:text-pink-600 dark:text-neutral-400 transition-all hover:translate-x-1 inline-block">
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+             </ul>
+          </div>
+
+          {/* New Column: Premium Tools */}
+          <div className="lg:col-span-12 mt-10">
+             <h3 className="text-[11px] font-black uppercase tracking-[0.3em] text-neutral-900 dark:text-white mb-8 bg-neutral-50 dark:bg-neutral-800 px-3 py-1 rounded inline-block">
+                Premium Tools
+             </h3>
+             <div className="flex flex-wrap gap-x-8 gap-y-4">
+                {[
+                  { name: "4K Video Downloader", href: "/instagram-4k-video-downloader" },
+                  { name: "No Ads Facebook Saver", href: "/facebook-no-ads-downloader" },
+                  { name: "YouTube MP3 320kbps", href: "/youtube-mp3-320kbps" },
+                  { name: "TikTok No Login", href: "/tiktok-video-saver-no-login" },
+                  { name: "Bulk Reels Saver", href: "/instagram-bulk-reels-download" },
+                  { name: "Snapchat Spotlight HD", href: "/snapchat-spotlight-saver-hd" },
+                  { name: "Private Insta Saver", href: "/instagram-private-instagram-video-saver" },
+                  { name: "Twitter X Video Saver", href: "/twitter-video-saver-x" },
+                  { name: "High Speed Insta", href: "/instagram-high-speed-downloader" },
+                ].map((link) => (
+                  <Link key={link.name} href={getLocalizedHref(link.href)} className="text-[11px] font-black uppercase tracking-widest text-neutral-400 hover:text-pink-600 transition-colors">
+                    {link.name}
+                  </Link>
                 ))}
              </div>
           </div>

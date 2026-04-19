@@ -368,7 +368,7 @@ function BioBuilderContent() {
                       </div>
 
                       <div className="mt-auto pb-6">
-                        <span className={cn("text-[8px] font-black uppercase tracking-[0.2em] opacity-30", s.text)}>⚡ CREATED WITH INSTASNAP</span>
+                        <span className={cn("text-[8px] font-black uppercase tracking-[0.2em] opacity-30", s.text)}>⚡ CREATED WITH SAVCLIP</span>
                       </div>
                   </div>
               </div>
