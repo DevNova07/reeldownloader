@@ -29,7 +29,6 @@ export async function POST(request: Request) {
     // --- CACHE CHECK ---
     const cachedData = cacheManager.get(url);
     if (cachedData) {
-      console.log("Serving from Cache:", url);
       statsManager.trackCacheHit();
       return NextResponse.json({ success: true, data: cachedData, cached: true });
     }

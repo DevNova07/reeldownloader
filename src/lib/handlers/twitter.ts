@@ -35,7 +35,6 @@ export async function twitterHandler(url: string): Promise<PlatformResult> {
     const rapidApiHost = "social-download-all-in-one.p.rapidapi.com";
     const apiUrl = `https://${rapidApiHost}/v1/social/autolink`;
 
-    console.log("Fetching from X / Twitter API (Primary):", apiUrl);
 
     const response = await fetchWithRotation(apiUrl, {
       method: "POST",
@@ -87,7 +86,6 @@ export async function twitterHandler(url: string): Promise<PlatformResult> {
     const fallbackHost = "twitter-video-downloader-api.p.rapidapi.com";
     const fallbackUrl = `https://${fallbackHost}/api/v1/twitter/details?url=${encodeURIComponent(url)}`;
     
-    console.log("Fetching from X / Twitter API (Fallback):", fallbackUrl);
     
     const response = await fetchWithRotation(fallbackUrl, {
       method: "GET",

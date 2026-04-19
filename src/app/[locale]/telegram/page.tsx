@@ -11,7 +11,7 @@ import { PlatformTabs } from "@/components/shared/PlatformTabs"
 import { SocialServiceBar } from "@/components/layout/SocialServiceBar"
 import { VisualGuide } from "@/components/shared/VisualGuide"
 import { type Locale } from "@/i18n"
-import { dictionaries } from "@/dictionaries/client"
+import { getDictionary } from "@/dictionaries/client"
 import { TrendingBar } from "@/components/layout/TrendingBar"
 import { LoadingBar } from "@/components/ui/LoadingBar"
 import { DownloadCounter } from "@/components/ui/DownloadCounter"
@@ -33,7 +33,7 @@ function TelegramContent() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const locale = pathname.split('/')[1] as Locale
-    const dict = (dictionaries as Record<string, typeof dictionaries.en>)[locale] || dictionaries.en
+    const dict = getDictionary(locale)
 
   const [downloadData, setDownloadData] = React.useState<PlatformResult | null>(null)
   const [isLoading, setIsLoading] = React.useState(false)

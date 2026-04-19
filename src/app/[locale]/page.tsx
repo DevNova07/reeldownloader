@@ -12,9 +12,10 @@ const StructuredData = dynamic(() => import("@/components/shared/StructuredData"
 const PlatformTabs = dynamic(() => import("@/components/shared/PlatformTabs").then(mod => mod.PlatformTabs))
 const SocialServiceBar = dynamic(() => import("@/components/layout/SocialServiceBar").then(mod => mod.SocialServiceBar))
 const VisualGuide = dynamic(() => import("@/components/shared/VisualGuide").then(mod => mod.VisualGuide))
+const PopularTools = dynamic(() => import("@/components/layout/PopularTools").then(mod => mod.PopularTools))
 const SmartClipboard = dynamic(() => import("@/components/ui/SmartClipboard").then(mod => mod.SmartClipboard), { ssr: false })
 import { type Locale } from "@/i18n"
-import { dictionaries } from "@/dictionaries/client"
+import { getDictionary } from "@/dictionaries/client"
 
 const TrendingBar = dynamic(() => import("@/components/layout/TrendingBar").then(mod => mod.TrendingBar))
 import { LoadingBar } from "@/components/ui/LoadingBar"
@@ -46,7 +47,7 @@ function HomeContent() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const locale = pathname.split('/')[1] as Locale
-  const dict = (dictionaries as Record<string, typeof dictionaries.en>)[locale] || dictionaries.en
+  const dict = getDictionary(locale)
   const { history: recentDownloads, addToHistory, clearHistory } = useDownloadHistory("instagram")
 
   const handleSearch = async (url: string, isAutoTrigger = false) => {
@@ -223,6 +224,8 @@ function HomeContent() {
       </section>
 
       <RelatedTools currentPlatform="instagram" />
+
+      <PopularTools />
 
       <CategoryCards />
 

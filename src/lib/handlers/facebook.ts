@@ -49,7 +49,6 @@ export async function facebookHandler(url: string): Promise<PlatformResult> {
     const primaryHost = "free-facebook-downloader.p.rapidapi.com";
     const primaryUrl = `https://${primaryHost}/external-api/facebook-video-downloader?url=${encodeURIComponent(url)}`;
     
-    console.log("Fetching from Primary Facebook API (Free):", primaryUrl);
     
     const response = await fetchWithRotation(primaryUrl, {
       method: "POST",
@@ -112,7 +111,6 @@ export async function facebookHandler(url: string): Promise<PlatformResult> {
     const fallbackHost = "facebook-video-downloader9.p.rapidapi.com";
     const fallbackUrl = `https://${fallbackHost}/api/v1/videos/download?url=${encodeURIComponent(url)}`;
 
-    console.log("Fetching from Fallback Facebook API (V9):", fallbackUrl);
 
     const response = await fetchWithRotation(fallbackUrl, {
       method: "GET",
@@ -174,7 +172,6 @@ export async function facebookHandler(url: string): Promise<PlatformResult> {
   try {
     const allInOneHost = "social-download-all-in-one.p.rapidapi.com";
 
-    console.log("Fetching from Social All-in-One API (Facebook Last Resort)");
 
     const response = await fetchWithRotation(`https://${allInOneHost}/v1/social/autolink`, {
       method: "POST",

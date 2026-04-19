@@ -14,7 +14,7 @@ import Image from "next/image";
 const PlatformTabs = dynamic(() => import("@/components/shared/PlatformTabs").then(m => m.PlatformTabs));
 const SocialServiceBar = dynamic(() => import("@/components/layout/SocialServiceBar").then(m => m.SocialServiceBar));
 import { type Locale } from "@/i18n";
-import { dictionaries } from "@/dictionaries/client";
+import { getDictionary } from "@/dictionaries/client";
 import { LoadingBar } from "@/components/ui/LoadingBar";
 import { DownloadCounter } from "@/components/ui/DownloadCounter";
 import { useDownloadHistory, getCached, setCached } from "@/hooks/useDownloadHistory";
@@ -56,14 +56,16 @@ export default function InstagramPage({
   const pageSeo = content?.seo || { title: pageTitle, desc: "Fast and secure media extraction tool." };
   const [downloadData, setDownloadData] = React.useState<PlatformResult | null>(null);
   const [isLoading, setIsLoading] = React.useState(false);
+  const [autoTriggerDownload, setAutoTriggerDownload] = React.useState(false);
 
-    const dict = (dictionaries as Record<string, typeof dictionaries.en>)[locale] || dictionaries.en;
+    const dict = getDictionary(locale);
   const { history: recentDownloads, addToHistory, clearHistory } = useDownloadHistory("instagram");
   const searchParams = useSearchParams()
 
 
 
-  const handleSearch = async (url: string) => {
+  const handleSearch = async (url: string, isAutoTrigger = false) => {
+    setAutoTriggerDownload(isAutoTrigger);
     const cached = getCached(url);
     if (cached) {
       setDownloadData(cached);
@@ -189,6 +191,7 @@ export default function InstagramPage({
           <DownloadPreview
             data={downloadData}
             isLoading={isLoading}
+            autoTriggerDownload={autoTriggerDownload}
             buttonStyle={`bg-linear-to-br ${cx.gradient} text-white shadow-[0_20px_50px_rgba(225,10,94,0.3)] ring-1 ring-inset ring-white/20`}
             accentText={cx.text}
             accentBg={cx.bgAccent}

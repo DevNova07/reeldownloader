@@ -24,7 +24,12 @@ import ne from './ne.json'
 
 export const dictionaries = {
   en, hi, es, ar, pt, id, fr, ru, ja, tr, vi, th, hinglish, bn, ta, ur, tl, fa, uk, my, am, uz, ne
-} as const
+}
 
 export type Dictionary = typeof en
 export type Locale = keyof typeof dictionaries
+
+// Helper to get dictionary safely with English fallback for missing properties
+export const getDictionary = (locale: string): Dictionary => {
+  return (dictionaries as Record<string, any>)[locale] || dictionaries.en
+}

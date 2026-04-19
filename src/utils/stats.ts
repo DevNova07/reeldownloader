@@ -162,7 +162,6 @@ class StatsManager {
           if (keyData.status === "exhausted" && keyData.lastCheck) {
             const lastCheckTime = new Date(keyData.lastCheck).getTime();
             if (now - lastCheckTime > TWELVE_HOURS) {
-              console.log(`[StatsManager] Reactivating exhausted key for ${pKey} (Reset Period Elapsed)`);
               keyData.status = "active";
               keyData.remaining = "unkn"; // Will be updated on next fetch
             }

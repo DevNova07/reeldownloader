@@ -12,6 +12,7 @@ import Image from "next/image"
 import { toast } from "react-hot-toast"
 import { ToolSubNav } from "@/components/layout/ToolSubNav"
 import { AISearchBar } from "@/components/shared/AISearchBar"
+import { PremiumSearch } from "@/components/shared/PremiumSearch"
 import { NEW_HASHTAGS, type HashtagData } from "@/data/hashtags"
 
 // Simple mock logic for hashtag generation
@@ -90,32 +91,15 @@ export default function HashtagPage() {
           </motion.h1>
 
           {/* Search Bar Container */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.1 }}
-            className="mx-auto flex h-14 w-full max-w-2xl overflow-hidden rounded-sm bg-white shadow-2xl"
-          >
-            <input
-              type="text"
-              value={keyword}
-              onChange={(e) => setKeyword(e.target.value)}
-              placeholder={hashtagDict.placeholder}
-              onKeyDown={(e) => e.key === "Enter" && handleGenerate()}
-              className="flex-1 px-6 text-lg italic text-neutral-700 outline-none placeholder:text-neutral-400"
-            />
-            <button
-              onClick={handleGenerate}
-              disabled={isGenerating || !keyword.trim()}
-              className="flex h-full w-16 items-center justify-center bg-[#a4d444] text-white transition-all hover:bg-[#94c33c] active:scale-95 disabled:opacity-50"
-            >
-              {isGenerating ? (
-                <div className="h-6 w-6 animate-spin rounded-full border-2 border-white border-t-transparent" />
-              ) : (
-                <Search className="h-6 w-6 stroke-[3px]" />
-              )}
-            </button>
-          </motion.div>
+          <PremiumSearch 
+            value={keyword}
+            onChange={setKeyword}
+            onSearch={handleGenerate}
+            placeholder={hashtagDict.placeholder}
+            isLoading={isGenerating}
+            accentColor="text-[#a4d444]"
+            buttonColor="bg-[#a4d444]"
+          />
 
           <motion.p
             initial={{ opacity: 0 }}

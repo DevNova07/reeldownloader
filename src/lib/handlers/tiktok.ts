@@ -34,11 +34,9 @@ export async function tiktokHandler(url: string): Promise<PlatformResult> {
   // --- URL RESOLVER (for v.tiktok.com short links) ---
   if (url.includes("v.tiktok.com")) {
     try {
-      console.log("Resolving short TikTok URL:", url);
       const headRes = await fetch(url, { method: 'HEAD', redirect: 'follow' });
       if (headRes.url) {
         finalUrl = headRes.url.split('?')[0];
-        console.log("Resolved to:", finalUrl);
       }
     } catch (e) {
       console.warn("URL resolution failed, using original:", e);
@@ -50,7 +48,6 @@ export async function tiktokHandler(url: string): Promise<PlatformResult> {
     const primaryHost = "tiktok-video-downloader-7690-video-per-months-for-free.p.rapidapi.com";
     const primaryUrl = `https://${primaryHost}/tiktok-video.php?url=${encodeURIComponent(finalUrl)}`;
     
-    console.log("Fetching from Primary TikTok API:", primaryUrl);
     
     const response = await fetchWithRotation(primaryUrl, {
       method: "GET",
@@ -107,7 +104,6 @@ export async function tiktokHandler(url: string): Promise<PlatformResult> {
     const fallbackHost = "social-download-all-in-one.p.rapidapi.com";
     const fallbackUrl = `https://${fallbackHost}/v1/social/autolink`;
 
-    console.log("Fetching from Fallback TikTok API (All-in-One):", fallbackUrl);
 
     const response = await fetchWithRotation(fallbackUrl, {
       method: "POST",

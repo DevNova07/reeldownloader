@@ -36,6 +36,7 @@ import { cn } from "@/utils/cn"
 import { toast } from "react-hot-toast"
 import { ToolSubNav } from "@/components/layout/ToolSubNav"
 import { AISearchBar } from "@/components/shared/AISearchBar"
+import { PremiumSearch } from "@/components/shared/PremiumSearch"
 
 // ─── Constants & Mock Data ───────────────────────────────────────────────────
 
@@ -908,28 +909,14 @@ export default function CaptionsPage() {
                     </motion.h1>
 
                     {/* Search Bar Container */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 0.1 }}
-                        className="mx-auto flex h-14 w-full max-w-2xl overflow-hidden rounded-sm bg-white shadow-2xl"
-                    >
-                        <input
-                            type="text"
-                            value={topic}
-                            onChange={(e) => setTopic(e.target.value)}
-                            placeholder="Describe your post topic..."
-                            onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-                            className="flex-1 px-6 text-lg italic text-neutral-700 outline-none placeholder:text-neutral-400"
-                        />
-                        <button
-                            onClick={handleSearch}
-                            disabled={!topic.trim()}
-                            className="flex h-full w-16 items-center justify-center bg-[#a4d444] text-white transition-all hover:bg-[#94c33c] active:scale-95 disabled:opacity-50"
-                        >
-                            <Search className="h-6 w-6 stroke-[3px]" />
-                        </button>
-                    </motion.div>
+                    <PremiumSearch 
+                        value={topic}
+                        onChange={setTopic}
+                        onSearch={handleSearch}
+                        placeholder="Describe your post topic..."
+                        accentColor="text-[#a4d444]"
+                        buttonColor="bg-[#a4d444]"
+                    />
 
                     <motion.p
                         initial={{ opacity: 0 }}

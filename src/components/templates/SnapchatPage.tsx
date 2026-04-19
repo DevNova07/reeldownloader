@@ -12,7 +12,7 @@ const StructuredData = dynamic(() => import("@/components/shared/StructuredData"
 const PlatformTabs = dynamic(() => import("@/components/shared/PlatformTabs").then(m => m.PlatformTabs))
 const SocialServiceBar = dynamic(() => import("@/components/layout/SocialServiceBar").then(m => m.SocialServiceBar))
 import { type Locale } from "@/i18n"
-import { dictionaries } from "@/dictionaries/client"
+import { getDictionary } from "@/dictionaries/client"
 import { LoadingBar } from "@/components/ui/LoadingBar"
 import { DownloadCounter } from "@/components/ui/DownloadCounter"
 import { useDownloadHistory, getCached, setCached } from "@/hooks/useDownloadHistory"
@@ -54,14 +54,16 @@ function SnapchatContent({
   const pageSeo = content?.seo || { title: pageTitle, desc: "Fast and secure media extraction tool." };
   const [downloadData, setDownloadData] = React.useState<PlatformResult | null>(null)
   const [isLoading, setIsLoading] = React.useState(false)
+  const [autoTriggerDownload, setAutoTriggerDownload] = React.useState(false)
   
-  const dict = (dictionaries as Record<string, typeof dictionaries.en>)[locale] || dictionaries.en;
+  const dict = getDictionary(locale);
   const { addToHistory } = useDownloadHistory("snapchat");
   const searchParams = useSearchParams()
 
 
 
-  const handleSearch = async (url: string) => {
+  const handleSearch = async (url: string, isAutoTrigger = false) => {
+    setAutoTriggerDownload(isAutoTrigger)
     const cached = getCached(url)
     if (cached) {
       setDownloadData(cached)
@@ -186,6 +188,7 @@ function SnapchatContent({
           <DownloadPreview 
             data={downloadData} 
             isLoading={isLoading} 
+            autoTriggerDownload={autoTriggerDownload}
             buttonStyle={`bg-black text-white hover:bg-neutral-800 ${cx.shadow}`}
             accentText={cx.text}
             accentBg={cx.bgAccent}

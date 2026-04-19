@@ -6,7 +6,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/utils/cn"
 import { Film, PlaySquare, StopCircle, Music as MusicIcon, Camera, ImageIcon, Send, Ghost, Hash, ShieldCheck, Compass } from "lucide-react"
-import { dictionaries } from "@/dictionaries/client"
+import { getDictionary } from "@/dictionaries/client"
 
 interface CategoryCardsProps {
   hoverShadow?: string
@@ -22,7 +22,7 @@ export function CategoryCards({
   const pathname = usePathname()
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const locale = (pathname.split('/')[1] || 'en') as any
-  const dict = (dictionaries as Record<string, typeof dictionaries.en>)[locale] || dictionaries.en
+  const dict = getDictionary(locale)
 
   const getLocalizedHref = (path: string) => {
     const cleanPath = path.startsWith('/') ? path : `/${path}`

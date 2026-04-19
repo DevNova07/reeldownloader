@@ -11,7 +11,7 @@ import { SocialServiceBar } from "@/components/layout/SocialServiceBar"
 import { VisualGuide } from "@/components/shared/VisualGuide"
 import { usePathname } from "next/navigation"
 import { type Locale } from "@/i18n"
-import { dictionaries } from "@/dictionaries/client"
+import { getDictionary } from "@/dictionaries/client"
 import { Twitter, Music as MusicIcon, Image as ImageIcon, Zap, ShieldCheck, CheckCircle2, HelpCircle, Info } from "lucide-react"
 import { TrendingBar } from "@/components/layout/TrendingBar"
 import { ToolSubNav } from "@/components/layout/ToolSubNav"
@@ -30,7 +30,7 @@ export default function TwitterMusicPage() {
   
   const pathname = usePathname()
   const locale = pathname.split('/')[1] as Locale
-    const dict = (dictionaries as Record<string, typeof dictionaries.en>)[locale] || dictionaries.en
+    const dict = getDictionary(locale)
   const { addToHistory } = useDownloadHistory("twitter")
 
   const handleSearch = async (url: string) => {

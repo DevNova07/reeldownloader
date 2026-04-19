@@ -160,7 +160,6 @@ export async function youtubeHandler(url: string): Promise<PlatformResult> {
     const newPrimaryHost = "all-media-downloader4.p.rapidapi.com";
     const newPrimaryUrl = `https://${newPrimaryHost}/yt/v5/download.php?id=${videoId}`;
 
-    console.log("Fetching from New Priority YouTube API (Cluster 1):", newPrimaryUrl);
 
     const response = await fetchWithRotation(newPrimaryUrl, {
       method: "GET",
@@ -197,7 +196,6 @@ export async function youtubeHandler(url: string): Promise<PlatformResult> {
   // --- CLUSTER 2: Social Download All-in-One (Secondary Primary) ---
   try {
     const allInOneHost = "social-download-all-in-one.p.rapidapi.com";
-    console.log("Fetching from Social All-in-One API (YouTube Cluster 2)");
 
     const response = await fetchWithRotation(`https://${allInOneHost}/v1/social/autolink`, {
       method: "POST",
@@ -239,7 +237,6 @@ export async function youtubeHandler(url: string): Promise<PlatformResult> {
     const api3Host = "youtube-download-api3.p.rapidapi.com";
     const api3Url = `https://${api3Host}/api/v1/download/${videoId}`;
 
-    console.log("Fetching from API3 (High Limit):", api3Url);
 
     const response = await fetchWithRotation(api3Url, {
       method: "GET",
@@ -296,7 +293,6 @@ export async function youtubeHandler(url: string): Promise<PlatformResult> {
     const primaryHost = "youtube-media-downloader.p.rapidapi.com";
     const primaryUrl = `https://${primaryHost}/v2/video/details?videoId=${videoId}`;
 
-    console.log("Fetching from Tertiary YouTube API (Media Downloader):", primaryUrl);
 
     const response = await fetchWithRotation(primaryUrl, {
       method: "GET",
@@ -371,7 +367,6 @@ export async function youtubeHandler(url: string): Promise<PlatformResult> {
     const fallbackHost = "youtube-video-and-shorts-downloader1.p.rapidapi.com";
     const fallbackUrl = `https://${fallbackHost}/youtube/v3/video/details?videoId=${videoId}`;
 
-    console.log("Fetching from Quaternary YouTube API (Video & Shorts):", fallbackUrl);
 
     const response = await fetchWithRotation(fallbackUrl, {
       method: "GET",

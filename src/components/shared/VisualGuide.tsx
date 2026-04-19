@@ -6,7 +6,7 @@ import { LucideIcon } from "lucide-react"
 import { usePathname } from "next/navigation"
 import Image from "next/image"
 import { type Locale } from "@/i18n"
-import { dictionaries, type Dictionary } from "@/dictionaries/client"
+import { getDictionary, type Dictionary } from "@/dictionaries/client"
 
 
 interface VisualStep {
@@ -32,7 +32,7 @@ export function VisualGuide({ platformName, accentColor, bgAccentColor, Icon, st
   }, [])
 
   const locale = pathname.split('/')[1] as Locale
-  const dict: Dictionary = (dictionaries as Record<string, typeof dictionaries.en>)[locale] || dictionaries.en
+  const dict: Dictionary = getDictionary(locale)
 
   if (!mounted) return null
 

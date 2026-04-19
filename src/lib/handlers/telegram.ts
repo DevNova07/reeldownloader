@@ -21,7 +21,6 @@ export async function telegramHandler(url: string): Promise<PlatformResult> {
   const rapidApiHost = "telegram-index.p.rapidapi.com";
   const apiUrl = `https://${rapidApiHost}/fetch?link=${encodeURIComponent(url)}`;
 
-  console.log("Fetching from Telegram Index API:", apiUrl);
 
   const response = await fetchWithRotation(apiUrl, {
     method: "GET",

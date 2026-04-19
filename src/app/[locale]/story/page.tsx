@@ -12,7 +12,7 @@ import { SocialServiceBar } from "@/components/layout/SocialServiceBar"
 import { VisualGuide } from "@/components/shared/VisualGuide"
 import { usePathname } from "next/navigation"
 import { type Locale } from "@/i18n"
-import { dictionaries } from "@/dictionaries/client"
+import { getDictionary } from "@/dictionaries/client"
 import { StopCircle as Story, ShieldCheck, Zap, CheckCircle2, HelpCircle, Info, Film, PlaySquare, Music as MusicIcon, Smartphone } from "lucide-react"
 import { ToolSubNav } from "@/components/layout/ToolSubNav"
 import { TrendingBar } from "@/components/layout/TrendingBar"
@@ -33,7 +33,7 @@ export default function StoryPage() {
   
   const pathname = usePathname()
   const locale = pathname.split('/')[1] as Locale
-    const dict = (dictionaries as Record<string, typeof dictionaries.en>)[locale] || dictionaries.en
+    const dict = getDictionary(locale)
 
   const { addToHistory } = useDownloadHistory("story")
 

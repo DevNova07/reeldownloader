@@ -4,7 +4,7 @@ import * as React from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Sparkles, ArrowRight, Copy, Check, RefreshCcw, MoveLeft } from "lucide-react"
 import { usePathname } from "next/navigation"
-import { dictionaries } from "@/dictionaries/client"
+import { getDictionary } from "@/dictionaries/client"
 import { type Locale } from "@/i18n"
 import { toast } from "react-hot-toast"
 import Link from "next/link"
@@ -20,7 +20,7 @@ export default function AIGenerator() {
   const [copyStatus, setCopyStatus] = React.useState(false)
 
   const locale = (pathname.split('/')[1] || 'en') as Locale
-    const dict = (dictionaries as Record<string, typeof dictionaries.en>)[locale] || dictionaries.en
+    const dict = getDictionary(locale)
 
   const handleGenerate = () => {
     if (!topic.trim()) return

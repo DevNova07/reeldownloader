@@ -11,7 +11,7 @@ import { PlatformTabs } from "@/components/shared/PlatformTabs"
 import { SocialServiceBar } from "@/components/layout/SocialServiceBar"
 import { VisualGuide } from "@/components/shared/VisualGuide"
 import { type Locale } from "@/i18n"
-import { dictionaries } from "@/dictionaries/client"
+import { getDictionary } from "@/dictionaries/client"
 import { TrendingBar } from "@/components/layout/TrendingBar"
 import { LoadingBar } from "@/components/ui/LoadingBar"
 import { DownloadCounter } from "@/components/ui/DownloadCounter"
@@ -26,6 +26,7 @@ import { getPlatformFromUrl, getLocalizedRoute, isAnyPlatformUrl } from "@/utils
 import { TrustBadges } from "@/components/ui/TrustBadges"
 import { ChromeExtensionBanner } from "@/components/layout/ChromeExtensionBanner"
 import { ExpandableSection } from "@/components/ui/ExpandableSection"
+import { useAutoDownload } from "@/hooks/useAutoDownload"
 
 interface TelegramPageProps {
   content: any
@@ -35,14 +36,16 @@ interface TelegramPageProps {
 export default function TelegramPage({ content, locale }: TelegramPageProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const dict = (dictionaries as any)[locale] || dictionaries.en
+  const dict = getDictionary(locale)
 
   const [downloadData, setDownloadData] = React.useState<PlatformResult | null>(null)
   const [isLoading, setIsLoading] = React.useState(false)
+  const [autoTriggerDownload, setAutoTriggerDownload] = React.useState(false)
   
   const { addToHistory } = useDownloadHistory("telegram")
 
-  const handleSearch = async (url: string) => {
+  const handleSearch = async (url: string, isAutoTrigger = false) => {
+    setAutoTriggerDownload(isAutoTrigger)
     const detectedPlatform = getPlatformFromUrl(url);
     if (detectedPlatform && detectedPlatform !== 'telegram') {
       const targetRoute = getLocalizedRoute(detectedPlatform, locale);
@@ -82,12 +85,8 @@ export default function TelegramPage({ content, locale }: TelegramPageProps) {
     }
   }
 
-  React.useEffect(() => {
-    const sharedUrl = searchParams.get('url')
-    if (sharedUrl && (sharedUrl.startsWith('http') || sharedUrl.includes('t.me') || sharedUrl.includes('telegram'))) {
-      handleSearch(sharedUrl)
-    }
-  }, [searchParams])
+  // Auto-download logic for PWA Share Target
+  useAutoDownload(handleSearch, locale, "telegram")
 
   return (
     <div className="flex flex-col">
@@ -148,6 +147,7 @@ export default function TelegramPage({ content, locale }: TelegramPageProps) {
           <DownloadPreview 
             data={downloadData} 
             isLoading={isLoading} 
+            autoTriggerDownload={autoTriggerDownload}
             buttonStyle="bg-white text-sky-600 hover:bg-neutral-100"
             accentText="text-sky-600"
             accentBg="bg-sky-600/10"
@@ -221,7 +221,7 @@ export default function TelegramPage({ content, locale }: TelegramPageProps) {
                   {dict.faq.title}
                 </h2>
                 <div className="mt-10 space-y-6">
-                  {dict.faq.items.map((faq: any, idx: number) => (
+                  {(dict.faq.items || []).map((faq: any, idx: number) => (
                     <div key={idx} className="group rounded-2xl border border-neutral-200 p-6 dark:border-neutral-800 hover:border-sky-400/50 transition-all">
                       <h4 className="font-bold text-neutral-900 dark:text-white group-hover:text-sky-500 transition-colors uppercase italic tracking-tighter text-lg">{faq.q}</h4>
                       <p className="mt-4 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 group-hover:opacity-100 transition-opacity">{faq.a}</p>

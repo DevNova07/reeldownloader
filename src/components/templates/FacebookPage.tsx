@@ -13,7 +13,7 @@ const PlatformTabs = dynamic(() => import("@/components/shared/PlatformTabs").th
 const SocialServiceBar = dynamic(() => import("@/components/layout/SocialServiceBar").then(m => m.SocialServiceBar))
 const SmartClipboard = dynamic(() => import("@/components/ui/SmartClipboard").then(m => m.SmartClipboard), { ssr: false });
 import { type Locale } from "@/i18n"
-import { dictionaries } from "@/dictionaries/client"
+import { getDictionary } from "@/dictionaries/client"
 import { LoadingBar } from "@/components/ui/LoadingBar"
 import { DownloadCounter } from "@/components/ui/DownloadCounter"
 import { useDownloadHistory, getCached, setCached } from "@/hooks/useDownloadHistory"
@@ -57,7 +57,7 @@ function FacebookContent({
   const [isLoading, setIsLoading] = React.useState(false)
   const [autoTriggerDownload, setAutoTriggerDownload] = React.useState(false)
   
-  const dict = (dictionaries as Record<string, typeof dictionaries.en>)[locale] || dictionaries.en;
+  const dict = getDictionary(locale);
   const { addToHistory } = useDownloadHistory("facebook");
   const searchParams = useSearchParams()
 

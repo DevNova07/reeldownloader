@@ -8,7 +8,7 @@ import { toast } from "react-hot-toast"
  * Automatically handles '?url=' query parameters from PWA shares or direct links.
  */
 export function useAutoDownload(
-  onSearch: (url: string) => void,
+  onSearch: (url: string, autoTrigger?: boolean) => void,
   locale: string,
   currentPlatform: string | null = null
 ) {

@@ -44,7 +44,6 @@ export async function snapchatHandler(url: string): Promise<PlatformResult> {
   const rapidApiHost = "snapchat3.p.rapidapi.com";
   const apiUrl = `https://${rapidApiHost}/getFullProfile?username=${username}`;
 
-  console.log("Fetching from Snapchat API:", apiUrl);
 
   const medias: Media[] = [];
   let mainTitle = `Snapchat: ${username}`;
@@ -106,7 +105,6 @@ export async function snapchatHandler(url: string): Promise<PlatformResult> {
 
   // FALLBACK: If API yielded nothing (likely because the url was a direct video), attempt scraping
   if (medias.length === 0 && url.includes("snapchat.com/")) {
-    console.log("No profile media found. Falling back to native HTML scraping for direct URL:", url);
     try {
       const fallbackResponse = await fetch(url, { 
         headers: { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)' } 

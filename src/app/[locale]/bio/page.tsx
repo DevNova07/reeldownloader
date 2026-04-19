@@ -20,6 +20,7 @@ import { dictionaries } from "@/dictionaries/client"
 import { type Locale } from "@/i18n"
 import { ToolSubNav } from "@/components/layout/ToolSubNav"
 import bioData from "@/data/bios.json"
+import { PremiumSearch } from "@/components/shared/PremiumSearch"
 import { LeftSidebar, RightSidebar } from "./sidebars"
 
 // Dynamic Icon Helper
@@ -116,35 +117,15 @@ export default function BioLandingPage() {
             </h1>
           </motion.div>
 
-          <motion.form
-            onSubmit={handleGenerateBio}
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.1 }}
-            className="mx-auto flex h-14 w-full max-w-2xl overflow-hidden rounded-md bg-white shadow-[0_30px_60px_rgba(0,0,0,0.6)]"
-          >
-            <div className="flex-1 flex items-center px-6">
-              <Search className="h-5 w-5 text-neutral-300 mr-4" />
-              <input
-                type="text"
-                value={bioDescription}
-                onChange={(e) => setBioDescription(e.target.value)}
-                placeholder="Enter Keyword (e.g. Attitude, Boys, Life)..."
-                className="w-full bg-transparent border-none outline-none text-black font-medium placeholder:text-neutral-400 py-4 text-lg"
-              />
-            </div>
-            <button
-              type="submit"
-              disabled={isGeneratingBio || !bioDescription.trim()}
-              className="px-8 bg-[#d9f99d] text-black font-black transition-all hover:bg-[#c8e88c] active:scale-95 disabled:opacity-50 text-sm tracking-widest flex items-center justify-center"
-            >
-              {isGeneratingBio ? (
-                <div className="h-5 w-5 animate-spin rounded-full border-2 border-black border-t-transparent" />
-              ) : (
-                <Search className="h-5 w-5" />
-              )}
-            </button>
-          </motion.form>
+          <PremiumSearch 
+            value={bioDescription}
+            onChange={setBioDescription}
+            onSearch={() => handleGenerateBio({ preventDefault: () => {} } as React.FormEvent)}
+            placeholder="Enter Keyword (e.g. Attitude, Boys, Life)..."
+            isLoading={isGeneratingBio}
+            accentColor="text-[#d9f99d]"
+            buttonColor="bg-[#d9f99d]"
+          />
 
           <motion.p
             initial={{ opacity: 0 }}

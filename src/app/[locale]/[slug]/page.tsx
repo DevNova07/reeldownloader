@@ -12,6 +12,9 @@ const TiktokPage = dynamic(() => import("@/components/templates/TiktokPage"));
 const YoutubePage = dynamic(() => import("@/components/templates/YoutubePage"));
 const TwitterPage = dynamic(() => import("@/components/templates/TwitterPage"));
 const TelegramPage = dynamic(() => import("@/components/templates/TelegramPage"));
+import { locales } from "@/i18n";
+
+const SITE_URL = "https://savclip.net";
 
 interface PageProps {
   params: Promise<{ locale: string; slug: string }>;
@@ -41,11 +44,45 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
   const jsonKey = slug.replace(/-/g, "_");
   
   const content = (dict as any).platforms.seo_pages?.[jsonKey];
-  if (!content) return { title: "Not Found" };
+  if (!content) return { title: "Not Found", robots: { index: false } };
+
+  const pageTitle = content.seo?.title || content.title;
+  const pageDescription = content.seo?.desc || content.subtitle;
 
   return {
-    title: content.seo?.title || content.title,
-    description: content.seo?.desc || content.subtitle,
+    title: pageTitle,
+    description: pageDescription,
+    metadataBase: new URL(SITE_URL),
+    alternates: {
+      canonical: `${SITE_URL}/${locale}/${slug}`,
+      languages: Object.fromEntries(
+        locales.map((l) => [l, `${SITE_URL}/${l}/${slug}`])
+      ),
+    },
+    openGraph: {
+      title: pageTitle,
+      description: pageDescription,
+      url: `${SITE_URL}/${locale}/${slug}`,
+      siteName: "SavClip",
+      locale: locale,
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: pageTitle,
+      description: pageDescription,
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
   };
 }
 

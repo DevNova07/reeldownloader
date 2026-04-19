@@ -25,7 +25,6 @@ export async function fetchWithRotation(
   // --- DEVELOPER MOCK MODE FALLBACK ---
   const isMockMode = process.env.NEXT_PUBLIC_DEV_MOCK_MODE === 'true';
   if (isMockMode) {
-    console.log(`[MOCK MODE] Simulating ${platform} response for: ${url}`);
     return new Response(JSON.stringify({
       success: true,
       data: {

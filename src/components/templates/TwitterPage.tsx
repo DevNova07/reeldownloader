@@ -11,7 +11,7 @@ import { PlatformTabs } from "@/components/shared/PlatformTabs"
 import { SocialServiceBar } from "@/components/layout/SocialServiceBar"
 import { VisualGuide } from "@/components/shared/VisualGuide"
 import { type Locale } from "@/i18n"
-import { dictionaries } from "@/dictionaries/client"
+import { getDictionary } from "@/dictionaries/client"
 import { TrendingBar } from "@/components/layout/TrendingBar"
 import { LoadingBar } from "@/components/ui/LoadingBar"
 import { DownloadCounter } from "@/components/ui/DownloadCounter"
@@ -23,6 +23,8 @@ import { ToolSubNav } from "@/components/layout/ToolSubNav"
 import { toast } from "react-hot-toast"
 import { TrustBadges } from "@/components/ui/TrustBadges"
 import { ChromeExtensionBanner } from "@/components/layout/ChromeExtensionBanner"
+import { useSearchParams } from "next/navigation"
+import { useAutoDownload } from "@/hooks/useAutoDownload"
 
 interface TwitterPageProps {
   content: any
@@ -34,7 +36,7 @@ export default function TwitterPage({ content, locale }: TwitterPageProps) {
   const [isLoading, setIsLoading] = React.useState(false)
   const [autoTriggerDownload, setAutoTriggerDownload] = React.useState(false)
   
-  const dict = (dictionaries as any)[locale] || dictionaries.en
+  const dict = getDictionary(locale)
   const { addToHistory } = useDownloadHistory("twitter")
   const searchParams = useSearchParams()
 
@@ -108,7 +110,7 @@ export default function TwitterPage({ content, locale }: TwitterPageProps) {
             <h1 className="mb-2 text-4xl font-black tracking-tight text-white sm:text-7xl drop-shadow-2xl uppercase italic">
               {content?.title || "Twitter Downloader"}
             </h1>
-            <p className="mx-auto mb-4 max-w-2xl text-lg font-medium text-white/80 sm:text-xl">
+            <p className="mx-auto mb-4 max-w-2xl text-lg font-medium text-white/90 sm:text-xl">
               {content?.subtitle || content?.seo?.desc || "Fast and secure Twitter downloader."}
             </p>
           </motion.div>

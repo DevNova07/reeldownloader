@@ -42,8 +42,8 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
     keywords: dict.seo?.keywords || "instagram downloader, reels download, story downloader",
     metadataBase: new URL(SITE_URL),
     alternates: {
-      canonical: `/${locale}`,
-      languages: Object.fromEntries(locales.map(l => [l, `/${l}`]))
+      canonical: `${SITE_URL}/${locale}`,
+      languages: Object.fromEntries(locales.map(l => [l, `${SITE_URL}/${l}`]))
     },
     openGraph: {
       title: title,

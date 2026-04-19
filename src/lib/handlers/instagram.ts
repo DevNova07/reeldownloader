@@ -87,7 +87,6 @@ export async function instagramHandler(url: string): Promise<PlatformResult> {
     const primaryHost = "insta-reels-downloader-the-fastest-hd-reels-fetcher-api.p.rapidapi.com";
     const primaryUrl = `https://${primaryHost}/unified/index?url=${encodeURIComponent(url)}`;
     
-    console.log("[DEBUG INSTA] Fetching from Primary Cluster 1 (Unified HD):", primaryUrl);
     
     const response = await fetchWithRotation(primaryUrl, {
       method: "GET",
@@ -96,7 +95,6 @@ export async function instagramHandler(url: string): Promise<PlatformResult> {
 
     if (response.ok) {
       const rawData = (await response.json()) as InstagramUnifiedResponse;
-      console.log("[DEBUG INSTA] Unified v1 response received, status:", rawData.success);
 
       if (rawData.success && rawData.data && rawData.data.content && rawData.data.content.items) {
         const items = rawData.data.content.items;
@@ -131,7 +129,6 @@ export async function instagramHandler(url: string): Promise<PlatformResult> {
     const premiumHost = "instagram120.p.rapidapi.com";
     const premiumUrl = `https://${premiumHost}/api/instagram/info`; 
 
-    console.log("[DEBUG INSTA] Fetching from Backup Cluster 2 (instagram120):", premiumUrl);
 
     const response = await fetchWithRotation(premiumUrl, {
       method: "POST",
@@ -202,7 +199,6 @@ export async function instagramHandler(url: string): Promise<PlatformResult> {
     const backupHost = "social-download-all-in-one.p.rapidapi.com";
     const backupUrl = `https://${backupHost}/v1/social/autolink`;
 
-    console.log("[DEBUG INSTA] Fetching from Fallback Cluster 3 (All-in-One):", backupUrl);
 
     const response = await fetchWithRotation(backupUrl, {
       method: "POST",

@@ -11,7 +11,7 @@ import { SocialServiceBar } from "@/components/layout/SocialServiceBar"
 import { VisualGuide } from "@/components/shared/VisualGuide"
 import { usePathname } from "next/navigation"
 import { type Locale } from "@/i18n"
-import { dictionaries } from "@/dictionaries/client"
+import { getDictionary } from "@/dictionaries/client"
 import { StopCircle, Zap, ShieldCheck, CheckCircle2, HelpCircle, Info, Film, PlaySquare, Music as MusicIcon } from "lucide-react"
 import { TrendingBar } from "@/components/layout/TrendingBar"
 import { ToolSubNav } from "@/components/layout/ToolSubNav"
@@ -31,7 +31,7 @@ export default function FacebookStoryPage() {
   
   const pathname = usePathname()
   const locale = pathname.split('/')[1] as Locale
-    const dict = (dictionaries as Record<string, typeof dictionaries.en>)[locale] || dictionaries.en
+    const dict = getDictionary(locale)
   const { addToHistory } = useDownloadHistory("facebook")
 
   const handleSearch = async (url: string) => {
