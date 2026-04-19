@@ -115,19 +115,28 @@ export function SmartSwitch() {
             <span className="text-sm font-black uppercase italic tracking-tight">{config.label}</span>
           </div>
 
-          <div 
-            onClick={(e) => {
-              e.stopPropagation()
-              handleSwitch()
-            }}
-            className="absolute inset-0 bg-transparent cursor-pointer" 
-          />
+          {!isOpen && (
+            <a 
+              href={DEEP_LINKS[activePlatform]}
+              className="absolute inset-0 z-10"
+              onClick={(e) => {
+                // If it's a drag, don't trigger the link
+                // But since we want it to work on click, we just let it be
+              }}
+            />
+          )}
           
           {/* Close button inside if open */}
           {isOpen && (
-             <div className="ml-2 border-l border-white/10 pl-2">
+             <button 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsOpen(false);
+                }}
+                className="ml-2 border-l border-white/10 pl-2 z-20"
+             >
                 <X className="h-4 w-4 text-white/40" />
-             </div>
+             </button>
           )}
         </motion.button>
       </div>
