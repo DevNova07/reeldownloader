@@ -20,10 +20,10 @@ const DEEP_LINKS: Record<string, string> = {
   instagram: "instagram://",
   facebook: "fb://",
   twitter: "twitter://",
-  youtube: "youtube://",
+  youtube: "vnd.youtube://",
   snapchat: "snapchat://",
   telegram: "tg://",
-  tiktok: "tiktok://"
+  tiktok: "snssdk1128://"
 }
 
 const PLATFORM_CONFIG: Record<string, { color: string, icon: any, label: string }> = {
