@@ -101,7 +101,7 @@ function BioBuilderContent() {
             <p className="text-neutral-400 mb-8 font-medium">Your stunning bio link has been created successfully. Share it with the world!</p>
             
             <div className="p-4 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-between mb-8">
-                <span className="font-bold text-blue-400">instasnap.me/{initialUsername || displayName.toLowerCase().replace(/\s/g, '')}</span>
+                <span className="font-bold text-blue-400">savclip.me/{initialUsername || displayName.toLowerCase().replace(/\s/g, '')}</span>
                 <button className="p-2 hover:bg-white/10 rounded-lg transition-colors text-white">
                     <ExternalLink className="h-5 w-5" />
                 </button>

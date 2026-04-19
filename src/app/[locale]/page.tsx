@@ -136,7 +136,7 @@ function HomeContent() {
             <h1 className="mb-2 text-4xl font-black tracking-tight text-white sm:text-7xl drop-shadow-2xl uppercase italic">
               {instaDict.title}
             </h1>
-            <h2 className="sr-only">InstaSnap - Instagram Downloader</h2>
+            <h2 className="sr-only">SavClip - Instagram Downloader</h2>
             <p className="mx-auto mb-4 max-w-2xl text-lg font-medium text-white/90 sm:text-xl">
               {instaDict.subtitle}
             </p>

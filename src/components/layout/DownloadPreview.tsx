@@ -106,7 +106,7 @@ export function DownloadPreview({
       // 2. Trigger the browser download immediately 
       const link = document.createElement('a');
       link.href = url;
-      link.download = `InstaSnap_${type}_${id}`;
+      link.download = `SavClip_${type}_${id}`;
       link.target = "_blank";
       link.rel = "noopener noreferrer";
       document.body.appendChild(link);
@@ -142,13 +142,13 @@ export function DownloadPreview({
         await navigator.share({
           files: [file],
           title: title,
-          text: "Check out this media I downloaded via InstaSnap! 🚀"
+          text: "Check out this media I downloaded via SavClip! 🚀"
         });
       } else {
         // Fallback to text sharing if file sharing is not supported
         await navigator.share({
           title: title,
-          text: "Check out this media I downloaded via InstaSnap! 🚀",
+          text: "Check out this media I downloaded via SavClip! 🚀",
           url: window.location.origin
         });
       }

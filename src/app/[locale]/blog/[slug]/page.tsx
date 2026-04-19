@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
   
   return {
-    title: `${post.title} | InstaSnap Blog`,
+    title: `${post.title} | SavClip Blog`,
     description: post.excerpt,
   };
 }
@@ -126,7 +126,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             {/* Call to Action Sticky Ad */}
             <div className="sticky top-24 rounded-3xl bg-linear-to-b from-pink-600 to-rose-600 p-8 shadow-2xl text-center">
               <h3 className="text-2xl font-black text-white mb-2">Ready to download?</h3>
-              <p className="text-pink-100 text-sm mb-6 font-medium">InstaSnap is the fastest, safest way to save social media content in 4K resolution.</p>
+              <p className="text-pink-100 text-sm mb-6 font-medium">SavClip is the fastest, safest way to save social media content in 4K resolution.</p>
               <Link 
                 href="/"
                 className="inline-flex w-full items-center justify-center rounded-xl bg-white px-6 py-4 text-sm font-black uppercase tracking-widest text-pink-600 shadow-xl transition-all hover:scale-105 active:scale-95"

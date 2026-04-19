@@ -1,4 +1,4 @@
-const CACHE_NAME = 'instasnap-pwa-v1';
+const CACHE_NAME = 'savclip-pwa-v1';
 const STATIC_ASSETS = [
   '/',
   '/manifest.json',

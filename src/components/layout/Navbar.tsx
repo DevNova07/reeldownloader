@@ -72,17 +72,17 @@ export function Navbar({ dict }: { dict: any }) {
   const platform = React.useMemo(() => {
     const pathWithoutLocale = pathname.replace(/^\/[a-z]{2}/, '') || '/'
 
-    if (pathWithoutLocale.startsWith('/facebook')) return { id: dict.categories.fb, prefix: 'FB', suffix: 'Snap', icon: Globe, bg: 'from-blue-600 to-blue-800', text: 'text-blue-600' }
-    if (pathWithoutLocale.startsWith('/youtube')) return { id: dict.categories.yt, prefix: 'YT', suffix: 'Snap', icon: Play, bg: 'from-red-600 to-red-800', text: 'text-red-600' }
-    if (pathWithoutLocale.startsWith('/tiktok')) return { id: dict.categories.tiktok, prefix: 'Tik', suffix: 'Snap', icon: Music, bg: 'from-neutral-800 to-black', text: 'text-pink-600' }
+    if (pathWithoutLocale.startsWith('/facebook')) return { id: dict.categories.fb, prefix: 'FB', suffix: 'Clip', icon: Globe, bg: 'from-blue-600 to-blue-800', text: 'text-blue-600' }
+    if (pathWithoutLocale.startsWith('/youtube')) return { id: dict.categories.yt, prefix: 'YT', suffix: 'Clip', icon: Play, bg: 'from-red-600 to-red-800', text: 'text-red-600' }
+    if (pathWithoutLocale.startsWith('/tiktok')) return { id: dict.categories.tiktok, prefix: 'Tik', suffix: 'Clip', icon: Music, bg: 'from-neutral-800 to-black', text: 'text-pink-600' }
     if (pathWithoutLocale.startsWith('/hashtags')) return { id: dict.categories.hashtags, prefix: 'AI ', suffix: 'Hashtag', icon: Hash, bg: 'from-neutral-800 to-black', text: 'text-neutral-900 dark:text-neutral-400' }
-    if (pathWithoutLocale.startsWith('/twitter')) return { id: dict.categories.tw, prefix: 'X', suffix: 'Snap', icon: Hash, bg: 'from-neutral-800 to-black', text: 'text-neutral-900 dark:text-neutral-400' }
-    if (pathWithoutLocale.startsWith('/snapchat')) return { id: dict.categories.snap, prefix: 'Snap', suffix: 'Saver', icon: Ghost, bg: 'from-yellow-400 to-yellow-500', text: 'text-yellow-500' }
-    if (pathWithoutLocale.startsWith('/telegram')) return { id: dict.categories.tele, prefix: 'Tele', suffix: 'Snap', icon: Send, bg: 'from-sky-500 to-blue-600', text: 'text-sky-500' }
+    if (pathWithoutLocale.startsWith('/twitter')) return { id: dict.categories.tw, prefix: 'X', suffix: 'Clip', icon: Hash, bg: 'from-neutral-800 to-black', text: 'text-neutral-900 dark:text-neutral-400' }
+    if (pathWithoutLocale.startsWith('/snapchat')) return { id: dict.categories.snap, prefix: 'Snap', suffix: 'Clip', icon: Ghost, bg: 'from-yellow-400 to-yellow-500', text: 'text-yellow-500' }
+    if (pathWithoutLocale.startsWith('/telegram')) return { id: dict.categories.tele, prefix: 'Tele', suffix: 'Clip', icon: Send, bg: 'from-sky-500 to-blue-600', text: 'text-sky-500' }
     if (pathWithoutLocale.startsWith('/captions')) return { id: 'AI Caption', prefix: 'AI ', suffix: 'Caption', icon: Sparkles, bg: 'from-pink-600 to-rose-600', text: 'text-pink-600' }
 
     // Default (Instagram)
-    return { id: dict.categories.insta, prefix: 'Insta', suffix: 'Snap', icon: Camera, bg: 'from-[#cc00ff] to-[#ff0080]', text: 'text-pink-600' }
+    return { id: dict.categories.insta, prefix: 'Sav', suffix: 'Clip', icon: Camera, bg: 'from-[#cc00ff] to-[#ff0080]', text: 'text-pink-600' }
   }, [pathname, dict.categories])
 
   const sortedServices = React.useMemo(() => {

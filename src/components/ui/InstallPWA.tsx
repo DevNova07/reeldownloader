@@ -71,7 +71,7 @@ export function InstallPWA() {
             </div>
             
             <div className="flex-1 min-w-0">
-               <h4 className="text-[14px] font-black text-white italic tracking-tight leading-tight uppercase">InstaSnap App</h4>
+               <h4 className="text-[14px] font-black text-white italic tracking-tight leading-tight uppercase">SavClip App</h4>
                <p className="text-[10px] font-bold text-white/40 uppercase tracking-[0.1em] mt-0.5 truncate">Desktop & Mobile Native Experience</p>
             </div>
 

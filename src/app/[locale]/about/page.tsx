@@ -35,7 +35,7 @@ export default function AboutPage() {
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <Image 
                     src="/images/founder_portrait.webp" 
-                    alt="Ramzan Ahmad - Founder of InstaSnap"
+                    alt="Ramzan Ahmad - Founder of SavClip"
                     fill
                     style={{ objectFit: "cover" }}
                     className="grayscale-[0.2] hover:grayscale-0 transition-all duration-700"
@@ -81,7 +81,7 @@ export default function AboutPage() {
               >
                 <div className="flex items-center gap-3 mb-6">
                   <div className="h-px w-12 bg-pink-600" />
-                  <span className="text-xs font-black uppercase tracking-[0.4em] text-pink-600">The Legend behind InstaSnap</span>
+                  <span className="text-xs font-black uppercase tracking-[0.4em] text-pink-600">The Legend behind SavClip</span>
                 </div>
                 <h1 className="text-5xl sm:text-7xl font-black tracking-tighter text-neutral-900 dark:text-white uppercase italic mb-8">
                   {content.title}
@@ -105,7 +105,7 @@ export default function AboutPage() {
                 </p>
                 <div className="p-8 rounded-[2.5rem] bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 my-12">
                    <p className="text-lg leading-relaxed text-neutral-900 dark:text-white italic font-bold mb-4">
-                      "InstaSnap is not just a tool; it's a testament to what we can build when we prioritize the user's need for speed and the creator's need for respect."
+                      "SavClip is not just a tool; it's a testament to what we can build when we prioritize the user's need for speed and the creator's need for respect."
                    </p>
                    <p className="text-sm font-black text-pink-600 uppercase tracking-widest">— Ramzan Ahmad</p>
                 </div>

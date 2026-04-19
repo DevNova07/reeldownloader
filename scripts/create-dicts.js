@@ -7,8 +7,8 @@ if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 const baseDict = {
   en: {
     seo: {
-      title: "InstaSnap - Best Instagram Video & Reels Downloader",
-      description: "Download Instagram Reels, Stories, Posts, and Music easily with InstaSnap. Fast, free, and secure.",
+      title: "SavClip - Best Instagram Video & Reels Downloader",
+      description: "Download Instagram Reels, Stories, Posts, and Music easily with SavClip. Fast, free, and secure.",
       keywords: "instagram downloader, reels download, story downloader, download instagram post, instagram music downloader"
     },
     search: { 
@@ -39,7 +39,7 @@ const baseDict = {
     faq: {
       title: "Frequently Asked Questions",
       items: [
-        { q: "Is it free to use?", a: "Yes, InstaSnap is completely free with no hidden charges." },
+        { q: "Is it free to use?", a: "Yes, SavClip is completely free with no hidden charges." },
         { q: "Do I need to login?", a: "No, you don't need to provide your credentials." },
         { q: "Can I download private stories?", a: "No, we only support public accounts." }
       ]
@@ -92,11 +92,11 @@ const baseDict = {
           subtitle: "Download Instagram Reels in original HD quality without any limits.",
           howTo: {
             name: "How to Download Instagram Reels",
-            description: "Download any Instagram Reel in HD quality with audio using InstaSnap.",
+            description: "Download any Instagram Reel in HD quality with audio using SavClip.",
             steps: [
               "Open Instagram and find the Reel you want to download.",
               "Copy the Reel URL.",
-              "Paste the link into the search box on InstaSnap.",
+              "Paste the link into the search box on SavClip.",
               "Click 'Download' and choose the quality to save the video."
             ]
           },
@@ -129,7 +129,7 @@ const baseDict = {
           steps: [
             "Open Instagram and find the content you want to save.",
             "Copy the link to the post or reel.",
-            "Paste the link into the search box on InstaSnap.",
+            "Paste the link into the search box on SavClip.",
             "Click 'Download' and the file will be saved to your device."
           ]
         },
@@ -154,7 +154,7 @@ const baseDict = {
             steps: [
               "Open Facebook and find the Reel you want to save.",
               "Click on the 'Share' button and then 'Copy Link'.",
-              "Paste the link into the search box on InstaSnap.",
+              "Paste the link into the search box on SavClip.",
               "Click 'Download' and the Reel will be saved to your device."
             ]
           },
@@ -187,7 +187,7 @@ const baseDict = {
           steps: [
             "Open Facebook and find the video or reel you want to save.",
             "Click on 'Share' and then 'Copy Link'.",
-            "Paste the link into the search box on InstaSnap.",
+            "Paste the link into the search box on SavClip.",
             "Click 'Download' and the video will be saved to your device."
           ]
         },
@@ -361,13 +361,13 @@ const baseDict = {
           steps: [
             "Find the Tweet containing the video or GIF you want to save.",
             "Copy the Tweet link (URL).",
-            "Paste the link into the search box on InstaSnap.",
+            "Paste the link into the search box on SavClip.",
             "Click 'Download' to fetch and save the media."
           ]
         },
         seo: {
           title: "Fast Twitter Downloader",
-          desc: "InstaSnap is the fastest way to save high-quality videos and GIFs from X (formerly Twitter). No registration required.",
+          desc: "SavClip is the fastest way to save high-quality videos and GIFs from X (formerly Twitter). No registration required.",
           features: [
             { title: "GIF Support", desc: "Convert and download Twitter GIFs as MP4 files easily." },
             { title: "Safe & Private", desc: "Your downloads are anonymous and secure." }
@@ -432,7 +432,7 @@ const translations = {
     },
     tabs: { video: "वीडियो", reels: "रील्स", story: "स्टोरी", audio: "ऑडियो", photo: "फोटो", music: "म्यूज़िक", shorts: "शॉर्ट्स", movies: "फिल्में", gif: "GIF" },
     features: { title: "हमारा डाउनलोडर ही क्यों चुनें?", items: [{ title: "सुपर-फ़ास्ट", desc: "हमारे तेज़ सर्वर से कुछ ही सेकंड में कंटेंट सेव करें।" }, { title: "सुरक्षित और निजी", desc: "आपकी डाउनलोड पूरी तरह से अनाम और सुरक्षित है।" }, { title: "HD क्वालिटी", desc: "सबसे अच्छी 4K रेजोल्यूशन में मीडिया पाएँ।" }] },
-    faq: { title: "अक्सर पूछे जाने वाले प्रश्न", items: [{ q: "क्या यह मुफ़्त है?", a: "हाँ, InstaSnap पूरी तरह से मुफ़्त है और कोई छुपा हुआ चार्ज नहीं है।" }, { q: "क्या मुझे लॉगिन करना होगा?", a: "नहीं, आपको अपनी आईडी लॉगिन करने की ज़रूरत नहीं है।" }, { q: "क्या मैं प्राइवेट स्टोरी डाउनलोड कर सकता हूँ?", a: "नहीं, हम सिर्फ पब्लिक अकाउंट का कंटेंट सपोर्ट करते हैं।" }] },
+    faq: { title: "अक्सर पूछे जाने वाले प्रश्न", items: [{ q: "क्या यह मुफ़्त है?", a: "हाँ, SavClip पूरी तरह से मुफ़्त है और कोई छुपा हुआ चार्ज नहीं है।" }, { q: "क्या मुझे लॉगिन करना होगा?", a: "नहीं, आपको अपनी आईडी लॉगिन करने की ज़रूरत नहीं है।" }, { q: "क्या मैं प्राइवेट स्टोरी डाउनलोड कर सकता हूँ?", a: "नहीं, हम सिर्फ पब्लिक अकाउंट का कंटेंट सपोर्ट करते हैं।" }] },
     common: { 
       loading: "मीडिया प्रोसेस हो रहा है...", 
       analyzing: "लिंक का विश्लेषण हो रहा है...",
@@ -462,11 +462,11 @@ const translations = {
           subtitle: "इंस्टाग्राम रील्स को बिना किसी सीमा के मूल HD क्वालिटी में डाउनलोड करें।",
           howTo: {
             name: "इंस्टाग्राम रील्स कैसे डाउनलोड करें",
-            description: "InstaSnap का उपयोग करके ऑडियो के साथ किसी भी इंस्टाग्राम रील को HD क्वालिटी में डाउनलोड करें।",
+            description: "SavClip का उपयोग करके ऑडियो के साथ किसी भी इंस्टाग्राम रील को HD क्वालिटी में डाउनलोड करें।",
             steps: [
               "इंस्टाग्राम खोलें और वह रील ढूंढें जिसे आप डाउनलोड करना चाहते हैं।",
               "रील URL कॉपी करें।",
-              "InstaSnap पर सर्च बॉक्स में लिंक पेस्ट करें।",
+              "SavClip पर सर्च बॉक्स में लिंक पेस्ट करें।",
               "डाउनलोड पर क्लिक करें और वीडियो सेव करने के लिए क्वालिटी चुनें।"
             ]
           },
@@ -499,7 +499,7 @@ const translations = {
           steps: [
             "इंस्टाग्राम खोलें और वह कंटेंट ढूंढें जिसे आप सेव करना चाहते हैं।",
             "पोस्ट या रील का लिंक कॉपी करें।",
-            "InstaSnap पर सर्च बॉक्स में लिंक पेस्ट करें।",
+            "SavClip पर सर्च बॉक्स में लिंक पेस्ट करें।",
             "डाउनलोड पर क्लिक करें और फ़ाइल आपके डिवाइस पर सेव हो जाएगी।"
           ]
         },
@@ -524,7 +524,7 @@ const translations = {
             steps: [
               "फेसबुक खोलें और वह रील ढूंढें जिसे आप सेव करना चाहते हैं।",
               "शेयर बटन पर क्लिक करें और फिर 'लिंक कॉपी करें' चुनें।",
-              "InstaSnap पर सर्च बॉक्स में लिंक पेस्ट करें।",
+              "SavClip पर सर्च बॉक्स में लिंक पेस्ट करें।",
               "डाउनलोड पर क्लिक करें और रील आपके डिवाइस पर सेव हो जाएगी।"
             ]
           },
@@ -557,7 +557,7 @@ const translations = {
           steps: [
             "फेसबुक खोलें और वह वीडियो या रील ढूंढें जिसे आप सेव करना चाहते हैं।",
             "शेयर पर क्लिक करें और फिर लिंक कॉपी करें।",
-            "InstaSnap पर सर्च बॉक्स में लिंक पेस्ट करें।",
+            "SavClip पर सर्च बॉक्स में लिंक पेस्ट करें।",
             "डाउनलोड पर क्लिक करें और वीडियो आपके डिवाइस पर सेव हो जाएगा।"
           ]
         },

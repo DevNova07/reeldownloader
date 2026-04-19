@@ -25,7 +25,7 @@ export async function sendDownloadCompleteNotification() {
     return;
   }
 
-  const title = 'InstaSnap';
+  const title = 'SavClip';
   const options: any = {
     body: 'Your video is ready! 🎬',
     icon: '/icon-192x192.webp', // Main app icon

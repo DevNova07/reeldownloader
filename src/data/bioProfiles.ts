@@ -39,15 +39,15 @@ export type BioProfileData = {
 export const mockBioProfiles: Record<string, BioProfileData> = {
   demo: {
     username: "demo",
-    displayName: "InstaSnap Official",
+    displayName: "SavClip Official",
     avatarUrl: "/images/mockups/avatar1.webp", // We will use a generic avatar or fallback
     bio: "The ultimate media downloader & creator tool. 🚀\nUpgrade your content game today!",
     isVerified: true,
     socials: {
-      instagram: "https://instagram.com/instasnap",
-      twitter: "https://twitter.com/instasnap",
-      youtube: "https://youtube.com/instasnap",
-      tiktok: "https://tiktok.com/@instasnap",
+      instagram: "https://instagram.com/savclip",
+      twitter: "https://twitter.com/savclip",
+      youtube: "https://youtube.com/savclip",
+      tiktok: "https://tiktok.com/@savclip",
     },
     links: [
       { id: "1", title: "Download Insta Reels", url: "/en/reels", icon: "Download", isHighlighted: true },
@@ -95,15 +95,15 @@ export const mockBioProfiles: Record<string, BioProfileData> = {
     username: "ramzanahmad",
     displayName: "Ramzan Ahmad",
     avatarUrl: "/images/founder_portrait.webp",
-    bio: "Founder of InstaSnap 🚀 | Professional Full Stack Developer | Multi-Platform Architect. Building tools that empower creators.",
+    bio: "Founder of SavClip 🚀 | Professional Full Stack Developer | Multi-Platform Architect. Building tools that empower creators.",
     isVerified: true,
     socials: {
-      instagram: "https://instagram.com/instasnap",
+      instagram: "https://instagram.com/savclip",
       twitter: "https://twitter.com/ramzanahmad",
-      website: "https://instasnap.net",
+      website: "https://savclip.net",
     },
     links: [
-      { id: "1", title: "Official InstaSnap Portal 💎", url: "/en", icon: "Download", isHighlighted: true },
+      { id: "1", title: "Official SavClip Portal 💎", url: "/en", icon: "Download", isHighlighted: true },
       { id: "2", title: "My Portfolio 👨‍💻", url: "/en/about", icon: "Wand2" },
       { id: "3", title: "Contact Me ✉️", url: "mailto:ramzaan0043@gmail.com", icon: "Download" },
     ],

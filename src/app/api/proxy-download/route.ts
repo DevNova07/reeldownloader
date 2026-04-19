@@ -26,7 +26,7 @@ export async function GET(request: Request) {
 
     const headers = new Headers(response.headers);
     const extension = type === "audio" ? "mp3" : type === "image" ? "jpg" : "mp4";
-    const filename = `InstaSnap_${Date.now()}.${extension}`;
+    const filename = `SavClip_${Date.now()}.${extension}`;
 
     const inline = searchParams.get("inline") === "true";
     if (inline) {

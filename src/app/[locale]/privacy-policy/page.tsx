@@ -7,7 +7,7 @@ export default function PrivacyPolicyPage() {
         <h1 className="text-4xl font-black tracking-tight text-neutral-900 dark:text-white mb-8">Privacy Policy</h1>
         <div className="prose prose-pink dark:prose-invert max-w-none text-neutral-600 dark:text-neutral-400">
           <p className="text-lg leading-relaxed mb-4">
-            At InstaSnap, we take your privacy seriously. This document outlines the types of personal information that is received and collected and how it is used.
+            At SavClip, we take your privacy seriously. This document outlines the types of personal information that is received and collected and how it is used.
           </p>
           <h2 className="text-2xl font-bold dark:text-white mt-4 mb-4">1. Information Collection</h2>
           <p>

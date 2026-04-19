@@ -60,7 +60,7 @@ export default async function BioProfilePage({ params }: { params: Promise<{ loc
             href="/en/bio" 
             className={cn("text-xs font-bold uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity flex items-center justify-center gap-2", theme.textColor)}
           >
-            <span className={theme.accentColor}>⚡</span> Created with InstaSnap
+            <span className={theme.accentColor}>⚡</span> Created with SavClip
           </Link>
         </div>
       </div>

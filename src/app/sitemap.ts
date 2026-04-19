@@ -2,7 +2,7 @@ import { MetadataRoute } from "next"
 import { locales } from "@/i18n"
 import en from "@/dictionaries/en.json"
 
-const SITE_URL = "https://instasnap.net"
+const SITE_URL = "https://savclip.net"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const seoPages = en.platforms.seo_pages

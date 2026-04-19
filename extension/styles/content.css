@@ -1,4 +1,4 @@
-.instasnap-btn {
+.savclip-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -6,6 +6,6 @@
     z-index: 9999;
 }
 
-.instasnap-btn svg {
+.savclip-btn svg {
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
 }

@@ -1,9 +1,9 @@
 /**
- * InstaSnap Content Script
+ * SavClip Content Script
  * Injects download buttons directly into social media platforms.
  */
 
-console.log("InstaSnap Content Script Loaded");
+console.log("SavClip Content Script Loaded");
 
 function injectButtons() {
     const hostname = window.location.hostname;
@@ -20,7 +20,7 @@ function injectInstagram() {
     const actionBars = document.querySelectorAll('section > div > span:last-child');
     
     actionBars.forEach(bar => {
-        if (bar.closest('article') && !bar.querySelector('.instasnap-btn')) {
+        if (bar.closest('article') && !bar.querySelector('.savclip-btn')) {
             const btn = createSnapButton();
             btn.style.marginRight = "16px";
             btn.onclick = (e) => {
@@ -39,7 +39,7 @@ function injectTikTok() {
     const tButtons = document.querySelectorAll('[data-e2e="feed-video-action-container"]');
     
     tButtons.forEach(bar => {
-        if (!bar.querySelector('.instasnap-btn')) {
+        if (!bar.querySelector('.savclip-btn')) {
             const btn = createSnapButton();
             btn.style.marginTop = "10px";
             btn.onclick = (e) => {
@@ -56,14 +56,14 @@ function injectTikTok() {
 
 function createSnapButton() {
     const btn = document.createElement('div');
-    btn.className = 'instasnap-btn';
+    btn.className = 'savclip-btn';
     btn.innerHTML = `
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="cursor: pointer; transition: transform 0.2s;">
             <circle cx="12" cy="12" r="10" fill="#f01783" />
             <path d="M12 7V17M12 17L8 13M12 17L16 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
     `;
-    btn.title = "Download with InstaSnap";
+    btn.title = "Download with SavClip";
     
     // Add hover effect
     const svg = btn.querySelector('svg');

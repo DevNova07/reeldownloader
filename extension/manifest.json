@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "InstaSnap - Social Downloader",
+  "name": "SavClip - Social Downloader",
   "version": "1.0.0",
   "description": "Download videos from Instagram, TikTok, YouTube, and more with one click.",
   "permissions": [

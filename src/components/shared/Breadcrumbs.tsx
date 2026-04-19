@@ -21,13 +21,13 @@ export function Breadcrumbs({ locale, platform, platformPath, toolTitle }: Bread
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": `https://instasnap.net${homePath}`
+        "item": `https://savclip.net${homePath}`
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": platform,
-        "item": `https://instasnap.net${localizedPlatformPath}`
+        "item": `https://savclip.net${localizedPlatformPath}`
       },
       {
         "@type": "ListItem",

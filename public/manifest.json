@@ -1,6 +1,6 @@
 {
-  "name": "InstaSnap Downloader",
-  "short_name": "InstaSnap",
+  "name": "SavClip Downloader",
+  "short_name": "SavClip",
   "description": "Fast and secure multi-platform media downloader.",
   "start_url": "/",
   "display": "standalone",

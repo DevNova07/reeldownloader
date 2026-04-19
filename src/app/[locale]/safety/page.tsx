@@ -21,7 +21,7 @@ export default function SafetyPage() {
              </li>
              <li className="flex items-start gap-4 p-4 rounded-xl bg-green-50 dark:bg-green-900/20 text-neutral-700 dark:text-neutral-300">
                 <span className="font-bold text-green-600 dark:text-green-400">02.</span>
-                <span><strong>Beware of Scams.</strong> InstaSnap will never ask you for passwords, login credentials, or credit card information. Avoid sites that require you to log in to download public content.</span>
+                <span><strong>Beware of Scams.</strong> SavClip will never ask you for passwords, login credentials, or credit card information. Avoid sites that require you to log in to download public content.</span>
              </li>
              <li className="flex items-start gap-4 p-4 rounded-xl bg-green-50 dark:bg-green-900/20 text-neutral-700 dark:text-neutral-300">
                 <span className="font-bold text-green-600 dark:text-green-400">03.</span>

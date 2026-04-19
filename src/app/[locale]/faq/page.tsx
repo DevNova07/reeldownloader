@@ -12,7 +12,7 @@ export default function FAQPage() {
         
         <div className="space-y-6">
           <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 p-6">
-            <h4 className="font-bold text-neutral-900 dark:text-white">Is InstaSnap completely free?</h4>
+            <h4 className="font-bold text-neutral-900 dark:text-white">Is SavClip completely free?</h4>
             <p className="mt-4 text-neutral-500 dark:text-neutral-400">Yes, our services are 100% free with no hidden fees or premium tiers.</p>
           </div>
           <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 p-6">

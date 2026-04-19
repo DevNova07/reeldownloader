@@ -55,7 +55,7 @@ def sync_master():
     }
     
     footer_branding_default = {
-        "title": "InstaSnap – Fast & Secure",
+        "title": "SavClip – Fast & Secure",
         "desc": "A trusted platform to save and manage social media content.",
         "platforms_title": "Supported Platforms",
         "features_title": "Features",

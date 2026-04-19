@@ -16,7 +16,7 @@ export default function DMCAPage() {
         
         <div className="prose prose-neutral dark:prose-invert max-w-none space-y-8">
           <p className="text-lg font-bold text-neutral-600 dark:text-neutral-400 leading-relaxed">
-            InstaSnap respects the intellectual property rights of others and expects its users to do the same. In accordance with the Digital Millennium Copyright Act (DMCA), we have established the following procedure for reporting alleged copyright infringement.
+            SavClip respects the intellectual property rights of others and expects its users to do the same. In accordance with the Digital Millennium Copyright Act (DMCA), we have established the following procedure for reporting alleged copyright infringement.
           </p>
 
           <section className="space-y-4">

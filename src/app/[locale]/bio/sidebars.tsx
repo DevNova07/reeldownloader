@@ -75,7 +75,7 @@ export const LeftSidebar = React.memo(({ locale }: SidebarProps) => {
         </h4>
         <div className="flex flex-wrap gap-2">
           {[
-            "#ReelsDownloader", "#InstaSnap", "#ViralBio", "#InstagramStatus", 
+            "#ReelsDownloader", "#SavClip", "#ViralBio", "#InstagramStatus", 
             "#TikTokSaver", "#NoWatermark", "#RoyalBio", "#SavageCaption",
             "#StorySaver", "#YouTubeDownloader", "#CreatorTools", "#SnapchatStory"
           ].map(tag => (
@@ -238,7 +238,7 @@ export const RightSidebar = React.memo(({ locale }: SidebarProps) => {
           {[
             "#RoyalBio", "#SigmaRule", "#AttitudeBio", "#InstaCreator", "#ViralNow",
             "#GrowthHacks", "#SocialExpert", "#TrendSetter", "#BioDesigns", "#EmojiArt",
-            "#ContentMaster", "#InstaSnap", "#BioGen", "#CaptionKing", "#StatusMaker",
+            "#ContentMaster", "#SavClip", "#BioGen", "#CaptionKing", "#StatusMaker",
             "#Profiles", "#Influence", "#DigitalGrowth", "#ViralStrategies", "#CreatorEconomy"
           ].map(tag => (
              <span key={tag} className="px-2 py-1 bg-white border border-neutral-200 rounded-lg text-[8px] font-black text-neutral-400 uppercase tracking-tighter shadow-xs">
@@ -255,7 +255,7 @@ export const RightSidebar = React.memo(({ locale }: SidebarProps) => {
               &quot;Success on social media is a marathon, not a sprint. Focus on providing value, maintaining authenticity, and using the right tools to power your growth.&quot;
             </p>
             <p className="text-[10px] leading-relaxed text-neutral-100">
-              Join the 50K+ creators who trust InstaSnap every single day for their profile optimization.
+              Join the 50K+ creators who trust SavClip every single day for their profile optimization.
             </p>
          </div>
       </div>

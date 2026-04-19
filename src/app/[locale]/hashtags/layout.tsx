@@ -8,7 +8,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const dict = await getDictionary(locale);
   
   return {
-    title: `AI Hashtag Generator - Viral Social Media Tags | InstaSnap`,
+    title: `AI Hashtag Generator - Viral Social Media Tags | SavClip`,
     description: `Generate viral hashtags for Instagram, TikTok, and more using our AI tool. Boost your reach and engagement instantly.`,
   };
 }

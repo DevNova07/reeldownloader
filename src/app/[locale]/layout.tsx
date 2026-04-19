@@ -23,20 +23,20 @@ const inter = Inter({
   variable: "--font-inter" 
 });
 
-const SITE_URL = "https://instasnap.net";
+const SITE_URL = "https://savclip.net";
 
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const params = await props.params;
   const locale = params.locale;
   const dict = await getDictionary(locale);
   
-  const title = dict.seo?.title || "InstaSnap - Best Instagram Downloader";
-  const description = dict.seo?.description || "Download Instagram Reels, Stories, Posts, and Music easily with InstaSnap.";
+  const title = dict.seo?.title || "SavClip - Best Instagram Downloader";
+  const description = dict.seo?.description || "Download Instagram Reels, Stories, Posts, and Music easily with SavClip.";
   
   return {
     title: {
       default: title,
-      template: `%s | InstaSnap`
+      template: `%s | SavClip`
     },
     description: description,
     keywords: dict.seo?.keywords || "instagram downloader, reels download, story downloader",
@@ -49,7 +49,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
       title: title,
       description: description,
       url: SITE_URL,
-      siteName: "InstaSnap",
+      siteName: "SavClip",
       locale: locale,
       type: "website",
     },
@@ -66,7 +66,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
     appleWebApp: {
       capable: true,
       statusBarStyle: "default",
-      title: "InstaSnap",
+      title: "SavClip",
     },
   };
 }

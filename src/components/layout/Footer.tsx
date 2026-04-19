@@ -10,7 +10,7 @@ export function Footer({ children, locale, dict }: { children?: React.ReactNode,
   const normalizedLocale = (locales.includes(locale as any) ? locale : 'en') as Locale;
   
   const branding = dict.footer_branding || {
-    title: "InstaSnap – Fast & Secure",
+    title: "SavClip – Fast & Secure",
     desc: "A trusted platform to save and manage social media content.",
     platforms_title: "Supported Platforms",
     features_title: "Features",
@@ -150,15 +150,15 @@ export function Footer({ children, locale, dict }: { children?: React.ReactNode,
           </div>
           
           <p className="max-w-4xl text-[10px] font-black uppercase tracking-[0.2em] text-pink-600/80 mb-6 px-4">
-            InstaSnap is maintained by Ramzan Ahmad, built with Next.js for ultimate speed & security.
+            SavClip is maintained by Ramzan Ahmad, built with Next.js for ultimate speed & security.
           </p>
           
           <p className="text-[11px] font-black uppercase tracking-[0.3em] text-neutral-900 dark:text-white">
-            © {new Date().getFullYear()} InstaSnap. Global Authority in Media Extraction.
+            © {new Date().getFullYear()} SavClip. Global Authority in Media Extraction.
           </p>
           
           <p className="max-w-4xl text-[9px] font-bold text-neutral-400 dark:text-neutral-500 uppercase tracking-widest px-4 leading-relaxed opacity-60">
-            Disclaimer: InstaSnap is not affiliated with YouTube, Instagram, TikTok, Facebook, Snapchat, X, or Telegram. We do not host any copyrighted content on our servers. This tool is intended for personal use and fair-use educational purposes.
+            Disclaimer: SavClip is not affiliated with YouTube, Instagram, TikTok, Facebook, Snapchat, X, or Telegram. We do not host any copyrighted content on our servers. This tool is intended for personal use and fair-use educational purposes.
           </p>
         </div>
       </div>
