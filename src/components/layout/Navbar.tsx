@@ -105,7 +105,7 @@ export function Navbar({ dict }: { dict: any }) {
                 <LogoIcon className={cn("h-6 w-6 text-white", (pathname.includes('/youtube')) && "fill-white")} />
               </div>
               <span className="text-2xl font-black tracking-tighter text-neutral-900 dark:text-white">
-                {platform.prefix}<span className={platform.text}>{platform.suffix}</span>
+                Sav<span className="text-pink-600">Clip</span>
               </span>
             </Link>
 
