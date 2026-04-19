@@ -99,9 +99,8 @@ export function SmartSwitch() {
       <div className="flex items-center gap-2">
         <motion.button
           drag
-          dragConstraints={{ left: -300, right: 0, top: -500, bottom: 0 }}
           dragElastic={0.1}
-          dragMomentum={false}
+          dragMomentum={true}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => setIsOpen(!isOpen)}
