@@ -42,15 +42,16 @@ export function SmartSwitch() {
   const [isVisible, setIsVisible] = React.useState(true)
 
   React.useEffect(() => {
-    // Detect platform from URL
+    // Detect platform from URL with priority to avoid false positives
     const p = pathname.toLowerCase()
-    if (p.includes("instagram") || p.includes("reels") || p.includes("story")) setActivePlatform("instagram")
-    else if (p.includes("facebook")) setActivePlatform("facebook")
-    else if (p.includes("twitter") || p.includes("twitter-video")) setActivePlatform("twitter")
-    else if (p.includes("youtube") || p.includes("shorts")) setActivePlatform("youtube")
+    
+    if (p.includes("youtube") || p.includes("shorts")) setActivePlatform("youtube")
+    else if (p.includes("facebook") || p.includes("fb-")) setActivePlatform("facebook")
+    else if (p.includes("tiktok")) setActivePlatform("tiktok")
+    else if (p.includes("twitter") || p.includes("x.com")) setActivePlatform("twitter")
     else if (p.includes("snapchat")) setActivePlatform("snapchat")
     else if (p.includes("telegram")) setActivePlatform("telegram")
-    else if (p.includes("tiktok")) setActivePlatform("tiktok")
+    else if (p.includes("instagram") || p.includes("reels") || p.includes("story") || p === "/" || p.length <= 4) setActivePlatform("instagram")
     else setActivePlatform("instagram") // Default
   }, [pathname])
 
