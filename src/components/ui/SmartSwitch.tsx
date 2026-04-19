@@ -98,10 +98,14 @@ export function SmartSwitch() {
 
       <div className="flex items-center gap-2">
         <motion.button
+          drag
+          dragConstraints={{ left: -300, right: 0, top: -500, bottom: 0 }}
+          dragElastic={0.1}
+          dragMomentum={false}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => setIsOpen(!isOpen)}
-          className="group relative flex h-14 items-center gap-3 overflow-hidden rounded-2xl bg-black/80 px-4 py-2 text-white shadow-2xl backdrop-blur-xl border border-white/10"
+          className="group relative flex h-14 items-center gap-3 overflow-hidden rounded-2xl bg-black/80 px-4 py-2 text-white shadow-2xl backdrop-blur-xl border border-white/10 touch-none"
         >
           <div className={`flex h-10 w-10 items-center justify-center rounded-xl ${config.color} shadow-lg transition-transform group-hover:rotate-12`}>
             <config.icon className={`h-5 w-5 ${activePlatform === 'snapchat' ? 'text-black' : 'text-white'}`} />
