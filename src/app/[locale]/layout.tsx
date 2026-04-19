@@ -139,6 +139,7 @@ export default async function RootLayout(props: {
               duration: 4000,
             }}
           />
+          <InstallPWA />
           <div className="flex min-h-screen flex-col overflow-x-hidden">
             <Navbar dict={layoutDict} />
             <main className="flex-1">
