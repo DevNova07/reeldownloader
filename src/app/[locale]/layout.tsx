@@ -140,8 +140,31 @@ export default async function RootLayout(props: {
               duration: 4000,
             }}
           />
-          <InstallPWA />
-          <SmartSwitch />
+        <link rel="canonical" href={`https://www.savclip.com/${locale}`} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "SoftwareApplication",
+              "name": "SavClip",
+              "operatingSystem": "WINDOWS, macOS, Android, iOS",
+              "applicationCategory": "UtilitiesApplication",
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+              },
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.9",
+                "ratingCount": "15420"
+              }
+            })
+          }}
+        />
+        <InstallPWA />
+        <SmartSwitch />
           <div className="flex min-h-screen flex-col overflow-x-hidden">
             <Navbar dict={layoutDict} />
             <main className="flex-1">
