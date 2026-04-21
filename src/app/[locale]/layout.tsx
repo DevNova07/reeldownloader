@@ -139,7 +139,7 @@ export default async function RootLayout(props: {
               duration: 4000,
             }}
           />
-        <link rel="canonical" href={`https://www.savclip.com/${locale}`} />
+        <link rel="canonical" href={`${SITE_URL}/${locale}`} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

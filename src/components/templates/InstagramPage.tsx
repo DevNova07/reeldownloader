@@ -121,6 +121,7 @@ export default function InstagramPage({
 
   return (
     <div className="flex flex-col">
+      <StructuredData type="SoftwareApplication" data={pageSeo} />
       {/* Hero Section */}
       <section className={`relative bg-linear-to-r ${cx.ribbon} px-4 pt-14 pb-8 sm:pt-20 sm:pb-32 sm:px-6 lg:px-8`}>
         <HeroEffect color={cx.effect} intensity="high" />

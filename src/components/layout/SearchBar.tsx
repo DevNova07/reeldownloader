@@ -238,10 +238,12 @@ function SearchBarInner({
 }
 
 
+const MemoizedSearchBarInner = React.memo(SearchBarInner);
+
 export function SearchBar(props: SearchBarProps) {
   return (
     <React.Suspense fallback={null}>
-      <SearchBarInner {...props} />
+      <MemoizedSearchBarInner {...props} />
     </React.Suspense>
   )
 }

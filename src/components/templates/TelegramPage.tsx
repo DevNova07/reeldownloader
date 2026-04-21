@@ -92,6 +92,7 @@ export default function TelegramPage({ content, locale }: TelegramPageProps) {
 
   return (
     <div className="flex flex-col">
+      <StructuredData type="SoftwareApplication" data={{ title: content?.title || "Telegram Downloader" }} />
       {content?.howTo?.steps && (
         <StructuredData
           type="HowTo"
@@ -145,6 +146,7 @@ export default function TelegramPage({ content, locale }: TelegramPageProps) {
             <DownloadCounter accentColor="text-sky-200" />
             <LoadingBar isLoading={isLoading} gradient="from-sky-500 via-sky-400 to-blue-400" />
           </div>
+          <DownloadPreview 
             data={downloadData} 
             isLoading={isLoading} 
             autoTriggerDownload={autoTriggerDownload}

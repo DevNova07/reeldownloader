@@ -78,6 +78,7 @@ export default function TwitterPage({ content, locale }: TwitterPageProps) {
 
   return (
     <div className="flex flex-col">
+      <StructuredData type="SoftwareApplication" data={{ title: content?.title || "Twitter Downloader" }} />
       {content?.howTo?.steps && (
         <StructuredData
           type="HowTo"
@@ -134,6 +135,7 @@ export default function TwitterPage({ content, locale }: TwitterPageProps) {
             )}
             <LoadingBar isLoading={isLoading} gradient="from-slate-600 via-slate-500 to-neutral-400" />
           </div>
+          <DownloadPreview 
             data={downloadData} 
             isLoading={isLoading} 
             autoTriggerDownload={autoTriggerDownload}
