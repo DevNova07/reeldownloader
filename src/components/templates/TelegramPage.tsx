@@ -41,10 +41,12 @@ export default function TelegramPage({ content, locale }: TelegramPageProps) {
   const [downloadData, setDownloadData] = React.useState<PlatformResult | null>(null)
   const [isLoading, setIsLoading] = React.useState(false)
   const [autoTriggerDownload, setAutoTriggerDownload] = React.useState(false)
+  const [searchCounter, setSearchCounter] = React.useState(0)
   
   const { addToHistory } = useDownloadHistory("telegram")
 
   const handleSearch = async (url: string, isAutoTrigger = false) => {
+    setSearchCounter(prev => prev + 1)
     setAutoTriggerDownload(isAutoTrigger)
     const detectedPlatform = getPlatformFromUrl(url);
     if (detectedPlatform && detectedPlatform !== 'telegram') {
@@ -90,7 +92,6 @@ export default function TelegramPage({ content, locale }: TelegramPageProps) {
 
   return (
     <div className="flex flex-col">
-      <ToolSubNav />
       {content?.howTo?.steps && (
         <StructuredData
           type="HowTo"
@@ -142,12 +143,12 @@ export default function TelegramPage({ content, locale }: TelegramPageProps) {
             <TrustBadges dict={dict} />
             <TrendingBar accentColor="bg-sky-400" />
             <DownloadCounter accentColor="text-sky-200" />
-            <LoadingBar isLoading={isLoading} label={dict.common.analyzing} gradient="from-sky-500 via-sky-400 to-blue-400" />
+            <LoadingBar isLoading={isLoading} gradient="from-sky-500 via-sky-400 to-blue-400" />
           </div>
-          <DownloadPreview 
             data={downloadData} 
             isLoading={isLoading} 
             autoTriggerDownload={autoTriggerDownload}
+            searchCounter={searchCounter}
             buttonStyle="bg-white text-sky-600 hover:bg-neutral-100"
             accentText="text-sky-600"
             accentBg="bg-sky-600/10"
@@ -156,6 +157,7 @@ export default function TelegramPage({ content, locale }: TelegramPageProps) {
         </div>
       </section>
 
+      <ToolSubNav />
       <RelatedTools currentPlatform="telegram" />
       <CategoryCards />
 

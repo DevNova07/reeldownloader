@@ -264,7 +264,7 @@ function TwitterContent() {
 
 function TwitterPageInner() {
   return (
-    <React.Suspense fallback={<LoadingBar isLoading={true} />}>
+    <React.Suspense fallback={null}>
       <TwitterContent />
     </React.Suspense>
   )

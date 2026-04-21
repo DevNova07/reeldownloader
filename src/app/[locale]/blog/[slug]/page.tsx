@@ -10,7 +10,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const post = getBlogPostBySlug(resolvedParams.slug);
   
   if (!post) {
-    return { title: 'Post Not Found' };
+    return {
+    metadataBase: new URL("https://savclip.net"), title: 'Post Not Found' };
   }
   
   return {

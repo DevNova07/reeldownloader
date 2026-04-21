@@ -56,12 +56,14 @@ function FacebookContent({
   const [downloadData, setDownloadData] = React.useState<PlatformResult | null>(null)
   const [isLoading, setIsLoading] = React.useState(false)
   const [autoTriggerDownload, setAutoTriggerDownload] = React.useState(false)
+  const [searchCounter, setSearchCounter] = React.useState(0)
   
   const dict = getDictionary(locale);
   const { addToHistory } = useDownloadHistory("facebook");
   const searchParams = useSearchParams()
 
   const handleSearch = async (url: string, isAutoTrigger = false) => {
+    setSearchCounter(prev => prev + 1)
     setAutoTriggerDownload(isAutoTrigger)
     const cached = getCached(url)
     if (cached) {
@@ -117,26 +119,6 @@ function FacebookContent({
 
   return (
     <div className="flex flex-col">
-      <ToolSubNav />
-      {content.title && (
-        <Breadcrumbs 
-          locale={locale}
-          platform="Facebook"
-          platformPath="facebook"
-          toolTitle={content.title}
-        />
-      )}
-      {content?.howTo?.steps && (
-        <StructuredData
-          type="HowTo"
-          data={{
-            name: content.howTo.name || pageTitle,
-            description: content.howTo.description || pageSeo.desc,
-            steps: content.howTo.steps
-          }}
-        />
-      )}
-      
       {/* Hero Section */}
       <section className={`relative bg-linear-to-r ${cx.ribbon} px-4 pt-14 pb-8 sm:pt-20 sm:pb-32 sm:px-6 lg:px-8`}>
         <HeroEffect color={cx.effect} intensity="high" />
@@ -185,12 +167,13 @@ function FacebookContent({
             <TrendingBar accentColor={cx.bg} />
             <DownloadCounter accentColor={cx.text} />
             
-            <LoadingBar isLoading={isLoading} label={dict.common?.analyzing || "Analyzing..."} gradient={cx.gradient} />
+            <LoadingBar isLoading={isLoading} gradient={cx.gradient} />
           </div>
           <DownloadPreview 
             data={downloadData} 
             isLoading={isLoading} 
             autoTriggerDownload={autoTriggerDownload}
+            searchCounter={searchCounter}
             buttonStyle={`bg-linear-to-br ${cx.ribbonAcc} text-white ${cx.shadow} hover:brightness-110 active:scale-95`}
             accentText={cx.text}
             accentBg={cx.bgAccent}
@@ -198,6 +181,16 @@ function FacebookContent({
           />
         </div>
       </section>
+
+      <ToolSubNav />
+      {content.title && (
+        <Breadcrumbs 
+          locale={locale}
+          platform="Facebook"
+          platformPath="facebook"
+          toolTitle={content.title}
+        />
+      )}
 
       <RelatedTools currentPlatform="facebook" />
       <CategoryCards />
@@ -312,7 +305,7 @@ function FacebookContent({
 
 function FacebookPageInner(props: FacebookPageProps) {
   return (
-    <React.Suspense fallback={<LoadingBar isLoading={true} />}>
+    <React.Suspense fallback={null}>
       <FacebookContent {...props} />
     </React.Suspense>
   )

@@ -262,7 +262,7 @@ function TelegramContent() {
 
 function TelegramPageInner() {
   return (
-    <React.Suspense fallback={<LoadingBar isLoading={true} />}>
+    <React.Suspense fallback={null}>
       <TelegramContent />
     </React.Suspense>
   )

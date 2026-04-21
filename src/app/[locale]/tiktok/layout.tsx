@@ -8,6 +8,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const dict = await getDictionary(locale);
   
   return {
+    metadataBase: new URL("https://savclip.net"),
     title: dict.platforms.tiktok.seo.title,
     description: dict.platforms.tiktok.seo.desc,
   };

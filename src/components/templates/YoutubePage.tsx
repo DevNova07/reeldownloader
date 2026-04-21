@@ -55,12 +55,14 @@ function YoutubeContent({
   const [downloadData, setDownloadData] = React.useState<PlatformResult | null>(null)
   const [isLoading, setIsLoading] = React.useState(false)
   const [autoTriggerDownload, setAutoTriggerDownload] = React.useState(false)
+  const [searchCounter, setSearchCounter] = React.useState(0)
   
   const dict = getDictionary(locale);
   const { addToHistory } = useDownloadHistory("youtube");
   const searchParams = useSearchParams()
 
   const handleSearch = async (url: string, isAutoTrigger = false) => {
+    setSearchCounter(prev => prev + 1)
     setAutoTriggerDownload(isAutoTrigger)
     const cached = getCached(url)
     if (cached) {
@@ -114,26 +116,6 @@ function YoutubeContent({
 
   return (
     <div className="flex flex-col">
-      <ToolSubNav />
-      {content.title && (
-        <Breadcrumbs 
-          locale={locale}
-          platform="YouTube"
-          platformPath="youtube"
-          toolTitle={content.title}
-        />
-      )}
-      {content?.howTo?.steps && (
-        <StructuredData
-          type="HowTo"
-          data={{
-            name: content.howTo.name || pageTitle,
-            description: content.howTo.description || pageSeo.desc,
-            steps: content.howTo.steps
-          }}
-        />
-      )}
-      
       {/* Hero Section */}
       <section className={`relative bg-linear-to-r ${cx.ribbon} px-4 pt-14 pb-8 sm:pt-20 sm:pb-32 sm:px-6 lg:px-8`}>
         <HeroEffect color={cx.effect} intensity="high" />
@@ -183,20 +165,30 @@ function YoutubeContent({
             <TrendingBar accentColor={cx.bg} />
             <DownloadCounter accentColor="text-white/80" />
             
-            <LoadingBar isLoading={isLoading} label={dict.common?.analyzing || "Analyzing..."} gradient={cx.gradient} />
+            <LoadingBar isLoading={isLoading} gradient={cx.gradient} />
           </div>
 
           <DownloadPreview 
-            data={downloadData} 
-            isLoading={isLoading} 
+            data={downloadData}
+            isLoading={isLoading}
             autoTriggerDownload={autoTriggerDownload}
-            buttonStyle={`bg-white text-red-600 hover:bg-neutral-100 shadow-2xl`}
-            accentText={cx.text}
+            searchCounter={searchCounter}
+            buttonStyle="bg-linear-to-r from-red-600 to-amber-500 text-white shadow-[0_20px_50px_rgba(220,38,38,0.3)] ring-1 ring-inset ring-white/20 hover:brightness-110 active:scale-95"
             accentBg={cx.bgAccent}
             accentBorder={cx.border}
           />
         </div>
       </section>
+
+      <ToolSubNav />
+      {content.title && (
+        <Breadcrumbs 
+          locale={locale}
+          platform="YouTube"
+          platformPath="youtube"
+          toolTitle={content.title}
+        />
+      )}
 
       <RelatedTools currentPlatform="youtube" />
       <CategoryCards />
@@ -311,7 +303,7 @@ function YoutubeContent({
 
 function YoutubePageInner(props: YoutubePageProps) {
   return (
-    <React.Suspense fallback={<LoadingBar isLoading={true} />}>
+    <React.Suspense fallback={null}>
       <YoutubeContent {...props} />
     </React.Suspense>
   )

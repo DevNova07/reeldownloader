@@ -10,7 +10,11 @@ export async function fetchWithRotation(
   platform: string
 ): Promise<Response> {
   const platKey = platform.toLowerCase();
-  const platStats = statsManager.stats.platforms[platKey] || { total: 0, success: 0, fail: 0, keys: {} };
+  // Ensure platform entry exists in stats
+  if (!statsManager.stats.platforms[platKey]) {
+    statsManager.stats.platforms[platKey] = { total: 0, success: 0, fail: 0, keys: {} };
+  }
+  const platStats = statsManager.stats.platforms[platKey];
   
   // Select the key pool for this platform, fallback to global
   const activeKeys = PLATFORM_KEYS[platKey] || PLATFORM_KEYS.global || [];
@@ -65,6 +69,8 @@ export async function fetchWithRotation(
     const keyData = platStats.keys[key];
     if (keyData.status === "exhausted") continue;
 
+    console.log(`[API ROTATION] Trying key ${key.substring(0, 8)}... for ${platform} (${url})`);
+
     const options: RequestInit = {
       ...baseOptions,
       headers: {
@@ -76,6 +82,7 @@ export async function fetchWithRotation(
 
     try {
       const response = await fetch(url, options);
+      console.log(`[API ROTATION] Status: ${response.status} for ${platform}`);
       
       // Extract rate limit info
       const remaining = response.headers.get("x-ratelimit-requests-remaining") || 

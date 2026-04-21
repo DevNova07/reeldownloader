@@ -30,6 +30,7 @@ export async function POST(request: Request) {
     const cachedData = cacheManager.get(url);
     if (cachedData) {
       statsManager.trackCacheHit();
+      cachedData.url = url;
       return NextResponse.json({ success: true, data: cachedData, cached: true });
     }
 
@@ -59,6 +60,7 @@ export async function POST(request: Request) {
       }
 
       if (result) {
+        result.url = url;
         return NextResponse.json({
           success: true,
           data: result,

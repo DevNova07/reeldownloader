@@ -63,9 +63,6 @@ export function Navbar({ dict }: { dict: any }) {
     { name: dict.categories.yt, href: "/youtube", icon: <Play className="h-4 w-4 fill-current" />, color: "text-red-600", category: 'yt' },
     { name: dict.categories.tw, href: "/twitter", icon: <Hash className="h-4 w-4" />, color: "text-neutral-800 dark:text-neutral-400", category: 'tw' },
     { name: dict.categories.hashtags, href: "/hashtags", icon: <Hash className="h-4 w-4" />, color: "text-neutral-900 dark:text-neutral-400", category: 'hashtags' },
-    { name: dict.categories.bio || "Link-in-Bio", href: "/bio", icon: <Compass className="h-4 w-4" />, color: "text-purple-500", category: 'bio' },
-    { name: dict.categories.blog, href: "/blog", icon: <Hash className="h-4 w-4" />, color: "text-emerald-500", category: 'blog' },
-    { name: "Caption AI", href: "/captions", icon: <Compass className="h-4 w-4" />, color: "text-pink-600", category: 'captions' },
   ], [dict])
 
 
@@ -121,7 +118,7 @@ export function Navbar({ dict }: { dict: any }) {
                     >
                       <span className={cn("opacity-70", service.color)}>{service.icon}</span>
                       <span className="hidden 2xl:inline">
-                        {isMounted ? service.name : (service.href === '/bio' ? 'Bio' : service.name)}
+                        {isMounted ? (service.category === 'hashtags' ? 'Hashtag' : service.name) : service.name}
                       </span>
                       {navData && <ChevronDown className="h-3 w-3 opacity-50 group-hover/item:rotate-180 transition-transform" />}
                     </Link>

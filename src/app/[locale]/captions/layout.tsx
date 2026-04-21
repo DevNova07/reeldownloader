@@ -8,6 +8,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const dict = await getDictionary(locale);
   
   return {
+    metadataBase: new URL("https://savclip.net"),
     title: `AI Caption Generator - Viral Social Media Hooks | SavClip`,
     description: `Generate viral captions for Instagram, TikTok, and more using our AI tool. Elevate your storytelling and engage your audience.`,
   };

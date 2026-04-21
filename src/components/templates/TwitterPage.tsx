@@ -35,12 +35,14 @@ export default function TwitterPage({ content, locale }: TwitterPageProps) {
   const [downloadData, setDownloadData] = React.useState<PlatformResult | null>(null)
   const [isLoading, setIsLoading] = React.useState(false)
   const [autoTriggerDownload, setAutoTriggerDownload] = React.useState(false)
+  const [searchCounter, setSearchCounter] = React.useState(0)
   
   const dict = getDictionary(locale)
   const { addToHistory } = useDownloadHistory("twitter")
   const searchParams = useSearchParams()
 
   const handleSearch = async (url: string, isAutoTrigger = false) => {
+    setSearchCounter(prev => prev + 1)
     setAutoTriggerDownload(isAutoTrigger)
     const cached = getCached(url)
     if (cached) {
@@ -76,7 +78,6 @@ export default function TwitterPage({ content, locale }: TwitterPageProps) {
 
   return (
     <div className="flex flex-col">
-      <ToolSubNav />
       {content?.howTo?.steps && (
         <StructuredData
           type="HowTo"
@@ -131,12 +132,12 @@ export default function TwitterPage({ content, locale }: TwitterPageProps) {
                 <DownloadCounter accentColor="text-slate-400" />
               </div>
             )}
-            <LoadingBar isLoading={isLoading} label={dict.common?.analyzing || "Analyzing..."} gradient="from-slate-600 via-slate-500 to-neutral-400" />
+            <LoadingBar isLoading={isLoading} gradient="from-slate-600 via-slate-500 to-neutral-400" />
           </div>
-          <DownloadPreview 
             data={downloadData} 
             isLoading={isLoading} 
             autoTriggerDownload={autoTriggerDownload}
+            searchCounter={searchCounter}
             buttonStyle="bg-white text-black hover:bg-neutral-200"
             accentText="text-slate-600"
             accentBg="bg-slate-500/10"
@@ -145,6 +146,7 @@ export default function TwitterPage({ content, locale }: TwitterPageProps) {
         </div>
       </section>
 
+      <ToolSubNav />
       <RelatedTools currentPlatform="twitter" />
       <CategoryCards />
 

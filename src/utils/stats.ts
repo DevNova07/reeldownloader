@@ -5,7 +5,6 @@ import path from 'path';
  * API Key Pool Configuration.
  */
 const ALL_KEYS = [
-  "b78e8528e0msh7075b487371fff1p1bcb3jsn155f6f378608",
   "71b678b386mshfbf8544ef27b963p18d3fbjsn9603ed997f89",
   "30cfff0008mshcd9738405b90602p1718bbjsn76a163aaa269",
   "90681a6f3cmsh11960059bfa010dp119547jsna49deca7951b",
@@ -16,18 +15,19 @@ const ALL_KEYS = [
 
 export const PLATFORM_KEYS: Record<string, string[]> = {
   instagram: ALL_KEYS,
-  instagram_v2: ALL_KEYS,
-  instagram_premium: ["2b499efe85msh77757d93ebe633fp16285bjsndfe8c19a6694"],
-  tiktok: ["2b499efe85msh77757d93ebe633fp16285bjsndfe8c19a6694"],
-  tiktok_v2: ["2b499efe85msh77757d93ebe633fp16285bjsndfe8c19a6694"],
+  tiktok: ["71b678b386mshfbf8544ef27b963p18d3fbjsn9603ed997f89", "2b499efe85msh77757d93ebe633fp16285bjsndfe8c19a6694"],
+  tiktok_v2: ["71b678b386mshfbf8544ef27b963p18d3fbjsn9603ed997f89", "2b499efe85msh77757d93ebe633fp16285bjsndfe8c19a6694"],
   youtube: ALL_KEYS,
-  youtube_backup1: ALL_KEYS,
+  youtube138: ALL_KEYS,
+  youtube_v2: ALL_KEYS,
   facebook: ALL_KEYS,
+
   snapchat: ALL_KEYS,
   telegram: ALL_KEYS,
   twitter: ALL_KEYS,
   global: ALL_KEYS
 };
+
 
 export interface KeyStats {
   name: string;
@@ -88,7 +88,7 @@ class StatsManager {
 
   private createInitialStats(): GlobalStats {
     const platforms: Record<string, PlatformStats> = {};
-    const platformList = ["instagram", "instagram_v2", "tiktok", "youtube", "youtube_backup1", "facebook", "snapchat", "telegram", "twitter"];
+    const platformList = ["instagram", "tiktok", "youtube", "facebook", "snapchat", "telegram", "twitter"];
 
     platformList.forEach(p => {
       platforms[p] = this.createPlatformEntry();

@@ -22,7 +22,7 @@ export function LoadingBar({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="flex min-h-[50vh] w-full flex-col items-center justify-center space-y-6 px-4 py-12"
+          className="flex w-full flex-col items-center justify-center space-y-4 px-4 py-6"
         >
           {/* Minimal High-Speed Loader */}
           <div className="relative flex h-32 w-32 items-center justify-center">
@@ -52,12 +52,7 @@ export function LoadingBar({
             />
           </div>
 
-          {/* Status Text Area */}
-          <div className="flex flex-col items-center space-y-2">
-            <span className="text-lg font-black uppercase tracking-[0.2em] text-neutral-900 dark:text-white italic">
-              {label}
-            </span>
-          </div>
+          {/* Status Text Area removed as per user request */}
 
           {/* Fast Progress Indicator */}
           <div className="h-1 w-40 overflow-hidden rounded-full bg-neutral-100 dark:bg-neutral-900">

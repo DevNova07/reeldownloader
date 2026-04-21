@@ -57,6 +57,7 @@ export default function InstagramPage({
   const [downloadData, setDownloadData] = React.useState<PlatformResult | null>(null);
   const [isLoading, setIsLoading] = React.useState(false);
   const [autoTriggerDownload, setAutoTriggerDownload] = React.useState(false);
+  const [searchCounter, setSearchCounter] = React.useState(0);
 
     const dict = getDictionary(locale);
   const { history: recentDownloads, addToHistory, clearHistory } = useDownloadHistory("instagram");
@@ -65,6 +66,7 @@ export default function InstagramPage({
 
 
   const handleSearch = async (url: string, isAutoTrigger = false) => {
+    setSearchCounter(prev => prev + 1);
     setAutoTriggerDownload(isAutoTrigger);
     const cached = getCached(url);
     if (cached) {
@@ -119,26 +121,6 @@ export default function InstagramPage({
 
   return (
     <div className="flex flex-col">
-      <ToolSubNav />
-      {content.title && (
-        <Breadcrumbs 
-          locale={locale}
-          platform="Instagram"
-          platformPath="instagram"
-          toolTitle={content.title}
-        />
-      )}
-      {content?.howTo?.steps && (
-        <StructuredData
-          type="HowTo"
-          data={{
-            name: content.howTo.name || pageTitle,
-            description: content.howTo.description || pageSeo.desc,
-            steps: content.howTo.steps,
-          }}
-        />
-      )}
-
       {/* Hero Section */}
       <section className={`relative bg-linear-to-r ${cx.ribbon} px-4 pt-14 pb-8 sm:pt-20 sm:pb-32 sm:px-6 lg:px-8`}>
         <HeroEffect color={cx.effect} intensity="high" />
@@ -184,7 +166,6 @@ export default function InstagramPage({
 
           <LoadingBar
             isLoading={isLoading}
-            label={dict.common?.analyzing || "Analyzing..."}
             gradient={cx.gradient}
           />
 
@@ -192,7 +173,8 @@ export default function InstagramPage({
             data={downloadData}
             isLoading={isLoading}
             autoTriggerDownload={autoTriggerDownload}
-            buttonStyle={`bg-linear-to-br ${cx.gradient} text-white shadow-[0_20px_50px_rgba(225,10,94,0.3)] ring-1 ring-inset ring-white/20`}
+            searchCounter={searchCounter}
+            buttonStyle="bg-linear-to-br from-rose-600 via-pink-600 to-purple-600 text-white shadow-[0_20px_50px_rgba(225,10,94,0.3)] ring-1 ring-inset ring-white/20 hover:brightness-110 active:scale-95"
             accentText={cx.text}
             accentBg={cx.bgAccent}
             accentBorder={cx.border}
@@ -243,6 +225,16 @@ export default function InstagramPage({
           </AnimatePresence>
         </div>
       </section>
+
+      <ToolSubNav />
+      {content.title && (
+        <Breadcrumbs 
+          locale={locale}
+          platform="Instagram"
+          platformPath="instagram"
+          toolTitle={content.title}
+        />
+      )}
 
       <RelatedTools currentPlatform="instagram" />
       <CategoryCards />

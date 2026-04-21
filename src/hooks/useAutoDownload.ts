@@ -44,7 +44,7 @@ export function useAutoDownload(
       // Correct platform or root page - trigger search directly with a slight delay for reliability
       hasTriggered.current = sharedUrl
       setTimeout(() => {
-        onSearch(sharedUrl, true)
+        onSearch(sharedUrl, false)
       }, 300) // Small delay to ensure everything is initialized
     }
   }, [searchParams, locale, router, currentPlatform, onSearch])

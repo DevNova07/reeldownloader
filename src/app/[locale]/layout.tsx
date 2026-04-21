@@ -10,7 +10,6 @@ import { MegaFooterMap } from "@/components/layout/MegaFooterMap";
 import { TrackVisit } from "@/components/shared/TrackVisit";
 import { ProgressBar } from "@/components/shared/ProgressBar";
 import { InstallPWA } from "@/components/ui/InstallPWA";
-import { SmartSwitch } from "@/components/ui/SmartSwitch";
 import { Suspense } from "react";
 import Script from "next/script";
 import type { Viewport } from "next";
@@ -163,8 +162,7 @@ export default async function RootLayout(props: {
             })
           }}
         />
-        <InstallPWA />
-        <SmartSwitch />
+         <InstallPWA />
           <div className="flex min-h-screen flex-col overflow-x-hidden">
             <Navbar dict={layoutDict} />
             <main className="flex-1">

@@ -121,9 +121,46 @@ export async function twitterHandler(url: string): Promise<PlatformResult> {
       }
     }
   } catch (e) {
-    console.error("All X / Twitter clusters failed:", e);
-    throw new Error("Could not fetch X content from any cluster.");
+    // --- CLUSTER 3: All-in-One Downloader (New Backup) ---
+    try {
+      const allInOneHost = "all-in-one-video-downloader-api-tiktok-ig-fb.p.rapidapi.com";
+      const allInOneUrl = `https://${allInOneHost}/all-downloader.php?url=${encodeURIComponent(url)}`;
+      
+      const response = await fetchWithRotation(allInOneUrl, {
+        method: "GET",
+        headers: { "x-rapidapi-host": allInOneHost },
+      }, "twitter");
+
+      if (response.ok) {
+        const data = await response.json();
+        
+        if (data && data.videos && Array.isArray(data.videos) && data.videos.length > 0) {
+          const medias: Media[] = data.videos.map((item: any, index: number) => ({
+            id: `tw-allinone-${index}-${Date.now()}`,
+            url: item.download_url,
+            quality: item.resolution || "HD Video",
+            type: item.resolution === "audio" ? "audio" : "video",
+            extension: item.extension || "mp4"
+          }));
+
+          const formattedData: PlatformResult = {
+            thumbnail: data.thumbnail?.startsWith('data:') ? data.thumbnail : (data.thumbnail || ""),
+            title: data.title || "X / Twitter Content",
+            medias: medias,
+            caption: data.title || "",
+            likes: 0,
+            commentCount: 0,
+          };
+
+          statsManager.trackDownload(url, formattedData.title, "twitter");
+          cacheManager.set(url, formattedData);
+          return formattedData;
+        }
+      }
+    } catch (e) {
+      console.warn("X / Twitter All-in-One Backup failed:", (e as Error).message);
+    }
   }
 
-  throw new Error("No downloadable content found on X / Twitter.");
+  throw new Error("Could not fetch X content from any cluster.");
 }

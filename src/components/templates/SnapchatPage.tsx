@@ -55,6 +55,7 @@ function SnapchatContent({
   const [downloadData, setDownloadData] = React.useState<PlatformResult | null>(null)
   const [isLoading, setIsLoading] = React.useState(false)
   const [autoTriggerDownload, setAutoTriggerDownload] = React.useState(false)
+  const [searchCounter, setSearchCounter] = React.useState(0)
   
   const dict = getDictionary(locale);
   const { addToHistory } = useDownloadHistory("snapchat");
@@ -63,6 +64,7 @@ function SnapchatContent({
 
 
   const handleSearch = async (url: string, isAutoTrigger = false) => {
+    setSearchCounter(prev => prev + 1);
     setAutoTriggerDownload(isAutoTrigger)
     const cached = getCached(url)
     if (cached) {
@@ -116,26 +118,6 @@ function SnapchatContent({
 
   return (
     <div className="flex flex-col">
-      <ToolSubNav />
-      {content.title && (
-        <Breadcrumbs 
-          locale={locale}
-          platform="Snapchat"
-          platformPath="snapchat"
-          toolTitle={content.title}
-        />
-      )}
-      {content?.howTo?.steps && (
-        <StructuredData
-          type="HowTo"
-          data={{
-            name: content.howTo.name || pageTitle,
-            description: content.howTo.description || pageSeo.desc,
-            steps: content.howTo.steps
-          }}
-        />
-      )}
-      
       {/* Hero Section */}
       <section className={`relative bg-linear-to-r ${cx.ribbon} px-4 pt-14 pb-8 sm:pt-20 sm:pb-32 sm:px-6 lg:px-8`}>
         <HeroEffect color={cx.effect} intensity="high" />
@@ -183,12 +165,13 @@ function SnapchatContent({
             <TrendingBar accentColor="bg-black" />
             <DownloadCounter accentColor={cx.text} />
             
-            <LoadingBar isLoading={isLoading} label={dict.common?.analyzing || "Analyzing..."} gradient={cx.gradient} />
+            <LoadingBar isLoading={isLoading} gradient={cx.gradient} />
           </div>
           <DownloadPreview 
             data={downloadData} 
             isLoading={isLoading} 
             autoTriggerDownload={autoTriggerDownload}
+            searchCounter={searchCounter}
             buttonStyle={`bg-black text-white hover:bg-neutral-800 ${cx.shadow}`}
             accentText={cx.text}
             accentBg={cx.bgAccent}
@@ -197,6 +180,15 @@ function SnapchatContent({
         </div>
       </section>
 
+      <ToolSubNav />
+      {content.title && (
+        <Breadcrumbs 
+          locale={locale}
+          platform="Snapchat"
+          platformPath="snapchat"
+          toolTitle={content.title}
+        />
+      )}
       <RelatedTools currentPlatform="snapchat" />
       <CategoryCards />
 
@@ -294,8 +286,10 @@ function SnapchatContent({
                   <div className="mt-12 space-y-6">
                     {(content.faq?.items || dict.faq?.items || []).map((faq: any, idx: number) => (
                       <div key={idx} className={`group rounded-[2rem] border border-neutral-200 p-8 dark:border-neutral-800 hover:${cx.border}/50 transition-all bg-white dark:bg-transparent hover:shadow-2xl`}>
-                  </div>
-                ))}
+                        <h4 className="text-lg font-black text-neutral-900 dark:text-white uppercase italic tracking-tighter">{faq.title}</h4>
+                        <p className="mt-4 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 leading-relaxed">{faq.desc}</p>
+                      </div>
+                    ))}
               </div>
             </div>
           </ExpandableSection>
@@ -309,7 +303,7 @@ function SnapchatContent({
 
 function SnapchatPageInner(props: SnapchatPageProps) {
   return (
-    <React.Suspense fallback={<LoadingBar isLoading={true} />}>
+    <React.Suspense fallback={null}>
       <SnapchatContent {...props} />
     </React.Suspense>
   )

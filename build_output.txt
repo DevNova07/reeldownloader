@@ -1,0 +1,283 @@
+
+> snap@0.1.0 build
+> next build
+
+▲ Next.js 16.2.1 (Turbopack)
+- Experiments (use with caution):
+  · optimizePackageImports
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 24.5s
+  Running TypeScript ...
+  Finished TypeScript in 27.0s ...
+  Collecting page data using 11 workers ...
+  Generating static pages using 11 workers (0/1222) ...
+⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+  Generating static pages using 11 workers (305/1222) 
+  Generating static pages using 11 workers (610/1222) 
+  Generating static pages using 11 workers (916/1222) 
+✓ Generating static pages using 11 workers (1222/1222) in 28.7s
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /_not-found
+├ ● /[locale]
+│ ├ /en
+│ ├ /hi
+│ ├ /es
+│ └ [+20 more paths]
+├ ● /[locale]/[slug]
+│ ├ /en/download-instagram-reels
+│ ├ /en/reels-without-watermark
+│ ├ /en/instagram-story-download-without-watermark
+│ └ [+57 more paths]
+├ ● /[locale]/about
+│ ├ /en/about
+│ ├ /hi/about
+│ ├ /es/about
+│ └ [+20 more paths]
+├ ● /[locale]/admin
+│ ├ /en/admin
+│ ├ /hi/admin
+│ ├ /es/admin
+│ └ [+20 more paths]
+├ ● /[locale]/ai-generator
+│ ├ /en/ai-generator
+│ ├ /hi/ai-generator
+│ ├ /es/ai-generator
+│ └ [+20 more paths]
+├ ● /[locale]/bio
+│ ├ /en/bio
+│ ├ /hi/bio
+│ ├ /es/bio
+│ └ [+20 more paths]
+├ ƒ /[locale]/bio/[username]
+├ ● /[locale]/bio/create
+│ ├ /en/bio/create
+│ ├ /hi/bio/create
+│ ├ /es/bio/create
+│ └ [+20 more paths]
+├ ● /[locale]/blog
+│ ├ /en/blog
+│ ├ /hi/blog
+│ ├ /es/blog
+│ └ [+20 more paths]
+├ ● /[locale]/blog/[slug]
+│ ├ /en/blog/how-to-download-instagram-reels-4k
+│ ├ /en/blog/save-youtube-shorts-to-gallery
+│ ├ /en/blog/ultimate-guide-facebook-video-downloads
+│ └ [+135 more paths]
+├ ● /[locale]/captions
+│ ├ /en/captions
+│ ├ /hi/captions
+│ ├ /es/captions
+│ └ [+20 more paths]
+├ ● /[locale]/contact
+│ ├ /en/contact
+│ ├ /hi/contact
+│ ├ /es/contact
+│ └ [+20 more paths]
+├ ● /[locale]/disclaimer
+│ ├ /en/disclaimer
+│ ├ /hi/disclaimer
+│ ├ /es/disclaimer
+│ └ [+20 more paths]
+├ ● /[locale]/dmca
+│ ├ /en/dmca
+│ ├ /hi/dmca
+│ ├ /es/dmca
+│ └ [+20 more paths]
+├ ● /[locale]/facebook
+│ ├ /en/facebook
+│ ├ /hi/facebook
+│ ├ /es/facebook
+│ └ [+20 more paths]
+├ ● /[locale]/facebook/music
+│ ├ /en/facebook/music
+│ ├ /hi/facebook/music
+│ ├ /es/facebook/music
+│ └ [+20 more paths]
+├ ● /[locale]/facebook/reels
+│ ├ /en/facebook/reels
+│ ├ /hi/facebook/reels
+│ ├ /es/facebook/reels
+│ └ [+20 more paths]
+├ ● /[locale]/facebook/story
+│ ├ /en/facebook/story
+│ ├ /hi/facebook/story
+│ ├ /es/facebook/story
+│ └ [+20 more paths]
+├ ● /[locale]/faq
+│ ├ /en/faq
+│ ├ /hi/faq
+│ ├ /es/faq
+│ └ [+20 more paths]
+├ ● /[locale]/hashtags
+│ ├ /en/hashtags
+│ ├ /hi/hashtags
+│ ├ /es/hashtags
+│ └ [+20 more paths]
+├ ƒ /[locale]/hashtags/[tag]
+├ ● /[locale]/hashtags/best
+│ ├ /en/hashtags/best
+│ ├ /hi/hashtags/best
+│ ├ /es/hashtags/best
+│ └ [+20 more paths]
+├ ● /[locale]/hashtags/new
+│ ├ /en/hashtags/new
+│ ├ /hi/hashtags/new
+│ ├ /es/hashtags/new
+│ └ [+20 more paths]
+├ ● /[locale]/history
+│ ├ /en/history
+│ ├ /hi/history
+│ ├ /es/history
+│ └ [+20 more paths]
+├ ● /[locale]/music
+│ ├ /en/music
+│ ├ /hi/music
+│ ├ /es/music
+│ └ [+20 more paths]
+├ ● /[locale]/photo
+│ ├ /en/photo
+│ ├ /hi/photo
+│ ├ /es/photo
+│ └ [+20 more paths]
+├ ● /[locale]/post
+│ ├ /en/post
+│ ├ /hi/post
+│ ├ /es/post
+│ └ [+20 more paths]
+├ ● /[locale]/privacy-policy
+│ ├ /en/privacy-policy
+│ ├ /hi/privacy-policy
+│ ├ /es/privacy-policy
+│ └ [+20 more paths]
+├ ● /[locale]/reels
+│ ├ /en/reels
+│ ├ /hi/reels
+│ ├ /es/reels
+│ └ [+20 more paths]
+├ ● /[locale]/safety
+│ ├ /en/safety
+│ ├ /hi/safety
+│ ├ /es/safety
+│ └ [+20 more paths]
+├ ● /[locale]/share-target
+│ ├ /en/share-target
+│ ├ /hi/share-target
+│ ├ /es/share-target
+│ └ [+20 more paths]
+├ ● /[locale]/snapchat
+│ ├ /en/snapchat
+│ ├ /hi/snapchat
+│ ├ /es/snapchat
+│ └ [+20 more paths]
+├ ● /[locale]/snapchat/music
+│ ├ /en/snapchat/music
+│ ├ /hi/snapchat/music
+│ ├ /es/snapchat/music
+│ └ [+20 more paths]
+├ ● /[locale]/snapchat/story
+│ ├ /en/snapchat/story
+│ ├ /hi/snapchat/story
+│ ├ /es/snapchat/story
+│ └ [+20 more paths]
+├ ● /[locale]/story
+│ ├ /en/story
+│ ├ /hi/story
+│ ├ /es/story
+│ └ [+20 more paths]
+├ ● /[locale]/telegram
+│ ├ /en/telegram
+│ ├ /hi/telegram
+│ ├ /es/telegram
+│ └ [+20 more paths]
+├ ● /[locale]/telegram/music
+│ ├ /en/telegram/music
+│ ├ /hi/telegram/music
+│ ├ /es/telegram/music
+│ └ [+20 more paths]
+├ ● /[locale]/terms
+│ ├ /en/terms
+│ ├ /hi/terms
+│ ├ /es/terms
+│ └ [+20 more paths]
+├ ● /[locale]/tiktok
+│ ├ /en/tiktok
+│ ├ /hi/tiktok
+│ ├ /es/tiktok
+│ └ [+20 more paths]
+├ ● /[locale]/tiktok/music
+│ ├ /en/tiktok/music
+│ ├ /hi/tiktok/music
+│ ├ /es/tiktok/music
+│ └ [+20 more paths]
+├ ● /[locale]/tiktok/story
+│ ├ /en/tiktok/story
+│ ├ /hi/tiktok/story
+│ ├ /es/tiktok/story
+│ └ [+20 more paths]
+├ ● /[locale]/twitter
+│ ├ /en/twitter
+│ ├ /hi/twitter
+│ ├ /es/twitter
+│ └ [+20 more paths]
+├ ● /[locale]/twitter/gif
+│ ├ /en/twitter/gif
+│ ├ /hi/twitter/gif
+│ ├ /es/twitter/gif
+│ └ [+20 more paths]
+├ ● /[locale]/twitter/music
+│ ├ /en/twitter/music
+│ ├ /hi/twitter/music
+│ ├ /es/twitter/music
+│ └ [+20 more paths]
+├ ● /[locale]/youtube
+│ ├ /en/youtube
+│ ├ /hi/youtube
+│ ├ /es/youtube
+│ └ [+20 more paths]
+├ ● /[locale]/youtube/movies
+│ ├ /en/youtube/movies
+│ ├ /hi/youtube/movies
+│ ├ /es/youtube/movies
+│ └ [+20 more paths]
+├ ● /[locale]/youtube/music
+│ ├ /en/youtube/music
+│ ├ /hi/youtube/music
+│ ├ /es/youtube/music
+│ └ [+20 more paths]
+├ ● /[locale]/youtube/shorts
+│ ├ /en/youtube/shorts
+│ ├ /hi/youtube/shorts
+│ ├ /es/youtube/shorts
+│ └ [+20 more paths]
+├ ƒ /api/admin/stats
+├ ƒ /api/admin/track-visit
+├ ƒ /api/download
+├ ƒ /api/proxy-download
+├ ○ /apple-icon.png
+├ ○ /icon.png
+├ ○ /opengraph-image.png
+├ ○ /robots.txt
+├ ƒ /share-target
+└ ○ /sitemap.xml
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+

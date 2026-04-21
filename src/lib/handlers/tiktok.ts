@@ -87,6 +87,9 @@ export async function tiktokHandler(url: string): Promise<PlatformResult> {
           caption: rawData.title || "",
           likes: rawData.like_count || 0,
           commentCount: rawData.comment_count || 0,
+          shareCount: rawData.share_count || 0,
+          author: rawData.author || "TikTok Creator",
+          authorId: rawData.author_id || "",
         };
 
         statsManager.trackDownload(url, formattedData.title, "tiktok");
@@ -99,11 +102,50 @@ export async function tiktokHandler(url: string): Promise<PlatformResult> {
     console.error("TikTok API failed:", error.message);
   }
 
-  // --- SECONDARY TIKTOK API (Social Download All-in-One Fallback) ---
+  // --- SECONDARY TIKTOK API (All-in-One Downloader - New Backup) ---
+  try {
+    const allInOneHost = "all-in-one-video-downloader-api-tiktok-ig-fb.p.rapidapi.com";
+    const allInOneUrl = `https://${allInOneHost}/all-downloader.php?url=${encodeURIComponent(finalUrl)}`;
+    
+    const response = await fetchWithRotation(allInOneUrl, {
+      method: "GET",
+      headers: { "x-rapidapi-host": allInOneHost },
+    }, "tiktok");
+
+    if (response.ok) {
+      const data = await response.json();
+      
+      if (data && data.videos && Array.isArray(data.videos) && data.videos.length > 0) {
+        const medias: Media[] = data.videos.map((item: any, index: number) => ({
+          id: `tk-allinone-${index}-${Date.now()}`,
+          url: item.download_url,
+          quality: item.resolution === "no_watermark" ? "HD (No Watermark)" : item.resolution,
+          type: item.resolution === "audio" ? "audio" : "video",
+          extension: item.extension || "mp4"
+        }));
+
+        const formattedData: PlatformResult = {
+          thumbnail: data.thumbnail?.startsWith('data:') ? data.thumbnail : (data.thumbnail || ""),
+          title: data.title || "TikTok Video",
+          medias: medias,
+          caption: data.title || "",
+          likes: 0,
+          commentCount: 0,
+        };
+
+        statsManager.trackDownload(url, formattedData.title, "tiktok");
+        cacheManager.set(url, formattedData);
+        return formattedData;
+      }
+    }
+  } catch (e) {
+    console.warn("TikTok All-in-One Backup failed:", (e as Error).message);
+  }
+
+  // --- TERTIARY TIKTOK API (Social Download All-in-One Fallback) ---
   try {
     const fallbackHost = "social-download-all-in-one.p.rapidapi.com";
     const fallbackUrl = `https://${fallbackHost}/v1/social/autolink`;
-
 
     const response = await fetchWithRotation(fallbackUrl, {
       method: "POST",

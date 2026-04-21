@@ -43,6 +43,7 @@ function HomeContent() {
   const [downloadData, setDownloadData] = React.useState<PlatformResult | null>(null)
   const [isLoading, setIsLoading] = React.useState(false)
   const [autoTriggerDownload, setAutoTriggerDownload] = React.useState(false)
+  const [searchCounter, setSearchCounter] = React.useState(0)
 
   const pathname = usePathname()
   const searchParams = useSearchParams()
@@ -51,6 +52,7 @@ function HomeContent() {
   const { history: recentDownloads, addToHistory, clearHistory } = useDownloadHistory("instagram")
 
   const handleSearch = async (url: string, isAutoTrigger = false) => {
+    setSearchCounter(prev => prev + 1)
     setAutoTriggerDownload(isAutoTrigger)
     setIsLoading(true)
     const cached = getCached(url)
@@ -171,6 +173,7 @@ function HomeContent() {
             data={downloadData}
             isLoading={isLoading}
             autoTriggerDownload={autoTriggerDownload}
+            searchCounter={searchCounter}
             buttonStyle="bg-linear-to-br from-rose-600 via-pink-600 to-purple-600 text-white shadow-[0_20px_50px_rgba(225,10,94,0.3)] ring-1 ring-inset ring-white/20 hover:brightness-110 active:scale-95"
             accentText="text-pink-600"
             accentBg="bg-pink-600/10"
@@ -312,7 +315,7 @@ function HomeContent() {
 
 export default function HomePage() {
   return (
-    <React.Suspense fallback={<LoadingBar isLoading={true} />}>
+    <React.Suspense fallback={null}>
       <HomeContent />
     </React.Suspense>
   )

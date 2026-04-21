@@ -56,12 +56,14 @@ function TiktokContent({
   const [downloadData, setDownloadData] = React.useState<PlatformResult | null>(null)
   const [isLoading, setIsLoading] = React.useState(false)
   const [autoTriggerDownload, setAutoTriggerDownload] = React.useState(false)
+  const [searchCounter, setSearchCounter] = React.useState(0)
   
   const dict = getDictionary(locale);
   const { addToHistory } = useDownloadHistory("tiktok");
   const searchParams = useSearchParams()
 
   const handleSearch = async (url: string, isAutoTrigger = false) => {
+    setSearchCounter(prev => prev + 1);
     setAutoTriggerDownload(isAutoTrigger)
     const cached = getCached(url)
     if (cached) {
@@ -117,26 +119,7 @@ function TiktokContent({
 
   return (
     <div className="flex flex-col">
-      <ToolSubNav />
-      {content.title && (
-        <Breadcrumbs 
-          locale={locale}
-          platform="TikTok"
-          platformPath="tiktok"
-          toolTitle={content.title}
-        />
-      )}
-      {content?.howTo?.steps && (
-        <StructuredData
-          type="HowTo"
-          data={{
-            name: content.howTo.name || pageTitle,
-            description: content.howTo.description || pageSeo.desc,
-            steps: content.howTo.steps
-          }}
-        />
-      )}
-      
+      <StructuredData data={pageSeo} />
       {/* Hero Section */}
       <section className={`relative bg-linear-to-r ${cx.ribbon} px-4 pt-14 pb-8 sm:pt-20 sm:pb-32 sm:px-6 lg:px-8`}>
         <HeroEffect color={cx.effect} intensity="high" />
@@ -185,12 +168,13 @@ function TiktokContent({
             <TrendingBar accentColor={cx.bg} />
             <DownloadCounter accentColor={cx.mainText} />
             
-            <LoadingBar isLoading={isLoading} label={dict.common?.analyzing || "Analyzing..."} gradient={cx.gradient} />
+            <LoadingBar isLoading={isLoading} gradient={cx.gradient} />
           </div>
           <DownloadPreview 
             data={downloadData} 
             isLoading={isLoading} 
             autoTriggerDownload={autoTriggerDownload}
+            searchCounter={searchCounter}
             buttonStyle={`bg-linear-to-br ${cx.ribbonAcc} text-white ${cx.shadow} hover:brightness-110 active:scale-95`}
             accentText={cx.text}
             accentBg={cx.bgAccent}
@@ -198,6 +182,16 @@ function TiktokContent({
           />
         </div>
       </section>
+
+      <ToolSubNav />
+      {content.title && (
+        <Breadcrumbs 
+          locale={locale}
+          platform="TikTok"
+          platformPath="tiktok"
+          toolTitle={content.title}
+        />
+      )}
 
       <RelatedTools currentPlatform="tiktok" />
       <CategoryCards />
@@ -296,9 +290,10 @@ function TiktokContent({
                   <div className="mt-12 space-y-6">
                     {(content.faq?.items || dict.faq?.items || []).map((faq: any, idx: number) => (
                       <div key={idx} className={`group rounded-[2rem] border border-neutral-200 p-8 dark:border-neutral-800 hover:${cx.border}/50 transition-all bg-white dark:bg-transparent hover:shadow-2xl`}>
-                        <h4 className={`font-black text-neutral-900 dark:text-white group-hover:${cx.text} transition-colors uppercase italic tracking-tighter text-lg`}>{faq.q}</h4>
-                  </div>
-                ))}
+                        <h4 className={`font-black text-neutral-900 dark:text-white group-hover:${cx.text} transition-colors uppercase italic tracking-tighter text-lg`}>{faq.q || faq.title}</h4>
+                        <p className="mt-4 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 leading-relaxed">{faq.a || faq.desc}</p>
+                      </div>
+                    ))}
               </div>
             </div>
           </ExpandableSection>
@@ -312,7 +307,7 @@ function TiktokContent({
 
 function TiktokPageInner(props: TiktokPageProps) {
   return (
-    <React.Suspense fallback={<LoadingBar isLoading={true} />}>
+    <React.Suspense fallback={null}>
       <TiktokContent {...props} />
     </React.Suspense>
   )

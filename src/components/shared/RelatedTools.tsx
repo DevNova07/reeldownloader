@@ -92,7 +92,7 @@ export function RelatedTools({ currentPlatform, max = 4 }: RelatedToolsProps) {
   const tools = ALL_TOOLS.filter((t) => t.id !== currentPlatform).slice(0, max)
 
   return (
-    <section className="px-4 py-4 sm:py-20 relative overflow-hidden">
+    <section className="px-4 pt-10 pb-4 sm:py-20 relative overflow-hidden">
       {/* Subtle background decorative element */}
       <div className="absolute top-0 right-0 h-64 w-64 rounded-full bg-linear-to-bl from-pink-500/5 to-transparent blur-3xl" />
 

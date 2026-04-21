@@ -70,7 +70,6 @@ function SearchBarInner({
     if (currentPlat && detected !== currentPlat) {
       const target = getLocalizedRoute(detected, locale)
       if (target) {
-        toast(`Switching to ${detected} Downloader...`, { icon: '🚀', duration: 3000 })
         router.push(`${target}?url=${encodeURIComponent(inputUrl)}`)
         return true
       }

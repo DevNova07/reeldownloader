@@ -4,6 +4,7 @@ export interface Media {
   quality: string;
   type: "video" | "image" | "audio" | "text";
   extension: string;
+  size?: string;
 }
 
 export interface PlatformResult {
@@ -13,4 +14,15 @@ export interface PlatformResult {
   caption: string;
   likes: number;
   commentCount: number;
+  shareCount?: number;
+  author?: string;
+  authorId?: string;
+  type?: "single" | "list";
+  items?: Array<{
+    id: string;
+    title: string;
+    thumbnail: string;
+    url: string; // The URL to re-trigger search
+  }>;
+  url?: string;
 }

@@ -259,5 +259,21 @@ export const PLATFORM_NAV_CONFIG: Record<string, PlatformNav> = {
     ],
     hoverColor: "hover:text-amber-600 dark:hover:text-amber-500",
     borderColor: "border-amber-500/20"
+  },
+  hashtags: {
+    id: "hashtags",
+    categories: [
+      {
+        titleKey: "ai_engagement_tools",
+        links: [
+          { href: "/hashtags", label: "AI Hashtags" },
+          { href: "/captions", label: "Caption AI" },
+          { href: "/bio", label: "Link-in-Bio" },
+          { href: "/blog", label: "Official Blog" },
+        ]
+      }
+    ],
+    hoverColor: "hover:text-purple-600 dark:hover:text-purple-500",
+    borderColor: "border-purple-500/20"
   }
 };
