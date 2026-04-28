@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { DownloadCloud, X } from "lucide-react"
+import { X } from "lucide-react"
 
 export function InstallPWA() {
     const [deferredPrompt, setDeferredPrompt] = React.useState<any>(null)
@@ -55,11 +55,8 @@ export function InstallPWA() {
           className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] w-[calc(100%-2rem)] max-w-[400px] overflow-hidden rounded-[2rem] border border-white/10 bg-black/80 px-4 py-3 shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur-3xl sm:left-auto sm:right-6 sm:translate-x-0"
         >
           <div className="flex items-center gap-4">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/5 border border-white/10">
-              <div className="relative">
-                <DownloadCloud className="h-6 w-6 text-pink-500" />
-                <div className="absolute -inset-2 bg-pink-500/20 blur-xl rounded-full" />
-              </div>
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-black border border-white/10 overflow-hidden">
+               <img src="/icon-192x192.png" alt="Logo" className="w-10 h-10 object-contain" />
             </div>
             
             <div className="flex-1 min-w-0">
