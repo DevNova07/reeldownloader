@@ -13,29 +13,20 @@ export function InstallPWA() {
     const isStandalone = window.matchMedia('(display-mode: standalone)').matches
     if (isStandalone) return;
 
-    // Smart Trigger: Only show after at least 1 successful download OR 60 seconds of browsing
+    // Force show on every refresh if not installed
     const checkTriggers = () => {
-      const downloadCount = parseInt(localStorage.getItem('savclip_success_downloads') || '0')
-      const hasDismissed = localStorage.getItem('savclip_pwa_dismissed') === 'true'
-      
-      if (!hasDismissed && (downloadCount >= 1)) {
-        setShowInstallPrompt(true)
-      }
+      setShowInstallPrompt(true)
     }
 
-    // Check every few seconds or on specific events
-    const interval = setInterval(checkTriggers, 5000)
-    
     const handleBeforeInstallPrompt = (e: Event) => {
       e.preventDefault();
       setDeferredPrompt(e);
-      // We don't show immediately anymore, let the smart trigger handle it
+      setShowInstallPrompt(true)
     };
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
     return () => {
       window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
-      clearInterval(interval)
     };
   }, []);
 
@@ -52,11 +43,6 @@ export function InstallPWA() {
 
   const handleDismiss = () => {
     setShowInstallPrompt(false);
-    // Don't show again for 7 days
-    localStorage.setItem('savclip_pwa_dismissed', 'true')
-    setTimeout(() => {
-      localStorage.removeItem('savclip_pwa_dismissed')
-    }, 7 * 24 * 60 * 60 * 1000)
   };
 
   return (
