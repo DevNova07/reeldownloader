@@ -139,7 +139,7 @@ export function Navbar({ dict }: { dict: any }) {
                                        href={getLocalizedHref(link.href)}
                                        className={cn("text-xs font-bold text-neutral-600 dark:text-neutral-400 hover:translate-x-1 transition-all inline-block", navData.hoverColor)}
                                      >
-                                       {getLabel(link.href, link.label)}
+                                       {isMounted ? getLabel(link.href, link.label) : link.label}
                                      </Link>
                                    </li>
                                  ))}
@@ -159,7 +159,12 @@ export function Navbar({ dict }: { dict: any }) {
             <Link
               href={getLocalizedHref("/history")}
               title="Download History"
-              className="flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-200 bg-neutral-50 text-neutral-500 hover:border-pink-200 hover:text-pink-600 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:text-pink-400 transition-all"
+              className={cn(
+                "flex h-9 w-9 items-center justify-center rounded-lg border transition-all",
+                pathname.includes('/history') 
+                  ? "bg-pink-600 border-pink-600 text-white shadow-lg shadow-pink-600/20" 
+                  : "border-neutral-200 bg-neutral-50 text-neutral-500 hover:border-pink-200 hover:text-pink-600 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:text-pink-400"
+              )}
             >
               <History className="h-4 w-4" />
             </Link>

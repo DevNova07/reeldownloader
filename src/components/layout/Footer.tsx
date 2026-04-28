@@ -94,9 +94,6 @@ export function Footer({ children, locale, dict }: { children?: React.ReactNode,
              </h3>
              <ul id="footer-platforms-list" suppressHydrationWarning={true} className="grid grid-cols-1 gap-4">
                 {[
-                  { name: "YouTube", icon: <Zap className="h-4 w-4" />, href: "/youtube" },
-                  { name: "Instagram", icon: <Camera className="h-4 w-4" />, href: "/instagram" },
-                  { name: "TikTok", icon: <Share2 className="h-4 w-4" />, href: "/tiktok" },
                   { name: "Facebook", icon: <Globe className="h-4 w-4" />, href: "/facebook" },
                   { name: "Snapchat", icon: <Camera className="h-4 w-4" />, href: "/snapchat" },
                   { name: "Twitter / X", icon: <Share2 className="h-4 w-4" />, href: "/twitter" },
@@ -178,6 +175,63 @@ export function Footer({ children, locale, dict }: { children?: React.ReactNode,
                   { name: "High Speed Insta", href: "/instagram-high-speed-downloader" },
                 ].map((link) => (
                   <Link key={link.name} href={getLocalizedHref(link.href)} className="text-[11px] font-black uppercase tracking-widest text-neutral-400 hover:text-pink-600 transition-colors">
+                    {link.name}
+                  </Link>
+                ))}
+             </div>
+          </div>
+
+          {/* All Instagram Tools Section */}
+          <div className="lg:col-span-12 mt-16 border-t border-neutral-100 dark:border-neutral-800 pt-16">
+             <h3 className="text-[11px] font-black uppercase tracking-[0.3em] text-neutral-900 dark:text-white mb-10 bg-neutral-50 dark:bg-neutral-800 px-4 py-2 rounded-lg inline-flex items-center gap-2">
+                <Camera className="w-4 h-4 text-pink-600" />
+                Instagram Tools Explorer
+             </h3>
+             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-6 gap-y-5">
+                {[
+                  { name: "Instagram Downloader", href: "/instagram-downloader" },
+                  { name: "Instagram Video Download", href: "/instagram-video-download" },
+                  { name: "Instagram Photo Download", href: "/instagram-photo-download" },
+                  { name: "Instagram Story Download", href: "/instagram-story-download" },
+                  { name: "Instagram Reels Download", href: "/instagram-reels-download" },
+                  { name: "Instagram IGTV Download", href: "/instagram-igtv-download" },
+                  { name: "Instagram Audio Download", href: "/instagram-audio-download" },
+                  { name: "Instagram Highlights Download", href: "/instagram-highlights-download" },
+                  { name: "Reels Downloader", href: "/reels-downloader" },
+                  { name: "Download Instagram Reels", href: "/download-instagram-reels" },
+                  { name: "Reels Download HD", href: "/reels-download-hd" },
+                  { name: "Reels Without Watermark", href: "/reels-download-without-watermark" },
+                  { name: "Instagram Reels Saver", href: "/instagram-reels-saver" },
+                  { name: "Save Instagram Reels", href: "/save-instagram-reels" },
+                  { name: "Instagram Reels MP4", href: "/instagram-reels-mp4" },
+                  { name: "Reels Video Download", href: "/reels-video-download" },
+                  { name: "Online Reels Downloader", href: "/online-reels-downloader" },
+                  { name: "Fast Reels Downloader", href: "/fast-reels-downloader" },
+                  { name: "Instagram Video Downloader", href: "/instagram-video-downloader" },
+                  { name: "Download Instagram Video", href: "/download-instagram-video" },
+                  { name: "Video Download HD", href: "/instagram-video-download-hd" },
+                  { name: "Save Instagram Video", href: "/save-instagram-video" },
+                  { name: "Instagram Video MP4", href: "/instagram-video-mp4" },
+                  { name: "Video Without Watermark", href: "/instagram-video-without-watermark" },
+                  { name: "Online Video Downloader", href: "/online-instagram-video-downloader" },
+                  { name: "Fast Video Downloader", href: "/fast-instagram-video-downloader" },
+                  { name: "Story Downloader", href: "/instagram-story-downloader" },
+                  { name: "Download Instagram Story", href: "/download-instagram-story" },
+                  { name: "Story Download HD", href: "/story-download-hd" },
+                  { name: "Instagram Story Saver", href: "/instagram-story-saver" },
+                  { name: "Anonymous Story Viewer", href: "/instagram-anonymous-story-viewer" },
+                  { name: "Private Story Download", href: "/instagram-private-story-download" },
+                  { name: "Story Without Watermark", href: "/story-without-watermark" },
+                  { name: "Online Story Downloader", href: "/online-story-downloader" },
+                  { name: "Instagram Photo Downloader", href: "/instagram-photo-downloader" },
+                  { name: "Download Instagram Photo", href: "/download-instagram-photo" },
+                  { name: "Photo Download HD", href: "/photo-download-hd" },
+                  { name: "Instagram Image Downloader", href: "/instagram-image-downloader" },
+                  { name: "Save Instagram Photo", href: "/save-instagram-photo" },
+                  { name: "Online Photo Downloader", href: "/online-photo-downloader" },
+                ].map((link) => (
+                  <Link key={link.href} href={getLocalizedHref(link.href)} className="text-[11px] font-bold text-neutral-400 hover:text-pink-600 dark:text-neutral-500 dark:hover:text-pink-500 transition-colors flex items-center gap-2 group">
+                    <div className="w-1 h-1 rounded-full bg-neutral-200 dark:bg-neutral-800 group-hover:bg-pink-500 transition-colors" />
                     {link.name}
                   </Link>
                 ))}

@@ -15,10 +15,11 @@ import Script from "next/script";
 import type { Viewport } from "next";
 
 import { ScrollToTop } from "@/components/shared/ScrollToTop";
+import { Analytics } from "@/components/shared/Analytics";
 
 const inter = Inter({ 
   subsets: ["latin"],
-  display: "swap", // "Fast/Smooth": Prevent layout shift by swapping fonts smoothly
+  display: "swap",
   variable: "--font-inter" 
 });
 
@@ -89,7 +90,6 @@ export default async function RootLayout(props: {
   const direction = isRTL(locale) ? "rtl" : "ltr";
   const fullDict = await getDictionary(locale);
   
-  // Filter out heavy SEO content for the layout to prevent massive HTML payloads
   const { platforms, ...rest } = fullDict;
   const layoutDict = {
     ...rest,
@@ -99,7 +99,7 @@ export default async function RootLayout(props: {
   };
 
   return (
-    <html lang={locale} dir={direction} suppressHydrationWarning>
+    <html lang={locale} dir={direction} suppressHydrationWarning className="scroll-smooth" data-scroll-behavior="smooth">
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <Script
@@ -127,19 +127,33 @@ export default async function RootLayout(props: {
           enableSystem
           disableTransitionOnChange
         >
+          <Analytics />
           <Suspense fallback={null}>
             <ProgressBar />
           </Suspense>
           <ScrollToTop />
           <Toaster 
-            position="bottom-center" 
+            position="top-center" 
             reverseOrder={false}
             toastOptions={{
-              className: 'font-sans font-bold rounded-2xl shadow-2xl ring-1 ring-black/5 dark:ring-white/10 dark:bg-neutral-900 dark:text-white',
-              duration: 4000,
+              className: 'font-sans font-bold rounded-[1.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.15)] ring-1 ring-black/5 bg-white text-neutral-900 dark:bg-neutral-900 dark:text-white p-6 min-w-[320px]',
+              duration: 5000,
+              style: {
+                zIndex: 999999,
+                marginTop: '40px',
+              },
+              error: {
+                iconTheme: {
+                  primary: '#ef4444',
+                  secondary: '#fff',
+                },
+              },
+            }}
+            containerStyle={{
+              zIndex: 999999,
             }}
           />
-        <link rel="canonical" href={`${SITE_URL}/${locale}`} />
+
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

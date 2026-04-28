@@ -28,6 +28,28 @@ const dictionaries = {
   ne: () => import('./dictionaries/ne.json').then((module) => module.default),
 }
 
+function deepMerge(target: any, source: any) {
+  if (!source) return target;
+  const output = { ...target };
+  if (isObject(target) && isObject(source)) {
+    Object.keys(source).forEach(key => {
+      if (isObject(source[key])) {
+        if (!(key in target))
+          Object.assign(output, { [key]: source[key] });
+        else
+          output[key] = deepMerge(target[key], source[key]);
+      } else {
+        Object.assign(output, { [key]: source[key] });
+      }
+    });
+  }
+  return output;
+}
+
+function isObject(item: any) {
+  return (item && typeof item === 'object' && !Array.isArray(item));
+}
+
 export const getDictionary = async (locale: string): Promise<any> => {
   const en = await dictionaries.en()
   if (locale === 'en' || !locales.includes(locale as Locale)) {
@@ -35,21 +57,8 @@ export const getDictionary = async (locale: string): Promise<any> => {
   }
   const target = await dictionaries[locale as Locale]()
   
-  // provide structural fallback for primary sections
-  const t = target as Record<string, unknown>
-  const castEn = en as Record<string, unknown>
-  
-  return {
-    ...en,
-    ...t,
-    tabs: { ...(castEn.tabs as object), ...((t.tabs || {}) as object) },
-    common: { ...(castEn.common as object), ...((t.common || {}) as object) },
-    features: { ...(castEn.features as object), ...((t.features || {}) as object) },
-    categories: { ...(castEn.categories as object), ...((t.categories || {}) as object) },
-    guide: { ...(castEn.guide as object), ...((t.guide || {}) as object) },
-    platforms: { ...(castEn.platforms as object), ...((t.platforms || {}) as object) },
-    about_page: t.about_page || castEn.about_page,
-  }
+  // provide deep structural fallback for all sections
+  return deepMerge(en, target)
 }
 
 export const languageNames: Record<Locale, string> = {
@@ -70,7 +79,7 @@ export const languageNames: Record<Locale, string> = {
   ta: 'தமிழ்',
   ur: 'اردو',
   tl: 'Filipino',
-  fa: 'فارسی',
+  fa: 'فارसी',
   uk: 'Українська',
   my: 'မြန်မာ',
   am: 'አማርኛ',

@@ -18,7 +18,7 @@ import { LoadingBar } from "@/components/ui/LoadingBar"
 import { DownloadCounter } from "@/components/ui/DownloadCounter"
 import { useDownloadHistory, getCached, setCached } from "@/hooks/useDownloadHistory"
 import { HeroEffect } from "@/components/shared/HeroEffect"
-import { Music as MusicIcon, Film, StopCircle, Zap, ShieldCheck, CheckCircle2, HelpCircle, Info, ShieldAlert } from "lucide-react"
+import { Music as MusicIcon, Film, StopCircle, Zap, ShieldCheck, CheckCircle2, HelpCircle, Info } from "lucide-react"
 import { ToolSubNav } from "@/components/layout/ToolSubNav"
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs"
 import { toast } from "react-hot-toast"
@@ -55,6 +55,7 @@ function TiktokContent({
   const pageSeo = content?.seo || { title: pageTitle, desc: "Fast and secure media extraction tool." };
   const [downloadData, setDownloadData] = React.useState<PlatformResult | null>(null)
   const [isLoading, setIsLoading] = React.useState(false)
+  const [error, setError] = React.useState<string | null>(null)
   const [autoTriggerDownload, setAutoTriggerDownload] = React.useState(false)
   const [searchCounter, setSearchCounter] = React.useState(0)
   
@@ -73,32 +74,55 @@ function TiktokContent({
 
     setIsLoading(true)
     setDownloadData(null)
+    setError(null)
 
     const searchPromise = async () => {
-      const response = await fetch("/api/download", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url, platform: "tiktok" }),
-      })
-      const contentType = response.headers.get("content-type")
-      if (!contentType || !contentType.includes("application/json")) {
-        throw new Error("Server returned an invalid response. Please try again later.")
-      }
-      
-      const result = await response.json()
-      if (result.success) {
-        setDownloadData(result.data)
-        setCached(url, result.data)
-        addToHistory(url, { thumbnail: result.data.thumbnail, title: result.data.title })
-        return result
-      } else {
-        throw new Error(result.error || "Failed to fetch content")
+      // Use a timeout for the fetch
+      const controller = new AbortController();
+      const id = setTimeout(() => controller.abort(), 20000); // 20s timeout
+
+      try {
+        const response = await fetch("/api/download", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ url, platform: "tiktok" }),
+          signal: controller.signal,
+        })
+        clearTimeout(id);
+
+        const contentType = response.headers.get("content-type")
+        if (!contentType || !contentType.includes("application/json")) {
+          throw new Error("Server returned an invalid response. Please try again later.")
+        }
+        
+        const result = await response.json()
+        if (result.success) {
+          setDownloadData(result.data)
+          setCached(url, result.data)
+          addToHistory(url, { thumbnail: result.data.thumbnail, title: result.data.title })
+          return result
+        } else {
+          throw new Error(result.error || "Failed to fetch content")
+        }
+      } catch (e: any) {
+        if (e.name === 'AbortError') {
+          throw new Error("Request timed out. TikTok API is taking too long. Please try again.");
+        }
+        throw e;
       }
     }
 
     try {
       await searchPromise()
-    } catch (err: unknown) {
+    } catch (err: any) {
+      console.error("Client Search Error:", err);
+      const msg = err?.message || "Failed to process the link. Please try again.";
+      setError(msg);
+      toast.error(msg, { duration: 5000 });
+      // Fallback: Direct browser alert if toast is somehow hidden
+      if (typeof window !== "undefined") {
+        window.alert("ERROR: " + msg);
+      }
     } finally {
       setIsLoading(false)
     }
@@ -120,6 +144,8 @@ function TiktokContent({
   return (
     <div className="flex flex-col">
       <StructuredData type="SoftwareApplication" data={pageSeo} />
+      {content.faq && <StructuredData type="FAQPage" data={content.faq} />}
+      {content.howTo && <StructuredData type="HowTo" data={content.howTo} />}
       {/* Hero Section */}
       <section className={`relative bg-linear-to-r ${cx.ribbon} px-4 pt-14 pb-8 sm:pt-20 sm:pb-32 sm:px-6 lg:px-8`}>
         <HeroEffect color={cx.effect} intensity="high" />
@@ -161,6 +187,21 @@ function TiktokContent({
               iconClass={cx.text}
               initialValue={searchParams.get('url') || ""}
             />
+
+            {error && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mx-auto max-w-3xl mt-4 p-4 rounded-2xl bg-red-500/20 border-2 border-red-500/50 text-white font-black uppercase italic tracking-wider shadow-2xl backdrop-blur-md"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="bg-red-500 p-1.5 rounded-lg">
+                    <Info className="h-5 w-5 text-white" />
+                  </div>
+                  {error}
+                </div>
+              </motion.div>
+            )}
 
             <HeroQuickGuide steps={dict?.guide?.steps || []} accentColor={cx.text} />
 

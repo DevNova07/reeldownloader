@@ -2,87 +2,55 @@
 
 import * as React from "react"
 import { useRouter, useSearchParams } from "next/navigation"
-import { Loader2 } from "lucide-react"
 import { getPlatformFromUrl, getLocalizedRoute } from "@/utils/platform-detector"
+import { Loader2 } from "lucide-react"
 
-function ShareTargetContent() {
-  const router = useRouter()
-  const searchParams = useSearchParams()
-
-  const [status, setStatus] = React.useState("Detecting...")
+export default function ShareTargetPage(props: { params: Promise<{ locale: string }> }) {
+  const params = React.use(props.params);
+  const locale = params.locale;
+  const searchParams = useSearchParams();
+  const router = useRouter();
 
   React.useEffect(() => {
-    // Extract shared text/url
-    const text = searchParams.get('text') || ""
-    const urlParam = searchParams.get('url') || ""
-    const title = searchParams.get('title') || ""
-    const combined = `${title} ${text} ${urlParam}`.trim()
-
-    // Robust URL Extraction
-    const urlRegex = /(https?:\/\/[^\s]+)/g
-    const matches = combined.match(urlRegex)
-    const sharedUrl = matches ? matches[0] : null
-
+    // PWA Share Target sends data in text, title, or url params
+    const sharedUrl = searchParams.get("url") || searchParams.get("text") || searchParams.get("title");
+    
     if (!sharedUrl) {
-      router.replace("/")
-      return
+      router.replace(`/${locale}`);
+      return;
     }
 
-    // Get current locale
-    const pathParts = window.location.pathname.split('/')
-    const locale = (pathParts[1] && pathParts[1].length === 2) ? pathParts[1] : 'en'
+    // Attempt to extract URL from text (some apps send "Check this out: https://...")
+    const urlMatch = sharedUrl.match(/https?:\/\/[^\s]+/);
+    const finalUrl = urlMatch ? urlMatch[0] : sharedUrl;
 
-    const detectedPlatform = getPlatformFromUrl(sharedUrl)
+    const detectedPlatform = getPlatformFromUrl(finalUrl);
     
     if (detectedPlatform) {
-      const target = getLocalizedRoute(detectedPlatform, locale)
-      if (target) {
-        setStatus(`Launching ${detectedPlatform}...`)
-        router.replace(`${target}?url=${encodeURIComponent(sharedUrl)}`)
-        return
+      const targetRoute = getLocalizedRoute(detectedPlatform, locale);
+      if (targetRoute) {
+        // Redirect to the platform page with the URL pre-filled
+        router.replace(`${targetRoute}?url=${encodeURIComponent(finalUrl)}&autodownload=true`);
+        return;
       }
     }
 
-    // Fallback: Home
-    router.replace(`/${locale}?url=${encodeURIComponent(sharedUrl)}`)
-  }, [router, searchParams])
+    // Fallback to home if no platform detected
+    router.replace(`/${locale}?url=${encodeURIComponent(finalUrl)}`);
+  }, [searchParams, locale, router]);
 
   return (
-    <div className="flex h-screen w-screen flex-col items-center justify-center bg-black text-white selection:bg-pink-500/30">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-black text-white">
       <div className="flex flex-col items-center gap-6">
-        <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-neutral-900 ring-1 ring-white/10">
-          <Loader2 className="h-8 w-8 animate-spin text-pink-500" />
+        <div className="relative">
+           <div className="absolute -inset-4 bg-pink-500/20 blur-2xl rounded-full animate-pulse" />
+           <Loader2 className="h-12 w-12 animate-spin text-pink-500 relative z-10" />
         </div>
-        <div className="text-center">
-          <h2 className="text-sm font-black uppercase tracking-[0.4em] animate-pulse">
-            {status}
-          </h2>
-          <p className="mt-2 text-[9px] font-bold uppercase tracking-widest text-neutral-500">
-            Speed Engine Active
-          </p>
+        <div className="text-center space-y-2">
+          <h1 className="text-2xl font-black uppercase italic tracking-tighter">Initializing Download</h1>
+          <p className="text-neutral-500 font-bold uppercase tracking-widest text-[10px]">Processing your shared content...</p>
         </div>
       </div>
     </div>
-  )
-}
-
-function ShareTargetPageInner() {
-  return (
-    <React.Suspense fallback={
-      <div className="flex h-screen w-screen animate-pulse flex-col items-center justify-center bg-slate-900 text-white">
-        <Loader2 className="h-12 w-12 animate-spin text-pink-500" />
-      </div>
-    }>
-      <ShareTargetContent />
-    </React.Suspense>
-  )
-}
-
-
-export default function ShareTargetPage() {
-  return (
-    <React.Suspense fallback={null}>
-      <ShareTargetPageInner  />
-    </React.Suspense>
-  )
+  );
 }

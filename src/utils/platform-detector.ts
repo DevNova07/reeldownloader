@@ -9,7 +9,7 @@ export function getPlatformFromUrl(url: string): string | null {
   if (/snapchat\.com/.test(lowercaseUrl)) return 'snapchat';
   if (/(youtube\.com|youtu\.be)/.test(lowercaseUrl)) return 'youtube';
   if (/(twitter\.com|x\.com)/.test(lowercaseUrl)) return 'twitter';
-  if (/(t\.me|telegram)/.test(lowercaseUrl)) return 'telegram';
+  if (/(t\.me|telegram)/.test(lowercaseUrl) || lowercaseUrl.startsWith('@')) return 'telegram';
   
   return null;
 }

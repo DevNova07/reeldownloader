@@ -1,5 +1,6 @@
 // CONFIG - Replace with your production domain
-const SITE_URL = "https://snap-red-gamma.vercel.app";
+// CONFIG - Production Domain
+const SITE_URL = "https://savclip.net";
 
 // 1. Create Context Menu on install
 chrome.runtime.onInstalled.addListener(() => {

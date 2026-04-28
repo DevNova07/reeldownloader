@@ -28,28 +28,27 @@ import { TrustBadges } from "@/components/ui/TrustBadges"
 import { ChromeExtensionBanner } from "@/components/layout/ChromeExtensionBanner"
 import { ExpandableSection } from "@/components/ui/ExpandableSection"
 
+import { useAutoDownload } from "@/hooks/useAutoDownload"
+
 function TwitterContent() {
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const locale = pathname.split('/')[1] as Locale
-    const dict = getDictionary(locale)
+  const dict = getDictionary(locale)
 
   const [downloadData, setDownloadData] = React.useState<PlatformResult | null>(null)
   const [isLoading, setIsLoading] = React.useState(false)
+  const [autoTriggerDownload, setAutoTriggerDownload] = React.useState(false)
+  const [searchCounter, setSearchCounter] = React.useState(0)
   
   const { history: recentDownloads, addToHistory } = useDownloadHistory("twitter")
 
-  // Auto-download logic for PWA Share Target
-  React.useEffect(() => {
-    const sharedUrl = searchParams.get('url')
-    if (sharedUrl && (sharedUrl.startsWith('http') || sharedUrl.includes('twitter.com') || sharedUrl.includes('x.com'))) {
-      handleSearch(sharedUrl)
-    }
-  }, [searchParams])
+  const handleSearch = async (url: string, isAutoTrigger = false) => {
+    setSearchCounter(prev => prev + 1)
+    setAutoTriggerDownload(isAutoTrigger)
+    setIsLoading(true)
 
-
-  const handleSearch = async (url: string) => {
     // Cross-platform detection and redirection
     const detectedPlatform = getPlatformFromUrl(url);
     if (detectedPlatform && detectedPlatform !== 'twitter') {
@@ -64,6 +63,7 @@ function TwitterContent() {
     const cached = getCached(url)
     if (cached) {
       setDownloadData(cached)
+      setIsLoading(false)
       return
     }
 
@@ -101,6 +101,9 @@ function TwitterContent() {
       setIsLoading(false)
     }
   }
+
+  // Auto-download logic for PWA Share Target
+  useAutoDownload(handleSearch, locale, "twitter")
 
   const twDict = dict.platforms.twitter;
 
@@ -169,6 +172,8 @@ function TwitterContent() {
           <DownloadPreview 
             data={downloadData} 
             isLoading={isLoading} 
+            autoTriggerDownload={autoTriggerDownload}
+            searchCounter={searchCounter}
             buttonStyle="bg-white text-black hover:bg-neutral-200"
             accentText="text-slate-600"
             accentBg="bg-slate-500/10"

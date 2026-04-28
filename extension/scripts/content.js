@@ -27,7 +27,7 @@ function injectInstagram() {
                 e.preventDefault();
                 e.stopPropagation();
                 const url = window.location.href; // Usually correct for open posts
-                window.open(`https://snap-red-gamma.vercel.app/?url=${encodeURIComponent(url)}`, '_blank');
+                window.open(`https://savclip.net/?url=${encodeURIComponent(url)}`, '_blank');
             };
             bar.prepend(btn);
         }
@@ -47,7 +47,7 @@ function injectTikTok() {
                 e.stopPropagation();
                 const video = bar.closest('[data-e2e="feed-video-container"]');
                 const url = video ? video.getAttribute('data-e2e-id') : window.location.href;
-                window.open(`https://snap-red-gamma.vercel.app/?url=${encodeURIComponent(url)}`, '_blank');
+                window.open(`https://savclip.net/?url=${encodeURIComponent(url)}`, '_blank');
             };
             bar.append(btn);
         }

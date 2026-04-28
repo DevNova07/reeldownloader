@@ -28,28 +28,27 @@ import { TrustBadges } from "@/components/ui/TrustBadges"
 import { ChromeExtensionBanner } from "@/components/layout/ChromeExtensionBanner"
 import { ExpandableSection } from "@/components/ui/ExpandableSection"
 
+import { useAutoDownload } from "@/hooks/useAutoDownload"
+
 function TelegramContent() {
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const locale = pathname.split('/')[1] as Locale
-    const dict = getDictionary(locale)
+  const dict = getDictionary(locale)
 
   const [downloadData, setDownloadData] = React.useState<PlatformResult | null>(null)
   const [isLoading, setIsLoading] = React.useState(false)
+  const [autoTriggerDownload, setAutoTriggerDownload] = React.useState(false)
+  const [searchCounter, setSearchCounter] = React.useState(0)
   
   const { addToHistory } = useDownloadHistory("telegram")
 
-  // Auto-download logic for PWA Share Target
-  React.useEffect(() => {
-    const sharedUrl = searchParams.get('url')
-    if (sharedUrl && (sharedUrl.startsWith('http') || sharedUrl.includes('t.me') || sharedUrl.includes('telegram'))) {
-      handleSearch(sharedUrl)
-    }
-  }, [searchParams])
+  const handleSearch = async (url: string, isAutoTrigger = false) => {
+    setSearchCounter(prev => prev + 1)
+    setAutoTriggerDownload(isAutoTrigger)
+    setIsLoading(true)
 
-
-  const handleSearch = async (url: string) => {
     // Cross-platform detection and redirection
     const detectedPlatform = getPlatformFromUrl(url);
     if (detectedPlatform && detectedPlatform !== 'telegram') {
@@ -64,6 +63,7 @@ function TelegramContent() {
     const cached = getCached(url)
     if (cached) {
       setDownloadData(cached)
+      setIsLoading(false)
       return
     }
 
@@ -101,6 +101,9 @@ function TelegramContent() {
       setIsLoading(false)
     }
   }
+
+  // Auto-download logic for PWA Share Target
+  useAutoDownload(handleSearch, locale, "telegram")
 
   const telegramDict = dict.platforms.telegram;
 
@@ -165,6 +168,8 @@ function TelegramContent() {
           <DownloadPreview 
             data={downloadData} 
             isLoading={isLoading} 
+            autoTriggerDownload={autoTriggerDownload}
+            searchCounter={searchCounter}
             buttonStyle="bg-white text-sky-600 hover:bg-neutral-100"
             accentText="text-sky-600"
             accentBg="bg-sky-600/10"

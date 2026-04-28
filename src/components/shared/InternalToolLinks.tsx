@@ -37,11 +37,25 @@ export function InternalToolLinks({ currentPlatform, dict, accentColor = "text-p
   const relatedTools = React.useMemo(() => {
     return Object.keys(seoPages)
       .filter(key => {
-        // Match platform prefix
-        let platform = key.split('_')[0]
-        if (platform === 'insta' || platform === 'reels') platform = 'instagram'
-        if (platform === 'fb') platform = 'facebook'
-        if (platform === 'yt') platform = 'youtube'
+        const k = key.toLowerCase()
+        let platform = "other"
+        
+        // Robust platform detection
+        if (k.includes("instagram") || k.includes("insta") || k.includes("reels") || k.includes("igtv") || k.includes("photo") || k.includes("image")) {
+          platform = "instagram"
+        } else if (k.includes("facebook") || k.includes("fb-") || k.includes("fb_")) {
+          platform = "facebook"
+        } else if (k.includes("tiktok")) {
+          platform = "tiktok"
+        } else if (k.includes("youtube") || k.includes("yt-") || k.includes("yt_")) {
+          platform = "youtube"
+        } else if (k.includes("snapchat") || k.includes("snap-") || k.includes("snap_")) {
+          platform = "snapchat"
+        } else if (k.includes("twitter") || k.includes("x-video") || k.includes("x_video")) {
+          platform = "twitter"
+        } else if (k.includes("telegram") || k.includes("tg-") || k.includes("tg_")) {
+          platform = "telegram"
+        }
         
         return platform === currentPlatform && key !== currentToolKey
       })
@@ -50,7 +64,7 @@ export function InternalToolLinks({ currentPlatform, dict, accentColor = "text-p
         title: seoPages?.[key]?.title || "Tool",
         href: `/${locale}/${key.replaceAll('_', '-')}`
       }))
-      .slice(0, 8) // Show 8 tools for max internal linking
+      .slice(0, 16) // Show more tools for better SEO internal linking
   }, [dict, currentPlatform, currentToolKey, locale])
 
   if (relatedTools.length === 0) return null

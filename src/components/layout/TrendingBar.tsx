@@ -40,13 +40,18 @@ export function TrendingBar({ accentColor = "bg-pink-600" }: TrendingBarProps) {
   // Seed initial random items
   React.useEffect(() => {
     const generateItems = () => {
-      const template = dict.trending?.template || "⚡ Someone from {country} saved a {type}...";
+      const template = dict.trending?.template || "⚡ Someone from {country} saved a {type} {time}";
       return Array.from({ length: 10 }).map(() => {
         const country = COUNTRIES[Math.floor(Math.random() * COUNTRIES.length)]
         const type = MEDIA_TYPES[Math.floor(Math.random() * MEDIA_TYPES.length)]
-        return template.replace('{country}', country).replace('{type}', type)
+        const time = `${Math.floor(Math.random() * 50) + 2}s ago`
+        return template
+          .replace('{country}', country)
+          .replace('{type}', type)
+          .replace('{time}', time)
       })
     }
+
     setItems(generateItems())
   }, [dict, COUNTRIES, MEDIA_TYPES])
 

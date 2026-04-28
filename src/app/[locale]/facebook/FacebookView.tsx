@@ -27,22 +27,36 @@ import { getPlatformFromUrl, getLocalizedRoute, isAnyPlatformUrl } from "@/utils
 import { TrustBadges } from "@/components/ui/TrustBadges"
 import { ChromeExtensionBanner } from "@/components/layout/ChromeExtensionBanner"
 
+import { useAutoDownload } from "@/hooks/useAutoDownload"
+
 export default function FacebookView({ dict, locale }: { dict: any, locale: string }) {
   const router = useRouter()
   const [downloadData, setDownloadData] = React.useState<PlatformResult | null>(null)
   const [isLoading, setIsLoading] = React.useState(false)
+  const [autoTriggerDownload, setAutoTriggerDownload] = React.useState(false)
+  const [searchCounter, setSearchCounter] = React.useState(0)
+  const [error, setError] = React.useState<string | null>(null)
+  
+  const pathname = usePathname()
   const searchParams = useSearchParams()
+  const sharedUrl = searchParams.get('url') || ""
   const { addToHistory } = useDownloadHistory("facebook")
 
-  const handleSearch = async (url: string) => {
+  const handleSearch = async (url: string, isAutoTrigger = false) => {
+    setSearchCounter(prev => prev + 1)
+    setAutoTriggerDownload(isAutoTrigger)
+    setIsLoading(true)
+
     const cached = getCached(url)
     if (cached) {
       setDownloadData(cached)
+      setIsLoading(false)
       return
     }
 
     setIsLoading(true)
     setDownloadData(null)
+    setError(null)
 
     const searchPromise = async () => {
       const response = await fetch("/api/download", {
@@ -67,14 +81,19 @@ export default function FacebookView({ dict, locale }: { dict: any, locale: stri
         throw new Error(result.error || "Failed to fetch content")
       }
     }
-
     try {
       await searchPromise()
-    } catch (err: unknown) {
+    } catch (err: any) {
+      const msg = err?.message || "Failed to process the link. Please try again.";
+      setError(msg);
+      toast.error(msg);
     } finally {
       setIsLoading(false)
     }
   }
+
+  // Auto-download logic for PWA Share Target
+  useAutoDownload(handleSearch, locale as Locale, "facebook")
 
   const fbDict = dict.platforms.facebook;
 
@@ -128,8 +147,11 @@ export default function FacebookView({ dict, locale }: { dict: any, locale: stri
               dict={dict}
               validate={isAnyPlatformUrl}
               buttonClass="bg-linear-to-br from-blue-600 via-blue-700 to-indigo-800 text-white shadow-[0_20px_50px_rgba(37,99,235,0.3)] ring-1 ring-inset ring-white/20"
-              iconClass="text-blue-500"
+              initialValue={sharedUrl}
             />
+
+            <AnimatePresence>
+            </AnimatePresence>
 
             <TrustBadges dict={dict} />
             <TrendingBar accentColor="bg-blue-600" />
@@ -140,6 +162,8 @@ export default function FacebookView({ dict, locale }: { dict: any, locale: stri
           <DownloadPreview 
             data={downloadData} 
             isLoading={isLoading} 
+            autoTriggerDownload={autoTriggerDownload}
+            searchCounter={searchCounter}
             buttonStyle="bg-linear-to-br from-blue-600 via-blue-700 to-indigo-800 text-white shadow-[0_20px_50px_rgba(37,99,235,0.3)] hover:brightness-110 active:scale-95"
             accentText="text-blue-600"
             accentBg="bg-blue-600/10"

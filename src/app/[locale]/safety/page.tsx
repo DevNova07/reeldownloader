@@ -1,12 +1,12 @@
 import * as React from "react"
-import { ShieldAlert } from "lucide-react"
+import { ShieldCheck } from "lucide-react"
 
 export default function SafetyPage() {
   return (
     <div className="flex flex-col min-h-[60vh] px-4 py-20 sm:px-6 lg:px-8 bg-white dark:bg-black">
       <div className="mx-auto max-w-3xl w-full">
         <h1 className="flex items-center gap-3 text-4xl font-black tracking-tight text-neutral-900 dark:text-white mb-12">
-           <ShieldAlert className="h-10 w-10 text-green-500" />
+           <ShieldCheck className="h-10 w-10 text-green-500" />
            Safety Tips
         </h1>
         

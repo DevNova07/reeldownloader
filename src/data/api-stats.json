@@ -1,440 +1,70 @@
 {
-  "totalRequests": 166,
-  "successfulRequests": 78,
-  "failedRequests": 88,
-  "savedRequests": 32,
+  "totalRequests": 61,
+  "successfulRequests": 44,
+  "failedRequests": 17,
+  "savedRequests": 0,
   "totalVisits": 0,
   "platforms": {
-    "instagram": {
-      "total": 108,
-      "success": 28,
-      "fail": 80,
+    "facebook": {
+      "total": 6,
+      "success": 4,
+      "fail": 2,
       "keys": {
-        "71b678b386mshfbf8544ef27b963p18d3fbjsn9603ed997f89": {
-          "name": "API 1",
-          "status": "exhausted",
-          "remaining": "2856",
-          "limit": "3000",
-          "used": 2,
-          "lastCheck": "2026-04-21T02:26:54.169Z"
-        },
-        "45a67d9d84mshb03847810b7eb47p15bbe6jsn67f9851d578b": {
+        "9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7": {
           "name": "API 1",
           "status": "active",
-          "remaining": "2976",
-          "limit": "3000",
-          "used": 28,
-          "lastCheck": "2026-04-21T02:23:02.135Z"
-        },
-        "30cfff0008mshcd9738405b90602p1718bbjsn76a163aaa269": {
-          "name": "API 2",
-          "status": "exhausted",
-          "remaining": "0",
-          "limit": "100",
-          "used": 1,
-          "lastCheck": "2026-04-21T02:26:55.267Z"
-        },
-        "90681a6f3cmsh11960059bfa010dp119547jsna49deca7951b": {
-          "name": "API 3",
-          "status": "exhausted",
-          "remaining": "0",
-          "limit": "100",
-          "used": 1,
-          "lastCheck": "2026-04-21T02:26:55.972Z"
-        },
-        "9e56ba0f6ab940b68e652ad87f843134": {
-          "name": "API 4",
-          "status": "exhausted",
-          "remaining": "0",
-          "limit": "100",
-          "used": 1,
-          "lastCheck": "2026-04-21T02:26:56.577Z"
-        },
-        "8fc0481165e348109029f0530e821626": {
-          "name": "API 5",
-          "status": "exhausted",
-          "remaining": "0",
-          "limit": "100",
-          "used": 1,
-          "lastCheck": "2026-04-21T02:26:57.228Z"
-        },
-        "2b499efe85msh77757d93ebe633fp16285bjsndfe8c19a6694": {
-          "name": "API 6",
-          "status": "exhausted",
-          "remaining": "0",
-          "limit": "100",
-          "used": 1,
-          "lastCheck": "2026-04-21T02:26:57.955Z"
+          "remaining": "297",
+          "limit": "unkn",
+          "used": 4,
+          "lastCheck": "2026-04-28T10:37:31.530Z"
         }
       }
     },
     "tiktok": {
-      "total": 2,
-      "success": 1,
-      "fail": 1,
+      "total": 22,
+      "success": 12,
+      "fail": 10,
       "keys": {
-        "71b678b386mshfbf8544ef27b963p18d3fbjsn9603ed997f89": {
+        "9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7": {
           "name": "API 1",
           "status": "active",
-          "remaining": "7686",
-          "limit": "7690",
-          "used": 2,
-          "lastCheck": "2026-04-21T02:07:28.312Z"
-        },
-        "2b499efe85msh77757d93ebe633fp16285bjsndfe8c19a6694": {
-          "name": "API 2",
-          "status": "active",
-          "remaining": "0",
-          "limit": "100",
-          "used": 1,
-          "lastCheck": "2026-04-21T02:07:29.283Z"
+          "remaining": "7688",
+          "limit": "unkn",
+          "used": 12,
+          "lastCheck": "2026-04-28T09:53:32.321Z"
         }
       }
     },
     "youtube": {
-      "total": 14,
-      "success": 8,
-      "fail": 6,
+      "total": 23,
+      "success": 19,
+      "fail": 4,
       "keys": {
-        "71b678b386mshfbf8544ef27b963p18d3fbjsn9603ed997f89": {
-          "name": "API 1",
-          "status": "exhausted",
-          "remaining": "unkn",
-          "limit": "unkn",
-          "used": 1,
-          "lastCheck": "2026-04-21T02:47:18.048Z"
-        },
-        "45a67d9d84mshb03847810b7eb47p15bbe6jsn67f9851d578b": {
+        "9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7": {
           "name": "API 1",
           "status": "active",
           "remaining": "74",
-          "limit": "100",
-          "used": 8,
-          "lastCheck": "2026-04-21T02:24:19.772Z"
-        },
-        "30cfff0008mshcd9738405b90602p1718bbjsn76a163aaa269": {
-          "name": "API 2",
-          "status": "exhausted",
-          "remaining": "-2",
-          "limit": "100",
-          "used": 1,
-          "lastCheck": "2026-04-21T02:47:18.650Z"
-        },
-        "90681a6f3cmsh11960059bfa010dp119547jsna49deca7951b": {
-          "name": "API 3",
-          "status": "exhausted",
-          "remaining": "0",
-          "limit": "100",
-          "used": 1,
-          "lastCheck": "2026-04-21T02:47:19.541Z"
-        },
-        "9e56ba0f6ab940b68e652ad87f843134": {
-          "name": "API 4",
-          "status": "exhausted",
-          "remaining": "0",
-          "limit": "100",
-          "used": 1,
-          "lastCheck": "2026-04-21T02:47:20.133Z"
-        },
-        "8fc0481165e348109029f0530e821626": {
-          "name": "API 5",
-          "status": "exhausted",
-          "remaining": "0",
-          "limit": "100",
-          "used": 1,
-          "lastCheck": "2026-04-21T02:47:20.767Z"
-        },
-        "2b499efe85msh77757d93ebe633fp16285bjsndfe8c19a6694": {
-          "name": "API 6",
-          "status": "exhausted",
-          "remaining": "0",
-          "limit": "100",
-          "used": 1,
-          "lastCheck": "2026-04-21T02:47:21.749Z"
-        }
-      }
-    },
-    "facebook": {
-      "total": 6,
-      "success": 6,
-      "fail": 0,
-      "keys": {
-        "71b678b386mshfbf8544ef27b963p18d3fbjsn9603ed997f89": {
-          "name": "API 1",
-          "status": "exhausted",
-          "remaining": "unkn",
           "limit": "unkn",
-          "used": 2,
-          "lastCheck": "2026-04-21T02:30:30.313Z"
-        },
-        "30cfff0008mshcd9738405b90602p1718bbjsn76a163aaa269": {
-          "name": "API 2",
-          "status": "active",
-          "remaining": "4942",
-          "limit": "5000",
-          "used": 6,
-          "lastCheck": "2026-04-21T02:52:03.754Z"
+          "used": 23,
+          "lastCheck": "2026-04-28T10:54:21.039Z"
         }
       }
     },
-    "snapchat": {
-      "total": 0,
-      "success": 0,
-      "fail": 0,
-      "keys": {
-        "71b678b386mshfbf8544ef27b963p18d3fbjsn9603ed997f89": {
-          "name": "API 1",
-          "status": "active",
-          "remaining": "unkn",
-          "limit": "unkn",
-          "used": 0,
-          "lastCheck": null
-        }
-      }
-    },
-    "telegram": {
-      "total": 0,
-      "success": 0,
-      "fail": 0,
-      "keys": {
-        "71b678b386mshfbf8544ef27b963p18d3fbjsn9603ed997f89": {
-          "name": "API 1",
-          "status": "active",
-          "remaining": "unkn",
-          "limit": "unkn",
-          "used": 0,
-          "lastCheck": null
-        }
-      }
-    },
-    "twitter": {
-      "total": 0,
-      "success": 0,
-      "fail": 0,
-      "keys": {
-        "71b678b386mshfbf8544ef27b963p18d3fbjsn9603ed997f89": {
-          "name": "API 1",
-          "status": "active",
-          "remaining": "unkn",
-          "limit": "unkn",
-          "used": 0,
-          "lastCheck": null
-        }
-      }
-    },
-    "tiktok_v2": {
-      "total": 1,
-      "success": 0,
+    "instagram": {
+      "total": 10,
+      "success": 9,
       "fail": 1,
       "keys": {
-        "71b678b386mshfbf8544ef27b963p18d3fbjsn9603ed997f89": {
+        "9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7": {
           "name": "API 1",
           "status": "active",
-          "remaining": "0",
-          "limit": "100",
-          "used": 1,
-          "lastCheck": "2026-04-21T02:07:30.581Z"
-        },
-        "2b499efe85msh77757d93ebe633fp16285bjsndfe8c19a6694": {
-          "name": "API 2",
-          "status": "active",
-          "remaining": "0",
-          "limit": "100",
-          "used": 1,
-          "lastCheck": "2026-04-21T02:07:31.539Z"
+          "remaining": "2990",
+          "limit": "unkn",
+          "used": 9,
+          "lastCheck": "2026-04-28T10:42:21.163Z"
         }
       }
     }
   },
-  "topLinks": [
-    {
-      "url": "https://www.instagram.com/reel/DVQ7BG2DwXd/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==",
-      "title": "Sab kuch dheere dheere samajh aa raha hai\n\nanimation re_823",
-      "platform": "instagram",
-      "count": 2,
-      "lastDownload": "2026-04-21T01:25:56.429Z"
-    },
-    {
-      "url": "https://www.instagram.com/reel/DW0ro8YEa-9/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==",
-      "title": "Go for Gold_902",
-      "platform": "instagram",
-      "count": 2,
-      "lastDownload": "2026-04-21T02:06:07.663Z"
-    },
-    {
-      "url": "https://www.instagram.com/reel/DXKEhvjjhMR/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==",
-      "title": "Sometimes the best conversations are the ones you have_464",
-      "platform": "instagram",
-      "count": 2,
-      "lastDownload": "2026-04-21T02:21:23.213Z"
-    },
-    {
-      "url": "https://www.instagram.com/reel/DXJXPCBiSpc/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==",
-      "title": "Instagram Post",
-      "platform": "instagram",
-      "count": 1,
-      "lastDownload": "2026-04-20T22:38:14.024Z"
-    },
-    {
-      "url": "https://www.instagram.com/reel/DXFYAtDN6Au/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==",
-      "title": "Instagram Post",
-      "platform": "instagram",
-      "count": 1,
-      "lastDownload": "2026-04-20T22:46:38.862Z"
-    },
-    {
-      "url": "https://youtu.be/tII1bs-6Pyw?si=4AmoD5XB99bp0ms4",
-      "title": "Surah Yaseen سورة يس | Soul Soothing Quran Recitation for Deep Sleep & Healing | Quran for Sleep",
-      "platform": "youtube",
-      "count": 1,
-      "lastDownload": "2026-04-20T23:03:47.243Z"
-    },
-    {
-      "url": "https://youtu.be/wyfG7Cns8hw?si=hU-uHvZKKDSkx-YX",
-      "title": "Main Khada Dware Pe - Remix | Lakhabir Singh Lakkha | DJ NRS x DJ OSL | 2021",
-      "platform": "youtube",
-      "count": 1,
-      "lastDownload": "2026-04-20T23:27:45.907Z"
-    },
-    {
-      "url": "https://youtu.be/yr5BMUDjixY?si=7P3s6vXy8tspLHz6",
-      "title": "Mahakaal (Official Video) B Praak | Jaani | महाकाल | हर हर महादेव | Kripa Records",
-      "platform": "youtube",
-      "count": 1,
-      "lastDownload": "2026-04-20T23:28:23.488Z"
-    },
-    {
-      "url": "https://youtu.be/D7Y-nJ8uiEA?si=KWGdyZY0yJCajGlU",
-      "title": "The Middle Class TRAP | Why You'll Work Till You Die | Dhruv Rathee",
-      "platform": "youtube",
-      "count": 1,
-      "lastDownload": "2026-04-20T23:31:33.612Z"
-    },
-    {
-      "url": "https://youtu.be/_s0TQTOg8nQ?si=uupKz4OQtwCPMX84",
-      "title": "Tere Charno Mein Sukoon 🙏 | Peaceful Bhajan | Lofi Devotional Song 🌸",
-      "platform": "youtube",
-      "count": 1,
-      "lastDownload": "2026-04-20T23:33:10.426Z"
-    },
-    {
-      "url": "https://www.instagram.com/reel/DWvRWpfAXq-/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==",
-      "title": "Lets pack an order  \n\nDM for Orders  \nWhatsApp 98355188_683",
-      "platform": "instagram",
-      "count": 1,
-      "lastDownload": "2026-04-21T00:37:46.888Z"
-    },
-    {
-      "url": "https://www.instagram.com/reel/DXJX2u1EeMh/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==",
-      "title": "Edinburgh \nUndoubtedly the most beautiful city_129",
-      "platform": "instagram",
-      "count": 1,
-      "lastDownload": "2026-04-21T00:38:12.079Z"
-    },
-    {
-      "url": "https://www.instagram.com/reel/DW1dC3lE7k_/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==",
-      "title": "कन मर सथ चलग_545",
-      "platform": "instagram",
-      "count": 1,
-      "lastDownload": "2026-04-21T01:12:15.834Z"
-    },
-    {
-      "url": "https://www.instagram.com/reel/DXWA31skkqe/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==",
-      "title": "ras rpsc rasresult result trending_555",
-      "platform": "instagram",
-      "count": 1,
-      "lastDownload": "2026-04-21T01:16:23.046Z"
-    },
-    {
-      "url": "https://www.instagram.com/reel/DW6UsZZE9k0/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==",
-      "title": "Clearing draftss_118",
-      "platform": "instagram",
-      "count": 1,
-      "lastDownload": "2026-04-21T01:17:37.761Z"
-    },
-    {
-      "url": "https://youtu.be/Usvz42pNbAE?si=zHILl_cEbB52EU_A",
-      "title": "TERE DARBAR MEIN MAIYA KHUSHI MILTI HAI - TRAP MIX - NAVRATRI BHAJAN - DJ YASH - DJ MOHIT OFFICIAL",
-      "platform": "youtube",
-      "count": 1,
-      "lastDownload": "2026-04-21T01:18:32.996Z"
-    },
-    {
-      "url": "https://www.instagram.com/reel/DXWlAhhj3zX/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==",
-      "title": "O Palanhaare - surrendering it all at your feet \n\nThis_954",
-      "platform": "instagram",
-      "count": 1,
-      "lastDownload": "2026-04-21T02:03:03.451Z"
-    },
-    {
-      "url": "https://www.instagram.com/reel/DXCov8NjeXB/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==",
-      "title": "_734",
-      "platform": "instagram",
-      "count": 1,
-      "lastDownload": "2026-04-21T02:03:46.378Z"
-    },
-    {
-      "url": "https://www.instagram.com/reel/DXPI3y_E5UQ/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==",
-      "title": "Old one ek bar FR_552",
-      "platform": "instagram",
-      "count": 1,
-      "lastDownload": "2026-04-21T02:04:25.532Z"
-    },
-    {
-      "url": "https://youtu.be/kqH8oPcoti4?si=yjpCG2BQXFEvGYFB",
-      "title": "Yeh Bandhan Toh Pyaar Ka Bandhan Hai | Shahrukh Khan | Salman Khan | Kumar Sanu, Alka Y, Udit N",
-      "platform": "youtube",
-      "count": 1,
-      "lastDownload": "2026-04-21T02:04:53.734Z"
-    },
-    {
-      "url": "https://www.facebook.com/share/v/1GnRBu7jv9/",
-      "title": "Facebook",
-      "platform": "facebook",
-      "count": 1,
-      "lastDownload": "2026-04-21T02:12:15.902Z"
-    },
-    {
-      "url": "https://www.facebook.com/share/r/1Au4DTu3Ki/",
-      "title": "Facebook",
-      "platform": "facebook",
-      "count": 1,
-      "lastDownload": "2026-04-21T02:19:11.620Z"
-    },
-    {
-      "url": "https://youtu.be/V4qiqh2Qqdg?si=USYos9EYIT0Ixv4i",
-      "title": "Arijit Singh Lofi Song 💕 Chill & Relaxing Love Vibes | Hindi Lofi Track",
-      "platform": "youtube",
-      "count": 1,
-      "lastDownload": "2026-04-21T02:24:19.776Z"
-    },
-    {
-      "url": "https://www.facebook.com/share/r/1FFNkQ2xKE/",
-      "title": "Facebook",
-      "platform": "facebook",
-      "count": 1,
-      "lastDownload": "2026-04-21T02:30:32.885Z"
-    },
-    {
-      "url": "https://www.facebook.com/share/r/1GfG44Xc6L/",
-      "title": "Facebook",
-      "platform": "facebook",
-      "count": 1,
-      "lastDownload": "2026-04-21T02:37:57.973Z"
-    },
-    {
-      "url": "https://www.facebook.com/share/r/1Gq3xebHtz/",
-      "title": "Facebook",
-      "platform": "facebook",
-      "count": 1,
-      "lastDownload": "2026-04-21T02:45:00.109Z"
-    },
-    {
-      "url": "https://www.facebook.com/share/r/1C4bN5hHTJ/",
-      "title": "Facebook",
-      "platform": "facebook",
-      "count": 1,
-      "lastDownload": "2026-04-21T02:52:03.757Z"
-    }
-  ]
+  "topLinks": []
 }

@@ -11,6 +11,9 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
     metadataBase: new URL("https://savclip.net"),
     title: dict.platforms.twitter.seo.title,
     description: dict.platforms.twitter.seo.desc,
+    alternates: {
+      canonical: `https://savclip.net/${locale}/twitter`,
+    },
   };
 }
 

@@ -20,9 +20,26 @@
       "purpose": "any maskable"
     }
   ],
+  "orientation": "portrait",
+  "categories": ["utilities", "social", "productivity"],
+  "shortcuts": [
+    {
+      "name": "Download Instagram",
+      "short_name": "Instagram",
+      "url": "/en/instagram",
+      "icons": [{ "src": "/icon-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Download TikTok",
+      "short_name": "TikTok",
+      "url": "/en/tiktok",
+      "icons": [{ "src": "/icon-192x192.png", "sizes": "192x192" }]
+    }
+  ],
   "share_target": {
     "action": "/share-target",
     "method": "GET",
+    "enctype": "application/x-www-form-urlencoded",
     "params": {
       "title": "title",
       "text": "text",

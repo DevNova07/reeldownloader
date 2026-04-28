@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { ShieldAlert, Mail } from "lucide-react"
+import { AlertTriangle, Mail } from "lucide-react"
 
 export default function DMCAPage() {
   return (
@@ -9,7 +9,7 @@ export default function DMCAPage() {
       <div className="mx-auto max-w-4xl w-full">
         <div className="flex items-center gap-4 mb-8">
            <div className="h-12 w-12 flex items-center justify-center rounded-2xl bg-red-50 dark:bg-red-900/20 text-red-600">
-             <ShieldAlert className="h-6 w-6" />
+             <AlertTriangle className="h-6 w-6" />
            </div>
            <h1 className="text-4xl font-black tracking-tighter text-neutral-900 dark:text-white uppercase italic">DMCA Policy</h1>
         </div>

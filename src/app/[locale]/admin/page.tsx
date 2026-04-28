@@ -3,6 +3,7 @@
 import * as React from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Shield, Activity, HardDrive, Zap, Database, CheckCircle2, XCircle, Clock, Search, RefreshCw, Lock, Instagram, Youtube, Facebook, Ghost, Music, Send, Twitter } from "lucide-react"
+import { toast } from "react-hot-toast"
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const platformIcons: any = {
@@ -54,8 +55,9 @@ export default function AdminPage() {
       if (result.success) {
         setStats(result.stats)
       }
-    } catch (err) {}
-    finally { setIsLoading(false) }
+    } catch (err: any) {
+      toast.error("Failed to refresh stats cluster.");
+    } finally { setIsLoading(false) }
   }
 
   if (!isAuthorized) {

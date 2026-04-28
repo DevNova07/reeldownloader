@@ -24,7 +24,7 @@ export const PLATFORM_NAV_CONFIG: Record<string, PlatformNav> = {
         titleKey: "reels_downloader",
         links: [
           { href: "/instagram-reels-download", label: "Instagram Reels Download" },
-          { href: "/reels-download", label: "Reels Download" },
+          { href: "/reels-downloader", label: "Reels Download" },
           { href: "/reels-without-watermark", label: "Reels Without Watermark" },
           { href: "/save-instagram-reels-video", label: "Save Reels Video" },
         ]
@@ -44,6 +44,50 @@ export const PLATFORM_NAV_CONFIG: Record<string, PlatformNav> = {
           { href: "/instagram-story-download", label: "Instagram Story Download" },
           { href: "/instagram-highlights-download", label: "Highlights Download" },
           { href: "/instagram-private-video-download", label: "Private Video Download" },
+          { href: "/instagram-story-saver", label: "Instagram Story Saver" },
+        ]
+      },
+      {
+        titleKey: "profile_dp",
+        links: [
+          { href: "/instagram-dp-download", label: "Instagram DP Download" },
+          { href: "/instagram-dp-download-hd", label: "Instagram DP Download HD" },
+          { href: "/instagram-profile-picture-download", label: "Profile Picture Download" },
+        ]
+      },
+      {
+        titleKey: "hd_downloads",
+        links: [
+          { href: "/instagram-video-download-hd", label: "Instagram Video Download HD" },
+          { href: "/instagram-reels-download-hd", label: "Instagram Reels Download HD" },
+          { href: "/instagram-photo-download-hd", label: "Instagram Photo Download HD" },
+          { href: "/instagram-story-download-hd", label: "Instagram Story Download HD" },
+        ]
+      },
+      {
+        titleKey: "online_savers",
+        links: [
+          { href: "/instagram-reels-download-without-watermark", label: "Reels No Watermark" },
+          { href: "/instagram-video-without-watermark", label: "Video No Watermark" },
+          { href: "/instagram-reels-saver", label: "Instagram Reels Saver" },
+          { href: "/instagram-video-saver", label: "Instagram Video Saver" },
+          { href: "/download-instagram-video-online", label: "Download Video Online" },
+          { href: "/download-instagram-reels-online", label: "Download Reels Online" },
+          { href: "/save-instagram-video", label: "Save Instagram Video" },
+          { href: "/save-instagram-reels", label: "Save Instagram Reels" },
+        ]
+      },
+      {
+        titleKey: "converters_pro",
+        links: [
+          { href: "/insta-video-downloader", label: "Insta Video Downloader" },
+          { href: "/insta-reels-downloader", label: "Insta Reels Downloader" },
+          { href: "/insta-story-downloader", label: "Insta Story Downloader" },
+          { href: "/instagram-carousel-download", label: "Instagram Carousel Download" },
+          { href: "/instagram-album-download", label: "Instagram Album Download" },
+          { href: "/instagram-thumbnail-downloader", label: "Thumbnail Downloader" },
+          { href: "/instagram-reel-converter", label: "Instagram Reel Converter" },
+          { href: "/instagram-video-converter", label: "Instagram Video Converter" },
         ]
       }
     ],

@@ -1,21 +1,25 @@
-const CACHE_NAME = 'savclip-pwa-v1';
+const CACHE_NAME = 'savclip-pwa-v2';
+const OFFLINE_URL = '/en/offline'; // Fallback for all locales for simplicity
+
 const STATIC_ASSETS = [
   '/',
+  OFFLINE_URL,
   '/manifest.json',
   '/icon-192x192.png',
   '/icon-512x512.png',
 ];
 
+// 1. Install - Pre-cache critical assets
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      // Don't block installation if some assets fail to cache out of the box
-      return cache.addAll(STATIC_ASSETS).catch(() => {});
+      return cache.addAll(STATIC_ASSETS).catch(err => console.error('PWA: Pre-cache failed', err));
     })
   );
   self.skipWaiting();
 });
 
+// 2. Activate - Clean up old caches
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {
@@ -29,28 +33,71 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
+// 3. Fetch - Stale-while-revalidate for assets, Network-first for pages
 self.addEventListener('fetch', (event) => {
-  // Exclude API calls and third party domains from caching strategy
-  if (event.request.method !== 'GET' || !event.request.url.startsWith(self.location.origin) || event.request.url.includes('/api/')) {
+  if (event.request.method !== 'GET') return;
+
+  const url = new URL(event.request.url);
+
+  // Skip API calls and non-origin requests
+  if (url.origin !== self.location.origin || url.pathname.includes('/api/')) {
     return;
   }
 
-  // Network-first strategy for safety (doesn't trap user on old Next.js build)
+  // Handle Navigation requests (HTML pages)
+  if (event.request.mode === 'navigate') {
+    event.respondWith(
+      fetch(event.request)
+        .catch(() => {
+          return caches.match(OFFLINE_URL) || caches.match('/');
+        })
+    );
+    return;
+  }
+
+  // For other assets: Stale-while-revalidate
   event.respondWith(
-    fetch(event.request)
-      .then((networkResponse) => {
-        const responseClone = networkResponse.clone();
-        caches.open(CACHE_NAME).then((cache) => {
-          cache.put(event.request, responseClone);
-        });
+    caches.match(event.request).then((cachedResponse) => {
+      const fetchPromise = fetch(event.request).then((networkResponse) => {
+        if (networkResponse && networkResponse.status === 200) {
+          const responseClone = networkResponse.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, responseClone);
+          });
+        }
         return networkResponse;
-      })
-      .catch(() => {
-        return caches.match(event.request).then((cachedResponse) => {
-          if (cachedResponse) return cachedResponse;
-          // Basic offline fallback 
-          return new Response('Internet Connection Lost.', { headers: { 'Content-Type': 'text/plain' }});
-        });
-      })
+      });
+      return cachedResponse || fetchPromise;
+    })
+  );
+});
+
+// 4. Push Notifications
+self.addEventListener('push', (event) => {
+  const data = event.data ? event.data.json() : { 
+    title: 'SavClip Update', 
+    body: 'New features are available! Check them out.' 
+  };
+
+  const options = {
+    body: data.body,
+    icon: '/icon-192x192.png',
+    badge: '/icon-192x192.png',
+    vibrate: [100, 50, 100],
+    data: {
+      url: data.url || '/'
+    }
+  };
+
+  event.waitUntil(
+    self.registration.showNotification(data.title, options)
+  );
+});
+
+// 5. Notification Click
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+  event.waitUntil(
+    clients.openWindow(event.notification.data.url)
   );
 });

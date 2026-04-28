@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { SearchBar } from "@/components/layout/SearchBar"
 import { CategoryCards } from "@/components/layout/CategoryCards"
 import { DownloadPreview } from "@/components/layout/DownloadPreview"
@@ -28,18 +28,22 @@ import { ChromeExtensionBanner } from "@/components/layout/ChromeExtensionBanner
 import { ExpandableSection } from "@/components/ui/ExpandableSection"
 import { useAutoDownload } from "@/hooks/useAutoDownload"
 
+import { Breadcrumbs } from "@/components/shared/Breadcrumbs"
+import { InternalToolLinks } from "@/components/shared/InternalToolLinks"
+
 interface TelegramPageProps {
   content: any
   locale: Locale
 }
 
-export default function TelegramPage({ content, locale }: TelegramPageProps) {
+function TelegramPageContent({ content, locale }: TelegramPageProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
   const dict = getDictionary(locale)
 
   const [downloadData, setDownloadData] = React.useState<PlatformResult | null>(null)
   const [isLoading, setIsLoading] = React.useState(false)
+  const [error, setError] = React.useState<string | null>(null)
   const [autoTriggerDownload, setAutoTriggerDownload] = React.useState(false)
   const [searchCounter, setSearchCounter] = React.useState(0)
   
@@ -66,6 +70,7 @@ export default function TelegramPage({ content, locale }: TelegramPageProps) {
 
     setIsLoading(true)
     setDownloadData(null)
+    setError(null)
 
     try {
       const response = await fetch("/api/download", {
@@ -82,6 +87,9 @@ export default function TelegramPage({ content, locale }: TelegramPageProps) {
         throw new Error(result.error || "Failed to fetch media")
       }
     } catch (err: any) {
+      const msg = err?.message || "Failed to process the link. Please try again.";
+      setError(msg);
+      toast.error(msg);
     } finally {
       setIsLoading(false)
     }
@@ -141,6 +149,24 @@ export default function TelegramPage({ content, locale }: TelegramPageProps) {
               iconClass="text-sky-500"
               initialValue={searchParams.get('url') || ""}
             />
+
+            <AnimatePresence>
+              {error && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="mx-auto max-w-3xl mt-4 p-4 rounded-2xl bg-red-500/20 border-2 border-red-500/50 text-white font-black uppercase italic tracking-wider shadow-2xl backdrop-blur-md text-left"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="bg-red-500 p-1.5 rounded-lg shrink-0">
+                      <Info className="h-5 w-5 text-white" />
+                    </div>
+                    {error}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
             <TrustBadges dict={dict} />
             <TrendingBar accentColor="bg-sky-400" />
             <DownloadCounter accentColor="text-sky-200" />
@@ -160,8 +186,17 @@ export default function TelegramPage({ content, locale }: TelegramPageProps) {
       </section>
 
       <ToolSubNav />
+      {content.title && (
+        <Breadcrumbs 
+          locale={locale}
+          platform="Telegram"
+          platformPath="telegram"
+          toolTitle={content.title}
+        />
+      )}
       <RelatedTools currentPlatform="telegram" />
       <CategoryCards />
+      <InternalToolLinks currentPlatform="telegram" dict={dict} accentColor="text-sky-500" />
 
       <section className="bg-neutral-50 px-4 py-4 dark:bg-neutral-900/50 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
@@ -238,5 +273,13 @@ export default function TelegramPage({ content, locale }: TelegramPageProps) {
         </div>
       </section>
     </div>
+  )
+}
+
+export default function TelegramPage(props: TelegramPageProps) {
+  return (
+    <React.Suspense fallback={null}>
+      <TelegramPageContent {...props} />
+    </React.Suspense>
   )
 }

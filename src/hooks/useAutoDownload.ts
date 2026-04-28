@@ -42,9 +42,10 @@ export function useAutoDownload(
       }
     } else {
       // Correct platform or root page - trigger search directly with a slight delay for reliability
+      const autoDownload = searchParams.get('autodownload') === 'true'
       hasTriggered.current = sharedUrl
       setTimeout(() => {
-        onSearch(sharedUrl, false)
+        onSearch(sharedUrl, autoDownload)
       }, 300) // Small delay to ensure everything is initialized
     }
   }, [searchParams, locale, router, currentPlatform, onSearch])

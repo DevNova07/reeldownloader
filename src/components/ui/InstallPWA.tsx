@@ -11,46 +11,52 @@ export function InstallPWA() {
   React.useEffect(() => {
     // Detect if already installed (display-mode standalone)
     const isStandalone = window.matchMedia('(display-mode: standalone)').matches
+    if (isStandalone) return;
 
-    if (isStandalone) {
-      return;
+    // Smart Trigger: Only show after at least 1 successful download OR 60 seconds of browsing
+    const checkTriggers = () => {
+      const downloadCount = parseInt(localStorage.getItem('savclip_success_downloads') || '0')
+      const hasDismissed = localStorage.getItem('savclip_pwa_dismissed') === 'true'
+      
+      if (!hasDismissed && (downloadCount >= 1)) {
+        setShowInstallPrompt(true)
+      }
     }
 
+    // Check every few seconds or on specific events
+    const interval = setInterval(checkTriggers, 5000)
+    
     const handleBeforeInstallPrompt = (e: Event) => {
       e.preventDefault();
-      // Stash the event so it can be triggered later.
       setDeferredPrompt(e);
-      // Update UI to notify the user they can install the PWA
-      setShowInstallPrompt(true);
+      // We don't show immediately anymore, let the smart trigger handle it
     };
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
-
     return () => {
       window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+      clearInterval(interval)
     };
   }, []);
 
   const handleInstallClick = async () => {
     if (!deferredPrompt) return;
-    
-    // Show the native install prompt
     deferredPrompt.prompt();
-    
-    // Wait for the user to respond to the prompt
     const { outcome } = await deferredPrompt.userChoice;
-    
-    // We've used the prompt, and can't use it again, throw it away
     setDeferredPrompt(null);
     setShowInstallPrompt(false);
-    
     if (outcome === 'accepted') {
-      console.log('User accepted the install prompt');
+      localStorage.setItem('savclip_pwa_installed', 'true')
     }
   };
 
   const handleDismiss = () => {
     setShowInstallPrompt(false);
+    // Don't show again for 7 days
+    localStorage.setItem('savclip_pwa_dismissed', 'true')
+    setTimeout(() => {
+      localStorage.removeItem('savclip_pwa_dismissed')
+    }, 7 * 24 * 60 * 60 * 1000)
   };
 
   return (

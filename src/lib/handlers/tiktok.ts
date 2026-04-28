@@ -1,189 +1,221 @@
-import { fetchWithRotation } from "../api-utils";
-import { type PlatformResult, type Media } from "@/types/download";
-import { statsManager } from "@/utils/stats";
-import { cacheManager } from "@/utils/cache";
+import { fetchWithRotation, resolveUrl } from "../api-utils";
+import { type PlatformResult, type Media } from "../../types/download";
 
 /**
- * Optimized TikTok Downloader Handler.
- * modularized for speed and maintainability.
+ * Fast TikTok API (New): tiktok-video-downloader-7690-video-per-months-for-free.p.rapidapi.com
  */
-interface TikTokFreeAPIResponse {
-  status: string;
-  video_url: string;
-  cover: string;
-  music: string;
-  title: string;
-  author: string;
-  author_id: string;
-  like_count: number;
-  share_count: number;
-  comment_count: number;
+async function fastTiktokApi(resolvedUrl: string): Promise<PlatformResult> {
+  const apiUrl = `https://tiktok-video-downloader-7690-video-per-months-for-free.p.rapidapi.com/tiktok-video.php?url=${encodeURIComponent(resolvedUrl)}`;
+
+  const response = await fetchWithRotation(apiUrl, {
+    method: "GET",
+    headers: {
+      "x-rapidapi-host": "tiktok-video-downloader-7690-video-per-months-for-free.p.rapidapi.com",
+    },
+  }, "tiktok");
+
+  const result = await response.json();
+  console.log("[DEBUG] Fast TikTok API Response:", JSON.stringify(result).substring(0, 500));
+
+  if (result.status !== "success" || !result.video_url) {
+    throw new Error(result.message || "Fast API failed to fetch TikTok video.");
+  }
+
+  const medias: Media[] = [];
+  
+  medias.push({
+    id: `${result.author_id || "tiktok"}-video-fast`,
+    url: result.video_url,
+    quality: "High Quality (No Watermark)",
+    type: "video",
+    extension: "mp4"
+  });
+
+  if (result.music) {
+    medias.push({
+      id: `${result.author_id || "tiktok"}-audio-fast`,
+      url: result.music,
+      quality: "Original Audio",
+      type: "audio",
+      extension: "mp3"
+    });
+  }
+
+  return {
+    title: result.title || "TikTok Video",
+    caption: result.title || "",
+    thumbnail: result.cover || "https://www.tiktok.com/favicon.ico",
+    medias,
+    author: result.author || "TikTok User",
+    authorId: result.author_id || "tiktok",
+    likes: result.like_count || 0,
+    commentCount: result.comment_count || 0,
+    shareCount: result.share_count || 0,
+  };
 }
 
-interface TikTokAllInOneResponse {
-  error?: boolean;
-  thumbnail?: string;
-  title?: string;
-  medias?: Array<{ url: string; type: string; quality?: string; extension?: string }>;
+/**
+ * Primary TikTok API: snap-video3.p.rapidapi.com
+ */
+async function primaryTiktokApi(resolvedUrl: string): Promise<PlatformResult> {
+  const apiUrl = "https://snap-video3.p.rapidapi.com/download";
+  const body = new URLSearchParams({ url: resolvedUrl }).toString();
+
+  const response = await fetchWithRotation(apiUrl, {
+    method: "POST",
+    headers: {
+      "x-rapidapi-host": "snap-video3.p.rapidapi.com",
+      "Content-Type": "application/x-www-form-urlencoded"
+    },
+    body: body
+  }, "tiktok");
+
+  const result = await response.json();
+  console.log("[DEBUG] Primary TikTok API Response:", JSON.stringify(result).substring(0, 500));
+
+  if (!result || !result.medias || result.medias.length === 0) {
+    throw new Error("Primary API failed: No media found.");
+  }
+
+  const medias: Media[] = result.medias
+    .filter((media: any) => media.url && !media.url.includes('_original.mp4'))
+    .map((media: any, index: number) => {
+    let qualityStr = media.quality || (media.videoAvailable ? "Video" : "Audio");
+    if (qualityStr.toLowerCase() === '128kbps') {
+      qualityStr = '128kbps Audio';
+    } else {
+      qualityStr = qualityStr.split(' ').map((w: string) => w.toUpperCase() === 'HD' ? 'HD' : w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+    }
+    let isActuallyAudio = qualityStr.toLowerCase().includes('audio') || qualityStr.toLowerCase().includes('kbps');
+    let isVideo = media.videoAvailable !== false && !isActuallyAudio;
+
+    return {
+      id: `tiktok-media-${index}`,
+      url: media.url,
+      quality: qualityStr,
+      type: isVideo ? "video" : "audio",
+      extension: media.extension || (isVideo ? "mp4" : "mp3")
+    };
+  });
+
+  let authorId = "tiktok";
+  const usernameMatch = resolvedUrl.match(/@([\w.-]+)/);
+  if (usernameMatch && usernameMatch[1]) {
+    authorId = usernameMatch[1];
+  }
+
+  return {
+    title: result.title || "TikTok Video",
+    caption: result.title || "",
+    thumbnail: result.thumbnail || "https://www.tiktok.com/favicon.ico",
+    medias,
+    author: authorId, 
+    authorId: authorId,
+    likes: 0,
+    commentCount: 0,
+    shareCount: 0,
+  };
+}
+
+/**
+ * Fallback TikTok API: tiktok-download5.p.rapidapi.com
+ */
+async function fallbackTiktokApi(resolvedUrl: string): Promise<PlatformResult> {
+  const apiUrl = `https://tiktok-download5.p.rapidapi.com/getVideo?url=${encodeURIComponent(resolvedUrl)}`;
+
+  const response = await fetchWithRotation(apiUrl, {
+    method: "GET",
+    headers: {
+      "x-rapidapi-host": "tiktok-download5.p.rapidapi.com",
+    },
+  }, "tiktok");
+
+  const result = await response.json();
+  console.log("[DEBUG] Fallback TikTok API Response:", JSON.stringify(result).substring(0, 500));
+
+  if (result.code !== 0 || !result.data) {
+    throw new Error(result.msg || "Fallback API failed to fetch TikTok video.");
+  }
+
+  const data = result.data;
+  const medias: Media[] = [];
+  
+  if (data.play) {
+    medias.push({
+      id: `${data.author?.unique_id || "tiktok"}-video-sd`,
+      url: data.play,
+      quality: "SD (No Watermark)",
+      type: "video",
+      extension: "mp4"
+    });
+  }
+
+  if (data.hdplay && data.hdplay !== data.play) {
+    medias.push({
+      id: `${data.author?.unique_id || "tiktok"}-video-hd`,
+      url: data.hdplay,
+      quality: "HD (No Watermark)",
+      type: "video",
+      extension: "mp4"
+    });
+  }
+
+  if (data.wmplay) {
+    medias.push({
+      id: `${data.author?.unique_id || "tiktok"}-video-wm`,
+      url: data.wmplay,
+      quality: "SD (Watermark)",
+      type: "video",
+      extension: "mp4"
+    });
+  }
+
+  if (data.music_info?.play) {
+    medias.push({
+      id: `${data.author?.unique_id || "tiktok"}-audio`,
+      url: data.music_info.play,
+      quality: "Original Audio",
+      type: "audio",
+      extension: "mp3"
+    });
+  }
+
+  if (medias.length === 0) {
+    throw new Error("No media found in the fallback response.");
+  }
+
+  return {
+    title: data.title || "TikTok Video",
+    caption: data.title || "",
+    thumbnail: data.cover || "https://www.tiktok.com/favicon.ico",
+    medias,
+    author: data.author?.nickname || "TikTok User",
+    authorId: data.author?.unique_id || "tiktok",
+    likes: data.digg_count || 0,
+    commentCount: data.comment_count || 0,
+    shareCount: data.share_count || 0,
+  };
 }
 
 export async function tiktokHandler(url: string): Promise<PlatformResult> {
-  let finalUrl = url;
-  const lastErrorMessage = "Could not fetch TikTok media details. Please try again later.";
+  // Resolve short links (vt.tiktok.com, etc.)
+  let resolvedUrl = await resolveUrl(url);
+  
+  // Clean URL: Remove query params for better API parsing
+  if (resolvedUrl.includes("?")) {
+    resolvedUrl = resolvedUrl.split("?")[0];
+  }
 
-  // --- URL RESOLVER (for v.tiktok.com short links) ---
-  if (url.includes("v.tiktok.com")) {
+  try {
+    console.log(`[API] Trying Fast TikTok API for ${resolvedUrl}...`);
+    return await fastTiktokApi(resolvedUrl);
+  } catch (err: any) {
+    console.warn(`[API] Fast TikTok API failed: ${err.message}. Trying Primary API...`);
     try {
-      const headRes = await fetch(url, { method: 'HEAD', redirect: 'follow' });
-      if (headRes.url) {
-        finalUrl = headRes.url.split('?')[0];
-      }
-    } catch (e) {
-      console.warn("URL resolution failed, using original:", e);
+      return await primaryTiktokApi(resolvedUrl);
+    } catch (err2: any) {
+      console.warn(`[API] Primary TikTok API failed: ${err2.message}. Trying Fallback API...`);
+      return await fallbackTiktokApi(resolvedUrl);
     }
   }
-
-  // --- PRIMARY TIKTOK API (User-Provided High Success API) ---
-  try {
-    const primaryHost = "tiktok-video-downloader-7690-video-per-months-for-free.p.rapidapi.com";
-    const primaryUrl = `https://${primaryHost}/tiktok-video.php?url=${encodeURIComponent(finalUrl)}`;
-    
-    
-    const response = await fetchWithRotation(primaryUrl, {
-      method: "GET",
-      headers: { "x-rapidapi-host": primaryHost },
-    }, "tiktok");
-
-    if (response.ok) {
-      const rawData = (await response.json()) as TikTokFreeAPIResponse;
-      
-      if (rawData.status === "success" && rawData.video_url) {
-        const medias: Media[] = [];
-        
-        // Add Video
-        medias.push({
-          id: (rawData.author_id || "v1") + "_video",
-          url: rawData.video_url,
-          quality: "HD Video (No Watermark)",
-          type: "video",
-          extension: "mp4"
-        });
-
-        // Add Audio
-        if (rawData.music) {
-          medias.push({
-            id: (rawData.author_id || "v1") + "_music",
-            url: rawData.music,
-            quality: "Audio (MP3)",
-            type: "audio",
-            extension: "mp3"
-          });
-        }
-
-        const formattedData: PlatformResult = {
-          thumbnail: rawData.cover || "",
-          title: rawData.title || "TikTok Video",
-          medias: medias,
-          caption: rawData.title || "",
-          likes: rawData.like_count || 0,
-          commentCount: rawData.comment_count || 0,
-          shareCount: rawData.share_count || 0,
-          author: rawData.author || "TikTok Creator",
-          authorId: rawData.author_id || "",
-        };
-
-        statsManager.trackDownload(url, formattedData.title, "tiktok");
-        cacheManager.set(url, formattedData);
-        return formattedData;
-      }
-    }
-  } catch (e) {
-    const error = e as Error;
-    console.error("TikTok API failed:", error.message);
-  }
-
-  // --- SECONDARY TIKTOK API (All-in-One Downloader - New Backup) ---
-  try {
-    const allInOneHost = "all-in-one-video-downloader-api-tiktok-ig-fb.p.rapidapi.com";
-    const allInOneUrl = `https://${allInOneHost}/all-downloader.php?url=${encodeURIComponent(finalUrl)}`;
-    
-    const response = await fetchWithRotation(allInOneUrl, {
-      method: "GET",
-      headers: { "x-rapidapi-host": allInOneHost },
-    }, "tiktok");
-
-    if (response.ok) {
-      const data = await response.json();
-      
-      if (data && data.videos && Array.isArray(data.videos) && data.videos.length > 0) {
-        const medias: Media[] = data.videos.map((item: any, index: number) => ({
-          id: `tk-allinone-${index}-${Date.now()}`,
-          url: item.download_url,
-          quality: item.resolution === "no_watermark" ? "HD (No Watermark)" : item.resolution,
-          type: item.resolution === "audio" ? "audio" : "video",
-          extension: item.extension || "mp4"
-        }));
-
-        const formattedData: PlatformResult = {
-          thumbnail: data.thumbnail?.startsWith('data:') ? data.thumbnail : (data.thumbnail || ""),
-          title: data.title || "TikTok Video",
-          medias: medias,
-          caption: data.title || "",
-          likes: 0,
-          commentCount: 0,
-        };
-
-        statsManager.trackDownload(url, formattedData.title, "tiktok");
-        cacheManager.set(url, formattedData);
-        return formattedData;
-      }
-    }
-  } catch (e) {
-    console.warn("TikTok All-in-One Backup failed:", (e as Error).message);
-  }
-
-  // --- TERTIARY TIKTOK API (Social Download All-in-One Fallback) ---
-  try {
-    const fallbackHost = "social-download-all-in-one.p.rapidapi.com";
-    const fallbackUrl = `https://${fallbackHost}/v1/social/autolink`;
-
-    const response = await fetchWithRotation(fallbackUrl, {
-      method: "POST",
-      headers: {
-        "x-rapidapi-host": fallbackHost,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ url: finalUrl }),
-    }, "tiktok_v2");
-
-    if (response.ok) {
-      const data = (await response.json()) as TikTokAllInOneResponse;
-
-      if (!data.error && data.medias && data.medias.length > 0) {
-        const formattedData: PlatformResult = {
-          thumbnail: data.thumbnail || "",
-          title: data.title || "TikTok Video",
-          medias: data.medias.map((m) => ({
-            id: Math.random().toString(36).substring(7),
-            url: m.url,
-            quality: m.quality || "HD Video",
-            type: "video",
-            extension: m.extension || "mp4",
-          })),
-          caption: data.title || "",
-          likes: 0,
-          commentCount: 0,
-        };
-
-        statsManager.trackDownload(url, formattedData.title, "tiktok_v2");
-        cacheManager.set(url, formattedData);
-        return formattedData;
-      }
-    }
-  } catch (e) {
-    const error = e as Error;
-    console.error("All TikTok clusters failed:", error.message);
-  }
-
-  throw new Error(lastErrorMessage);
 }

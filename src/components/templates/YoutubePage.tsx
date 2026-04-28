@@ -17,7 +17,7 @@ import { LoadingBar } from "@/components/ui/LoadingBar"
 import { DownloadCounter } from "@/components/ui/DownloadCounter"
 import { useDownloadHistory, getCached, setCached } from "@/hooks/useDownloadHistory"
 import { HeroEffect } from "@/components/shared/HeroEffect"
-import { Youtube, PlaySquare, Music as MusicIcon, Film, Zap, ShieldCheck, CheckCircle2, HelpCircle, Info, ShieldAlert } from "lucide-react"
+import { Youtube, PlaySquare, Music as MusicIcon, Film, Zap, ShieldCheck, CheckCircle2, HelpCircle, Info } from "lucide-react"
 import { ToolSubNav } from "@/components/layout/ToolSubNav"
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs"
 import { toast } from "react-hot-toast"
@@ -54,6 +54,7 @@ function YoutubeContent({
   const pageSeo = content?.seo || { title: pageTitle, desc: "Fast and secure media extraction tool." };
   const [downloadData, setDownloadData] = React.useState<PlatformResult | null>(null)
   const [isLoading, setIsLoading] = React.useState(false)
+  const [error, setError] = React.useState<string | null>(null)
   const [autoTriggerDownload, setAutoTriggerDownload] = React.useState(false)
   const [searchCounter, setSearchCounter] = React.useState(0)
   
@@ -72,6 +73,7 @@ function YoutubeContent({
 
     setIsLoading(true)
     setDownloadData(null)
+    setError(null)
 
     const searchPromise = async () => {
       const response = await fetch("/api/download", {
@@ -97,7 +99,10 @@ function YoutubeContent({
 
     try {
       await searchPromise()
-    } catch (err: unknown) {
+    } catch (err: any) {
+      const msg = err?.message || "Failed to process the link. Please try again.";
+      setError(msg);
+      toast.error(msg);
     } finally {
       setIsLoading(false)
     }
@@ -117,6 +122,8 @@ function YoutubeContent({
   return (
     <div className="flex flex-col">
       <StructuredData type="SoftwareApplication" data={pageSeo} />
+      {content.faq && <StructuredData type="FAQPage" data={content.faq} />}
+      {content.howTo && <StructuredData type="HowTo" data={content.howTo} />}
       {/* Hero Section */}
       <section className={`relative bg-linear-to-r ${cx.ribbon} px-4 pt-14 pb-8 sm:pt-20 sm:pb-32 sm:px-6 lg:px-8`}>
         <HeroEffect color={cx.effect} intensity="high" />
@@ -159,6 +166,24 @@ function YoutubeContent({
               buttonClass={`bg-white text-red-600 hover:bg-neutral-100 shadow-2xl`}
               iconClass="text-red-600"
             />
+
+            <AnimatePresence>
+              {error && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="mx-auto max-w-3xl mt-4 p-4 rounded-2xl bg-red-500/20 border-2 border-red-500/50 text-white font-black uppercase italic tracking-wider shadow-2xl backdrop-blur-md"
+                >
+                  <div className="flex items-center gap-3 text-left">
+                    <div className="bg-red-500 p-1.5 rounded-lg shrink-0">
+                      <Info className="h-5 w-5 text-white" />
+                    </div>
+                    {error}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
 
             <HeroQuickGuide steps={dict?.guide?.steps || []} accentColor="text-white" />
 

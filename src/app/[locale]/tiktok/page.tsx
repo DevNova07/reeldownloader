@@ -27,20 +27,29 @@ import { getPlatformFromUrl, getLocalizedRoute } from "@/utils/platform-detector
 import { TrustBadges } from "@/components/ui/TrustBadges"
 import { ChromeExtensionBanner } from "@/components/layout/ChromeExtensionBanner"
 
+import { useAutoDownload } from "@/hooks/useAutoDownload"
+
 export default function TikTokPage() {
   const router = useRouter()
   const [downloadData, setDownloadData] = React.useState<PlatformResult | null>(null)
   const [isLoading, setIsLoading] = React.useState(false)
+  const [autoTriggerDownload, setAutoTriggerDownload] = React.useState(false)
+  const [searchCounter, setSearchCounter] = React.useState(0)
   
   const pathname = usePathname()
   const locale = pathname.split('/')[1] as Locale
-    const dict = getDictionary(locale)
+  const dict = getDictionary(locale)
   const { addToHistory } = useDownloadHistory("tiktok")
 
-  const handleSearch = async (url: string) => {
+  const handleSearch = async (url: string, isAutoTrigger = false) => {
+    setSearchCounter(prev => prev + 1)
+    setAutoTriggerDownload(isAutoTrigger)
+    setIsLoading(true)
+
     const cached = getCached(url)
     if (cached) {
       setDownloadData(cached)
+      setIsLoading(false)
       return
     }
 
@@ -78,6 +87,9 @@ export default function TikTokPage() {
       setIsLoading(false)
     }
   }
+
+  // Auto-download logic for PWA Share Target
+  useAutoDownload(handleSearch, locale, "tiktok")
 
   const tiktokDict = dict.platforms.tiktok;
 
@@ -141,6 +153,8 @@ export default function TikTokPage() {
           <DownloadPreview 
             data={downloadData} 
             isLoading={isLoading} 
+            autoTriggerDownload={autoTriggerDownload}
+            searchCounter={searchCounter}
             buttonStyle="bg-linear-to-r from-pink-600 to-rose-700 hover:from-pink-500 hover:to-rose-600"
             accentText="text-pink-600"
             accentBg="bg-pink-600/10"

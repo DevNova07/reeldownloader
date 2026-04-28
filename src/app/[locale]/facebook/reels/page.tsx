@@ -29,6 +29,7 @@ export default function FacebookReelsPage() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [downloadData, setDownloadData] = React.useState<any>(null)
   const [isLoading, setIsLoading] = React.useState(false)
+  const [error, setError] = React.useState<string | null>(null)
   
   const pathname = usePathname()
   const locale = pathname.split('/')[1] as Locale
@@ -44,6 +45,7 @@ export default function FacebookReelsPage() {
 
     setIsLoading(true)
     setDownloadData(null)
+    setError(null)
 
     const searchPromise = async () => {
       const response = await fetch("/api/download", {
@@ -66,6 +68,9 @@ export default function FacebookReelsPage() {
       await searchPromise()
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
+      const msg = err?.message || "Failed to process the link. Please try again.";
+      setError(msg);
+      toast.error(msg);
     } finally {
       setIsLoading(false)
     }

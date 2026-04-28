@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { SearchBar } from "@/components/layout/SearchBar"
 import { CategoryCards } from "@/components/layout/CategoryCards"
 import { DownloadPreview } from "@/components/layout/DownloadPreview"
@@ -26,14 +26,18 @@ import { ChromeExtensionBanner } from "@/components/layout/ChromeExtensionBanner
 import { useSearchParams } from "next/navigation"
 import { useAutoDownload } from "@/hooks/useAutoDownload"
 
+import { Breadcrumbs } from "@/components/shared/Breadcrumbs"
+import { InternalToolLinks } from "@/components/shared/InternalToolLinks"
+
 interface TwitterPageProps {
   content: any
   locale: Locale
 }
 
-export default function TwitterPage({ content, locale }: TwitterPageProps) {
+function TwitterPageContent({ content, locale }: TwitterPageProps) {
   const [downloadData, setDownloadData] = React.useState<PlatformResult | null>(null)
   const [isLoading, setIsLoading] = React.useState(false)
+  const [error, setError] = React.useState<string | null>(null)
   const [autoTriggerDownload, setAutoTriggerDownload] = React.useState(false)
   const [searchCounter, setSearchCounter] = React.useState(0)
   
@@ -52,6 +56,7 @@ export default function TwitterPage({ content, locale }: TwitterPageProps) {
 
     setIsLoading(true)
     setDownloadData(null)
+    setError(null)
 
     try {
       const response = await fetch("/api/download", {
@@ -68,6 +73,9 @@ export default function TwitterPage({ content, locale }: TwitterPageProps) {
         throw new Error(result.error || "Failed to fetch content")
       }
     } catch (err: any) {
+      const msg = err?.message || "Failed to process the link. Please try again.";
+      setError(msg);
+      toast.error(msg);
     } finally {
       setIsLoading(false)
     }
@@ -89,6 +97,7 @@ export default function TwitterPage({ content, locale }: TwitterPageProps) {
           }}
         />
       )}
+      {content.faq && <StructuredData type="FAQPage" data={content.faq} />}
       
       <section className="relative overflow-hidden bg-linear-to-r from-slate-800 to-slate-950 px-4 pt-14 pb-8 sm:pt-20 sm:pb-32 sm:px-6 lg:px-8">
         <HeroEffect color="bg-slate-500" intensity="medium" />
@@ -126,6 +135,24 @@ export default function TwitterPage({ content, locale }: TwitterPageProps) {
               buttonClass="bg-white text-black hover:bg-neutral-200"
               iconClass="text-slate-800"
             />
+
+            <AnimatePresence>
+              {error && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="mx-auto max-w-3xl mt-4 p-4 rounded-2xl bg-red-500/20 border-2 border-red-500/50 text-white font-black uppercase italic tracking-wider shadow-2xl backdrop-blur-md text-left"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="bg-red-500 p-1.5 rounded-lg shrink-0">
+                      <Info className="h-5 w-5 text-white" />
+                    </div>
+                    {error}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
             {!downloadData && !isLoading && (
               <div className="overflow-hidden">
                 <TrustBadges dict={dict} />
@@ -149,8 +176,17 @@ export default function TwitterPage({ content, locale }: TwitterPageProps) {
       </section>
 
       <ToolSubNav />
+      {content.title && (
+        <Breadcrumbs 
+          locale={locale}
+          platform="Twitter"
+          platformPath="twitter"
+          toolTitle={content.title}
+        />
+      )}
       <RelatedTools currentPlatform="twitter" />
       <CategoryCards />
+      <InternalToolLinks currentPlatform="twitter" dict={dict} accentColor="text-slate-500" />
 
       <section className="bg-neutral-50 px-4 py-4 dark:bg-neutral-900/50 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
@@ -236,5 +272,13 @@ export default function TwitterPage({ content, locale }: TwitterPageProps) {
         </div>
       </section>
     </div>
+  )
+}
+
+export default function TwitterPage(props: TwitterPageProps) {
+  return (
+    <React.Suspense fallback={null}>
+      <TwitterPageContent {...props} />
+    </React.Suspense>
   )
 }

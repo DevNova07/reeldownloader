@@ -4,29 +4,18 @@ import path from 'path';
 /**
  * API Key Pool Configuration.
  */
-const ALL_KEYS = [
-  "71b678b386mshfbf8544ef27b963p18d3fbjsn9603ed997f89",
-  "30cfff0008mshcd9738405b90602p1718bbjsn76a163aaa269",
-  "90681a6f3cmsh11960059bfa010dp119547jsna49deca7951b",
-  "9e56ba0f6ab940b68e652ad87f843134",
-  "8fc0481165e348109029f0530e821626",
-  "2b499efe85msh77757d93ebe633fp16285bjsndfe8c19a6694"
-];
+const ALL_KEYS: string[] = [];
 
 export const PLATFORM_KEYS: Record<string, string[]> = {
-  instagram: ALL_KEYS,
-  tiktok: ["71b678b386mshfbf8544ef27b963p18d3fbjsn9603ed997f89", "2b499efe85msh77757d93ebe633fp16285bjsndfe8c19a6694"],
-  tiktok_v2: ["71b678b386mshfbf8544ef27b963p18d3fbjsn9603ed997f89", "2b499efe85msh77757d93ebe633fp16285bjsndfe8c19a6694"],
-  youtube: ALL_KEYS,
-  youtube138: ALL_KEYS,
-  youtube_v2: ALL_KEYS,
-  facebook: ALL_KEYS,
-
-  snapchat: ALL_KEYS,
-  telegram: ALL_KEYS,
-  twitter: ALL_KEYS,
-  global: ALL_KEYS
+  instagram: ["9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7"],
+  facebook: ["9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7"],
+  tiktok: ["9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7"],
+  youtube: ["9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7"],
+  twitter: ["9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7"],
+  telegram: ["9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7"],
+  global: ["9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7"]
 };
+
 
 
 export interface KeyStats {
@@ -88,7 +77,7 @@ class StatsManager {
 
   private createInitialStats(): GlobalStats {
     const platforms: Record<string, PlatformStats> = {};
-    const platformList = ["instagram", "tiktok", "youtube", "facebook", "snapchat", "telegram", "twitter"];
+    const platformList: string[] = ["facebook", "tiktok"];
 
     platformList.forEach(p => {
       platforms[p] = this.createPlatformEntry();

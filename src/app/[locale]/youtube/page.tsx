@@ -27,20 +27,29 @@ import { getPlatformFromUrl, getLocalizedRoute } from "@/utils/platform-detector
 import { TrustBadges } from "@/components/ui/TrustBadges"
 import { ChromeExtensionBanner } from "@/components/layout/ChromeExtensionBanner"
 
+import { useAutoDownload } from "@/hooks/useAutoDownload"
+
 export default function YoutubePage() {
   const router = useRouter()
   const [downloadData, setDownloadData] = React.useState<PlatformResult | null>(null)
   const [isLoading, setIsLoading] = React.useState(false)
+  const [autoTriggerDownload, setAutoTriggerDownload] = React.useState(false)
+  const [searchCounter, setSearchCounter] = React.useState(0)
   
   const pathname = usePathname()
   const locale = pathname.split('/')[1] as Locale
-    const dict = getDictionary(locale)
+  const dict = getDictionary(locale)
   const { addToHistory } = useDownloadHistory("youtube")
 
-  const handleSearch = async (url: string) => {
+  const handleSearch = async (url: string, isAutoTrigger = false) => {
+    setSearchCounter(prev => prev + 1)
+    setAutoTriggerDownload(isAutoTrigger)
+    setIsLoading(true)
+
     const cached = getCached(url)
     if (cached) {
       setDownloadData(cached)
+      setIsLoading(false)
       return
     }
 
@@ -51,7 +60,7 @@ export default function YoutubePage() {
       const response = await fetch("/api/download", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url }),
+        body: JSON.stringify({ url, platform: "youtube" }),
       })
       const contentType = response.headers.get("content-type")
       if (!contentType || !contentType.includes("application/json")) {
@@ -78,6 +87,9 @@ export default function YoutubePage() {
       setIsLoading(false)
     }
   }
+
+  // Auto-download logic for PWA Share Target
+  useAutoDownload(handleSearch, locale, "youtube")
 
   const ytDict = dict.platforms.youtube;
 
@@ -142,6 +154,8 @@ export default function YoutubePage() {
           <DownloadPreview 
             data={downloadData} 
             isLoading={isLoading} 
+            autoTriggerDownload={autoTriggerDownload}
+            searchCounter={searchCounter}
             buttonStyle="bg-white text-red-600 hover:bg-neutral-100"
             accentText="text-red-600"
             accentBg="bg-red-600/10"

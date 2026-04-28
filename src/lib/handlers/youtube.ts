@@ -1,169 +1,192 @@
-import { fetchWithRotation } from "../api-utils";
-import { type PlatformResult, type Media } from "@/types/download";
-import { statsManager } from "@/utils/stats";
-import { cacheManager } from "@/utils/cache";
+import { fetchWithRotation, resolveUrl } from "../api-utils";
+import { type PlatformResult, type Media } from "../../types/download";
 
 /**
- * Optimized YouTube Downloader Handler.
- * Primary: YouTube Media Downloader (High Performance & Direct Links)
+ * Faster Primary YouTube API: snap-video3.p.rapidapi.com
  */
+async function fastYoutubeApi(url: string): Promise<PlatformResult> {
+  const resolvedUrl = await resolveUrl(url);
+  const apiUrl = "https://snap-video3.p.rapidapi.com/download";
+  const body = new URLSearchParams({ url: resolvedUrl }).toString();
+
+  const response = await fetchWithRotation(apiUrl, {
+    method: "POST",
+    headers: {
+      "x-rapidapi-host": "snap-video3.p.rapidapi.com",
+      "Content-Type": "application/x-www-form-urlencoded"
+    },
+    body: body
+  }, "youtube");
+
+  const result = await response.json();
+  if (!result || !result.medias || result.medias.length === 0) {
+    throw new Error("Fast YouTube API returned no media.");
+  }
+
+  const medias: Media[] = result.medias.map((media: any, index: number) => {
+    const qualityStr = (media.quality || "").toLowerCase();
+    // Strict audio detection
+    const isActuallyAudio = 
+      qualityStr.includes("audio") || 
+      qualityStr.includes("kbps") || 
+      media.type === "audio" ||
+      media.extension === "mp3" ||
+      media.extension === "m4a";
+
+    const isVideo = !isActuallyAudio && (media.videoAvailable !== false || media.type === "video");
+
+    return {
+      id: `fast-yt-${index}`,
+      url: media.url,
+      quality: media.quality || (isVideo ? "HD" : "128kbps"),
+      type: isVideo ? "video" : "audio",
+      extension: media.extension || (isVideo ? "mp4" : "mp3")
+    };
+  });
+
+  // Sort: MP4 Videos with Audio (Combined) -> MP4 Video -> Others
+  medias.sort((a, b) => {
+    if (a.type === "video" && b.type === "audio") return -1;
+    if (a.type === "audio" && b.type === "video") return 1;
+    
+    // Prioritize mp4 for better browser support
+    if (a.extension === "mp4" && b.extension !== "mp4") return -1;
+    if (a.extension !== "mp4" && b.extension === "mp4") return 1;
+
+    return 0;
+  });
+
+  return {
+    title: result.title || "YouTube Video",
+    caption: result.title || "",
+    thumbnail: result.thumbnail || "https://www.youtube.com/favicon.ico",
+    medias,
+    likes: 0,
+    commentCount: 0,
+  };
+}
+
+/**
+ * Comprehensive Secondary YouTube API (Supports Channels/Posts): youtube-media-downloader.p.rapidapi.com
+ */
+async function comprehensiveYoutubeApi(url: string): Promise<PlatformResult> {
+  const lowercaseUrl = url.toLowerCase();
+  const isChannel = /\/(channel|user|c)\/|youtube\.com\/@/.test(lowercaseUrl);
+
+  if (isChannel) {
+    let channelId = "";
+    if (url.includes("/@")) {
+      channelId = "@" + url.split("/@")[1].split("/")[0].split("?")[0];
+    } else if (url.includes("/channel/")) {
+      channelId = url.split("/channel/")[1].split("/")[0].split("?")[0];
+    } else if (url.includes("/user/")) {
+      channelId = url.split("/user/")[1].split("/")[0].split("?")[0];
+    } else if (url.includes("/c/")) {
+      channelId = url.split("/c/")[1].split("/")[0].split("?")[0];
+    }
+
+    if (!channelId) throw new Error("Could not extract channel ID.");
+
+    const apiUrl = `https://youtube-media-downloader.p.rapidapi.com/v2/channel/posts?channelId=${encodeURIComponent(channelId)}`;
+    const response = await fetchWithRotation(apiUrl, {
+      method: "GET",
+      headers: { "x-rapidapi-host": "youtube-media-downloader.p.rapidapi.com" }
+    }, "youtube");
+
+    const result = await response.json();
+    if (!result.items || result.items.length === 0) throw new Error("No community posts found.");
+
+    const items = result.items.map((item: any) => {
+      let thumbnail = "https://www.youtube.com/favicon.ico";
+      if (item.images && item.images[0] && item.images[0][0]) {
+        const imgSet = item.images[0];
+        thumbnail = imgSet[imgSet.length - 1]?.url || imgSet[0]?.url;
+      }
+      return {
+        id: item.id,
+        title: item.contentText || "YouTube Post",
+        thumbnail: thumbnail,
+        url: `https://www.youtube.com/post/${item.id}`,
+      };
+    });
+
+    return {
+      title: `YouTube Channel: ${channelId}`,
+      thumbnail: items[0]?.thumbnail || "https://www.youtube.com/favicon.ico",
+      medias: [],
+      caption: `Latest community posts from ${channelId}`,
+      likes: 0,
+      commentCount: 0,
+      type: "list",
+      items
+    };
+  }
+
+  const apiUrl = `https://youtube-media-downloader.p.rapidapi.com/v2/video/details?url=${encodeURIComponent(url)}`;
+  const response = await fetchWithRotation(apiUrl, {
+    method: "GET",
+    headers: { "x-rapidapi-host": "youtube-media-downloader.p.rapidapi.com" }
+  }, "youtube");
+
+  const result = await response.json();
+  if (!result || !result.formats) throw new Error("Comprehensive API failed.");
+
+  const medias: Media[] = result.formats.map((format: any, index: number) => {
+    const hasVideo = format.hasVideo !== false && !format.mimeType?.includes('audio-only');
+    const hasAudio = format.hasAudio !== false;
+    
+    return {
+      id: `yt-comp-${index}`,
+      url: format.url,
+      quality: format.qualityLabel || format.quality || "Standard",
+      type: hasVideo ? "video" : "audio",
+      extension: format.mimeType?.includes("mp4") ? "mp4" : "webm",
+      hasAudio,
+      hasVideo
+    };
+  });
+
+  // Sort: Combined (Video + Audio) MP4 -> Video MP4 -> Others
+  medias.sort((a: any, b: any) => {
+    const aCombined = a.hasVideo && a.hasAudio;
+    const bCombined = b.hasVideo && b.hasAudio;
+
+    if (aCombined && !bCombined) return -1;
+    if (!aCombined && bCombined) return 1;
+
+    if (a.hasVideo && !b.hasVideo) return -1;
+    if (!a.hasVideo && b.hasVideo) return 1;
+
+    if (a.extension === "mp4" && b.extension !== "mp4") return -1;
+    if (a.extension !== "mp4" && b.extension === "mp4") return 1;
+
+    return 0;
+  });
+
+  return {
+    title: result.title || "YouTube Video",
+    caption: result.description || "",
+    thumbnail: result.thumbnails?.[result.thumbnails.length - 1]?.url || "https://www.youtube.com/favicon.ico",
+    medias,
+    likes: result.viewCount || 0,
+    commentCount: 0,
+  };
+}
+
 export async function youtubeHandler(url: string): Promise<PlatformResult> {
-  const cached = cacheManager.get(url);
-  if (cached) return cached;
-
-  const videoId = extractYouTubeVideoId(url);
-  if (!videoId) {
-    throw new Error("Invalid YouTube URL. Please provide a valid video or shorts link.");
-  }
-
-  try {
-    const primaryHost = "youtube-media-downloader.p.rapidapi.com";
-    const primaryUrl = `https://${primaryHost}/v2/video/details?videoId=${videoId}`;
-    
-    const response = await fetchWithRotation(primaryUrl, {
-      headers: {
-        "x-rapidapi-host": primaryHost
-      }
-    }, "youtube");
-
-    if (response.ok) {
-      const data = await response.json();
-      if (data && data.errorId === "Success") {
-        const medias: Media[] = [];
-
-        // Extract Video formats
-        if (data.videos?.items) {
-          data.videos.items.forEach((item: any, index: number) => {
-            medias.push({
-              id: `yt-video-${index}-${Date.now()}`,
-              url: item.url,
-              quality: `${item.quality} ${item.hasAudio ? "" : "(No Audio)"}`,
-              type: "video",
-              extension: item.extension || "mp4",
-              size: item.sizeText
-            });
-          });
-        }
-
-        // Extract Audio formats
-        if (data.audios?.items) {
-          data.audios.items.forEach((item: any, index: number) => {
-            medias.push({
-              id: `yt-audio-${index}-${Date.now()}`,
-              url: item.url,
-              quality: "Audio Only",
-              type: "audio",
-              extension: item.extension || "mp3",
-              size: item.sizeText
-            });
-          });
-        }
-
-        if (medias.length > 0) {
-          const formattedData: PlatformResult = {
-            thumbnail: data.thumbnails?.[data.thumbnails.length - 1]?.url || data.thumbnails?.[0]?.url,
-            title: data.title || "YouTube Video",
-            medias: medias,
-            caption: data.description?.substring(0, 200) + "...",
-            author: data.channel?.name || "YouTube Creator",
-            authorId: data.channel?.handle || "",
-            likes: 0,
-            commentCount: 0
-          };
-
-          statsManager.trackDownload(url, formattedData.title, "youtube");
-          cacheManager.set(url, formattedData);
-          return formattedData;
-        }
-      }
-    }
-  } catch (error) {
-    console.warn("Primary YouTube API failed, trying fallback...", error);
-  }
-
-  // --- FALLBACK API (Social Media Video Downloader) ---
-  try {
-    const fallbackHost = "social-media-video-downloader.p.rapidapi.com";
-    const fallbackUrl = `https://${fallbackHost}/smvd/get/all?url=${encodeURIComponent(url)}`;
-    
-    const response = await fetchWithRotation(fallbackUrl, {
-      headers: {
-        "x-rapidapi-host": fallbackHost
-      }
-    }, "youtube");
-
-    if (response.ok) {
-      const data = await response.json();
-      if (data && data.links && Array.isArray(data.links) && data.links.length > 0) {
-        const medias: Media[] = data.links.map((link: any, index: number) => ({
-          id: `yt-fallback-${index}-${Date.now()}`,
-          url: link.link,
-          quality: link.quality || "HD",
-          type: "video",
-          extension: "mp4"
-        }));
-
-        const formattedData: PlatformResult = {
-          thumbnail: data.picture || "",
-          title: data.title || "YouTube Video",
-          medias: medias,
-          caption: "Downloaded via InstaSnap",
-          author: "YouTube Creator",
-          authorId: "",
-          likes: 0,
-          commentCount: 0
-        };
-
-        statsManager.trackDownload(url, formattedData.title, "youtube");
-        cacheManager.set(url, formattedData);
-        return formattedData;
-      }
-    }
-  } catch (error) {
-    console.error("YouTube Fallback Error:", error);
-  }
-
-  throw new Error("Could not download YouTube video. Please try again later.");
-}
-
-
-
-
-/**
- * Helper to extract Video ID from various YouTube URL formats.
- */
-function extractYouTubeVideoId(url: string): string | null {
-  const patterns = [
-    /(?:v=|\/v\/|embed\/|shorts\/|youtu\.be\/|\/v=|^)([^#&?]*)/,
-    /youtube\.com\/watch\?v=([^#&?]*)/,
-    /youtube\.com\/shorts\/([^#&?]*)/,
-    /youtu\.be\/([^#&?]*)/
-  ];
-
-  for (const pattern of patterns) {
-    const match = url.match(pattern);
-    if (match && match[1] && match[1].length === 11) {
-      return match[1];
-    }
-  }
-
-  // Handle mobile share links and others
-  try {
-    const urlObj = new URL(url);
-    if (urlObj.hostname === "youtu.be") return urlObj.pathname.slice(1);
-    const v = urlObj.searchParams.get("v");
-    if (v) return v;
-    
-    // Check for /shorts/id
-    if (urlObj.pathname.startsWith('/shorts/')) {
-      return urlObj.pathname.split('/')[2];
-    }
-  } catch {
-    // fallback to regex
-  }
+  // If it's likely a channel/post, go direct to comprehensive API
+  const isChannelOrPost = url.includes("/@") || url.includes("/channel/") || url.includes("/post/") || url.includes("/c/") || url.includes("/user/");
   
-  return null;
+  if (isChannelOrPost) {
+    return await comprehensiveYoutubeApi(url);
+  }
+
+  // Standard video: Try Fast API first
+  try {
+    console.log(`[API] Attempting Fast YouTube API for ${url}...`);
+    return await fastYoutubeApi(url);
+  } catch (err: any) {
+    console.warn(`[API] Fast API failed: ${err.message}. Switching to Comprehensive API...`);
+    return await comprehensiveYoutubeApi(url);
+  }
 }
-
-
-

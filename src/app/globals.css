@@ -104,3 +104,9 @@ body {
 #footer-platforms-list {
   margin-left: -1.75rem; /* Equivalent to -ml-7 */
 }
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}

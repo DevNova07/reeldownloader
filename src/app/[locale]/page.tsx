@@ -91,7 +91,8 @@ function HomeContent() {
 
     try {
       await searchPromise()
-    } catch (err: unknown) {
+    } catch (err: any) {
+      toast.error(err?.message || "Failed to process the link. Please try again.");
     } finally {
       setIsLoading(false)
     }
@@ -211,7 +212,8 @@ function HomeContent() {
                         alt={item.title || "Thumbnail"}
                         fill
                         loading="lazy"
-                        sizes="(max-width: 768px) 50vw, 20vw"
+                        sizes="(max-width: 640px) 50vw, 15vw"
+                        quality={60}
                         className="object-cover rounded-xl transition-transform duration-500 group-hover:scale-110"
                       />
                       <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/90 p-3 text-left z-10 opacity-0 group-hover:opacity-100 transition-opacity">

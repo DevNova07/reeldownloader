@@ -1,166 +1,93 @@
-import { fetchWithRotation } from "../api-utils";
-import { type PlatformResult, type Media } from "@/types/download";
-import { statsManager } from "@/utils/stats";
-import { cacheManager } from "@/utils/cache";
-
-interface TwitterAPIResponse {
-  error?: boolean;
-  thumbnail?: string;
-  title?: string;
-  medias?: Array<{
-    url: string;
-    type?: "video" | "image";
-    quality?: string;
-    extension?: string;
-  }>;
-  success?: boolean;
-  data?: {
-    thumbnail?: string;
-    title?: string;
-    description?: string;
-    medias?: Array<{
-      url: string;
-      quality?: string;
-    }>;
-  };
-}
+import { fetchWithRotation, resolveUrl } from "../api-utils";
+import { type PlatformResult, type Media } from "../../types/download";
 
 /**
- * Twitter / X Downloader Handler.
- * modularized for speed and maintainability.
+ * Twitter Download Handler using RapidAPI
+ * Host: snap-video3.p.rapidapi.com
  */
 export async function twitterHandler(url: string): Promise<PlatformResult> {
-  // --- CLUSTER 1: All-in-One (Primary) ---
-  try {
-    const rapidApiHost = "social-download-all-in-one.p.rapidapi.com";
-    const apiUrl = `https://${rapidApiHost}/v1/social/autolink`;
+  // Resolve short links (t.co, etc.)
+  let resolvedUrl = await resolveUrl(url);
 
-
-    const response = await fetchWithRotation(apiUrl, {
-      method: "POST",
-      headers: {
-        "x-rapidapi-host": rapidApiHost,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ url: url }),
-    }, "twitter");
-
-    if (response.ok) {
-      const data = await response.json();
-      if (!data.error && data.medias && data.medias.length > 0) {
-        const formattedMedias: Media[] = data.medias.map((m: { type?: string; url: string; quality?: string; extension?: string }) => {
-          const isImage = m.type === "image" || m.url.includes(".webp") || m.url.includes(".webp") || m.url.includes(".webp") || m.url.includes("pbs.twimg.com/media/");
-          return {
-            id: Math.random().toString(36).substring(7),
-            url: m.url,
-            quality: m.quality || (isImage ? "HD Image" : "HD Video"),
-            type: isImage ? "image" : "video",
-            extension: m.extension || (isImage ? "jpg" : "mp4"),
-          };
-        });
-
-        // Remove image if video is present (User preference)
-        const videoOnly = formattedMedias.filter((m) => m.type === "video");
-        const finalMedias = videoOnly.length > 0 ? videoOnly : formattedMedias;
-
-        const formattedData: PlatformResult = {
-          thumbnail: data.thumbnail || (formattedMedias.find((m) => m.type === "image")?.url || formattedMedias[0]?.url || ""),
-          title: data.title || "X / Twitter Content",
-          medias: finalMedias,
-          caption: data.title || "",
-          likes: 0,
-          commentCount: 0,
-        };
-
-        statsManager.trackDownload(url, formattedData.title, "twitter");
-        cacheManager.set(url, formattedData);
-        return formattedData;
-      }
-    }
-  } catch (e) {
-    console.warn("Primary X API failed, attempting Backup node...", e);
+  // Clean URL: Remove query params for better API parsing
+  if (resolvedUrl.includes("?")) {
+    resolvedUrl = resolvedUrl.split("?")[0];
   }
 
-  // --- CLUSTER 2: Twitter Video Downloader (Fallback) ---
-  try {
-    const fallbackHost = "twitter-video-downloader-api.p.rapidapi.com";
-    const fallbackUrl = `https://${fallbackHost}/api/v1/twitter/details?url=${encodeURIComponent(url)}`;
-    
-    
-    const response = await fetchWithRotation(fallbackUrl, {
-      method: "GET",
-      headers: { "x-rapidapi-host": fallbackHost },
-    }, "twitter");
+  const apiUrl = "https://snap-video3.p.rapidapi.com/download";
+  const body = new URLSearchParams({ url: resolvedUrl }).toString();
 
-    if (response.ok) {
-      const data = (await response.json()) as TwitterAPIResponse;
-      if (data.success && data.data && data.data.medias) {
-        const tkMedias: Media[] = data.data.medias.map((m: { type?: string; url: string; quality?: string }) => {
-           const isVideo = m.type === "video" || m.url.includes(".mp4");
-           return {
-            id: Math.random().toString(36).substring(7),
-            url: m.url,
-            quality: m.quality || (isVideo ? "HD Video" : "HD Image"),
-            type: isVideo ? "video" : "image",
-            extension: isVideo ? "mp4" : "jpg",
-           };
-        });
+  const response = await fetchWithRotation(apiUrl, {
+    method: "POST",
+    headers: {
+      "x-rapidapi-host": "snap-video3.p.rapidapi.com",
+      "Content-Type": "application/x-www-form-urlencoded"
+    },
+    body: body
+  }, "twitter");
 
-        const formattedData: PlatformResult = {
-          thumbnail: data.data.thumbnail || "",
-          title: data.data.title || "X / Twitter Video",
-          medias: tkMedias,
-          caption: data.data.description || "",
-          likes: 0,
-          commentCount: 0,
-        };
+  const result = await response.json();
+  console.log("[DEBUG] Twitter API Response:", JSON.stringify(result).substring(0, 500));
 
-        statsManager.trackDownload(url, formattedData.title, "twitter");
-        cacheManager.set(url, formattedData);
-        return formattedData;
-      }
-    }
-  } catch (e) {
-    // --- CLUSTER 3: All-in-One Downloader (New Backup) ---
-    try {
-      const allInOneHost = "all-in-one-video-downloader-api-tiktok-ig-fb.p.rapidapi.com";
-      const allInOneUrl = `https://${allInOneHost}/all-downloader.php?url=${encodeURIComponent(url)}`;
-      
-      const response = await fetchWithRotation(allInOneUrl, {
-        method: "GET",
-        headers: { "x-rapidapi-host": allInOneHost },
-      }, "twitter");
-
-      if (response.ok) {
-        const data = await response.json();
-        
-        if (data && data.videos && Array.isArray(data.videos) && data.videos.length > 0) {
-          const medias: Media[] = data.videos.map((item: any, index: number) => ({
-            id: `tw-allinone-${index}-${Date.now()}`,
-            url: item.download_url,
-            quality: item.resolution || "HD Video",
-            type: item.resolution === "audio" ? "audio" : "video",
-            extension: item.extension || "mp4"
-          }));
-
-          const formattedData: PlatformResult = {
-            thumbnail: data.thumbnail?.startsWith('data:') ? data.thumbnail : (data.thumbnail || ""),
-            title: data.title || "X / Twitter Content",
-            medias: medias,
-            caption: data.title || "",
-            likes: 0,
-            commentCount: 0,
-          };
-
-          statsManager.trackDownload(url, formattedData.title, "twitter");
-          cacheManager.set(url, formattedData);
-          return formattedData;
-        }
-      }
-    } catch (e) {
-      console.warn("X / Twitter All-in-One Backup failed:", (e as Error).message);
-    }
+  if (!result || !result.medias || result.medias.length === 0) {
+    throw new Error("Failed to fetch Twitter video. Please ensure the URL is correct and public.");
   }
 
-  throw new Error("Could not fetch X content from any cluster.");
+  const medias: Media[] = result.medias.map((media: any, index: number) => {
+    let qualityStr = media.quality || (media.videoAvailable ? "Video" : "Audio");
+    if (qualityStr.toLowerCase() === '128kbps') {
+      qualityStr = '128kbps Audio';
+    } else {
+      qualityStr = qualityStr.split(' ').map((w: string) => w.toUpperCase() === 'HD' ? 'HD' : w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+    }
+
+    let isActuallyAudio = qualityStr.toLowerCase().includes('audio') || qualityStr.toLowerCase().includes('kbps');
+    let isVideo = media.videoAvailable !== false && !isActuallyAudio;
+
+    return {
+      id: `twitter-media-${index}`,
+      url: media.url,
+      quality: qualityStr,
+      type: isVideo ? "video" : "audio",
+      extension: media.extension || (isVideo ? "mp4" : "mp3")
+    };
+  });
+
+  // Sort medias: Standard videos (720p/HD) first for best browser compatibility
+  medias.sort((a, b) => {
+    if (a.type === "video" && b.type === "audio") return -1;
+    if (a.type === "audio" && b.type === "video") return 1;
+    
+    const qA = a.quality.toLowerCase();
+    const qB = b.quality.toLowerCase();
+    
+    const score = (q: string) => {
+      if (q.includes("720") || q.includes("hd")) return 10;
+      if (q.includes("360") || q.includes("sd")) return 8;
+      if (q.includes("1080") || q.includes("full hd")) return 5;
+      if (q.includes("4k")) return 3;
+      return 1;
+    };
+    
+    return score(qB) - score(qA);
+  });
+
+  // Try to extract username from URL
+  let authorId = "twitter";
+  const usernameMatch = resolvedUrl.match(/twitter\.com\/([^\/]+)/) || resolvedUrl.match(/x\.com\/([^\/]+)/);
+  if (usernameMatch && usernameMatch[1]) {
+    authorId = usernameMatch[1];
+  }
+
+  return {
+    title: result.title || "Twitter Video",
+    caption: result.title || "",
+    thumbnail: result.thumbnail || "https://abs.twimg.com/favicons/twitter.2.ico",
+    medias,
+    author: authorId,
+    authorId: authorId,
+    likes: 0,
+    commentCount: 0,
+    shareCount: 0,
+  };
 }

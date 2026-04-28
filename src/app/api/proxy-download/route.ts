@@ -18,10 +18,15 @@ export async function GET(request: Request) {
     const fetchHeaders: Record<string, string> = {
       "User-Agent": userAgent,
       "Accept": "*/*",
-      "Referer": targetUrl.hostname.includes("youtube") || targetUrl.hostname.includes("googlevideo") || targetUrl.hostname.includes("monity.io")
+      "Referer": targetUrl.hostname.includes("youtube") || targetUrl.hostname.includes("googlevideo")
         ? "https://www.youtube.com/" 
+        : targetUrl.hostname.includes("tiktok") || targetUrl.hostname.includes("tiktokcdn")
+        ? "https://www.tiktok.com/"
+        : targetUrl.hostname.includes("facebook") || targetUrl.hostname.includes("fbcdn")
+        ? "https://www.facebook.com/"
         : `${targetUrl.protocol}//${targetUrl.hostname}/`,
     };
+
 
     if (rangeHeader) {
       fetchHeaders["Range"] = rangeHeader;
