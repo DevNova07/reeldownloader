@@ -25,4 +25,9 @@ export interface PlatformResult {
     url: string; // The URL to re-trigger search
   }>;
   url?: string;
+  comments?: Array<{
+    username: string;
+    text: string;
+    mention?: string;
+  }>;
 }
