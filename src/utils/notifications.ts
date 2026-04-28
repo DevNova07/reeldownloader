@@ -20,14 +20,14 @@ export async function requestNotificationPermission(): Promise<boolean> {
   return false;
 }
 
-export async function sendDownloadCompleteNotification() {
+export async function sendDownloadCompleteNotification(videoTitle?: string) {
   if (!('Notification' in window) || Notification.permission !== 'granted') {
     return;
   }
 
   const title = 'SavClip';
   const options: any = {
-    body: 'Your video is ready! 🎬',
+    body: videoTitle ? `"${videoTitle}" is ready! 🎬` : 'Your video is ready! 🎬',
     icon: '/icon-192x192.webp', // Main app icon
     badge: '/icon-192x192.webp',
     vibrate: [100, 50, 100],
