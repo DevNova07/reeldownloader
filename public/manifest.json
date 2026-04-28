@@ -1,11 +1,11 @@
 {
-  "name": "SavClip Downloader",
+  "name": "SavClip",
   "short_name": "SavClip",
-  "description": "Fast and secure multi-platform media downloader.",
+  "description": "High-performance social media downloader for Instagram, Facebook, TikTok, and more.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#ec4899",
+  "background_color": "#000000",
+  "theme_color": "#000000",
   "icons": [
     {
       "src": "/icon-192x192.png",
@@ -19,31 +19,5 @@
       "type": "image/png",
       "purpose": "any maskable"
     }
-  ],
-  "orientation": "portrait",
-  "categories": ["utilities", "social", "productivity"],
-  "shortcuts": [
-    {
-      "name": "Download Instagram",
-      "short_name": "Instagram",
-      "url": "/en/instagram",
-      "icons": [{ "src": "/icon-192x192.png", "sizes": "192x192" }]
-    },
-    {
-      "name": "Download TikTok",
-      "short_name": "TikTok",
-      "url": "/en/tiktok",
-      "icons": [{ "src": "/icon-192x192.png", "sizes": "192x192" }]
-    }
-  ],
-  "share_target": {
-    "action": "/share-target",
-    "method": "GET",
-    "enctype": "application/x-www-form-urlencoded",
-    "params": {
-      "title": "title",
-      "text": "text",
-      "url": "url"
-    }
-  }
+  ]
 }
