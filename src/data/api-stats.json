@@ -1,22 +1,22 @@
 {
-  "totalRequests": 61,
-  "successfulRequests": 44,
-  "failedRequests": 17,
+  "totalRequests": 63,
+  "successfulRequests": 45,
+  "failedRequests": 18,
   "savedRequests": 0,
   "totalVisits": 0,
   "platforms": {
     "facebook": {
-      "total": 6,
-      "success": 4,
-      "fail": 2,
+      "total": 8,
+      "success": 5,
+      "fail": 3,
       "keys": {
         "9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7": {
           "name": "API 1",
           "status": "active",
-          "remaining": "297",
+          "remaining": "4963",
           "limit": "unkn",
-          "used": 4,
-          "lastCheck": "2026-04-28T10:37:31.530Z"
+          "used": 5,
+          "lastCheck": "2026-04-28T11:03:47.743Z"
         }
       }
     },

@@ -86,8 +86,8 @@ async function primaryTiktokApi(resolvedUrl: string): Promise<PlatformResult> {
     } else {
       qualityStr = qualityStr.split(' ').map((w: string) => w.toUpperCase() === 'HD' ? 'HD' : w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
     }
-    let isActuallyAudio = qualityStr.toLowerCase().includes('audio') || qualityStr.toLowerCase().includes('kbps');
-    let isVideo = media.videoAvailable !== false && !isActuallyAudio;
+    const isActuallyAudio = qualityStr.toLowerCase().includes('audio') || qualityStr.toLowerCase().includes('kbps');
+    const isVideo = media.videoAvailable !== false && !isActuallyAudio;
 
     return {
       id: `tiktok-media-${index}`,

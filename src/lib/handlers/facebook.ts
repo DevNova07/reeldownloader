@@ -9,30 +9,25 @@ export async function facebookHandler(url: string): Promise<PlatformResult> {
   // Resolve short links (fb.watch, etc.)
   let resolvedUrl = await resolveUrl(url);
 
-  // Clean URL and convert reels to watch format if needed
+  // Clean URL: Remove unnecessary tracking params but keep the ID structure
   try {
     const urlObj = new URL(resolvedUrl);
-    
-    // Convert /reels/ID/ or /reel/ID/ to watch format
-    const reelMatch = resolvedUrl.match(/\/(?:reels|reel)\/(\d+)/);
-    if (reelMatch) {
-      resolvedUrl = `${urlObj.origin}/watch/?v=${reelMatch[1]}`;
+    // Keep only essential path and video ID
+    const v = urlObj.searchParams.get("v");
+    if (v) {
+      resolvedUrl = `${urlObj.origin}${urlObj.pathname}?v=${v}`;
     } else {
-      const videoId = urlObj.searchParams.get("v");
-      if (videoId) {
-        resolvedUrl = `${urlObj.origin}${urlObj.pathname}?v=${videoId}`;
-      } else {
-        resolvedUrl = `${urlObj.origin}${urlObj.pathname}`;
-      }
+      resolvedUrl = `${urlObj.origin}${urlObj.pathname}`;
     }
   } catch (e) {
-    // Fallback
+    // Keep original if parsing fails
   }
 
+  // Primary API: free-facebook-downloader.p.rapidapi.com
   const apiUrl = `https://free-facebook-downloader.p.rapidapi.com/external-api/facebook-video-downloader?url=${encodeURIComponent(resolvedUrl)}`;
 
   const response = await fetchWithRotation(apiUrl, {
-    method: "POST",
+    method: "POST", // The API uses POST with URL params
     headers: {
       "Content-Type": "application/json",
       "x-rapidapi-host": "free-facebook-downloader.p.rapidapi.com",
@@ -41,19 +36,18 @@ export async function facebookHandler(url: string): Promise<PlatformResult> {
   }, "facebook");
 
   const result = await response.json();
-  console.log("[DEBUG] Facebook API Response:", JSON.stringify(result, null, 2));
+  console.log("[DEBUG] Facebook API Response:", JSON.stringify(result).substring(0, 500));
 
-  if (!result.success || !result.links || Object.keys(result.links).length === 0) {
-    const errorMsg = result.message || "Failed to fetch Facebook video details. Please ensure the URL is public and not a private group post.";
-    console.error(`[API] Facebook Error: ${errorMsg} for URL: ${resolvedUrl}`);
-    throw new Error(errorMsg);
+  if (!result.success || !result.links) {
+    throw new Error(result.message || "Failed to fetch Facebook video. Please ensure the post is public.");
   }
 
   const medias: Media[] = [];
   
+  // High Quality Mapping
   if (result.links["Download High Quality"]) {
     medias.push({
-      id: `${result.id}-hd`,
+      id: `${result.id || Date.now()}-hd`,
       url: result.links["Download High Quality"],
       quality: "High Quality (HD)",
       type: "video",
@@ -61,11 +55,12 @@ export async function facebookHandler(url: string): Promise<PlatformResult> {
     });
   }
 
+  // Low Quality Mapping
   if (result.links["Download Low Quality"]) {
     medias.push({
-      id: `${result.id}-sd`,
+      id: `${result.id || Date.now()}-sd`,
       url: result.links["Download Low Quality"],
-      quality: "Low Quality (SD)",
+      quality: "Normal Quality (SD)",
       type: "video",
       extension: "mp4"
     });

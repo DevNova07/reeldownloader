@@ -238,37 +238,31 @@ export function DownloadPreview({
   };
 
   const handleNativeShare = async (url: string, title: string) => {
-
     if (typeof navigator === 'undefined' || !navigator.share) {
-      toast.error("Sharing is not supported on this browser.");
+      // Fallback for desktop: Copy to clipboard
+      try {
+        await navigator.clipboard.writeText(`${title}\n${window.location.origin}`);
+        toast.success("Link copied to clipboard! Share with friends. 🚀");
+      } catch (e) {
+        toast.error("Sharing is not supported on this browser.");
+      }
       return;
     }
 
     setIsSharing(true);
     try {
-      // Fetch the file as a blob to enable file sharing
-      const response = await fetch(url);
-      const blob = await response.blob();
-      const file = new File([blob], `${title.slice(0, 50)}.mp4`, { type: blob.type });
-
-      if (navigator.canShare && navigator.canShare({ files: [file] })) {
-        await navigator.share({
-          files: [file],
-          title: title,
-          text: "Check out this media I downloaded via SavClip! 🚀"
-        });
-      } else {
-        // Fallback to text sharing if file sharing is not supported
-        await navigator.share({
-          title: title,
-          text: "Check out this media I downloaded via SavClip! 🚀",
-          url: window.location.origin
-        });
-      }
+      // Instant sharing: Share the website link and title
+      // This is fast because it doesn't wait for a file download
+      await navigator.share({
+        title: title,
+        text: `Check out this ${data?.title || 'video'} on SavClip! 🚀`,
+        url: window.location.origin
+      });
+      toast.success("Thanks for sharing! 🌟");
     } catch (error) {
        if ((error as Error).name !== 'AbortError') {
          console.error("Share failed:", error);
-         toast.error("Sharing failed. Try manual download.");
+         toast.error("Sharing failed.");
        }
     } finally {
       setIsSharing(false);

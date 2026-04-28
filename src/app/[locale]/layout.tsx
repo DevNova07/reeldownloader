@@ -81,6 +81,8 @@ export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
+import { SmartSwitch } from "@/components/ui/SmartSwitch";
+
 export default async function RootLayout(props: {
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
@@ -177,6 +179,7 @@ export default async function RootLayout(props: {
           }}
         />
          <InstallPWA />
+         <SmartSwitch />
           <div className="flex min-h-screen flex-col overflow-x-hidden">
             <Navbar dict={layoutDict} />
             <main className="flex-1">
