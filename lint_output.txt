@@ -1,0 +1,40 @@
+
+> snap@0.1.0 lint
+> eslint
+
+
+/Users/ramzan/Documents/projects/websites/instasnap/src/app/[locale]/facebook/reels/page.tsx
+  131:14  error  'AnimatePresence' is not defined  react/jsx-no-undef
+
+/Users/ramzan/Documents/projects/websites/instasnap/src/components/templates/TelegramPage.tsx
+  153:14  error  'AnimatePresence' is not defined  react/jsx-no-undef
+
+/Users/ramzan/Documents/projects/websites/instasnap/src/components/templates/TwitterPage.tsx
+  139:14  error  'AnimatePresence' is not defined  react/jsx-no-undef
+
+/Users/ramzan/Documents/projects/websites/instasnap/src/hooks/useFFmpeg.ts
+  33:10  error  Error: Cannot access refs during render
+
+React refs are values that are not needed for rendering. Refs should only be accessed outside of render, such as in event handlers or effects. Accessing a ref value (the `current` property) during render can cause your component not to update as expected (https://react.dev/reference/react/useRef).
+
+/Users/ramzan/Documents/projects/websites/instasnap/src/hooks/useFFmpeg.ts:33:10
+  31 |   }
+  32 |
+> 33 |   return { ffmpeg: ffmpegRef.current, loaded, loading, load }
+     |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Cannot access ref value during render
+  34 | }
+  35 |  react-hooks/refs
+  33:20  error  Error: Cannot access refs during render
+
+React refs are values that are not needed for rendering. Refs should only be accessed outside of render, such as in event handlers or effects. Accessing a ref value (the `current` property) during render can cause your component not to update as expected (https://react.dev/reference/react/useRef).
+
+/Users/ramzan/Documents/projects/websites/instasnap/src/hooks/useFFmpeg.ts:33:20
+  31 |   }
+  32 |
+> 33 |   return { ffmpeg: ffmpegRef.current, loaded, loading, load }
+     |                    ^^^^^^^^^^^^^^^^^ Cannot access ref value during render
+  34 | }
+  35 |                           react-hooks/refs
+
+✖ 5 problems (5 errors, 0 warnings)
+

@@ -1,3 +1,4 @@
+import * as React from "react";
 import { getDictionary } from "@/i18n";
 import FacebookView from "./FacebookView";
 import { Metadata } from "next";
@@ -21,5 +22,9 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
   const locale = params.locale;
   const dict = await getDictionary(locale);
 
-  return <FacebookView dict={dict} locale={locale} />;
+  return (
+    <React.Suspense fallback={null}>
+      <FacebookView dict={dict} locale={locale} />
+    </React.Suspense>
+  );
 }

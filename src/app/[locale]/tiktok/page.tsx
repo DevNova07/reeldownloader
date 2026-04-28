@@ -29,7 +29,7 @@ import { ChromeExtensionBanner } from "@/components/layout/ChromeExtensionBanner
 
 import { useAutoDownload } from "@/hooks/useAutoDownload"
 
-export default function TikTokPage() {
+function TikTokContent() {
   const router = useRouter()
   const [downloadData, setDownloadData] = React.useState<PlatformResult | null>(null)
   const [isLoading, setIsLoading] = React.useState(false)
@@ -241,5 +241,13 @@ export default function TikTokPage() {
         </div>
       </section>
     </div>
+  )
+}
+
+export default function TikTokPage() {
+  return (
+    <React.Suspense fallback={null}>
+      <TikTokContent />
+    </React.Suspense>
   )
 }

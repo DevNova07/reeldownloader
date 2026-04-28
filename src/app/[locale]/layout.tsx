@@ -52,6 +52,14 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
       siteName: "SavClip",
       locale: locale,
       type: "website",
+      images: [
+        {
+          url: "/icon-512x512.png",
+          width: 512,
+          height: 512,
+          alt: "SavClip Logo",
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
@@ -72,22 +80,6 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
       capable: true,
       statusBarStyle: "default",
       title: "SavClip",
-    },
-    openGraph: {
-      title: title,
-      description: description,
-      url: SITE_URL,
-      siteName: "SavClip",
-      locale: locale,
-      type: "website",
-      images: [
-        {
-          url: "/icon-512x512.png",
-          width: 512,
-          height: 512,
-          alt: "SavClip Logo",
-        },
-      ],
     },
   };
 }

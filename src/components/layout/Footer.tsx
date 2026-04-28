@@ -1,7 +1,8 @@
 "use client"
 
+import Image from "next/image"
 import Link from "next/link"
-import { Camera, Send, Mail, Globe, ShieldCheck, Zap, HelpCircle, HardDrive, Share2, CloudDownload, Apple as AppleIcon } from "lucide-react"
+import { Camera, Send, Mail, Globe, ShieldCheck, Zap, HelpCircle, HardDrive, Share2, Apple as AppleIcon } from "lucide-react"
 import { useParams } from "next/navigation"
 import { locales, type Locale } from "@/i18n"
 import { ReactNode } from "react"
@@ -34,9 +35,9 @@ export function Footer({ children, locale, dict }: { children?: React.ReactNode,
           {/* Column 1: Branding & Philosophy */}
           <div className="lg:col-span-4 space-y-8">
             <Link href={getLocalizedHref("/")} className="flex items-center gap-3 group">
-              <div className="relative flex h-14 w-14 items-center justify-center overflow-hidden rounded-[1.25rem] bg-linear-to-tr from-[#cc00ff] to-[#ff0080] shadow-2xl group-hover:scale-105 transition-transform duration-500">
-                 <CloudDownload className="h-7 w-7 text-white" />
-                 <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="relative flex h-14 w-14 items-center justify-center overflow-hidden rounded-[1.25rem] bg-black shadow-2xl group-hover:scale-105 transition-transform duration-500">
+                 <Image src="/icon.png" alt="SavClip Logo" width={56} height={56} className="object-contain" />
+                 <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
               <span className="text-3xl font-black tracking-tighter text-neutral-900 dark:text-white uppercase italic">
                 Sav<span className="text-pink-600">Clip</span>

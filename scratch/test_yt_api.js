@@ -1,5 +1,4 @@
 
-const fetch = require('node-fetch');
 
 async function testApi() {
   const host = 'youtube138.p.rapidapi.com';

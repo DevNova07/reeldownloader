@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation"
 import { getPlatformFromUrl, getLocalizedRoute } from "@/utils/platform-detector"
 import { Loader2 } from "lucide-react"
 
-export default function ShareTargetPage(props: { params: Promise<{ locale: string }> }) {
+function ShareTargetContent(props: { params: Promise<{ locale: string }> }) {
   const params = React.use(props.params);
   const locale = params.locale;
   const searchParams = useSearchParams();
@@ -52,5 +52,13 @@ export default function ShareTargetPage(props: { params: Promise<{ locale: strin
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ShareTargetPage(props: { params: Promise<{ locale: string }> }) {
+  return (
+    <React.Suspense fallback={null}>
+      <ShareTargetContent params={props.params} />
+    </React.Suspense>
   );
 }

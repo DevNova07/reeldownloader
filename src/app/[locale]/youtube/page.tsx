@@ -29,7 +29,7 @@ import { ChromeExtensionBanner } from "@/components/layout/ChromeExtensionBanner
 
 import { useAutoDownload } from "@/hooks/useAutoDownload"
 
-export default function YoutubePage() {
+function YoutubeContent() {
   const router = useRouter()
   const [downloadData, setDownloadData] = React.useState<PlatformResult | null>(null)
   const [isLoading, setIsLoading] = React.useState(false)
@@ -244,5 +244,13 @@ export default function YoutubePage() {
         </div>
       </section>
     </div>
+  )
+}
+
+export default function YoutubePage() {
+  return (
+    <React.Suspense fallback={null}>
+      <YoutubeContent />
+    </React.Suspense>
   )
 }
