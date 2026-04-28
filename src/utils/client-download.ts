@@ -3,7 +3,11 @@
  * Aims to save server bandwidth by downloading directly in the browser when possible.
  */
 
-export async function downloadFile(url: string, filename: string, onProgress?: (progress: number) => void): Promise<boolean> {
+export async function downloadFile(
+  url: string, 
+  filename: string, 
+  onProgress?: (progress: number, status: string) => void
+): Promise<boolean> {
   try {
     // 1. Try direct client-side fetch (Zero server bandwidth)
     // This works if the media server has CORS enabled
@@ -31,7 +35,7 @@ export async function downloadFile(url: string, filename: string, onProgress?: (
       loaded += value.length;
       
       if (total && onProgress) {
-        onProgress((loaded / total) * 100);
+        onProgress((loaded / total) * 100, "Downloading...");
       }
     }
 
