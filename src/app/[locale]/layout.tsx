@@ -62,11 +62,32 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
       index: true,
       follow: true,
     },
-    manifest: "/manifest.json",
+    manifest: "/manifest.json?v=2",
+    icons: {
+      icon: "/favicon.ico",
+      shortcut: "/favicon.ico",
+      apple: "/apple-touch-icon.png",
+    },
     appleWebApp: {
       capable: true,
       statusBarStyle: "default",
       title: "SavClip",
+    },
+    openGraph: {
+      title: title,
+      description: description,
+      url: SITE_URL,
+      siteName: "SavClip",
+      locale: locale,
+      type: "website",
+      images: [
+        {
+          url: "/icon-512x512.png",
+          width: 512,
+          height: 512,
+          alt: "SavClip Logo",
+        },
+      ],
     },
   };
 }
@@ -80,8 +101,6 @@ export const viewport: Viewport = {
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
-
-import { SmartSwitch } from "@/components/ui/SmartSwitch";
 
 export default async function RootLayout(props: {
   children: React.ReactNode;
@@ -179,13 +198,10 @@ export default async function RootLayout(props: {
           }}
         />
          <InstallPWA />
-         <SmartSwitch />
           <div className="flex min-h-screen flex-col overflow-x-hidden">
             <Navbar dict={layoutDict} />
-            <main className="flex-1">
-              <Suspense fallback={null}>
-                {props.children}
-              </Suspense>
+            <main className="flex-1 min-h-[80vh] animate-in fade-in duration-500 fill-mode-both">
+              {props.children}
             </main>
             <Footer locale={locale} dict={layoutDict}>
               <MegaFooterMap locale={locale} dict={fullDict} />
