@@ -7,7 +7,6 @@ import Image from "next/image"
 import { ArrowLeft, Plus, Trash2, Smartphone, Monitor, CheckCircle2, Layout, Palette, Zap, Link as LinkIcon, Instagram, Twitter, Youtube, ExternalLink, Sparkles } from "lucide-react"
 import { cn } from "@/utils/cn"
 
-import { ToolSubNav } from "@/components/layout/ToolSubNav"
 
 interface BioLink {
   id: string
@@ -120,7 +119,6 @@ function BioBuilderContent() {
 
   return (
     <div className="flex flex-col h-[calc(100svh-100px)] sm:h-[calc(100vh-64px)] bg-neutral-950 text-white overflow-hidden">
-      <ToolSubNav />
       <div className="flex flex-1 overflow-hidden relative">
         {/* Left Sidebar - Navigation (Desktop only) */}
         <div className="hidden sm:flex w-20 border-r border-white/5 flex-col items-center py-8 gap-8 bg-neutral-900/50">

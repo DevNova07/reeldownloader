@@ -7,14 +7,13 @@ import { CategoryCards } from "@/components/layout/CategoryCards"
 import { DownloadPreview } from "@/components/layout/DownloadPreview"
 import { StructuredData } from "@/components/shared/StructuredData"
 import { PlatformTabs } from "@/components/shared/PlatformTabs"
-import { SocialServiceBar } from "@/components/layout/SocialServiceBar"
+import { SocialPlatformBar } from "@/components/layout/SocialPlatformBar"
 import { VisualGuide } from "@/components/shared/VisualGuide"
 import { usePathname } from "next/navigation"
 import { type Locale } from "@/i18n"
 import { getDictionary } from "@/dictionaries/client"
 import { Twitter, Music as MusicIcon, Image as ImageIcon, Zap, ShieldCheck, CheckCircle2, HelpCircle, Info } from "lucide-react"
 import { TrendingBar } from "@/components/layout/TrendingBar"
-import { ToolSubNav } from "@/components/layout/ToolSubNav"
 import { LoadingBar } from "@/components/ui/LoadingBar"
 import { DownloadCounter } from "@/components/ui/DownloadCounter"
 import { RelatedTools } from "@/components/shared/RelatedTools"
@@ -73,7 +72,6 @@ export default function TwitterMusicPage() {
 
   return (
     <div className="flex flex-col">
-      <ToolSubNav />
       <StructuredData
         type="HowTo"
         data={{
@@ -88,7 +86,7 @@ export default function TwitterMusicPage() {
         <HeroEffect color="bg-slate-400" intensity="high" />
         
         <div className="relative z-10 mx-auto max-w-7xl text-center">
-          <SocialServiceBar   activeId="twitter" />
+          <SocialPlatformBar   activeId="twitter" />
           <PlatformTabs   
             activeId="music" 
             activeColor="text-slate-200"

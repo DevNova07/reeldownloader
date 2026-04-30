@@ -3,6 +3,7 @@
 import * as React from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { X } from "lucide-react"
+import Image from "next/image"
 
 export function InstallPWA() {
     const [deferredPrompt, setDeferredPrompt] = React.useState<any>(null)
@@ -56,7 +57,7 @@ export function InstallPWA() {
         >
           <div className="flex items-center gap-4">
             <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-black border border-white/10 overflow-hidden">
-               <img src="/icon-192x192.png" alt="Logo" className="w-10 h-10 object-contain" />
+               <Image src="/icon-192x192.png" alt="Logo" width={40} height={40} className="w-10 h-10 object-contain" />
             </div>
             
             <div className="flex-1 min-w-0">

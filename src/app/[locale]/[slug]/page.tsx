@@ -187,6 +187,45 @@ export default async function Page(props: PageProps) {
     ]
   };
 
+  // Create a minimal dictionary slice to pass to templates
+  // We keep all essential keys but EXCLUDE the massive 'seo_pages' object
+  const { seo_pages, ...platformsWithoutSeoPages } = dict.platforms || {};
+
+  const minimalDict = {
+    categories: dict.categories,
+    navbar: dict.navbar,
+    footer_branding: dict.footer_branding,
+    tabs: dict.tabs,
+    features: dict.features,
+    faq: dict.faq,
+    common: dict.common,
+    // Provide ONLY the essential platform metadata to the template
+    platforms: Object.keys(dict.platforms || {}).reduce((acc: any, key) => {
+      if (key !== 'seo_pages') {
+        const platform = dict.platforms[key];
+        acc[key] = {
+          title: platform?.title,
+          subtitle: platform?.subtitle,
+          howTo: platform?.howTo,
+          seo: platform?.seo,
+          // Map sub-tools (reels, story, etc)
+          ...Object.keys(platform || {}).reduce((pAcc: any, pKey) => {
+            if (platform[pKey] && typeof platform[pKey] === 'object' && platform[pKey].title) {
+              pAcc[pKey] = { 
+                title: platform[pKey].title,
+                subtitle: platform[pKey].subtitle,
+                howTo: platform[pKey].howTo,
+                seo: platform[pKey].seo
+              };
+            }
+            return pAcc;
+          }, {})
+        };
+      }
+      return acc;
+    }, {})
+  };
+
   // Map slug to template for stable rendering
   const renderTemplate = () => {
     const s = slug.toLowerCase();
@@ -195,7 +234,7 @@ export default async function Page(props: PageProps) {
     const colors = ["pink", "amber", "purple"];
     const themeColor = colors[Math.abs(jsonKey.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0) % colors.length)];
     
-    const templateProps = { content, locale: locale as any, themeColor };
+    const templateProps = { content, locale: locale as any, themeColor, dict: minimalDict };
 
     if (s.includes("facebook") || s.includes("fb-")) return <FacebookPage {...templateProps} />;
     if (s.includes("instagram") || s.includes("insta-") || s.includes("reels-")) return <InstagramPage {...templateProps} />;

@@ -7,7 +7,7 @@ import { CategoryCards } from "@/components/layout/CategoryCards"
 import { DownloadPreview } from "@/components/layout/DownloadPreview"
 import { StructuredData } from "@/components/shared/StructuredData"
 import { PlatformTabs } from "@/components/shared/PlatformTabs"
-import { SocialServiceBar } from "@/components/layout/SocialServiceBar"
+import { SocialPlatformBar } from "@/components/layout/SocialPlatformBar"
 import { VisualGuide } from "@/components/shared/VisualGuide"
 import { usePathname } from "next/navigation"
 import { type Locale } from "@/i18n"
@@ -88,7 +88,7 @@ export default function YoutubeMoviesPage() {
         <HeroEffect color="bg-red-500" intensity="high" />
         
         <div className="relative z-10 mx-auto max-w-7xl text-center">
-          <SocialServiceBar   activeId="youtube" />
+          <SocialPlatformBar   activeId="youtube" />
           <PlatformTabs   
             activeId="movies" 
             activeColor="text-red-600"

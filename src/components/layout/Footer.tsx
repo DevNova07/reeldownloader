@@ -10,7 +10,7 @@ import { ReactNode } from "react"
 export function Footer({ locale, dict }: { locale: string, dict: any }) {
   const normalizedLocale = (locales.includes(locale as any) ? locale : 'en') as Locale;
   
-  const branding = dict.footer_branding || {
+  const branding = dict?.footer_branding || {
     title: "SavClip – Fast & Secure",
     desc: "A trusted platform to save and manage social media content.",
     platforms_title: "Supported Platforms",

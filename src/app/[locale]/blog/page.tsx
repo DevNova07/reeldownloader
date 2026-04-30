@@ -6,9 +6,8 @@ import Image from "next/image";
 import { blogPosts, getAllCategories } from "@/data/blog";
 import { Calendar, Clock, ChevronRight, Hash, Search, X } from "lucide-react";
 import { PlatformTabs } from "@/components/shared/PlatformTabs";
-import { SocialServiceBar } from "@/components/layout/SocialServiceBar";
+import { SocialPlatformBar } from "@/components/layout/SocialPlatformBar";
 import { cn } from "@/utils/cn";
-import { ToolSubNav } from "@/components/layout/ToolSubNav"
 
 export default function BlogPage() {
   const categories = getAllCategories();
@@ -23,12 +22,11 @@ export default function BlogPage() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <ToolSubNav />
       {/* 🌟 CINEMATIC FEATURED STORIES */}
       <section className="relative overflow-hidden bg-white dark:bg-black px-4 pt-10 pb-8 sm:px-6 lg:px-8 border-b border-neutral-100 dark:border-neutral-800">
         <div className="absolute inset-0 bg-[linear-gradient(to_bottom_right,rgba(236,72,153,0.05),transparent)] pointer-events-none" />
         <div className="relative z-10 mx-auto max-w-7xl text-center mb-10">
-          <SocialServiceBar activeId="none" />
+          <SocialPlatformBar activeId="none" />
           <div className="mt-8">
             <h1 className="text-4xl font-black tracking-tighter text-neutral-900 dark:text-white sm:text-7xl uppercase italic">
               INSIDE <span className="text-pink-600">SNAP</span>

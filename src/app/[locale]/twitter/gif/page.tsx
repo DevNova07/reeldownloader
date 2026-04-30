@@ -7,7 +7,7 @@ import { CategoryCards } from "@/components/layout/CategoryCards"
 import { DownloadPreview } from "@/components/layout/DownloadPreview"
 import { StructuredData } from "@/components/shared/StructuredData"
 import { PlatformTabs } from "@/components/shared/PlatformTabs"
-import { SocialServiceBar } from "@/components/layout/SocialServiceBar"
+import { SocialPlatformBar } from "@/components/layout/SocialPlatformBar"
 import { VisualGuide } from "@/components/shared/VisualGuide"
 import { usePathname } from "next/navigation"
 import { type Locale } from "@/i18n"
@@ -88,7 +88,7 @@ export default function TwitterGifPage() {
         <HeroEffect color="bg-slate-500" intensity="medium" />
         
         <div className="relative z-10 mx-auto max-w-7xl text-center">
-          <SocialServiceBar   activeId="twitter" />
+          <SocialPlatformBar   activeId="twitter" />
           <PlatformTabs   
             activeId="gif" 
             activeColor="text-slate-500"

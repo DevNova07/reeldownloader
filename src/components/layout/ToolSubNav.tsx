@@ -20,11 +20,11 @@ const SUB_NAV = [
 ]
 
 export function ToolSubNav() {
-  const pathname = usePathname()
+  const pathname = usePathname() || ""
   const locale = pathname.split('/')[1] || 'en'
   
   return (
-    <nav className="sticky top-14 sm:top-16 z-40 border-b border-neutral-100 bg-white/95 backdrop-blur-md md:hidden">
+    <nav suppressHydrationWarning className="sticky top-14 sm:top-16 z-40 border-b border-neutral-100 bg-white/95 backdrop-blur-md md:hidden">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 lg:px-8">
             <div className="flex items-center gap-4 sm:gap-8 overflow-x-auto no-scrollbar scroll-smooth">
                 {SUB_NAV.map((item) => {

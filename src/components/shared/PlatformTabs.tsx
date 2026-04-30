@@ -28,7 +28,7 @@ export function PlatformTabs({ items, activeId, activeColor = "text-pink-600", t
   }
   return (
     <div className={cn("mt-2 mb-10 flex justify-center w-full px-2 sm:px-0", className)}>
-      <div className="flex flex-nowrap items-center gap-0.5 rounded-full bg-black/20 p-1 backdrop-blur-xl border border-white/10 shadow-2xl overflow-x-auto no-scrollbar whitespace-nowrap outline-hidden ring-1 ring-white/5">
+      <div className="flex flex-nowrap items-center justify-start sm:justify-center gap-0.5 rounded-full bg-black/20 p-1 backdrop-blur-xl border border-white/10 shadow-2xl overflow-x-auto no-scrollbar whitespace-nowrap outline-hidden ring-1 ring-white/5 max-w-[calc(100vw-1rem)] sm:max-w-fit">
         {items.map((item) => {
           const isActive = item.id === activeId
           const label = tabs?.[item.id] || item.label

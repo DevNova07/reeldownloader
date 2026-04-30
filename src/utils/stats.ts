@@ -140,7 +140,7 @@ class StatsManager {
   }
 
   private resetExhaustedKeys(stats: GlobalStats): void {
-    const TWELVE_HOURS = 12 * 60 * 60 * 1000;
+    const ONE_HOUR = 1 * 60 * 60 * 1000;
     const now = Date.now();
 
     Object.keys(stats.platforms).forEach(pKey => {
@@ -150,7 +150,7 @@ class StatsManager {
           const keyData = platform.keys[kKey];
           if (keyData.status === "exhausted" && keyData.lastCheck) {
             const lastCheckTime = new Date(keyData.lastCheck).getTime();
-            if (now - lastCheckTime > TWELVE_HOURS) {
+            if (now - lastCheckTime > ONE_HOUR) {
               keyData.status = "active";
               keyData.remaining = "unkn"; // Will be updated on next fetch
             }

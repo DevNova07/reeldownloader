@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation"
 import { type Locale } from "@/i18n"
 import { getDictionary } from "@/dictionaries/client"
 import { ChromeExtensionBanner } from "@/components/layout/ChromeExtensionBanner"
-import { ToolSubNav } from "@/components/layout/ToolSubNav"
 import Link from "next/link"
 
 export default function PostPage() {
@@ -15,7 +14,6 @@ export default function PostPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-black">
-      <ToolSubNav />
       <div className="flex flex-1 flex-col items-center justify-center px-4 py-20 sm:px-6 lg:px-8">
         <div className="text-center">
           <h1 className="text-4xl font-black tracking-tight text-neutral-900 dark:text-white mb-4 uppercase">Post Downloader</h1>

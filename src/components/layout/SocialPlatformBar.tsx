@@ -1,4 +1,7 @@
 "use client"
+// Refreshed layout to fix sticky hydration cache
+// Force re-compilation
+
 
 import * as React from "react"
 import Link from "next/link"
@@ -79,16 +82,19 @@ const PLATFORMS = [
   },
 ]
 
-export function SocialServiceBar({ activeId, className }: { activeId: string, className?: string }) {
-  const pathname = usePathname()
-  const locale = pathname.split('/')[1]
+export function SocialPlatformBar({ activeId, className }: { activeId: string, className?: string }) {
+  const pathname = usePathname() || ""
+  const locale = pathname.split('/')[1] || "en"
   const getLocalizedHref = (path: string) => {
     const cleanPath = path.startsWith('/') ? path : `/${path}`
     return `/${locale}${cleanPath === '/' ? '' : cleanPath}`
   }
 
   return (
-    <div className={cn("flex items-center justify-center gap-3 sm:gap-6 px-4 py-3 rounded-full bg-black/10 dark:bg-white/5 backdrop-blur-xl border border-white/10 w-fit mx-auto", className)}>
+    <div 
+      suppressHydrationWarning={true}
+      className={cn("flex items-center justify-start sm:justify-center gap-2 sm:gap-6 px-3 sm:px-4 py-1.5 sm:py-2.5 rounded-full bg-black/10 dark:bg-white/5 backdrop-blur-xl border border-white/10 w-fit max-w-[calc(100vw-1rem)] overflow-x-auto no-scrollbar mx-auto", className)}
+    >
       {PLATFORMS.map((platform) => {
         const isActive = platform.id === activeId
         return (

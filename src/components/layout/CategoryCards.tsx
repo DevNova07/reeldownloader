@@ -19,7 +19,7 @@ export function CategoryCards({
   hoverText = "group-hover:text-pink-500",
   hoverBg = "from-pink-500/0 to-pink-500/5"
 }: CategoryCardsProps = {}) {
-  const pathname = usePathname()
+  const pathname = usePathname() || ""
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const locale = (pathname.split('/')[1] || 'en') as any
   const dict = getDictionary(locale)

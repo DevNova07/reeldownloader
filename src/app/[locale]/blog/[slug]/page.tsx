@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Calendar, Share2, Facebook, Twitter, Linkedin } from "lucide-react";
 import { ReadingProgressBar } from "@/components/shared/ReadingProgressBar";
-import { ToolSubNav } from "@/components/layout/ToolSubNav";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
@@ -50,7 +49,6 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   return (
     <div className="bg-white dark:bg-black min-h-screen">
-      <ToolSubNav />
       <ReadingProgressBar />
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         {/* Breadcrumb & Global Back */}

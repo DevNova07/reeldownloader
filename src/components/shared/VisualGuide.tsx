@@ -25,13 +25,13 @@ interface VisualGuideProps {
 
 export function VisualGuide({ platformName, accentColor, bgAccentColor, Icon, steps: customSteps }: VisualGuideProps) {
   const [mounted, setMounted] = React.useState(false)
-  const pathname = usePathname()
+  const pathname = usePathname() || ""
 
   React.useEffect(() => {
     setMounted(true)
   }, [])
 
-  const locale = pathname.split('/')[1] as Locale
+  const locale = (pathname.split('/')[1] || 'en') as Locale
   const dict: Dictionary = getDictionary(locale)
 
   if (!mounted) return null

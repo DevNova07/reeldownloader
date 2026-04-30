@@ -12,9 +12,8 @@ const StructuredData = dynamic(() => import("@/components/shared/StructuredData"
 const SmartClipboard = dynamic(() => import("@/components/ui/SmartClipboard").then(m => m.SmartClipboard), { ssr: false });
 import Image from "next/image";
 const PlatformTabs = dynamic(() => import("@/components/shared/PlatformTabs").then(m => m.PlatformTabs));
-const SocialServiceBar = dynamic(() => import("@/components/layout/SocialServiceBar").then(m => m.SocialServiceBar));
+const SocialPlatformBar = dynamic(() => import("@/components/layout/SocialPlatformBar").then(m => m.SocialPlatformBar));
 import { type Locale } from "@/i18n";
-import { getDictionary } from "@/dictionaries/client";
 import { LoadingBar } from "@/components/ui/LoadingBar";
 import { DownloadCounter } from "@/components/ui/DownloadCounter";
 import { useDownloadHistory, getCached, setCached } from "@/hooks/useDownloadHistory";
@@ -22,8 +21,7 @@ import { HeroEffect } from "@/components/shared/HeroEffect";
 import { Camera, PlaySquare, Film, StopCircle, Zap, ShieldCheck, CheckCircle2, HelpCircle, Info } from "lucide-react";
 import { cn, isValidInstaUrl } from "@/utils/cn";
 
-import { ToolSubNav } from "@/components/layout/ToolSubNav";
-import { PlatformStatus } from "@/components/ui/PlatformStatus";
+
 import { MobileAccordion } from "@/components/ui/MobileAccordion";
 const TrustBadges = dynamic(() => import("@/components/ui/TrustBadges").then(m => m.TrustBadges));
 
@@ -47,12 +45,14 @@ interface InstagramPageProps {
   // The SEO page content object
   locale: string;
   themeColor?: string;
+  dict: any;
 }
 
 function InstagramPageContent({
   content = {},
   locale,
   themeColor = "pink",
+  dict,
 }: InstagramPageProps) {
   const router = useRouter()
   // Defensive check to prevent crashes if dictionary is missing for a slug
@@ -64,7 +64,6 @@ function InstagramPageContent({
   const [autoTriggerDownload, setAutoTriggerDownload] = React.useState(false);
   const [searchCounter, setSearchCounter] = React.useState(0);
 
-    const dict = getDictionary(locale);
   const { history: recentDownloads, addToHistory, clearHistory } = useDownloadHistory("instagram");
   const searchParams = useSearchParams()
 
@@ -138,16 +137,16 @@ function InstagramPageContent({
         <HeroEffect color={cx.effect} intensity="high" />
 
         <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-4 sm:gap-6">
-          <SocialServiceBar activeId="instagram" />
+          <SocialPlatformBar activeId="instagram" />
           <PlatformTabs
             activeId="reels"
             activeColor={cx.text}
-            tabs={dict.tabs}
+            tabs={dict?.tabs}
             locale={locale}
             items={[
-              { id: "video", label: dict.tabs?.video || "Video", href: "/", icon: <Camera className="h-4 w-4" /> },
-              { id: "reels", label: dict.tabs?.reels || "Reels", href: "/reels", icon: <PlaySquare className="h-4 w-4" /> },
-              { id: "story", label: dict.tabs?.story || "Story", href: "/story", icon: <StopCircle className="h-4 w-4" /> },
+              { id: "video", label: dict?.tabs?.video || "Video", href: "/", icon: <Camera className="h-4 w-4" /> },
+              { id: "reels", label: dict?.tabs?.reels || "Reels", href: "/reels", icon: <PlaySquare className="h-4 w-4" /> },
+              { id: "story", label: dict?.tabs?.story || "Story", href: "/story", icon: <StopCircle className="h-4 w-4" /> },
             ]}
           />
 
@@ -156,9 +155,7 @@ function InstagramPageContent({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
           >
-            <div className="mb-6 flex justify-center">
-              <PlatformStatus platform="Instagram" />
-            </div>
+
             <h1 className="mb-2 text-4xl font-black tracking-tight text-white sm:text-7xl drop-shadow-2xl uppercase italic">
               {pageTitle}
             </h1>
@@ -228,12 +225,12 @@ function InstagramPageContent({
                     className="mx-auto mt-16 w-full max-w-4xl"
                   >
                     <div className="flex items-center justify-between border-b border-white/20 pb-4 text-white">
-                      <h3 className="text-xl font-black tracking-widest uppercase italic">{dict.common?.recent || "Recent"}</h3>
+                    <h3 className="text-xl font-black tracking-widest uppercase italic">{dict?.common?.recent || "Recent"}</h3>
                       <button
                         onClick={clearHistory}
                         className="text-sm font-bold opacity-60 hover:opacity-100 transition-opacity uppercase tracking-tighter"
                       >
-                        {dict.common?.clear || "Clear"}
+                        {dict?.common?.clear || "Clear"}
                       </button>
                     </div>
                     <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-5">
@@ -266,8 +263,6 @@ function InstagramPageContent({
           </div>
         </div>
       </section>
-
-      <ToolSubNav />
       {content.title && (
         <Breadcrumbs 
           locale={locale}
@@ -284,7 +279,7 @@ function InstagramPageContent({
 
         <section className="bg-neutral-50 px-4 py-4 dark:bg-neutral-900/50 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-7xl">
-            <h2 className="mb-12 text-center text-3xl font-black text-neutral-900 dark:text-white uppercase italic tracking-widest">{dict.features?.title || "Features"}</h2>
+            <h2 className="mb-12 text-center text-3xl font-black text-neutral-900 dark:text-white uppercase italic tracking-widest">{dict?.features?.title || "Features"}</h2>
             <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
               {[
                 { icon: <Zap className={`h-8 w-8 ${cx.text}`} /> },
@@ -295,8 +290,8 @@ function InstagramPageContent({
                   <div className="mb-6 rounded-2xl bg-white p-5 shadow-2xl dark:bg-black transition-all hover:scale-110 hover:-rotate-3 border border-neutral-100 dark:border-neutral-800">
                     {feature.icon}
                   </div>
-                  <h3 className="text-xl font-black text-neutral-900 dark:text-white uppercase italic">{dict.features?.items?.[idx]?.title || "Feature"}</h3>
-                  <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80">{dict.features?.items?.[idx]?.desc || "Description"}</p>
+                  <h3 className="text-xl font-black text-neutral-900 dark:text-white uppercase italic">{dict?.features?.items?.[idx]?.title || "Feature"}</h3>
+                  <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80">{dict?.features?.items?.[idx]?.desc || "Description"}</p>
                 </div>
               ))}
             </div>
@@ -310,9 +305,9 @@ function InstagramPageContent({
             bgAccentColor={cx.bg}
             Icon={Film}
             steps={[
-              { title: dict.guide?.steps?.[0]?.title?.replace('{platform}', 'Instagram') || "Step 1", desc: content.howTo.steps[0] || "", image: "/images/how-to/step1.webp" },
-              { title: dict.guide?.steps?.[1]?.title?.replace('{platform}', 'Instagram') || "Step 2", desc: (content.howTo.steps[1] || "") + " " + (content.howTo.steps[2] || ""), image: "/images/how-to/step2.webp" },
-              { title: dict.guide?.steps?.[2]?.title?.replace('{platform}', 'Instagram') || "Step 3", desc: content.howTo.steps[3] || content.howTo.steps[2] || "", image: "/images/how-to/step3.webp" },
+              { title: dict?.guide?.steps?.[0]?.title?.replace('{platform}', 'Instagram') || "Step 1", desc: content.howTo.steps[0] || "", image: "/images/how-to/step1.webp" },
+              { title: dict?.guide?.steps?.[1]?.title?.replace('{platform}', 'Instagram') || "Step 2", desc: (content.howTo.steps[1] || "") + " " + (content.howTo.steps[2] || ""), image: "/images/how-to/step2.webp" },
+              { title: dict?.guide?.steps?.[2]?.title?.replace('{platform}', 'Instagram') || "Step 3", desc: content.howTo.steps[3] || content.howTo.steps[2] || "", image: "/images/how-to/step3.webp" },
             ]}
           />
         )}
@@ -349,7 +344,7 @@ function InstagramPageContent({
                         <RichArticle 
                         sections={content.article_content}
                         accentColor={cx.text}
-                        boilerplate={dict.common?.boilerplates?.instagram}
+                        boilerplate={dict?.common?.boilerplates?.instagram}
                       />
                       </div>
                     </div>

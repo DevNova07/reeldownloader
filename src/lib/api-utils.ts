@@ -38,6 +38,9 @@ export async function fetchWithRotation(
     const keyData = platStats.keys[key];
     if (keyData.status === "exhausted") continue;
 
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+
     const optionsWithKey: RequestInit = {
       ...baseOptions,
       headers: {
@@ -45,7 +48,8 @@ export async function fetchWithRotation(
         "x-rapidapi-key": key,
         "x-rapidapi-host": (baseOptions.headers as any)?.["x-rapidapi-host"] || "",
         "Accept": "application/json",
-      }
+      },
+      signal: controller.signal
     };
 
     try {
@@ -53,6 +57,7 @@ export async function fetchWithRotation(
       console.log(`[API] URL: ${url}`);
       
       const response = await fetch(url, optionsWithKey);
+      clearTimeout(timeoutId);
       
       const remaining = response.headers.get("x-ratelimit-requests-remaining");
       if (remaining) keyData.remaining = remaining;
@@ -96,7 +101,7 @@ export async function fetchWithRotation(
 export async function resolveUrl(url: string): Promise<string> {
   const lowercaseUrl = url.toLowerCase();
   // Only attempt to resolve if it's a known short domain
-  const isShort = /vt\.tiktok\.com|vm\.tiktok\.com|bit\.ly|t\.co|goo\.gl|fb\.watch|fb\.gg|fb\.me|facebook\.com\/share/.test(lowercaseUrl);
+  const isShort = /vt\.tiktok\.com|vm\.tiktok\.com|youtu\.be|youtube\.com\/shorts|bit\.ly|t\.co|goo\.gl|fb\.watch|fb\.gg|fb\.me|facebook\.com\/share/.test(lowercaseUrl);
   
   if (!isShort) return url;
 

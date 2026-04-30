@@ -17,8 +17,15 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const dict = await getDictionary(locale);
-  const insta = dict.platforms.instagram;
+  const fullDict = await getDictionary(locale);
+  const { platforms, ...rest } = fullDict;
+  const dict = {
+    ...rest,
+    platforms: {
+      instagram: platforms?.instagram
+    }
+  };
+  const insta = platforms?.instagram;
 
-  return <InstagramPage content={insta} locale={locale} />;
+  return <InstagramPage content={insta} locale={locale} dict={dict} />;
 }

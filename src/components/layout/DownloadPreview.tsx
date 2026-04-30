@@ -11,6 +11,7 @@ import { toast } from "react-hot-toast"
 import { DownloadProgress } from "@/components/ui/DownloadProgress"
 import { downloadFile } from "@/utils/client-download"
 import confetti from 'canvas-confetti'
+import JSZip from 'jszip'
 
 
 
@@ -109,6 +110,11 @@ export function DownloadPreview({
   const [showSuccess, setShowSuccess] = React.useState(false);
   const [downloadProgress, setDownloadProgress] = React.useState(0);
   const [downloadStatus, setDownloadStatus] = React.useState("Ready");
+
+  const videoMedia = data?.medias?.find((m: Media) => m.type === "video");
+  const audioTargetUrl = videoMedia?.url || data?.medias?.[0]?.url || data?.items?.[0]?.url || "";
+  const audioUrl = `/api/proxy-download?url=${encodeURIComponent(audioTargetUrl)}&type=audio`;
+  const isAudioDownloading = isDownloading === 'audio-main';
 
   const scrollRef = React.useRef<HTMLDivElement>(null);
 
@@ -226,7 +232,6 @@ export function DownloadPreview({
     setDownloadStatus("Preparing ZIP package...");
 
     try {
-      const JSZip = (await import("jszip")).default;
       const zip = new JSZip();
       const folder = zip.folder("SavClip_Batch");
 
@@ -519,7 +524,7 @@ export function DownloadPreview({
                       const isThisDownloading = isDownloading === `video-${currentId}`;
 
                       return (
-                        <div key={currentId} className="flex gap-4">
+                        <div key={currentId} className="flex flex-col gap-4">
                           <button
                             onClick={() => handleDownload(proxyUrl, 'video', currentId)}
                             disabled={!!isDownloading}
@@ -535,49 +540,55 @@ export function DownloadPreview({
                             {/* Glossy overlay */}
                             <div className="absolute inset-0 bg-linear-to-tr from-white/30 via-transparent to-transparent pointer-events-none opacity-40" />
                           </button>
+
+                          {isThisDownloading && (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              exit={{ opacity: 0, height: 0 }}
+                            >
+                              <DownloadProgress 
+                                progress={downloadProgress} 
+                                status={downloadStatus} 
+                                accentColor="bg-blue-600"
+                              />
+                            </motion.div>
+                          )}
                         </div>
                       );
                     })()}
                   </div>
 
-                  {(() => {
-                    const videoMedia = data.medias?.find((m: Media) => m.type === "video");
-                    const audioTargetUrl = videoMedia?.url || data.medias?.[0]?.url || data.items?.[0]?.url || "";
-                    const audioUrl = `/api/proxy-download?url=${encodeURIComponent(audioTargetUrl)}&type=audio`;
-                    const isAudioDownloading = isDownloading === 'audio-main';
-                    
-                    return (
-                      <button
-                        onClick={() => handleDownload(audioUrl, 'audio', 'main')}
-                        disabled={!!isDownloading}
-                        className={cn("group relative flex w-full items-center justify-center gap-3 rounded-2xl py-3 sm:py-5 text-lg sm:text-xl font-black text-white shadow-3xl transition-all hover:scale-[1.02] active:scale-[0.98] overflow-hidden disabled:opacity-70 disabled:scale-100", audioButtonStyle)}
-                      >
-                        <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
-                        {isAudioDownloading ? (
-                          <Loader2 className="h-7 w-7 animate-spin" />
-                        ) : (
-                          <Music className="h-7 w-7" />
-                        )}
-                        <span className="relative z-10">{isAudioDownloading ? "Extracting..." : "Save MP3 Audio"}</span>
-                      </button>
-                    );
-                  })()}
-
-                  {isDownloading && (
-
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      className="mt-4"
+                  <div className="flex flex-col gap-4">
+                    <button
+                      onClick={() => handleDownload(audioUrl, 'audio', 'main')}
+                      disabled={!!isDownloading}
+                      className={cn("group relative flex w-full items-center justify-center gap-3 rounded-2xl py-3 sm:py-5 text-lg sm:text-xl font-black text-white shadow-3xl transition-all hover:scale-[1.02] active:scale-[0.98] overflow-hidden disabled:opacity-70 disabled:scale-100", audioButtonStyle)}
                     >
-                      <DownloadProgress 
-                        progress={downloadProgress} 
-                        status={downloadStatus} 
-                        accentColor="bg-blue-600"
-                      />
-                    </motion.div>
-                  )}
+                      <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      {isAudioDownloading ? (
+                        <Loader2 className="h-7 w-7 animate-spin" />
+                      ) : (
+                        <Music className="h-7 w-7" />
+                      )}
+                      <span className="relative z-10">{isAudioDownloading ? "Extracting..." : "Save MP3 Audio"}</span>
+                    </button>
+
+                    {isAudioDownloading && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                      >
+                        <DownloadProgress 
+                          progress={downloadProgress} 
+                          status={downloadStatus} 
+                          accentColor="bg-amber-500"
+                        />
+                      </motion.div>
+                    )}
+                  </div>
+
 
                   {/* Native Share Button */}
                   <button
@@ -759,62 +770,59 @@ export function DownloadPreview({
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-lg overflow-hidden rounded-[3rem] bg-[#0a0a0a] p-8 shadow-[0_0_100px_-20px_rgba(34,197,94,0.3)] border border-white/10"
+              className="relative w-full max-w-sm overflow-hidden rounded-[2.5rem] bg-[#0a0a0a] p-6 shadow-[0_0_80px_-20px_rgba(34,197,94,0.3)] border border-white/10"
             >
               {/* Animated Background Glows */}
-              <div className="absolute -top-24 -left-24 h-64 w-64 bg-green-500/10 rounded-full blur-[100px] animate-pulse" />
-              <div className="absolute -bottom-24 -right-24 h-64 w-64 bg-emerald-500/10 rounded-full blur-[100px] animate-pulse delay-1000" />
+              <div className="absolute -top-16 -left-16 h-48 w-48 bg-green-500/10 rounded-full blur-[80px] animate-pulse" />
+              <div className="absolute -bottom-16 -right-16 h-48 w-48 bg-emerald-500/10 rounded-full blur-[80px] animate-pulse delay-1000" />
 
-              <div className="absolute top-0 right-0 p-8">
+              <div className="absolute top-0 right-0 p-6">
                 <button 
                   onClick={() => setShowSuccess(false)}
-                  className="rounded-full bg-white/5 p-2.5 text-white/40 transition-all hover:bg-white/10 hover:text-white border border-white/5"
+                  className="rounded-full bg-white/5 p-2 text-white/40 transition-all hover:bg-white/10 hover:text-white border border-white/5"
                 >
-                  <X className="h-5 w-5" />
+                  <X className="h-4 w-4" />
                 </button>
               </div>
 
               <div className="relative z-10 text-center">
-                <div className="mx-auto mb-8 relative">
+                <div className="mx-auto mb-6 relative">
                   <motion.div 
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", damping: 12, stiffness: 200 }}
-                    className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-linear-to-br from-green-400 to-emerald-600 text-white shadow-[0_0_40px_-5px_rgba(34,197,94,0.5)]"
+                    className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-linear-to-br from-green-400 to-emerald-600 text-white shadow-[0_0_30px_-5px_rgba(34,197,94,0.5)]"
                   >
-                    <Check className="h-12 w-12 stroke-[3]" />
+                    <Check className="h-8 w-8 stroke-[3]" />
                   </motion.div>
                   {/* Outer ring */}
-                  <div className="absolute inset-0 mx-auto h-24 w-24 rounded-full border-2 border-green-500/20 scale-125 animate-ping" />
+                  <div className="absolute inset-0 mx-auto h-16 w-16 rounded-full border-2 border-green-500/20 scale-125 animate-ping" />
                 </div>
 
-                <h3 className="mb-3 text-4xl font-black uppercase italic tracking-tighter bg-linear-to-r from-white via-white to-white/50 bg-clip-text text-transparent">
-                  Download Success!
+                <h3 className="mb-2 text-2xl font-black uppercase italic tracking-tighter bg-linear-to-r from-white via-white to-white/50 bg-clip-text text-transparent">
+                  Success!
                 </h3>
-                <p className="mb-10 text-white/50 font-bold uppercase tracking-widest text-[10px]">
+                <p className="mb-8 text-white/50 font-bold uppercase tracking-widest text-[9px]">
                   Your media is ready. Spread the love! 🚀
                 </p>
 
-                <div className="grid gap-6">
+                <div className="grid gap-4">
                   <a
                     href={`https://wa.me/?text=${encodeURIComponent("Hey! Check out SavClip - The fastest way to download Instagram, TikTok and Facebook videos for free! 🚀 \n\nTry it here: https://savclip.net")}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group relative flex items-center justify-center gap-4 rounded-2xl bg-[#25D366] py-4 text-xl font-black text-white shadow-[0_20px_40px_-10px_rgba(37,211,102,0.4)] transition-all hover:scale-[1.02] active:scale-95 overflow-hidden"
+                    className="group relative flex items-center justify-center gap-3 rounded-2xl bg-[#25D366] py-3.5 text-lg font-black text-white shadow-[0_15px_30px_-10px_rgba(37,211,102,0.4)] transition-all hover:scale-[1.02] active:scale-95 overflow-hidden"
                   >
                     <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <MessageCircle className="h-7 w-7 fill-white" />
-                    Share on WhatsApp
+                    <MessageCircle className="h-6 w-6 fill-white" />
+                    WhatsApp Share
                     <div className="absolute inset-0 bg-linear-to-tr from-white/20 via-transparent to-transparent pointer-events-none opacity-40" />
                   </a>
                   <button 
-                    onClick={() => {
-                      setShowSuccess(false);
-                      // Custom prompt logic here if needed
-                    }}
-                    className="w-full text-[10px] font-black uppercase tracking-[0.3em] text-white/20 transition-all hover:text-white/60"
+                    onClick={() => setShowSuccess(false)}
+                    className="w-full text-[9px] font-black uppercase tracking-[0.3em] text-white/20 transition-all hover:text-white/60"
                   >
-                    Back to Results
+                    Close
                   </button>
                 </div>
               </div>

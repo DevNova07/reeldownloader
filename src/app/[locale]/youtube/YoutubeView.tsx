@@ -1,58 +1,48 @@
 "use client"
 
 import * as React from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import { SearchBar } from "@/components/layout/SearchBar"
-import { CategoryCards } from "@/components/layout/CategoryCards"
-import { DownloadPreview } from "@/components/layout/DownloadPreview"
-import { type PlatformResult } from "@/types/download"
-import { StructuredData } from "@/components/shared/StructuredData"
-import { PlatformTabs } from "@/components/shared/PlatformTabs"
-import { SocialPlatformBar } from "@/components/layout/SocialPlatformBar"
-import { VisualGuide } from "@/components/shared/VisualGuide"
-import { useRouter, usePathname, useSearchParams } from "next/navigation"
-import { locales, type Locale } from "@/i18n"
-import { dictionaries } from "@/dictionaries/client"
+import dynamic from "next/dynamic"
+
+const CategoryCards = dynamic(() => import("@/components/layout/CategoryCards").then(mod => mod.CategoryCards))
+const DownloadPreview = dynamic(() => import("@/components/layout/DownloadPreview").then(mod => mod.DownloadPreview))
+const StructuredData = dynamic(() => import("@/components/shared/StructuredData").then(mod => mod.StructuredData))
+const PlatformTabs = dynamic(() => import("@/components/shared/PlatformTabs").then(mod => mod.PlatformTabs))
+const SocialPlatformBar = dynamic(() => import("@/components/layout/SocialPlatformBar").then(mod => mod.SocialPlatformBar))
+const VisualGuide = dynamic(() => import("@/components/shared/VisualGuide").then(mod => mod.VisualGuide))
+
+import { useRouter } from "next/navigation"
+import { type Locale } from "@/i18n"
+import { Youtube, PlaySquare, Music as MusicIcon, Film, Zap, ShieldCheck, CheckCircle2, HelpCircle, Info } from "lucide-react"
 import { TrendingBar } from "@/components/layout/TrendingBar"
 import { LoadingBar } from "@/components/ui/LoadingBar"
 import { DownloadCounter } from "@/components/ui/DownloadCounter"
-import { RelatedTools } from "@/components/shared/RelatedTools"
+const RelatedTools = dynamic(() => import("@/components/shared/RelatedTools").then(mod => mod.RelatedTools))
 import { useDownloadHistory, getCached, setCached } from "@/hooks/useDownloadHistory"
 import { HeroEffect } from "@/components/shared/HeroEffect"
-import { Film, StopCircle, Zap, ShieldCheck, CheckCircle2, HelpCircle, Info, Music as MusicIcon } from "lucide-react"
 import { toast } from "react-hot-toast"
-import { getPlatformFromUrl, getLocalizedRoute, isAnyPlatformUrl, isSmartInput, handleSmartRedirect } from "@/utils/platform-detector"
+import { isSmartInput, handleSmartRedirect } from "@/utils/platform-detector"
 
 import { TrustBadges } from "@/components/ui/TrustBadges"
-import { ChromeExtensionBanner } from "@/components/layout/ChromeExtensionBanner"
+const ChromeExtensionBanner = dynamic(() => import("@/components/layout/ChromeExtensionBanner").then(mod => mod.ChromeExtensionBanner))
 
 import { useAutoDownload } from "@/hooks/useAutoDownload"
+import { type PlatformResult } from "@/types/download"
 
-export default function FacebookView({ dict, locale }: { dict: any, locale: string }) {
+export function YoutubeView({ locale, dict }: { locale: Locale, dict: any }) {
   const router = useRouter()
   const [downloadData, setDownloadData] = React.useState<PlatformResult | null>(null)
   const [isLoading, setIsLoading] = React.useState(false)
   const [autoTriggerDownload, setAutoTriggerDownload] = React.useState(false)
   const [searchCounter, setSearchCounter] = React.useState(0)
-  const [error, setError] = React.useState<string | null>(null)
   
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
-  const sharedUrl = searchParams.get('url') || ""
-  const { addToHistory } = useDownloadHistory("facebook")
+  const { addToHistory } = useDownloadHistory("youtube")
 
   const handleSearch = async (url: string, isAutoTrigger = false) => {
     setSearchCounter(prev => prev + 1)
     setAutoTriggerDownload(isAutoTrigger)
-
-    if (handleSmartRedirect(url, locale, router)) {
-      toast.success("Profile detected! Opening Bulk Downloader...")
-      return
-    }
-
     setIsLoading(true)
-    setDownloadData(null)
-    setError(null)
 
     const cached = getCached(url)
     if (cached) {
@@ -61,15 +51,19 @@ export default function FacebookView({ dict, locale }: { dict: any, locale: stri
       return
     }
 
+    if (handleSmartRedirect(url, locale, router)) {
+      toast.success("Profile detected! Opening Bulk Downloader...")
+      return
+    }
+
     setIsLoading(true)
     setDownloadData(null)
-    setError(null)
 
     const searchPromise = async () => {
       const response = await fetch("/api/download", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url, platform: "facebook" }),
+        body: JSON.stringify({ url, platform: "youtube" }),
       })
       const contentType = response.headers.get("content-type")
       if (!contentType || !contentType.includes("application/json")) {
@@ -88,48 +82,47 @@ export default function FacebookView({ dict, locale }: { dict: any, locale: stri
         throw new Error(result.error || "Failed to fetch content")
       }
     }
+
     try {
       await searchPromise()
-    } catch (err: any) {
-      const msg = err?.message || "Failed to process the link. Please try again.";
-      setError(msg);
-      toast.error(msg);
+    } catch (err: unknown) {
+        toast.error("Failed to fetch YouTube video. Please try again.");
     } finally {
       setIsLoading(false)
     }
   }
 
   // Auto-download logic for PWA Share Target
-  useAutoDownload(handleSearch, locale as Locale, "facebook")
+  useAutoDownload(handleSearch, locale, "youtube")
 
-  const fbDict = dict.platforms.facebook;
+  const ytDict = dict.platforms.youtube;
 
   return (
     <div className="flex flex-col">
       <StructuredData
         type="HowTo"
         data={{
-          name: fbDict.howTo.name,
-          description: fbDict.howTo.description,
-          steps: fbDict.howTo.steps
+          name: ytDict.howTo.name,
+          description: ytDict.howTo.description,
+          steps: ytDict.howTo.steps
         }}
       />
       
       {/* Hero Section */}
-      <section className="relative bg-linear-to-r from-blue-600 to-cyan-500 px-4 pt-14 pb-8 sm:pt-20 sm:pb-32 sm:px-6 lg:px-8">
-        <HeroEffect color="bg-blue-400" intensity="high" />
+      <section className="relative bg-linear-to-r from-red-600 to-red-800 px-4 pt-14 pb-8 sm:pt-20 sm:pb-32 sm:px-6 lg:px-8">
+        <HeroEffect color="bg-red-500" intensity="high" />
         
         <div className="relative z-10 mx-auto max-w-7xl text-center">
-          <SocialPlatformBar   activeId="facebook" />
+          <SocialPlatformBar   activeId="youtube" />
           <PlatformTabs   
             activeId="video" 
-            activeColor="text-blue-600"
+            activeColor="text-red-600"
             tabs={dict.tabs}
             items={[
-              { id: "video", label: dict.tabs.video, href: "/facebook", icon: <Film className="h-4 w-4" /> },
-              { id: "reels", label: dict.tabs.reels, href: "/facebook/reels", icon: <Film className="h-4 w-4" /> },
-              { id: "story", label: dict.tabs.story, href: "/facebook/story", icon: <StopCircle className="h-4 w-4" /> },
-              { id: "music", label: dict.tabs.music, href: "/facebook/music", icon: <MusicIcon className="h-4 w-4" /> },
+              { id: "video", label: dict.tabs.video, href: "/youtube", icon: <Youtube className="h-4 w-4" /> },
+              { id: "shorts", label: dict.tabs.shorts, href: "/youtube/shorts", icon: <PlaySquare className="h-4 w-4" /> },
+              { id: "movies", label: dict.tabs.movies, href: "/youtube/movies", icon: <Film className="h-4 w-4" /> },
+              { id: "music", label: dict.tabs.music, href: "/youtube/music", icon: <MusicIcon className="h-4 w-4" /> },
             ]} 
           />
 
@@ -139,10 +132,10 @@ export default function FacebookView({ dict, locale }: { dict: any, locale: stri
             transition={{ duration: 0.4 }}
           >
             <h1 className="mb-2 text-4xl font-black tracking-tight text-white sm:text-7xl drop-shadow-2xl uppercase italic">
-              {fbDict.title}
+              {ytDict.title}
             </h1>
             <p className="mx-auto mb-4 max-w-2xl text-lg font-medium text-white/90 sm:text-xl">
-              {fbDict.subtitle}
+              {ytDict.subtitle}
             </p>
           </motion.div>
           
@@ -152,33 +145,31 @@ export default function FacebookView({ dict, locale }: { dict: any, locale: stri
               isLoading={isLoading} 
               dict={dict}
               validate={isSmartInput}
-              buttonClass="bg-linear-to-br from-blue-600 via-blue-700 to-indigo-800 text-white shadow-[0_20px_50px_rgba(37,99,235,0.3)] ring-1 ring-inset ring-white/20"
-              initialValue={sharedUrl}
+              buttonClass="bg-white text-red-600 hover:bg-neutral-100"
+              iconClass="text-red-500"
             />
 
-            <AnimatePresence>
-            </AnimatePresence>
-
             <TrustBadges dict={dict} />
-            <TrendingBar accentColor="bg-blue-600" />
-            <DownloadCounter accentColor="text-blue-300" />
+            <TrendingBar accentColor="bg-red-600" />
+            <DownloadCounter accentColor="text-red-200" />
             
-            <LoadingBar isLoading={isLoading} label={dict.common.analyzing} gradient="from-blue-600 via-blue-500 to-cyan-500" />
+            <LoadingBar isLoading={isLoading} label={dict.common.analyzing} gradient="from-red-600 via-red-500 to-orange-500" />
           </div>
           <DownloadPreview 
             data={downloadData} 
             isLoading={isLoading} 
             autoTriggerDownload={autoTriggerDownload}
             searchCounter={searchCounter}
-            buttonStyle="bg-linear-to-br from-blue-600 via-blue-700 to-indigo-800 text-white shadow-[0_20px_50px_rgba(37,99,235,0.3)] hover:brightness-110 active:scale-95"
-            accentText="text-blue-600"
-            accentBg="bg-blue-600/10"
-            accentBorder="border-blue-600"
+            buttonStyle="bg-white text-red-600 hover:bg-neutral-100"
+            accentText="text-red-600"
+            accentBg="bg-red-600/10"
+            accentBorder="border-red-600"
           />
         </div>
       </section>
 
-      <RelatedTools currentPlatform="facebook" />
+      <RelatedTools currentPlatform="youtube" />
+
       <CategoryCards />
 
       <section className="bg-neutral-50 px-4 py-4 dark:bg-neutral-900/50 sm:px-6 lg:px-8">
@@ -186,9 +177,9 @@ export default function FacebookView({ dict, locale }: { dict: any, locale: stri
           <h2 className="mb-12 text-center text-3xl font-black text-neutral-900 dark:text-white uppercase italic tracking-widest">{dict.features.title}</h2>
           <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
             {[
-              { icon: <Zap className="h-8 w-8 text-blue-600" /> },
-              { icon: <ShieldCheck className="h-8 w-8 text-blue-600" /> },
-              { icon: <CheckCircle2 className="h-8 w-8 text-blue-600" /> },
+              { icon: <Zap className="h-8 w-8 text-red-600" /> },
+              { icon: <ShieldCheck className="h-8 w-8 text-red-600" /> },
+              { icon: <CheckCircle2 className="h-8 w-8 text-red-600" /> },
             ].map((feature, idx) => (
               <div key={idx} className="flex flex-col items-center text-center">
                 <div className="mb-6 rounded-2xl bg-white p-5 shadow-2xl dark:bg-black transition-all hover:scale-110 hover:-rotate-3 border border-neutral-100 dark:border-neutral-800">
@@ -203,14 +194,14 @@ export default function FacebookView({ dict, locale }: { dict: any, locale: stri
       </section>
 
       <VisualGuide 
-        platformName={dict.categories.fb}
-        accentColor="text-blue-600"
-        bgAccentColor="bg-blue-600"
-        Icon={Film}
+        platformName={dict.categories.yt}
+        accentColor="text-red-600"
+        bgAccentColor="bg-red-600"
+        Icon={Youtube}
         steps={[
-          { title: dict.guide.steps[0].title.replace('{platform}', dict.categories.fb), desc: fbDict.howTo.steps[0], image: "/images/how-to/step1.webp" },
-          { title: dict.guide.steps[1].title.replace('{platform}', dict.categories.fb), desc: fbDict.howTo.steps[1] + " " + fbDict.howTo.steps[2], image: "/images/how-to/step2.webp" },
-          { title: dict.guide.steps[2].title.replace('{platform}', dict.categories.fb), desc: fbDict.howTo.steps[3], image: "/images/how-to/step3.webp" },
+          { title: dict.guide.steps[0].title.replace('{platform}', dict.categories.yt), desc: ytDict.howTo.steps[0], image: "/images/how-to/step1.webp" },
+          { title: dict.guide.steps[1].title.replace('{platform}', dict.categories.yt), desc: ytDict.howTo.steps[1] + " " + ytDict.howTo.steps[2], image: "/images/how-to/step2.webp" },
+          { title: dict.guide.steps[2].title.replace('{platform}', dict.categories.yt), desc: ytDict.howTo.steps[3], image: "/images/how-to/step3.webp" },
         ]}
       />
 
@@ -221,17 +212,17 @@ export default function FacebookView({ dict, locale }: { dict: any, locale: stri
         <div className="mx-auto max-w-4xl">
           <div className="mt-10">
             <h2 className="flex items-center gap-3 text-3xl font-black text-neutral-900 dark:text-white uppercase italic tracking-widest">
-              <Info className="h-8 w-8 text-blue-600" />
-              {fbDict.seo.title}
+              <Info className="h-8 w-8 text-red-600" />
+              {ytDict.seo.title}
             </h2>
-            <p className="mt-4 text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed italic border-l-4 border-blue-500 pl-8 font-medium">
-              {fbDict.seo.desc}
+            <p className="mt-4 text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed italic border-l-4 border-red-500 pl-8 font-medium">
+              {ytDict.seo.desc}
             </p>
 
             <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2">
               {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-              {fbDict.seo.features.map((feature: any, idx: number) => (
-                <div key={idx} className="rounded-4xl bg-neutral-50 p-8 dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 transition-all hover:scale-105 hover:bg-white dark:hover:bg-neutral-900 shadow-sm hover:shadow-2xl">
+              {ytDict.seo.features.map((feature: any, idx: number) => (
+                <div key={idx} className="rounded-[2rem] bg-neutral-50 p-8 dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 transition-all hover:scale-105 hover:bg-white dark:hover:bg-neutral-900 shadow-sm hover:shadow-2xl">
                   <h4 className="font-black text-neutral-900 dark:text-white uppercase italic tracking-tighter text-lg">{feature.title}</h4>
                   <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80">{feature.desc}</p>
                 </div>
@@ -241,14 +232,14 @@ export default function FacebookView({ dict, locale }: { dict: any, locale: stri
 
           <div className="mt-6 sm:mt-44">
             <h2 className="flex items-center gap-3 text-3xl font-black text-neutral-900 dark:text-white uppercase italic tracking-widest">
-              <HelpCircle className="h-8 w-8 text-blue-600" />
+              <HelpCircle className="h-8 w-8 text-red-600" />
               {dict.faq.title}
             </h2>
             <div className="mt-12 space-y-6">
               {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
               {dict.faq.items.map((faq: any, idx: number) => (
-                <div key={idx} className="group rounded-[2rem] border border-neutral-200 p-8 dark:border-neutral-800 hover:border-blue-500/50 transition-all bg-white dark:bg-transparent hover:shadow-2xl">
-                  <h4 className="font-black text-neutral-900 dark:text-white group-hover:text-blue-600 transition-colors uppercase italic tracking-tighter text-lg">{faq.q}</h4>
+                <div key={idx} className="group rounded-[2rem] border border-neutral-200 p-8 dark:border-neutral-800 hover:border-red-500/50 transition-all bg-white dark:bg-transparent hover:shadow-2xl">
+                  <h4 className="font-black text-neutral-900 dark:text-white group-hover:text-red-600 transition-colors uppercase italic tracking-tighter text-lg">{faq.q}</h4>
                   <p className="mt-4 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 group-hover:opacity-100 transition-opacity">{faq.a}</p>
                 </div>
               ))}

@@ -10,16 +10,14 @@ import dynamic from "next/dynamic"
 const DownloadPreview = dynamic(() => import("@/components/layout/DownloadPreview").then(m => m.DownloadPreview), { ssr: false })
 const StructuredData = dynamic(() => import("@/components/shared/StructuredData").then(m => m.StructuredData))
 const PlatformTabs = dynamic(() => import("@/components/shared/PlatformTabs").then(m => m.PlatformTabs))
-const SocialServiceBar = dynamic(() => import("@/components/layout/SocialServiceBar").then(m => m.SocialServiceBar))
+const SocialPlatformBar = dynamic(() => import("@/components/layout/SocialPlatformBar").then(m => m.SocialPlatformBar))
 const SmartClipboard = dynamic(() => import("@/components/ui/SmartClipboard").then(m => m.SmartClipboard), { ssr: false });
 import { type Locale } from "@/i18n"
-import { getDictionary } from "@/dictionaries/client"
 import { LoadingBar } from "@/components/ui/LoadingBar"
 import { DownloadCounter } from "@/components/ui/DownloadCounter"
 import { useDownloadHistory, getCached, setCached } from "@/hooks/useDownloadHistory"
 import { HeroEffect } from "@/components/shared/HeroEffect"
 import { Film, StopCircle, Zap, ShieldCheck, CheckCircle2, HelpCircle, Info } from "lucide-react"
-import { ToolSubNav } from "@/components/layout/ToolSubNav"
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs"
 import { toast } from "react-hot-toast"
 const TrustBadges = dynamic(() => import("@/components/ui/TrustBadges").then(m => m.TrustBadges))
@@ -42,12 +40,14 @@ interface FacebookPageProps {
   content: any;
   locale: string;
   themeColor?: string;
+  dict: any;
 }
 
 function FacebookContent({
   content = {},
   locale,
   themeColor = "blue",
+  dict,
 }: FacebookPageProps) {
   const router = useRouter()
   // Defensive check to prevent crashes if dictionary is missing for a slug
@@ -59,7 +59,6 @@ function FacebookContent({
   const [autoTriggerDownload, setAutoTriggerDownload] = React.useState(false)
   const [searchCounter, setSearchCounter] = React.useState(0)
   
-  const dict = getDictionary(locale);
   const { addToHistory } = useDownloadHistory("facebook");
   const searchParams = useSearchParams()
 
@@ -132,18 +131,18 @@ function FacebookContent({
         <HeroEffect color={cx.effect} intensity="high" />
         
         <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-4 sm:gap-6">
-          <SocialServiceBar activeId="facebook" />
+          <SocialPlatformBar activeId="facebook" />
           <PlatformTabs   
             activeId={content.activeTab || "video"} 
             activeColor={cx.text}
-            tabs={dict.tabs}
+            tabs={dict?.tabs}
             locale={locale}
             items={[
-              { id: "video", label: dict.tabs?.video || "Video", href: "/facebook", icon: <Film className="h-4 w-4" /> },
-              { id: "reels", label: dict.tabs?.reels || "Reels", href: "/facebook-reels-downloader", icon: <Film className="h-4 w-4" /> },
-              { id: "story", label: dict.tabs?.story || "Story", href: "/facebook-story-downloader", icon: <StopCircle className="h-4 w-4" /> },
-              { id: "private", label: dict.tabs?.private || "Private", href: "/facebook-private-video-downloader", icon: <ShieldCheck className="h-4 w-4" /> },
-              { id: "hd", label: dict.tabs?.hd || "HD", href: "/facebook-hd-video-downloader", icon: <Zap className="h-4 w-4" /> },
+              { id: "video", label: dict?.tabs?.video || "Video", href: "/facebook", icon: <Film className="h-4 w-4" /> },
+              { id: "reels", label: dict?.tabs?.reels || "Reels", href: "/facebook-reels-downloader", icon: <Film className="h-4 w-4" /> },
+              { id: "story", label: dict?.tabs?.story || "Story", href: "/facebook-story-downloader", icon: <StopCircle className="h-4 w-4" /> },
+              { id: "private", label: dict?.tabs?.private || "Private", href: "/facebook-private-video-downloader", icon: <ShieldCheck className="h-4 w-4" /> },
+              { id: "hd", label: dict?.tabs?.hd || "HD", href: "/facebook-hd-video-downloader", icon: <Zap className="h-4 w-4" /> },
             ]} 
           />
 
@@ -195,7 +194,6 @@ function FacebookContent({
         </div>
       </section>
 
-      <ToolSubNav />
       {content.title && (
         <Breadcrumbs 
           locale={locale}
@@ -212,7 +210,7 @@ function FacebookContent({
 
       <section className="bg-neutral-50 px-4 py-4 dark:bg-neutral-900/50 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <h2 className="mb-12 text-center text-3xl font-black text-neutral-900 dark:text-white uppercase italic tracking-widest">{dict.features?.title || "Features"}</h2>
+          <h2 className="mb-12 text-center text-3xl font-black text-neutral-900 dark:text-white uppercase italic tracking-widest">{dict?.features?.title || "Features"}</h2>
           <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
             {[
               { icon: <Zap className={`h-8 w-8 ${cx.text}`} /> },
@@ -223,8 +221,8 @@ function FacebookContent({
                 <div className="mb-6 rounded-2xl bg-white p-5 shadow-2xl dark:bg-black transition-all hover:scale-110 hover:-rotate-3 border border-neutral-100 dark:border-neutral-800">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-black text-neutral-900 dark:text-white uppercase italic">{dict.features?.items?.[idx]?.title || "Feature"}</h3>
-                <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80">{dict.features?.items?.[idx]?.desc || "Description"}</p>
+                <h3 className="text-xl font-black text-neutral-900 dark:text-white uppercase italic">{dict?.features?.items?.[idx]?.title || "Feature"}</h3>
+                <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80">{dict?.features?.items?.[idx]?.desc || "Description"}</p>
               </div>
             ))}
           </div>
@@ -296,10 +294,10 @@ function FacebookContent({
                 <div className="mt-6 sm:mt-20">
                   <h2 className="flex items-center gap-3 text-3xl font-black text-neutral-900 dark:text-white uppercase italic tracking-widest">
                     <HelpCircle className={`h-8 w-8 ${cx.text}`} />
-                    {content.faq?.title || dict.faq?.title || "FAQ"}
+                    {content.faq?.title || dict?.faq?.title || "FAQ"}
                   </h2>
                   <div className="mt-12 space-y-6">
-                    {(content.faq?.items || dict.faq?.items || []).map((faq: any, idx: number) => (
+                    {(content.faq?.items || dict?.faq?.items || []).map((faq: any, idx: number) => (
                       <div key={idx} className={`group rounded-[2rem] border border-neutral-200 p-8 dark:border-neutral-800 hover:${cx.border}/50 transition-all bg-white dark:bg-transparent hover:shadow-2xl`}>
                         <h4 className={`font-black text-neutral-900 dark:text-white group-hover:${cx.text} transition-colors uppercase italic tracking-tighter text-lg`}>{faq.q}</h4>
                         <p className="mt-4 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 group-hover:opacity-100 transition-opacity">{faq.a}</p>

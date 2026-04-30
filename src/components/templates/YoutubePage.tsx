@@ -10,15 +10,13 @@ import dynamic from "next/dynamic"
 const DownloadPreview = dynamic(() => import("@/components/layout/DownloadPreview").then(m => m.DownloadPreview), { ssr: false })
 const StructuredData = dynamic(() => import("@/components/shared/StructuredData").then(m => m.StructuredData))
 const PlatformTabs = dynamic(() => import("@/components/shared/PlatformTabs").then(m => m.PlatformTabs))
-const SocialServiceBar = dynamic(() => import("@/components/layout/SocialServiceBar").then(m => m.SocialServiceBar))
+const SocialPlatformBar = dynamic(() => import("@/components/layout/SocialPlatformBar").then(m => m.SocialPlatformBar))
 import { type Locale } from "@/i18n"
-import { getDictionary } from "@/dictionaries/client"
 import { LoadingBar } from "@/components/ui/LoadingBar"
 import { DownloadCounter } from "@/components/ui/DownloadCounter"
 import { useDownloadHistory, getCached, setCached } from "@/hooks/useDownloadHistory"
 import { HeroEffect } from "@/components/shared/HeroEffect"
 import { Youtube, PlaySquare, Music as MusicIcon, Film, Zap, ShieldCheck, CheckCircle2, HelpCircle, Info } from "lucide-react"
-import { ToolSubNav } from "@/components/layout/ToolSubNav"
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs"
 import { toast } from "react-hot-toast"
 const TrustBadges = dynamic(() => import("@/components/ui/TrustBadges").then(m => m.TrustBadges))
@@ -41,12 +39,14 @@ interface YoutubePageProps {
   content: any;
   locale: string;
   themeColor?: string;
+  dict: any;
 }
 
 function YoutubeContent({
   content = {},
   locale,
   themeColor = "red",
+  dict,
 }: YoutubePageProps) {
   const router = useRouter()
   // Defensive check to prevent crashes if dictionary is missing for a slug
@@ -58,7 +58,6 @@ function YoutubeContent({
   const [autoTriggerDownload, setAutoTriggerDownload] = React.useState(false)
   const [searchCounter, setSearchCounter] = React.useState(0)
   
-  const dict = getDictionary(locale);
   const { addToHistory } = useDownloadHistory("youtube");
   const searchParams = useSearchParams()
 
@@ -129,7 +128,7 @@ function YoutubeContent({
         <HeroEffect color={cx.effect} intensity="high" />
         
         <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-4 sm:gap-6">
-          <SocialServiceBar activeId="youtube" />
+          <SocialPlatformBar activeId="youtube" />
           <PlatformTabs   
             activeId="video" 
             activeColor="text-white"
@@ -206,7 +205,6 @@ function YoutubeContent({
         </div>
       </section>
 
-      <ToolSubNav />
       {content.title && (
         <Breadcrumbs 
           locale={locale}

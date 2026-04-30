@@ -34,7 +34,6 @@ import {
 import { usePathname } from "next/navigation"
 import { cn } from "@/utils/cn"
 import { toast } from "react-hot-toast"
-import { ToolSubNav } from "@/components/layout/ToolSubNav"
 import { AISearchBar } from "@/components/shared/AISearchBar"
 import { PremiumSearch } from "@/components/shared/PremiumSearch"
 
@@ -884,7 +883,6 @@ export default function CaptionsPage() {
 
     return (
         <main className="relative min-h-screen bg-linear-to-b from-[#f8fafc] via-[#eef2ff] to-[#e0f2fe] selection:bg-indigo-100 pb-20">
-            <ToolSubNav />
             {/* Hero Section with Background */}
             <section className="relative overflow-hidden min-h-[450px] flex items-center justify-center text-center">
                 {/* Background Image with Overlay */}

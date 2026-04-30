@@ -17,6 +17,7 @@ export interface PlatformResult {
   shareCount?: number;
   author?: string;
   authorId?: string;
+  duration?: string;
   type?: "single" | "list";
   items?: Array<{
     id: string;

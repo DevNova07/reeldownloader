@@ -15,6 +15,7 @@ import type { Viewport } from "next";
 
 import { ScrollToTop } from "@/components/shared/ScrollToTop";
 import { Analytics } from "@/components/shared/Analytics";
+import { ToolSubNav } from "@/components/layout/ToolSubNav";
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -102,12 +103,38 @@ export default async function RootLayout(props: {
   const direction = isRTL(locale) ? "rtl" : "ltr";
   const fullDict = await getDictionary(locale);
   
-  const { platforms, ...rest } = fullDict;
+  // Create a truly minimal dictionary for the layout (Navbar/Footer)
+  // This avoids serializing the massive seo_pages object
   const layoutDict = {
-    ...rest,
-    platforms: platforms ? Object.fromEntries(
-      Object.entries(platforms).filter(([key]) => key !== 'seo_pages')
-    ) : {}
+    categories: fullDict?.categories,
+    navbar: fullDict?.navbar,
+    footer_branding: fullDict?.footer_branding,
+    common: {
+      analyzing: fullDict?.common?.analyzing
+    },
+    tabs: fullDict?.tabs,
+    trust: fullDict?.trust,
+    faq: {
+      title: fullDict?.faq?.title,
+      items: (fullDict?.faq?.items || []).slice(0, 3)
+    },
+    // Only include necessary platform titles and sub-tool titles for Navbar dropdowns
+    platforms: Object.keys(fullDict?.platforms || {}).reduce((acc: any, key) => {
+      if (key !== 'seo_pages') {
+        const platform = fullDict.platforms[key];
+        acc[key] = {
+          title: platform?.title,
+          // Map sub-tools (like reels, story, music) to include their titles for Navbar
+          ...Object.keys(platform || {}).reduce((pAcc: any, pKey) => {
+            if (platform[pKey] && typeof platform[pKey] === 'object' && platform[pKey].title) {
+              pAcc[pKey] = { title: platform[pKey].title };
+            }
+            return pAcc;
+          }, {})
+        };
+      }
+      return acc;
+    }, {})
   };
 
   return (
@@ -191,7 +218,8 @@ export default async function RootLayout(props: {
          <InstallPWA />
           <div className="flex min-h-screen flex-col overflow-x-hidden">
             <Navbar dict={layoutDict} />
-            <main className="flex-1 min-h-[80vh] animate-in fade-in duration-500 fill-mode-both">
+            <ToolSubNav />
+            <main className="flex-1 min-h-[80vh] animate-in fade-in duration-200 fill-mode-both">
               {props.children}
             </main>
             <Footer locale={locale} dict={layoutDict} />

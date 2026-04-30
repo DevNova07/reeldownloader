@@ -1,7 +1,7 @@
 {
-  "totalRequests": 96,
-  "successfulRequests": 71,
-  "failedRequests": 25,
+  "totalRequests": 199,
+  "successfulRequests": 108,
+  "failedRequests": 91,
   "savedRequests": 0,
   "totalVisits": 0,
   "platforms": {
@@ -10,7 +10,7 @@
       "success": 24,
       "fail": 10,
       "keys": {
-        "9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7": {
+        "9ac29222efmsh81d43b990a8ce7dp17df2jsn6f83cbfb17b7": {
           "name": "API 1",
           "status": "active",
           "remaining": "280",
@@ -25,7 +25,7 @@
       "success": 12,
       "fail": 10,
       "keys": {
-        "9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7": {
+        "9ac29222efmsh81d43b990a8ce7dp17df2jsn6f83cbfb17b7": {
           "name": "API 1",
           "status": "active",
           "remaining": "7688",
@@ -36,32 +36,40 @@
       }
     },
     "youtube": {
-      "total": 23,
-      "success": 19,
-      "fail": 4,
+      "total": 112,
+      "success": 43,
+      "fail": 69,
       "keys": {
+        "9ac29222efmsh81d43b990a8ce7dp17df2jsn6f83cbfb17b7": {
+          "name": "API 1",
+          "status": "active",
+          "remaining": "58",
+          "limit": "unkn",
+          "used": 29,
+          "lastCheck": "2026-04-30T17:09:59.147Z"
+        },
         "9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7": {
           "name": "API 1",
           "status": "active",
-          "remaining": "74",
+          "remaining": "51",
           "limit": "unkn",
           "used": 23,
-          "lastCheck": "2026-04-28T10:54:21.039Z"
+          "lastCheck": "2026-04-30T18:22:43.609Z"
         }
       }
     },
     "instagram": {
-      "total": 16,
-      "success": 15,
-      "fail": 1,
+      "total": 30,
+      "success": 28,
+      "fail": 2,
       "keys": {
-        "9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7": {
+        "9ac29222efmsh81d43b990a8ce7dp17df2jsn6f83cbfb17b7": {
           "name": "API 1",
           "status": "active",
-          "remaining": "2984",
+          "remaining": "2957",
           "limit": "unkn",
-          "used": 15,
-          "lastCheck": "2026-04-30T08:32:08.734Z"
+          "used": 28,
+          "lastCheck": "2026-04-30T16:46:21.106Z"
         }
       }
     },
@@ -70,7 +78,7 @@
       "success": 1,
       "fail": 0,
       "keys": {
-        "9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7": {
+        "9ac29222efmsh81d43b990a8ce7dp17df2jsn6f83cbfb17b7": {
           "name": "API 1",
           "status": "active",
           "remaining": "690",

@@ -1,11 +1,9 @@
 import { Camera } from "lucide-react"
-import { ToolSubNav } from "@/components/layout/ToolSubNav"
 import Link from "next/link"
 
 export default function PhotoPage() {
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-black">
-      <ToolSubNav />
       <div className="flex flex-1 flex-col items-center justify-center px-4 py-20 sm:px-6 lg:px-8">
       <div className="text-center">
         <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-pink-600/10 mx-auto">

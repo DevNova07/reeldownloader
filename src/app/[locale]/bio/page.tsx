@@ -18,7 +18,6 @@ import {
 import { cn } from "@/utils/cn"
 import { dictionaries } from "@/dictionaries/client"
 import { type Locale } from "@/i18n"
-import { ToolSubNav } from "@/components/layout/ToolSubNav"
 import bioData from "@/data/bios.json"
 import { PremiumSearch } from "@/components/shared/PremiumSearch"
 import { LeftSidebar, RightSidebar } from "./sidebars"
@@ -89,7 +88,6 @@ export default function BioLandingPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-black text-white selection:bg-lime-500/30">
-      <ToolSubNav />
 
       {/* 1. AI BIO GENERATOR HERO */}
       <section className="relative overflow-hidden min-h-[460px] flex items-center justify-center text-center px-4 border-b border-white/5">

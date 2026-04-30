@@ -8,7 +8,6 @@ import { useParams } from "next/navigation"
 import { cn } from "@/utils/cn"
 
 import { ALL_HASHTAGS } from "@/data/hashtags"
-import { ToolSubNav } from "@/components/layout/ToolSubNav"
 
 
 export default function BestHashtagsPage() {
@@ -17,7 +16,6 @@ export default function BestHashtagsPage() {
 
   return (
     <main className="min-h-screen bg-white">
-      <ToolSubNav />
       {/* Sub-Navigation */}
       <nav className="w-full border-b border-neutral-100 bg-white">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-12 gap-y-4 px-4 py-5 md:gap-x-20">

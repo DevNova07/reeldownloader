@@ -27,6 +27,18 @@ export async function downloadFile(
 
     const chunks: Uint8Array[] = [];
     
+    // Start simulated progress if total is unknown
+    let simulatedProgress = 0;
+    let progressInterval: any = null;
+    
+    if (!total && onProgress) {
+      onProgress(5, "Initializing stream...");
+      progressInterval = setInterval(() => {
+        simulatedProgress += (100 - simulatedProgress) * 0.05; // Slow trickle towards 100
+        onProgress(Math.min(simulatedProgress, 99), "Streaming data...");
+      }, 500);
+    }
+
     while (true) {
       const { done, value } = await reader.read();
       if (done) break;
@@ -35,9 +47,13 @@ export async function downloadFile(
       loaded += value.length;
       
       if (total && onProgress) {
-        onProgress((loaded / total) * 100, "Downloading...");
+        const progress = (loaded / total) * 100;
+        onProgress(progress, progress < 100 ? "Downloading..." : "Finalizing...");
       }
     }
+
+    if (progressInterval) clearInterval(progressInterval);
+    if (onProgress) onProgress(100, "Saving to device...");
 
     const blob = new Blob(chunks as any);
     const blobUrl = URL.createObjectURL(blob);

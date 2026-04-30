@@ -7,7 +7,6 @@ import Link from "next/link"
 import { useParams } from "next/navigation"
 import { cn } from "@/utils/cn"
 import { NEW_HASHTAGS, type HashtagData } from "@/data/hashtags"
-import { ToolSubNav } from "@/components/layout/ToolSubNav"
 
 export default function NewHashtagsPage() {
   const params = useParams()
@@ -15,7 +14,6 @@ export default function NewHashtagsPage() {
 
   return (
     <main className="min-h-screen bg-white">
-      <ToolSubNav />
       {/* Sub-Navigation */}
       <nav className="w-full border-b border-neutral-100 bg-white">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-12 gap-y-4 px-4 py-5 md:gap-x-20">

@@ -10,16 +10,14 @@ import dynamic from "next/dynamic"
 const DownloadPreview = dynamic(() => import("@/components/layout/DownloadPreview").then(m => m.DownloadPreview), { ssr: false })
 const StructuredData = dynamic(() => import("@/components/shared/StructuredData").then(m => m.StructuredData))
 const PlatformTabs = dynamic(() => import("@/components/shared/PlatformTabs").then(m => m.PlatformTabs))
-const SocialServiceBar = dynamic(() => import("@/components/layout/SocialServiceBar").then(m => m.SocialServiceBar))
+const SocialPlatformBar = dynamic(() => import("@/components/layout/SocialPlatformBar").then(m => m.SocialPlatformBar))
 const SmartClipboard = dynamic(() => import("@/components/ui/SmartClipboard").then(m => m.SmartClipboard), { ssr: false });
 import { type Locale } from "@/i18n"
-import { getDictionary } from "@/dictionaries/client"
 import { LoadingBar } from "@/components/ui/LoadingBar"
 import { DownloadCounter } from "@/components/ui/DownloadCounter"
 import { useDownloadHistory, getCached, setCached } from "@/hooks/useDownloadHistory"
 import { HeroEffect } from "@/components/shared/HeroEffect"
 import { Music as MusicIcon, Film, StopCircle, Zap, ShieldCheck, CheckCircle2, HelpCircle, Info } from "lucide-react"
-import { ToolSubNav } from "@/components/layout/ToolSubNav"
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs"
 import { toast } from "react-hot-toast"
 const TrustBadges = dynamic(() => import("@/components/ui/TrustBadges").then(m => m.TrustBadges))
@@ -42,12 +40,14 @@ interface TiktokPageProps {
   content: any;
   locale: string;
   themeColor?: string;
+  dict: any;
 }
 
 function TiktokContent({
   content = {},
   locale,
   themeColor = "pink",
+  dict,
 }: TiktokPageProps) {
   const router = useRouter()
   // Defensive check to prevent crashes if dictionary is missing for a slug
@@ -59,7 +59,6 @@ function TiktokContent({
   const [autoTriggerDownload, setAutoTriggerDownload] = React.useState(false)
   const [searchCounter, setSearchCounter] = React.useState(0)
   
-  const dict = getDictionary(locale);
   const { addToHistory } = useDownloadHistory("tiktok");
   const searchParams = useSearchParams()
 
@@ -151,7 +150,7 @@ function TiktokContent({
         <HeroEffect color={cx.effect} intensity="high" />
         
         <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-4 sm:gap-6">
-          <SocialServiceBar activeId="tiktok" />
+          <SocialPlatformBar activeId="tiktok" />
           <PlatformTabs   
             activeId="video" 
             activeColor={cx.text}
@@ -224,7 +223,6 @@ function TiktokContent({
         </div>
       </section>
 
-      <ToolSubNav />
       {content.title && (
         <Breadcrumbs 
           locale={locale}

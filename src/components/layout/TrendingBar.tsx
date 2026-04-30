@@ -19,8 +19,8 @@ const MEDIA_TYPES = [
 ]
 
 export function TrendingBar({ accentColor = "bg-pink-600" }: TrendingBarProps) {
-  const pathname = usePathname()
-  const locale = pathname.split('/')[1] as Locale
+  const pathname = usePathname() || ""
+  const locale = (pathname.split('/')[1] || 'en') as Locale
     const dict = getDictionary(locale)
   
   const [items, setItems] = React.useState<string[]>([])

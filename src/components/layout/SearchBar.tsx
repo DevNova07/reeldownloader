@@ -64,8 +64,8 @@ function SearchBarInner({
     const detected = getPlatformFromUrl(inputUrl)
     if (!detected) return false
 
-    const currentPlat = getPlatformFromPath(pathname)
-    const locale = pathname.split('/')[1] || 'en'
+    const currentPlat = getPlatformFromPath(pathname || "")
+    const locale = (pathname || "").split('/')[1] || 'en'
 
     if (currentPlat && detected !== currentPlat) {
       const target = getLocalizedRoute(detected, locale)

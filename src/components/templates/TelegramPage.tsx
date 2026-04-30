@@ -8,10 +8,9 @@ import { DownloadPreview } from "@/components/layout/DownloadPreview"
 import { type PlatformResult } from "@/types/download"
 import { StructuredData } from "@/components/shared/StructuredData"
 import { PlatformTabs } from "@/components/shared/PlatformTabs"
-import { SocialServiceBar } from "@/components/layout/SocialServiceBar"
+import { SocialPlatformBar } from "@/components/layout/SocialPlatformBar"
 import { VisualGuide } from "@/components/shared/VisualGuide"
 import { type Locale } from "@/i18n"
-import { getDictionary } from "@/dictionaries/client"
 import { TrendingBar } from "@/components/layout/TrendingBar"
 import { LoadingBar } from "@/components/ui/LoadingBar"
 import { DownloadCounter } from "@/components/ui/DownloadCounter"
@@ -19,7 +18,6 @@ import { RelatedTools } from "@/components/shared/RelatedTools"
 import { useDownloadHistory, getCached, setCached } from "@/hooks/useDownloadHistory"
 import { HeroEffect } from "@/components/shared/HeroEffect"
 import { Send, FileText, Zap, ShieldCheck, CheckCircle2, HelpCircle, Info } from "lucide-react"
-import { ToolSubNav } from "@/components/layout/ToolSubNav"
 import { toast } from "react-hot-toast"
 import { useRouter, useSearchParams } from "next/navigation"
 import { getPlatformFromUrl, getLocalizedRoute, isAnyPlatformUrl } from "@/utils/platform-detector"
@@ -33,13 +31,13 @@ import { InternalToolLinks } from "@/components/shared/InternalToolLinks"
 
 interface TelegramPageProps {
   content: any
-  locale: Locale
+  locale: string
+  dict: any
 }
 
-function TelegramPageContent({ content, locale }: TelegramPageProps) {
+function TelegramPageContent({ content, locale, dict }: TelegramPageProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const dict = getDictionary(locale)
 
   const [downloadData, setDownloadData] = React.useState<PlatformResult | null>(null)
   const [isLoading, setIsLoading] = React.useState(false)
@@ -115,7 +113,7 @@ function TelegramPageContent({ content, locale }: TelegramPageProps) {
       <section className="relative overflow-hidden bg-linear-to-r from-sky-500 to-blue-600 px-4 pt-14 pb-8 sm:pt-16 sm:pb-20 sm:px-6 lg:px-8">
         <HeroEffect color="bg-sky-400" intensity="high" />
         <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-4 sm:gap-6">
-          <SocialServiceBar activeId="telegram" />
+          <SocialPlatformBar activeId="telegram" />
           <PlatformTabs   
             activeId="media" 
             activeColor="text-sky-600"
@@ -185,7 +183,6 @@ function TelegramPageContent({ content, locale }: TelegramPageProps) {
         </div>
       </section>
 
-      <ToolSubNav />
       {content.title && (
         <Breadcrumbs 
           locale={locale}
