@@ -25,7 +25,7 @@ export default function ReelScriptGenerator() {
     if (!topic.trim()) return
     setIsGenerating(true)
     setTimeout(() => {
-      const hooks = {
+      const hooksMap = {
         Energetic: [
           `"Stop scrolling! If you're not doing ${topic}, you're falling behind!"`,
           `"Listen up! This is the only ${topic} hack you'll ever need!"`
@@ -42,9 +42,10 @@ export default function ReelScriptGenerator() {
           `"The truth about ${topic} that most people aren't ready to hear."`,
           `"If you want to master ${topic}, you need to stop doing this one thing."`
         ]
-      }[tone as keyof typeof hooks] || ["Stop everything!"]
-
-      const selectedHook = hooks[Math.floor(Math.random() * hooks.length)]
+      }
+      
+      const selectedHooks = hooksMap[tone as keyof typeof hooksMap] || ["Stop everything!"]
+      const selectedHook = selectedHooks[Math.floor(Math.random() * selectedHooks.length)]
 
       setResult(`🎬 **VIRAL SCRIPT: ${topic.toUpperCase()}** (${duration})\n\n` +
         `🪝 **THE HOOK (0-3s):**\n${selectedHook} (Point at text overlay on screen)\n\n` +
