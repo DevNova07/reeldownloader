@@ -59,7 +59,9 @@
     "shorts": "Shorts",
     "movies": "Movies",
     "gif": "GIFs",
-    "spotlight": "Spotlight"
+    "spotlight": "Spotlight",
+    "private": "Private",
+    "hd": "HD"
   },
   "features": {
     "title": "Premium Features for Everyone",
