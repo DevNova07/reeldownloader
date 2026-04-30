@@ -24,7 +24,7 @@ export default function ViralHookGenerator() {
     if (!topic.trim()) return
     setIsGenerating(true)
     setTimeout(() => {
-      const templates = {
+      const hookTemplates = {
         Controversial: [
           `❌ Stop doing [Action] if you want to master ${topic}!`,
           `😱 The controversial truth about ${topic} nobody tells you.`,
@@ -45,9 +45,11 @@ export default function ViralHookGenerator() {
           `🚀 The 2026 guide to ${topic} is finally here. Don't be late.`,
           `💎 Only 1% of creators know this ${topic} hack. Ready?`
         ]
-      }[style as keyof typeof templates] || [`🔥 How to win at ${topic} every single time.`]
+      }
+      
+      const selectedHooks = hookTemplates[style as keyof typeof hookTemplates] || [`🔥 How to win at ${topic} every single time.`]
 
-      setResult(templates)
+      setResult(selectedHooks)
       setIsGenerating(false)
       setStep(2)
       toast.success("Hooks are Ready!")
