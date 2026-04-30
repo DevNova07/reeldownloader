@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/utils/cn"
-import { Film, PlaySquare, StopCircle, Music as MusicIcon, Camera, ImageIcon, Send, Ghost, Hash, ShieldCheck, Compass } from "lucide-react"
+import { Film, PlaySquare, StopCircle, Music as MusicIcon, Camera, ImageIcon, Send, Ghost, Hash, ShieldCheck, Compass, Zap, TrendingUp, Layers } from "lucide-react"
 import { getDictionary } from "@/dictionaries/client"
 
 interface CategoryCardsProps {
@@ -92,6 +92,34 @@ export function CategoryCards({
       href: "/music",
       icon: MusicIcon,
       bg: "bg-linear-to-tr from-purple-500 to-indigo-600 shadow-purple-500/20"
+    },
+    {
+      name: "Reel Script AI",
+      desc: "Generate viral scripts for your Reels and TikToks in seconds.",
+      href: "/reel-script",
+      icon: PlaySquare,
+      bg: "bg-linear-to-tr from-rose-500 to-pink-600 shadow-rose-500/20"
+    },
+    {
+      name: "Viral Hook Finder",
+      desc: "Stop the scroll with AI-powered viral hooks for your videos.",
+      href: "/viral-hooks",
+      icon: Zap,
+      bg: "bg-linear-to-tr from-yellow-400 to-orange-500 shadow-yellow-500/20"
+    },
+    {
+      name: dict.categories?.bulk || "Bulk Downloader",
+      desc: dict.categories?.bulk_desc || "Save all reels from any profile or hashtag in one go.",
+      href: "/bulk-downloader",
+      icon: Layers,
+      bg: "bg-linear-to-tr from-rose-500 to-pink-600 shadow-rose-500/20",
+    },
+    {
+      name: "Trending Content",
+      desc: "Discover what's trending right now across social platforms.",
+      href: "/trending",
+      icon: TrendingUp,
+      bg: "bg-linear-to-tr from-blue-500 to-indigo-600 shadow-blue-500/20"
     },
     {
       name: dict.categories?.private || "Private Downloader",

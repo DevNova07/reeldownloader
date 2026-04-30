@@ -105,8 +105,12 @@ body {
   margin-left: -1.75rem; /* Equivalent to -ml-7 */
 }
 
-@keyframes shimmer {
-  100% {
-    transform: translateX(100%);
-  }
+@keyframes progress-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.animate-progress-shimmer {
+  animation: progress-shimmer 2s infinite ease-in-out;
+  will-change: transform;
 }

@@ -35,7 +35,10 @@
         "*://*.instagram.com/*",
         "*://*.tiktok.com/*",
         "*://*.facebook.com/*",
-        "*://*.youtube.com/*"
+        "*://*.youtube.com/*",
+        "*://*.snapchat.com/*",
+        "*://*.twitter.com/*",
+        "*://*.x.com/*"
       ],
       "js": ["scripts/content.js"],
       "css": ["styles/content.css"]

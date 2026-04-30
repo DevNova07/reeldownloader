@@ -112,9 +112,9 @@ function TelegramPageContent({ content, locale }: TelegramPageProps) {
         />
       )}
       
-      <section className="relative overflow-hidden bg-linear-to-r from-sky-500 to-blue-600 px-4 pt-14 pb-8 sm:pt-20 sm:pb-32 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-linear-to-r from-sky-500 to-blue-600 px-4 pt-14 pb-8 sm:pt-16 sm:pb-20 sm:px-6 lg:px-8">
         <HeroEffect color="bg-sky-400" intensity="high" />
-        <div className="relative z-10 mx-auto max-w-7xl text-center">
+        <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-4 sm:gap-6">
           <SocialServiceBar activeId="telegram" />
           <PlatformTabs   
             activeId="media" 
@@ -231,7 +231,7 @@ function TelegramPageContent({ content, locale }: TelegramPageProps) {
 
       <ChromeExtensionBanner dict={dict} />
 
-      <section className="px-4 py-4 sm:py-20 bg-white dark:bg-black sm:px-6 lg:px-8">
+      <section className="px-4 py-4 sm:py-12 bg-white dark:bg-black sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl">
           <div className="mt-10">
             <h2 className="flex items-center gap-2 text-3xl font-bold text-neutral-900 dark:text-white uppercase italic tracking-widest">

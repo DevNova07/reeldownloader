@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { Camera, ChevronDown, Menu, X, Globe, Ghost, Send, Play, Hash, Music, History, Sparkles, Compass } from "lucide-react"
+import { Camera, ChevronDown, Menu, X, Globe, Ghost, Send, Play, Hash, Music, History, Sparkles, Compass, TrendingUp, Layers } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/utils/cn"
 import { usePathname, useRouter } from "next/navigation"
@@ -133,7 +133,7 @@ export function Navbar({ dict }: { dict: any }) {
                                  {dict.navbar?.[cat.titleKey as keyof typeof dict.navbar] || cat.titleKey}
                                </p>
                                <ul className="flex flex-col gap-2.5">
-                                 {cat.links.slice(0, 6).map((link) => (
+                                 {cat.links.map((link) => (
                                    <li key={link.href}>
                                      <Link
                                        href={getLocalizedHref(link.href)}

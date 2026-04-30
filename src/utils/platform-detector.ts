@@ -22,6 +22,18 @@ export function isAnyPlatformUrl(url: string): boolean {
 }
 
 /**
+ * Checks if the input is either a valid URL or a potential username
+ */
+export function isSmartInput(input: string): boolean {
+  if (!input) return false;
+  if (isAnyPlatformUrl(input)) return true;
+  
+  // Basic username validation: 1-30 chars, alphanumeric, underscore, dot
+  const usernameRegex = /^@?[a-zA-Z0-9._]{1,30}$/;
+  return usernameRegex.test(input);
+}
+
+/**
  * Generates a localized route for the target platform.
  */
 export function getLocalizedRoute(platform: string, locale: string): string | null {
@@ -88,3 +100,33 @@ export function getPlatformFromPath(pathname: string): string | null {
 
   return null;
 }
+
+/**
+ * Detects if the input is a profile and redirects to Bulk Downloader
+ */
+export function handleSmartRedirect(input: string, locale: string, router: any): boolean {
+  if (!input) return false;
+  
+  const isDirectMedia = /\/(p|reels|reel|stories|tv|s|v|shorts|video)\//.test(input.toLowerCase());
+  const isProfileUrl = /(instagram\.com|facebook\.com|tiktok\.com|twitter\.com|x\.com|snapchat\.com)\/[a-zA-Z0-9._]+\/?$/.test(input.toLowerCase().split('?')[0]);
+  const isGeneralUrl = /^(https?:\/\/)/.test(input.toLowerCase());
+
+  let usernameToFetch = "";
+
+  if (!isDirectMedia) {
+    if (isProfileUrl) {
+      const parts = input.split('?')[0].split('/').filter(Boolean);
+      usernameToFetch = parts[parts.length - 1];
+    } else if (!isGeneralUrl && !input.includes('/')) {
+      usernameToFetch = input.replace('@', '').trim();
+    }
+  }
+
+  if (usernameToFetch) {
+    router.push(`/${locale}/bulk-downloader?username=${encodeURIComponent(usernameToFetch)}`);
+    return true;
+  }
+
+  return false;
+}
+

@@ -6,7 +6,6 @@ import { Toaster } from "react-hot-toast";
 import { getDictionary, isRTL, locales } from "@/i18n";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { MegaFooterMap } from "@/components/layout/MegaFooterMap";
 import { TrackVisit } from "@/components/shared/TrackVisit";
 import { ProgressBar } from "@/components/shared/ProgressBar";
 import { InstallPWA } from "@/components/ui/InstallPWA";
@@ -195,9 +194,7 @@ export default async function RootLayout(props: {
             <main className="flex-1 min-h-[80vh] animate-in fade-in duration-500 fill-mode-both">
               {props.children}
             </main>
-            <Footer locale={locale} dict={layoutDict}>
-              <MegaFooterMap locale={locale} dict={fullDict} />
-            </Footer>
+            <Footer locale={locale} dict={layoutDict} />
           </div>
         </ThemeProvider>
       </body>

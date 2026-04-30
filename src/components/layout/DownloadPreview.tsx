@@ -10,6 +10,7 @@ import { requestNotificationPermission, sendDownloadCompleteNotification } from 
 import { toast } from "react-hot-toast"
 import { DownloadProgress } from "@/components/ui/DownloadProgress"
 import { downloadFile } from "@/utils/client-download"
+import confetti from 'canvas-confetti'
 
 
 
@@ -133,9 +134,6 @@ export function DownloadPreview({
         setDownloadStatus(status);
       });
       
-      toast.success("Download Complete! 🎉", {
-        style: { borderRadius: '16px', background: '#111', color: '#fff' }
-      });
       sendDownloadCompleteNotification(data?.title || "Content");
       setShowSuccess(true);
       setTimeout(() => setShowSuccess(false), 3000);
@@ -180,6 +178,45 @@ export function DownloadPreview({
       }, 200);
     }
   }, [data, isLoading]);
+
+  // Confetti effect on success
+  React.useEffect(() => {
+    if (showSuccess) {
+      const duration = 3 * 1000;
+      const animationEnd = Date.now() + duration;
+      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 150 }; // Above modal
+
+      const randomInRange = (min: number, max: number) => Math.random() * (max - min) + min;
+
+      const interval: any = setInterval(function() {
+        const timeLeft = animationEnd - Date.now();
+
+        if (timeLeft <= 0) {
+          return clearInterval(interval);
+        }
+
+        const particleCount = 40 * (timeLeft / duration);
+        
+        // Launch from left
+        confetti({ 
+          ...defaults, 
+          particleCount, 
+          origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }, 
+          colors: ['#2563eb', '#c026d3', '#db2777', '#06b6d4'] 
+        });
+        
+        // Launch from right
+        confetti({ 
+          ...defaults, 
+          particleCount, 
+          origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }, 
+          colors: ['#2563eb', '#c026d3', '#db2777', '#06b6d4'] 
+        });
+      }, 250);
+
+      return () => clearInterval(interval);
+    }
+  }, [showSuccess]);
 
   const handleDownloadAll = async () => {
     if (!data?.items || data.items.length === 0) return;
@@ -404,56 +441,60 @@ export function DownloadPreview({
                 </div>
               </div>
             ) : (
-              <div className="mx-auto flex w-full flex-col gap-10 p-4 md:p-0 relative z-10">
-                <div className="relative group mx-auto w-full max-w-2xl">
-                  {data.medias?.some((m: Media) => m.type === "video") ? (
-                    (() => {
-                      const videoMedia = data.medias.find((m: Media) => m.type === "video");
-                      const isDirectSafe = videoMedia?.url.includes("fbcdn") && false; // Force proxy for Facebook for better reliability
-                      
-                      const videoSrc = isDirectSafe
-                        ? videoMedia?.url 
-                        : `/api/proxy-download?url=${encodeURIComponent(videoMedia?.url || "")}&type=video&inline=true`;
+              <div className="mx-auto flex w-full flex-col gap-6 p-4 md:p-0 relative z-10">
+                <div className="relative group mx-auto w-full max-w-2xl" style={{ perspective: '1200px' }}>
+                  {/* Vibrant Aura Glow (Hover) */}
+                  <div className="absolute inset-0 bg-linear-to-tr from-blue-600/30 via-purple-600/30 to-pink-600/30 blur-[100px] opacity-0 group-hover:opacity-100 transition-all duration-1000 scale-110 pointer-events-none" />
+                  
+                  <div 
+                    className="relative transform-gpu transition-all duration-700 ease-out group-hover:rotate-x-4 group-hover:scale-[1.03] shadow-[0_40px_80px_-20px_rgba(0,0,0,0.8)] rounded-3xl overflow-hidden bg-black/20 ring-1 ring-white/20"
+                    style={{ 
+                      WebkitBoxReflect: 'below 8px linear-gradient(transparent, transparent 60%, rgba(255, 255, 255, 0.35))',
+                    }}
+                  >
+                    {data.medias?.some((m: Media) => m.type === "video") ? (
+                      (() => {
+                        const videoMedia = data.medias.find((m: Media) => m.type === "video");
+                        const videoSrc = `/api/proxy-download?url=${encodeURIComponent(videoMedia?.url || "")}&type=video&inline=true`;
 
-
-                      return (
-                        <video
-                          src={videoSrc}
-                          controls
-                          autoPlay
-                          muted
-                          loop
-                          playsInline
-                          crossOrigin="anonymous"
-                          preload="metadata"
-                          className="h-auto max-h-[85vh] w-full rounded-2xl md:rounded-3xl object-contain shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] bg-white/5 ring-1 ring-white/10 transition-transform group-hover:scale-[1.01]"
-                          poster={data.thumbnail ? `/api/proxy-download?url=${encodeURIComponent(data.thumbnail)}&type=image&inline=true` : undefined}
-                        >
-                          Your browser does not support the video tag.
-                        </video>
-                      );
-                    })()
-                  ) : (
-                      <Image
-                        src={data.thumbnail ? `/api/proxy-download?url=${encodeURIComponent(data.thumbnail)}&type=image&inline=true` : "/window.svg"}
-                        alt="Preview"
-                        width={400}
-                        height={600}
-                        priority // "Smooth/Fast": Load result preview immediately
-                        unoptimized
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                        className="h-auto max-h-[85vh] w-full rounded-2xl md:rounded-3xl object-contain shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] bg-white/5 ring-1 ring-white/10 transition-transform group-hover:scale-[1.01]"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          const platform = getPlatformInfo(data.url, data.id).id;
-                          target.src = platform === 'instagram' ? '/instagram.svg' : 
-                                       platform === 'facebook' ? '/facebook.svg' : 
-                                       platform === 'youtube' ? '/youtube.svg' : 
-                                       '/window.svg';
-                        }}
-                      />
-
-                  )}
+                        return (
+                          <video
+                            src={videoSrc}
+                            controls
+                            autoPlay
+                            muted
+                            loop
+                            playsInline
+                            crossOrigin="anonymous"
+                            preload="metadata"
+                            className="h-auto max-h-[85vh] w-full object-contain"
+                            poster={data.thumbnail ? `/api/proxy-download?url=${encodeURIComponent(data.thumbnail)}&type=image&inline=true` : undefined}
+                          >
+                            Your browser does not support the video tag.
+                          </video>
+                        );
+                      })()
+                    ) : (
+                        <Image
+                          src={data.thumbnail ? `/api/proxy-download?url=${encodeURIComponent(data.thumbnail)}&type=image&inline=true` : "/window.svg"}
+                          alt="Preview"
+                          width={400}
+                          height={600}
+                          priority
+                          unoptimized
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                          className="h-auto max-h-[85vh] w-full object-contain"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            const platform = getPlatformInfo(data.url, data.id).id;
+                            target.src = platform === 'instagram' ? '/instagram.svg' : 
+                                         platform === 'facebook' ? '/facebook.svg' : 
+                                         platform === 'youtube' ? '/youtube.svg' : 
+                                         '/window.svg';
+                          }}
+                        />
+                    )}
+                  </div>
 
                   {/* Quality Badge */}
                   <div className="absolute top-4 right-4 flex items-center gap-1.5 rounded-full bg-black/60 px-3 py-1.5 text-[10px] font-black uppercase tracking-widest text-white backdrop-blur-md ring-1 ring-white/20 z-20">
@@ -482,7 +523,7 @@ export function DownloadPreview({
                           <button
                             onClick={() => handleDownload(proxyUrl, 'video', currentId)}
                             disabled={!!isDownloading}
-                            className="group relative flex flex-1 items-center justify-center gap-4 rounded-2xl bg-white py-5 text-xl font-black text-blue-600 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] transition-all hover:scale-[1.02] active:scale-[0.98] overflow-hidden disabled:opacity-70 disabled:scale-100"
+                            className="group relative flex flex-1 items-center justify-center gap-4 rounded-2xl bg-white py-3 sm:py-5 text-lg sm:text-xl font-black text-blue-600 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] transition-all hover:scale-[1.02] active:scale-[0.98] overflow-hidden disabled:opacity-70 disabled:scale-100"
                           >
                             <div className="absolute inset-0 bg-blue-50/20 opacity-0 group-hover:opacity-100 transition-opacity" />
                             {isThisDownloading ? (
@@ -509,7 +550,7 @@ export function DownloadPreview({
                       <button
                         onClick={() => handleDownload(audioUrl, 'audio', 'main')}
                         disabled={!!isDownloading}
-                        className={cn("group relative flex w-full items-center justify-center gap-3 rounded-2xl py-5 text-xl font-black text-white shadow-3xl transition-all hover:scale-[1.02] active:scale-[0.98] overflow-hidden disabled:opacity-70 disabled:scale-100", audioButtonStyle)}
+                        className={cn("group relative flex w-full items-center justify-center gap-3 rounded-2xl py-3 sm:py-5 text-lg sm:text-xl font-black text-white shadow-3xl transition-all hover:scale-[1.02] active:scale-[0.98] overflow-hidden disabled:opacity-70 disabled:scale-100", audioButtonStyle)}
                       >
                         <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
                         {isAudioDownloading ? (
@@ -547,7 +588,7 @@ export function DownloadPreview({
                       handleNativeShare(shareUrl, data.title || "Shared Content");
                     }}
                     disabled={isSharing}
-                    className="group relative flex w-full items-center justify-center gap-3 rounded-2xl py-5 text-xl font-black text-white shadow-3xl transition-all hover:scale-[1.02] active:scale-[0.98] overflow-hidden bg-linear-to-r from-emerald-600 to-teal-500 disabled:opacity-70"
+                    className="group relative flex w-full items-center justify-center gap-3 rounded-2xl py-3 sm:py-5 text-lg sm:text-xl font-black text-white shadow-3xl transition-all hover:scale-[1.02] active:scale-[0.98] overflow-hidden bg-linear-to-r from-emerald-600 to-teal-500 disabled:opacity-70"
                   >
                     <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
                     {isSharing ? (
@@ -591,7 +632,7 @@ export function DownloadPreview({
 
                 <div className="mx-auto mt-1 flex w-full flex-col gap-4">
                   {/* Caption Card */}
-                  <div className="rounded-5xl bg-white p-8 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.1)] text-[16px] font-bold leading-relaxed text-neutral-800 border-b-8 border-neutral-100/50">
+                  <div className="rounded-3xl bg-white/10 backdrop-blur-md p-5 sm:p-8 text-[14px] sm:text-[16px] font-medium leading-relaxed text-white border border-white/10 shadow-2xl">
                     <p className={cn(!showFullCaption && "line-clamp-4")}>{displayCaption}</p>
                     {displayCaption.length > 200 && (
                       <button
@@ -605,38 +646,52 @@ export function DownloadPreview({
                   </div>
 
                   {/* Stats Card */}
-                  <div className="flex items-center justify-between rounded-3xl bg-white/10 p-8 text-[15px] font-black text-white shadow-2xl backdrop-blur-xl border border-white/10">
-                    <div className="flex items-center gap-10">
-                      <div className="flex flex-col gap-1">
-                        <span className="text-[10px] uppercase tracking-widest text-white/40">Engagement</span>
-                        <div className="flex items-center gap-2.5">
-                          <Heart className="h-6 w-6 text-rose-500 fill-rose-500" />
-                          <span className="text-xl tabular-nums">{displayLikes.toLocaleString()}</span>
+                  <div className="rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 p-4 shadow-2xl">
+                    <div className="flex flex-col gap-4">
+                      {/* Stats Row */}
+                      <div className="flex items-center justify-between border-b border-white/5 pb-4">
+                        <div className="flex items-center gap-4 sm:gap-8 overflow-x-auto no-scrollbar">
+                          <div className="flex items-center gap-2">
+                            <Heart className="h-5 w-5 text-rose-500 fill-rose-500" />
+                            <div className="flex flex-col">
+                              <span className="text-[14px] font-black text-white tabular-nums">{displayLikes.toLocaleString()}</span>
+                              <span className="text-[8px] uppercase tracking-widest text-white/40">Likes</span>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <MessageCircle className="h-5 w-5 text-sky-400 fill-sky-400" />
+                            <div className="flex flex-col">
+                              <span className="text-[14px] font-black text-white tabular-nums">{displayCommentCount.toLocaleString()}</span>
+                              <span className="text-[8px] uppercase tracking-widest text-white/40">Comments</span>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <Send className="h-5 w-5 text-emerald-400 fill-emerald-400" />
+                            <div className="flex flex-col">
+                              <span className="text-[14px] font-black text-white tabular-nums">{displayShareCount.toLocaleString()}</span>
+                              <span className="text-[8px] uppercase tracking-widest text-white/40">Shares</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="hidden sm:flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-lg border border-white/5">
+                          <div className="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
+                          <span className="text-[10px] font-black uppercase text-white/60 tracking-widest">Live Stats</span>
                         </div>
                       </div>
-                      <div className="flex flex-col gap-1">
-                        <span className="text-[10px] uppercase tracking-widest text-white/40">Comments</span>
-                        <div className="flex items-center gap-2.5">
-                          <MessageCircle className="h-6 w-6 text-sky-400 fill-sky-400" />
-                          <span className="text-xl tabular-nums">{displayCommentCount.toLocaleString()}</span>
+
+                      {/* Creator Row */}
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <div className="h-6 w-6 rounded-full bg-linear-to-tr from-purple-500 to-pink-500 flex items-center justify-center">
+                            <span className="text-[8px] font-black text-white uppercase">{displayAuthor.slice(0, 1)}</span>
+                          </div>
+                          <span className="text-[11px] font-black uppercase tracking-tight text-white/80">{displayAuthor}</span>
                         </div>
-                      </div>
-                      <div className="flex flex-col gap-1">
-                        <span className="text-[10px] uppercase tracking-widest text-white/40">Shares</span>
-                        <div className="flex items-center gap-2.5">
-                          <Send className="h-6 w-6 text-emerald-400 fill-emerald-400" />
-                          <span className="text-xl tabular-nums">{displayShareCount.toLocaleString()}</span>
+                        <div className="flex items-center gap-2 text-white/40">
+                          <Clock className="h-3 w-3" />
+                          <span className="text-[9px] font-bold uppercase tracking-tighter">{displayTimestamp}</span>
                         </div>
-                      </div>
-                    </div>
-                    <div className="flex flex-col items-end gap-1">
-                      <span className="text-[10px] uppercase tracking-widest text-white/40">Creator</span>
-                      <div className="flex items-center gap-2">
-                        <span className="text-sm font-black uppercase tracking-tighter text-white">{displayAuthor}</span>
-                      </div>
-                      <div className="flex items-center gap-2 mt-1">
-                        <Clock className="h-4 w-4 text-white/60" />
-                        <span className="text-[10px] font-black uppercase tracking-tighter">{displayTimestamp}</span>
                       </div>
                     </div>
                   </div>
@@ -662,17 +717,21 @@ export function DownloadPreview({
                             initial={{ opacity: 0, scale: 0.95 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: i * 0.1 }}
-                            className="flex items-start gap-4 rounded-4xl bg-white shadow-xl p-6 transition-all hover:translate-x-1 cursor-default border border-transparent hover:border-neutral-100"
+                            className="flex items-start gap-3 rounded-2xl bg-white/5 backdrop-blur-sm p-4 transition-all hover:bg-white/10 cursor-default border border-white/5"
                           >
-                            <div className={cn("h-12 w-12 shrink-0 rounded-2xl flex items-center justify-center text-white font-black text-sm shadow-inner", avatarColor)}>
+                            <div className={cn("h-8 w-8 shrink-0 rounded-full flex items-center justify-center text-white font-black text-[10px] shadow-lg", avatarColor)}>
                               {initials}
                             </div>
-                            <div className="flex flex-col gap-1.5">
-                              <span className="text-[11px] font-black text-neutral-400 uppercase tracking-widest">{c.username}</span>
+                            <div className="flex flex-col gap-0.5">
+                              <div className="flex items-center gap-2">
+                                <span className="text-[11px] font-black text-white uppercase tracking-tight">{c.username}</span>
+                                <span className="h-1 w-1 rounded-full bg-white/20" />
+                                <span className="text-[9px] font-bold text-white/40 uppercase tracking-tighter">Verified</span>
+                              </div>
                               {c.mention ? (
-                                <span className={cn("text-[16px] font-black underline decoration-2 underline-offset-4", accentText)}>{c.mention}</span>
+                                <span className={cn("text-[14px] font-black underline decoration-1 underline-offset-4", accentText)}>{c.mention}</span>
                               ) : (
-                                <p className="text-[16px] font-bold text-neutral-800 leading-snug">{c.text}</p>
+                                <p className="text-[14px] font-medium text-white/90 leading-snug">{c.text}</p>
                               )}
                             </div>
                           </motion.div>
@@ -700,65 +759,62 @@ export function DownloadPreview({
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-lg overflow-hidden rounded-[2.5rem] bg-white p-8 shadow-2xl dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800"
+              className="relative w-full max-w-lg overflow-hidden rounded-[3rem] bg-[#0a0a0a] p-8 shadow-[0_0_100px_-20px_rgba(34,197,94,0.3)] border border-white/10"
             >
-              <div className="absolute top-0 right-0 p-6">
+              {/* Animated Background Glows */}
+              <div className="absolute -top-24 -left-24 h-64 w-64 bg-green-500/10 rounded-full blur-[100px] animate-pulse" />
+              <div className="absolute -bottom-24 -right-24 h-64 w-64 bg-emerald-500/10 rounded-full blur-[100px] animate-pulse delay-1000" />
+
+              <div className="absolute top-0 right-0 p-8">
                 <button 
                   onClick={() => setShowSuccess(false)}
-                  className="rounded-full bg-neutral-100 p-2 text-neutral-500 transition-colors hover:bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:bg-neutral-700"
+                  className="rounded-full bg-white/5 p-2.5 text-white/40 transition-all hover:bg-white/10 hover:text-white border border-white/5"
                 >
                   <X className="h-5 w-5" />
                 </button>
               </div>
 
-              <div className="text-center">
-                <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400">
-                  <Check className="h-10 w-10 stroke-[3]" />
+              <div className="relative z-10 text-center">
+                <div className="mx-auto mb-8 relative">
+                  <motion.div 
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: "spring", damping: 12, stiffness: 200 }}
+                    className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-linear-to-br from-green-400 to-emerald-600 text-white shadow-[0_0_40px_-5px_rgba(34,197,94,0.5)]"
+                  >
+                    <Check className="h-12 w-12 stroke-[3]" />
+                  </motion.div>
+                  {/* Outer ring */}
+                  <div className="absolute inset-0 mx-auto h-24 w-24 rounded-full border-2 border-green-500/20 scale-125 animate-ping" />
                 </div>
-                <h3 className="mb-2 text-3xl font-black uppercase italic tracking-tight text-neutral-900 dark:text-white">
+
+                <h3 className="mb-3 text-4xl font-black uppercase italic tracking-tighter bg-linear-to-r from-white via-white to-white/50 bg-clip-text text-transparent">
                   Download Success!
                 </h3>
-                <p className="mb-8 text-neutral-500 dark:text-neutral-400 font-medium">
-                  Your media has been saved. Help us grow by sharing with your friends!
+                <p className="mb-10 text-white/50 font-bold uppercase tracking-widest text-[10px]">
+                  Your media is ready. Spread the love! 🚀
                 </p>
 
-                <div className="grid gap-4">
+                <div className="grid gap-6">
                   <a
                     href={`https://wa.me/?text=${encodeURIComponent("Hey! Check out SavClip - The fastest way to download Instagram, TikTok and Facebook videos for free! 🚀 \n\nTry it here: https://savclip.net")}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-3 rounded-2xl bg-[#25D366] py-4 text-lg font-black text-white shadow-xl transition-all hover:scale-[1.02] active:scale-95"
+                    className="group relative flex items-center justify-center gap-4 rounded-2xl bg-[#25D366] py-4 text-xl font-black text-white shadow-[0_20px_40px_-10px_rgba(37,211,102,0.4)] transition-all hover:scale-[1.02] active:scale-95 overflow-hidden"
                   >
-                    <MessageCircle className="h-6 w-6 fill-white" />
+                    <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <MessageCircle className="h-7 w-7 fill-white" />
                     Share on WhatsApp
+                    <div className="absolute inset-0 bg-linear-to-tr from-white/20 via-transparent to-transparent pointer-events-none opacity-40" />
                   </a>
-
-                  <div className="rounded-3xl bg-neutral-50 p-6 dark:bg-neutral-800/50 border border-neutral-100 dark:border-neutral-800">
-                    <div className="flex items-center gap-4 text-left">
-                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white shadow-md dark:bg-black">
-                        <Image src="/icon-192x192.png" alt="Logo" width={32} height={32} />
-                      </div>
-                      <div>
-                        <h4 className="font-black text-neutral-900 dark:text-white uppercase italic text-sm">SavClip Browser Extension</h4>
-                        <p className="text-xs text-neutral-500 dark:text-neutral-400 font-bold">Download directly from Instagram with 1-click</p>
-                      </div>
-                    </div>
-                    <button 
-                      onClick={() => {
-                        setShowSuccess(false);
-                        window.open('/extension', '_blank');
-                      }}
-                      className="mt-4 w-full rounded-xl bg-neutral-900 py-3 text-sm font-black text-white transition-all hover:bg-neutral-800 dark:bg-white dark:text-black uppercase italic"
-                    >
-                      Install Extension
-                    </button>
-                  </div>
-
-                  <button
-                    onClick={() => setShowSuccess(false)}
-                    className="mt-2 text-sm font-black uppercase tracking-widest text-neutral-400 transition-colors hover:text-neutral-600 dark:hover:text-neutral-200"
+                  <button 
+                    onClick={() => {
+                      setShowSuccess(false);
+                      // Custom prompt logic here if needed
+                    }}
+                    className="w-full text-[10px] font-black uppercase tracking-[0.3em] text-white/20 transition-all hover:text-white/60"
                   >
-                    Close & Download Another
+                    Back to Results
                   </button>
                 </div>
               </div>
@@ -767,5 +823,5 @@ export function DownloadPreview({
         )}
       </AnimatePresence>
     </div>
-  );
+  )
 }

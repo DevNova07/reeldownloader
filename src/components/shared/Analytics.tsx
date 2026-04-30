@@ -1,34 +1,17 @@
-"use client"
-
 import Script from "next/script"
+import { GoogleAnalytics } from "@next/third-parties/google"
 
 export function Analytics() {
-  // Replace these with your actual IDs or move them to environment variables
-  const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID
+  // Use environment variable, fallback to placeholder if not set
+  // To make this work, the user needs to add NEXT_PUBLIC_GA_ID in their .env file
+  const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID || "G-XXXXXXXXXX"
   const FB_PIXEL_ID = process.env.NEXT_PUBLIC_FB_PIXEL_ID
   const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID
 
   return (
     <>
-      {/* Google Analytics (GA4) */}
-      {GA_MEASUREMENT_ID && (
-        <>
-          <Script
-            src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-            strategy="afterInteractive"
-          />
-          <Script id="google-analytics" strategy="afterInteractive">
-            {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${GA_MEASUREMENT_ID}', {
-                page_path: window.location.pathname,
-              });
-            `}
-          </Script>
-        </>
-      )}
+      {/* 📊 Official Next.js Google Analytics (GA4) Integration */}
+      <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
 
       {/* Meta Pixel (Facebook) */}
       {FB_PIXEL_ID && (

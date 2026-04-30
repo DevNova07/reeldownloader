@@ -1,22 +1,22 @@
 {
-  "totalRequests": 63,
-  "successfulRequests": 45,
-  "failedRequests": 18,
+  "totalRequests": 96,
+  "successfulRequests": 71,
+  "failedRequests": 25,
   "savedRequests": 0,
   "totalVisits": 0,
   "platforms": {
     "facebook": {
-      "total": 8,
-      "success": 5,
-      "fail": 3,
+      "total": 34,
+      "success": 24,
+      "fail": 10,
       "keys": {
         "9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7": {
           "name": "API 1",
           "status": "active",
-          "remaining": "4963",
+          "remaining": "280",
           "limit": "unkn",
-          "used": 5,
-          "lastCheck": "2026-04-28T11:03:47.743Z"
+          "used": 24,
+          "lastCheck": "2026-04-30T10:13:01.369Z"
         }
       }
     },
@@ -51,17 +51,32 @@
       }
     },
     "instagram": {
-      "total": 10,
-      "success": 9,
+      "total": 16,
+      "success": 15,
       "fail": 1,
       "keys": {
         "9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7": {
           "name": "API 1",
           "status": "active",
-          "remaining": "2990",
+          "remaining": "2984",
           "limit": "unkn",
-          "used": 9,
-          "lastCheck": "2026-04-28T10:42:21.163Z"
+          "used": 15,
+          "lastCheck": "2026-04-30T08:32:08.734Z"
+        }
+      }
+    },
+    "telegram": {
+      "total": 1,
+      "success": 1,
+      "fail": 0,
+      "keys": {
+        "9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7": {
+          "name": "API 1",
+          "status": "active",
+          "remaining": "690",
+          "limit": "unkn",
+          "used": 1,
+          "lastCheck": "2026-04-29T06:03:59.181Z"
         }
       }
     }

@@ -7,13 +7,45 @@ import { twitterHandler } from "@/lib/handlers/twitter";
 import { telegramHandler } from "@/lib/handlers/telegram";
 
 /**
+ * In-Memory Rate Limiter Settings
+ * Limits each IP to 20 requests per minute to protect the API quota.
+ */
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+const MAX_REQUESTS_PER_MINUTE = 20;
+const WINDOW_MS = 60 * 1000; // 1 minute
+
+/**
  * Main Download API Route.
  */
 export async function POST(request: Request) {
   console.log("[API_ROUTE] Received download request");
   
-  // Track user activity
+  // 1. Get the user's IP Address
   const ip = request.headers.get("x-forwarded-for") || "unknown";
+  
+  // 2. Rate Limiting Logic
+  if (ip !== "unknown") {
+    const now = Date.now();
+    const userRecord = rateLimitMap.get(ip);
+
+    if (!userRecord || now > userRecord.resetTime) {
+      // First request or window expired: Reset
+      rateLimitMap.set(ip, { count: 1, resetTime: now + WINDOW_MS });
+    } else {
+      // Within window
+      if (userRecord.count >= MAX_REQUESTS_PER_MINUTE) {
+        console.warn(`[RATE_LIMIT] Blocked IP: ${ip}. Exceeded ${MAX_REQUESTS_PER_MINUTE} req/min.`);
+        return NextResponse.json(
+          { error: "Too many requests. Please wait 1 minute before trying again." },
+          { status: 429 }
+        );
+      }
+      // Increment count
+      userRecord.count += 1;
+    }
+  }
+
+  // 3. Track user activity
   statsManager.trackActivity(ip);
 
   try {

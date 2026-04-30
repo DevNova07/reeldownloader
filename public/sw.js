@@ -1,5 +1,5 @@
-const CACHE_NAME = 'savclip-pwa-v2';
-const OFFLINE_URL = '/en/offline'; // Fallback for all locales for simplicity
+const CACHE_NAME = 'savclip-pwa-v3';
+const OFFLINE_URL = '/offline.html';
 
 const STATIC_ASSETS = [
   '/',

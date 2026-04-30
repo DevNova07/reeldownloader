@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { motion } from "framer-motion"
-import { Link, Send, DownloadCloud, ArrowRight } from "lucide-react"
+import { Link, Send, CloudDownload, ArrowRight } from "lucide-react"
 import { cn } from "@/utils/cn"
 
 interface Step {
@@ -28,7 +28,7 @@ export function HeroQuickGuide({ steps, accentColor = "text-white", className }:
   const icons = [
     <Link key="1" className="h-5 w-5" />,
     <Send key="2" className="h-5 w-5" />,
-    <DownloadCloud key="3" className="h-5 w-5" />
+    <CloudDownload key="3" className="h-5 w-5" />
   ]
 
   return (

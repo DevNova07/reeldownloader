@@ -22,7 +22,7 @@ import { RelatedTools } from "@/components/shared/RelatedTools"
 import { useDownloadHistory, getCached, setCached } from "@/hooks/useDownloadHistory"
 import { HeroEffect } from "@/components/shared/HeroEffect"
 import { toast } from "react-hot-toast"
-import { getPlatformFromUrl, getLocalizedRoute } from "@/utils/platform-detector"
+import { getPlatformFromUrl, getLocalizedRoute, isSmartInput, handleSmartRedirect } from "@/utils/platform-detector"
 
 import { TrustBadges } from "@/components/ui/TrustBadges"
 import { ChromeExtensionBanner } from "@/components/layout/ChromeExtensionBanner"
@@ -50,6 +50,11 @@ function YoutubeContent() {
     if (cached) {
       setDownloadData(cached)
       setIsLoading(false)
+      return
+    }
+
+    if (handleSmartRedirect(url, locale, router)) {
+      toast.success("Profile detected! Opening Bulk Downloader...")
       return
     }
 
@@ -141,6 +146,7 @@ function YoutubeContent() {
               onSearch={handleSearch} 
               isLoading={isLoading} 
               dict={dict}
+              validate={isSmartInput}
               buttonClass="bg-white text-red-600 hover:bg-neutral-100"
               iconClass="text-red-500"
             />

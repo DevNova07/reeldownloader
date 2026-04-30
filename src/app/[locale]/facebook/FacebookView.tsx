@@ -22,7 +22,7 @@ import { HeroEffect } from "@/components/shared/HeroEffect"
 import { Film, StopCircle, Zap, ShieldCheck, CheckCircle2, HelpCircle, Info, Music as MusicIcon } from "lucide-react"
 import { ToolSubNav } from "@/components/layout/ToolSubNav"
 import { toast } from "react-hot-toast"
-import { getPlatformFromUrl, getLocalizedRoute, isAnyPlatformUrl } from "@/utils/platform-detector"
+import { getPlatformFromUrl, getLocalizedRoute, isAnyPlatformUrl, isSmartInput, handleSmartRedirect } from "@/utils/platform-detector"
 
 import { TrustBadges } from "@/components/ui/TrustBadges"
 import { ChromeExtensionBanner } from "@/components/layout/ChromeExtensionBanner"
@@ -45,7 +45,15 @@ export default function FacebookView({ dict, locale }: { dict: any, locale: stri
   const handleSearch = async (url: string, isAutoTrigger = false) => {
     setSearchCounter(prev => prev + 1)
     setAutoTriggerDownload(isAutoTrigger)
+
+    if (handleSmartRedirect(url, locale, router)) {
+      toast.success("Profile detected! Opening Bulk Downloader...")
+      return
+    }
+
     setIsLoading(true)
+    setDownloadData(null)
+    setError(null)
 
     const cached = getCached(url)
     if (cached) {
@@ -145,7 +153,7 @@ export default function FacebookView({ dict, locale }: { dict: any, locale: stri
               onSearch={handleSearch} 
               isLoading={isLoading} 
               dict={dict}
-              validate={isAnyPlatformUrl}
+              validate={isSmartInput}
               buttonClass="bg-linear-to-br from-blue-600 via-blue-700 to-indigo-800 text-white shadow-[0_20px_50px_rgba(37,99,235,0.3)] ring-1 ring-inset ring-white/20"
               initialValue={sharedUrl}
             />

@@ -50,16 +50,26 @@ function isObject(item: any) {
   return (item && typeof item === 'object' && !Array.isArray(item));
 }
 
-export const getDictionary = async (locale: string): Promise<any> => {
+import { cache } from 'react'
+
+const dictionaryCache: Record<string, any> = {}
+
+export const getDictionary = cache(async (locale: string): Promise<any> => {
+  if (dictionaryCache[locale]) return dictionaryCache[locale]
+
   const en = await dictionaries.en()
   if (locale === 'en' || !locales.includes(locale as Locale)) {
+    dictionaryCache.en = en
     return en
   }
+  
   const target = await dictionaries[locale as Locale]()
   
   // provide deep structural fallback for all sections
-  return deepMerge(en, target)
-}
+  const merged = deepMerge(en, target)
+  dictionaryCache[locale] = merged
+  return merged
+})
 
 export const languageNames: Record<Locale, string> = {
   en: 'English',

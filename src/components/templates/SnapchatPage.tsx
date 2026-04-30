@@ -127,10 +127,10 @@ function SnapchatContent({
       {content.faq && <StructuredData type="FAQPage" data={content.faq} />}
       {content.howTo && <StructuredData type="HowTo" data={content.howTo} />}
       {/* Hero Section */}
-      <section className={`relative bg-linear-to-r ${cx.ribbon} px-4 pt-14 pb-8 sm:pt-20 sm:pb-32 sm:px-6 lg:px-8`}>
+      <section className={`relative bg-linear-to-r ${cx.ribbon} px-4 pt-14 pb-8 sm:pt-16 sm:pb-20 sm:px-6 lg:px-8`}>
         <HeroEffect color={cx.effect} intensity="high" />
         
-        <div className="relative z-10 mx-auto max-w-7xl text-center">
+        <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-4 sm:gap-6">
           <SocialServiceBar activeId="snapchat" />
           <PlatformTabs   
             activeId="video" 
@@ -259,7 +259,7 @@ function SnapchatContent({
 
       {/* Info Section (SEO) */}
       {content.seo && (
-        <section className="px-4 py-4 sm:py-20 bg-white dark:bg-black sm:px-6 lg:px-8">
+        <section className="px-4 py-4 sm:py-12 bg-white dark:bg-black sm:px-6 lg:px-8">
           <div className="mx-auto max-w-4xl">
             <div className="mt-10">
               <h2 className="flex items-center gap-3 text-3xl font-black text-neutral-900 dark:text-white uppercase italic tracking-widest">

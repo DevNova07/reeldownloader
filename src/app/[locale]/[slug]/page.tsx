@@ -168,6 +168,25 @@ export default async function Page(props: PageProps) {
     }))
   } : null;
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": `${SITE_URL}/${locale}`
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": content.title,
+        "item": `${SITE_URL}/${locale}/${slug}`
+      }
+    ]
+  };
+
   // Map slug to template for stable rendering
   const renderTemplate = () => {
     const s = slug.toLowerCase();
@@ -194,6 +213,7 @@ export default async function Page(props: PageProps) {
       <JSONLD data={softwareSchema} />
       {howToSchema && <JSONLD data={howToSchema} />}
       {faqSchema && <JSONLD data={faqSchema} />}
+      <JSONLD data={breadcrumbSchema} />
       {renderTemplate()}
     </>
   );

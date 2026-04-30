@@ -87,42 +87,32 @@ export function SocialServiceBar({ activeId, className }: { activeId: string, cl
     return `/${locale}${cleanPath === '/' ? '' : cleanPath}`
   }
 
-  const sortedPlatforms = React.useMemo(() => {
-    return [...PLATFORMS].sort((a, b) => {
-      if (a.id === activeId) return -1
-      if (b.id === activeId) return 1
-      return 0
-    })
-  }, [activeId])
-
   return (
-    <div className={cn("mb-4 sm:mb-12 flex items-center justify-center gap-4 sm:gap-6", className)}>
-      {sortedPlatforms.map((platform) => {
+    <div className={cn("flex items-center justify-center gap-3 sm:gap-6 px-4 py-3 rounded-full bg-black/10 dark:bg-white/5 backdrop-blur-xl border border-white/10 w-fit mx-auto", className)}>
+      {PLATFORMS.map((platform) => {
         const isActive = platform.id === activeId
         return (
           <Link
             key={platform.id}
             href={getLocalizedHref(platform.href)}
-            className="group relative flex h-14 w-14 items-center justify-center rounded-2xl transition-all sm:h-16 sm:w-16"
+            className="relative group"
           >
-            <div
+            <motion.div
               className={cn(
-                "absolute inset-0 rounded-2xl bg-white/10 opacity-0 transition-all group-hover:opacity-100",
-                isActive && "opacity-100 ring-2 ring-white/50"
-              )}
-            />
-            <div
-              className={cn(
-                "relative z-10 transition-transform group-hover:scale-110",
-                isActive ? "text-white" : "text-white/60 group-hover:text-white"
+                "flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full transition-all duration-300",
+                isActive 
+                  ? "bg-white text-pink-600 shadow-xl shadow-white/20 scale-110" 
+                  : "text-white/70 hover:text-white hover:bg-white/10"
               )}
             >
-              {platform.icon}
-            </div>
+              <div className={cn("transition-transform duration-300 group-hover:scale-110", isActive && "scale-90")}>
+                {platform.icon}
+              </div>
+            </motion.div>
             {isActive && (
               <motion.div
-                layoutId="activePlatform"
-                className="absolute -bottom-2 h-1.5 w-1.5 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)]"
+                layoutId="activeDot"
+                className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-white shadow-lg"
               />
             )}
           </Link>

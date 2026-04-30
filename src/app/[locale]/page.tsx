@@ -28,7 +28,7 @@ import { Camera, PlaySquare, StopCircle, Film, CheckCircle2, ShieldCheck, Zap, H
 import { isValidInstaUrl } from "@/utils/cn"
 import { ToolSubNav } from "@/components/layout/ToolSubNav"
 import { toast } from "react-hot-toast"
-import { getPlatformFromUrl, getLocalizedRoute, isAnyPlatformUrl } from "@/utils/platform-detector"
+import { getPlatformFromUrl, getLocalizedRoute, isAnyPlatformUrl, isSmartInput, handleSmartRedirect } from "@/utils/platform-detector"
 import { useRouter, useSearchParams, usePathname } from "next/navigation"
 
 const HeroQuickGuide = dynamic(() => import("@/components/shared/HeroQuickGuide").then(mod => mod.HeroQuickGuide), { ssr: false })
@@ -54,11 +54,9 @@ function HomeContent() {
   const handleSearch = async (url: string, isAutoTrigger = false) => {
     setSearchCounter(prev => prev + 1)
     setAutoTriggerDownload(isAutoTrigger)
-    setIsLoading(true)
-    const cached = getCached(url)
-    if (cached) {
-      setDownloadData(cached)
-      setIsLoading(false)
+
+    if (handleSmartRedirect(url, locale, router)) {
+      toast.success("Profile detected! Opening Bulk Downloader...")
       return
     }
 
@@ -153,7 +151,7 @@ function HomeContent() {
             onSearch={handleSearch}
             isLoading={isLoading}
             dict={dict}
-            validate={isAnyPlatformUrl}
+            validate={isSmartInput}
             initialValue={sharedUrl}
           />
 

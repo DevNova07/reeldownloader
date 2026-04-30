@@ -22,7 +22,7 @@ import { RelatedTools } from "@/components/shared/RelatedTools"
 import { useDownloadHistory, getCached, setCached } from "@/hooks/useDownloadHistory"
 import { HeroEffect } from "@/components/shared/HeroEffect"
 import { toast } from "react-hot-toast"
-import { getPlatformFromUrl, getLocalizedRoute } from "@/utils/platform-detector"
+import { getPlatformFromUrl, getLocalizedRoute, isSmartInput, handleSmartRedirect } from "@/utils/platform-detector"
 
 import { TrustBadges } from "@/components/ui/TrustBadges"
 import { ChromeExtensionBanner } from "@/components/layout/ChromeExtensionBanner"
@@ -44,7 +44,14 @@ function TikTokContent() {
   const handleSearch = async (url: string, isAutoTrigger = false) => {
     setSearchCounter(prev => prev + 1)
     setAutoTriggerDownload(isAutoTrigger)
+
+    if (handleSmartRedirect(url, locale, router)) {
+      toast.success("Profile detected! Opening Bulk Downloader...")
+      return
+    }
+
     setIsLoading(true)
+    setDownloadData(null)
 
     const cached = getCached(url)
     if (cached) {
@@ -140,6 +147,7 @@ function TikTokContent() {
               onSearch={handleSearch} 
               isLoading={isLoading} 
               dict={dict}
+              validate={isSmartInput}
               buttonClass="bg-linear-to-br from-pink-600 via-rose-600 to-pink-700 text-white shadow-[0_20px_50px_rgba(219,39,119,0.3)] ring-1 ring-inset ring-white/20"
               iconClass="text-pink-600"
             />

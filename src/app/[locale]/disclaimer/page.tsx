@@ -8,45 +8,49 @@ export default function DisclaimerPage() {
     <div className="flex flex-col min-h-screen px-4 py-20 sm:px-6 lg:px-8 bg-white dark:bg-black">
       <div className="mx-auto max-w-4xl w-full">
         <div className="flex items-center gap-4 mb-8">
-           <div className="h-12 w-12 flex items-center justify-center rounded-2xl bg-neutral-50 dark:bg-neutral-900 text-neutral-900 dark:text-white border border-neutral-100 dark:border-neutral-800">
-             <Scale className="h-6 w-6" />
+           <div className="h-14 w-14 flex items-center justify-center rounded-3xl bg-neutral-100 dark:bg-neutral-900 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-800 shadow-sm">
+             <Scale className="h-7 w-7" />
            </div>
-           <h1 className="text-4xl font-black tracking-tighter text-neutral-900 dark:text-white uppercase italic">Disclaimer</h1>
+           <div>
+             <h1 className="text-4xl font-black tracking-tight text-neutral-900 dark:text-white uppercase italic">Legal Disclaimer</h1>
+             <p className="text-sm font-bold text-neutral-500 uppercase tracking-widest mt-1">Platform Affiliation & Usage Rights</p>
+           </div>
         </div>
         
-        <div className="prose prose-neutral dark:prose-invert max-w-none space-y-8">
-          <p className="text-lg font-bold text-neutral-600 dark:text-neutral-400 leading-relaxed italic border-l-4 border-neutral-200 dark:border-neutral-800 pl-8">
-            Please read this disclaimer carefully before using SavClip.
-          </p>
+        <div className="prose prose-neutral dark:prose-invert max-w-none space-y-12 text-neutral-600 dark:text-neutral-400">
+          <section className="bg-neutral-50 dark:bg-neutral-900/50 p-8 rounded-[2.5rem] border border-neutral-200 dark:border-neutral-800">
+            <p className="text-lg font-bold leading-relaxed italic border-l-4 border-pink-600 pl-8 m-0">
+              Please read this legal disclaimer carefully before using the services provided by SavClip (savclip.net).
+            </p>
+          </section>
 
-          <section className="space-y-4">
-             <div className="flex items-center gap-3 text-pink-600">
-                <Info className="h-5 w-5" />
-                <h2 className="text-xl font-black uppercase italic tracking-widest m-0">No Affiliation</h2>
+          <section>
+             <div className="flex items-center gap-3 text-pink-600 mb-6">
+                <Info className="h-6 w-6" />
+                <h2 className="text-2xl font-black uppercase italic tracking-widest m-0">1. No Official Affiliation</h2>
              </div>
-             <p className="text-neutral-500 dark:text-neutral-400 font-medium">
-               SavClip is an independent web-based tool. We are NOT affiliated, associated, authorized, endorsed by, or in any way officially connected with YouTube, Instagram, TikTok, Facebook, Snapchat, X (Twitter), Telegram, or any of their subsidiaries or affiliates. The official websites for these platforms can be found at their respective domains.
+             <p className="font-medium leading-relaxed">
+               SavClip is an independent, third-party web utility. We are **NOT affiliated, associated, authorized, endorsed by**, or in any way officially connected with Instagram, Facebook, TikTok, YouTube, Snapchat, Twitter (X), Telegram, or any of their parent companies (e.g., Meta, ByteDance, Google). The names of these platforms, as well as related names, marks, emblems, and images, are registered trademarks of their respective owners.
              </p>
           </section>
 
-          <section className="space-y-4">
-             <h2 className="text-xl font-black uppercase italic tracking-widest text-neutral-900 dark:text-white">Legal Use</h2>
-             <p className="text-neutral-500 dark:text-neutral-400 font-medium">
-               This tool is intended to help users download media for their own personal use and fair-use educational purposes. Users are responsible for ensuring that they have the right to download the content they are accessing. SavClip does not encourage or condone the unauthorized downloading of copyrighted material.
+          <section>
+             <h2 className="text-2xl font-black uppercase italic tracking-widest text-neutral-900 dark:text-white mb-6">2. Fair Use & Legal Compliance</h2>
+             <p className="font-medium leading-relaxed">
+               This tool is intended strictly for personal use and ethical archiving. Users are solely responsible for ensuring that they have the legal right or explicit permission from the original content creator before downloading any media. SavClip does not encourage, condone, or provide tools for the unauthorized distribution of copyrighted material.
              </p>
           </section>
 
-          <section className="space-y-4">
-             <h2 className="text-xl font-black uppercase italic tracking-widest text-neutral-900 dark:text-white">No Content Hosting</h2>
-             <p className="text-neutral-500 dark:text-neutral-400 font-medium">
-               We do not host any videos, photos, or media files on our servers. All media is fetched directly from the third-party platform servers at the time of the user's request. We do not maintain any database of downloaded content.
+          <section className="bg-neutral-50 dark:bg-neutral-900/50 p-8 rounded-[2.5rem] border border-neutral-200 dark:border-neutral-800">
+             <h2 className="text-2xl font-black uppercase italic tracking-widest text-neutral-900 dark:text-white mb-6 m-0">3. Technical Operation (No Hosting)</h2>
+             <p className="font-medium leading-relaxed mt-4">
+               We do not host any media files on our servers. SavClip operates as a technical bridge that fetches data directly from the respective social platform's servers at the time of a user's request. No database of downloaded content is maintained on our infrastructure.
              </p>
           </section>
 
-          <section className="space-y-4">
-             <h2 className="text-xl font-black uppercase italic tracking-widest text-neutral-900 dark:text-white">Warranties</h2>
-             <p className="text-neutral-500 dark:text-neutral-400 font-medium">
-               SavClip is provided "as is" without any warranties of any kind, express or implied. We do not guarantee that the service will be uninterrupted, timely, secure, or error-free.
+          <section className="pt-10 border-t border-neutral-200 dark:border-neutral-800 text-center">
+             <p className="text-sm font-black uppercase tracking-widest text-neutral-400">
+               By using SavClip, you acknowledge that you have read and understood this disclaimer.
              </p>
           </section>
         </div>

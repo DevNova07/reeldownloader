@@ -25,7 +25,7 @@ export default function HistoryPage({ dict, locale }: { dict: any, locale: strin
   return (
     <div className="min-h-screen bg-neutral-50 dark:bg-black">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-linear-to-b from-neutral-900 to-black px-4 pt-24 pb-12 sm:pt-32 sm:pb-24 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-linear-to-b from-neutral-900 to-black px-4 pt-16 pb-12 sm:pt-24 sm:pb-20 sm:px-6 lg:px-8">
         <HeroEffect color="bg-pink-500" intensity="medium" />
         
         <div className="relative z-10 mx-auto max-w-7xl">

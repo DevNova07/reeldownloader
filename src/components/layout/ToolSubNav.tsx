@@ -11,11 +11,12 @@ const SUB_NAV = [
     { id: "hashtags",  name: "AI Hashtag", href: "/hashtags" },
     { id: "captions",  name: "AI Caption", href: "/captions" },
     { id: "bio",       name: "Bio",        href: "/bio" },
+    { id: "bulk",      name: "Bulk Downloader", href: "/bulk-downloader" },
+    { id: "reel-script", name: "Reel Script", href: "/reel-script" },
+    { id: "viral-hooks", name: "Viral Hook", href: "/viral-hooks" },
+    { id: "trending",  name: "Trending",   href: "/trending" },
     { id: "facebook",  name: "Facebook",  href: "/facebook" },
     { id: "tiktok",    name: "TikTok",    href: "/tiktok" },
-    { id: "youtube",   name: "YouTube",   href: "/youtube" },
-    { id: "telegram",  name: "Telegram",  href: "/telegram" },
-    { id: "blog",      name: "Blog",       href: "/blog" },
 ]
 
 export function ToolSubNav() {

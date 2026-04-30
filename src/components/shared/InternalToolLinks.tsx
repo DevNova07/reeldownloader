@@ -64,7 +64,7 @@ export function InternalToolLinks({ currentPlatform, dict, accentColor = "text-p
         title: seoPages?.[key]?.title || "Tool",
         href: `/${locale}/${key.replaceAll('_', '-')}`
       }))
-      .slice(0, 16) // Show more tools for better SEO internal linking
+      .slice(0, 24) // Show more tools for better SEO internal linking
   }, [dict, currentPlatform, currentToolKey, locale])
 
   if (relatedTools.length === 0) return null

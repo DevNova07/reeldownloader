@@ -10,7 +10,7 @@ import { StructuredData } from "@/components/shared/StructuredData"
 import { PlatformTabs } from "@/components/shared/PlatformTabs"
 import { SocialServiceBar } from "@/components/layout/SocialServiceBar"
 import { VisualGuide } from "@/components/shared/VisualGuide"
-import { usePathname } from "next/navigation"
+import { useRouter, usePathname } from "next/navigation"
 import { type Locale } from "@/i18n"
 import { getDictionary } from "@/dictionaries/client"
 import { TrendingBar } from "@/components/layout/TrendingBar"
@@ -22,6 +22,7 @@ import { HeroEffect } from "@/components/shared/HeroEffect"
 import { Ghost, StopCircle, Zap, ShieldCheck, CheckCircle2, HelpCircle, Info, Music as MusicIcon } from "lucide-react"
 import { ToolSubNav } from "@/components/layout/ToolSubNav"
 import { toast } from "react-hot-toast"
+import { isSmartInput, handleSmartRedirect } from "@/utils/platform-detector"
 
 import { TrustBadges } from "@/components/ui/TrustBadges"
 import { ChromeExtensionBanner } from "@/components/layout/ChromeExtensionBanner"
@@ -30,12 +31,18 @@ export default function SnapchatPage() {
   const [downloadData, setDownloadData] = React.useState<PlatformResult | null>(null)
   const [isLoading, setIsLoading] = React.useState(false)
   
+  const router = useRouter()
   const pathname = usePathname()
   const locale = pathname.split('/')[1] as Locale
     const dict = getDictionary(locale)
   const { addToHistory } = useDownloadHistory("snapchat")
 
   const handleSearch = async (url: string) => {
+    if (handleSmartRedirect(url, locale, router)) {
+      toast.success("Profile detected! Opening Bulk Downloader...")
+      return
+    }
+
     const cached = getCached(url)
     if (cached) {
       setDownloadData(cached)
@@ -126,6 +133,7 @@ export default function SnapchatPage() {
               onSearch={handleSearch} 
               isLoading={isLoading} 
               dict={dict}
+              validate={isSmartInput}
               buttonClass="bg-black text-white hover:bg-neutral-800"
               iconClass="text-yellow-500"
             />

@@ -281,11 +281,11 @@ export const PLATFORM_NAV_CONFIG: Record<string, PlatformNav> = {
       {
         titleKey: "advanced_tools",
         links: [
+          { href: "/bulk-downloader", label: "Pro Bulk Downloader" },
           { href: "/instagram-4k-video-downloader", label: "Insta 4K Downloader" },
           { href: "/facebook-no-ads-downloader", label: "FB No Ads Saver" },
           { href: "/youtube-mp3-320kbps", label: "YT to MP3 320kbps" },
           { href: "/tiktok-video-saver-no-login", label: "TikTok No Login" },
-          { href: "/instagram-bulk-reels-download", label: "Bulk Reels Saver" },
           { href: "/snapchat-spotlight-saver-hd", label: "Snapchat Spotlight" },
         ]
       },
@@ -313,6 +313,10 @@ export const PLATFORM_NAV_CONFIG: Record<string, PlatformNav> = {
           { href: "/hashtags", label: "AI Hashtags" },
           { href: "/captions", label: "Caption AI" },
           { href: "/bio", label: "Link-in-Bio" },
+          { href: "/reel-script", label: "Reel Script AI" },
+          { href: "/viral-hooks", label: "Viral Hook AI" },
+          { href: "/trending", label: "Trending AI" },
+          { href: "/bulk-downloader", label: "Pro Bulk Save" },
           { href: "/blog", label: "Official Blog" },
         ]
       }

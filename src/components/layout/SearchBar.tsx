@@ -146,7 +146,7 @@ function SearchBarInner({
   }
 
   return (
-    <div className="mx-auto w-full max-w-4xl px-4 py-4 sm:py-8 relative group">
+    <div className="mx-auto w-full max-w-4xl px-4 py-2 sm:py-4 relative group">
       {/* Background Glow matching Platform */}
       <div className={cn("absolute inset-0 -top-10 -bottom-10 opacity-30 blur-3xl rounded-full transition-all duration-700", 
         iconClass.includes('pink') ? "bg-pink-500/20" :
@@ -232,6 +232,10 @@ function SearchBarInner({
             </motion.div>
           )}
         </AnimatePresence>
+
+        <p className="mt-4 text-[9px] font-black text-white/50 uppercase tracking-[0.2em] leading-relaxed text-center drop-shadow-sm">
+          Zero Hosting Policy: We do not host any files on our servers. Content belongs to respective owners. For educational and personal use only.
+        </p>
       </motion.div>
     </div>
   )

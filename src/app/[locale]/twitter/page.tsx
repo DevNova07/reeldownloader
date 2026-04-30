@@ -22,7 +22,7 @@ import { Hash, Film, Zap, ShieldCheck, CheckCircle2, HelpCircle, Info, Music as 
 import { ToolSubNav } from "@/components/layout/ToolSubNav"
 import { toast } from "react-hot-toast"
 import { useRouter, useSearchParams, usePathname } from "next/navigation"
-import { getPlatformFromUrl, getLocalizedRoute, isAnyPlatformUrl } from "@/utils/platform-detector"
+import { getPlatformFromUrl, getLocalizedRoute, isAnyPlatformUrl, isSmartInput, handleSmartRedirect } from "@/utils/platform-detector"
 
 import { TrustBadges } from "@/components/ui/TrustBadges"
 import { ChromeExtensionBanner } from "@/components/layout/ChromeExtensionBanner"
@@ -48,6 +48,11 @@ function TwitterContent() {
     setSearchCounter(prev => prev + 1)
     setAutoTriggerDownload(isAutoTrigger)
     setIsLoading(true)
+
+    if (handleSmartRedirect(url, locale, router)) {
+      toast.success("Profile detected! Opening Bulk Downloader...")
+      return
+    }
 
     // Cross-platform detection and redirection
     const detectedPlatform = getPlatformFromUrl(url);
@@ -154,7 +159,7 @@ function TwitterContent() {
               onSearch={handleSearch}
               isLoading={isLoading}
               dict={dict}
-              validate={isAnyPlatformUrl}
+              validate={isSmartInput}
               buttonClass="bg-linear-to-br from-blue-600 to-sky-500 text-white shadow-[0_20px_50px_rgba(14,165,233,0.3)] ring-1 ring-inset ring-white/20"
               iconClass="text-sky-500"
             />

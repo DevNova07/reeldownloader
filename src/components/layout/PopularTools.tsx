@@ -13,16 +13,16 @@ export function PopularTools() {
   const dict = getDictionary(locale)
 
   const tools = [
+    { name: "Reel Script AI", slug: "reel-script" },
+    { name: "Viral Hook Finder", slug: "viral-hooks" },
+    { name: "Trending Content", slug: "trending" },
     { name: "Instagram Reels Download", slug: "instagram-reels-download" },
     { name: "Snapchat Video Download", slug: "snapchat-video-download" },
     { name: "TikTok No Watermark", slug: "tiktok-video-download-without-watermark" },
     { name: "Facebook Video Downloader", slug: "facebook-video-download" },
     { name: "YouTube Shorts Download", slug: "youtube-shorts-download" },
     { name: "Reels Save", slug: "reels-download" },
-    { name: "IGTV Downloader", slug: "instagram-igtv-download" },
-    { name: "Private Video Saver", slug: "instagram-private-video-download" },
-    { name: "Twitter GIF Download", slug: "twitter-gif-download" },
-    { name: "Snapchat Spotlight Download", slug: "snapchat-spotlight-download" }
+    { name: "IGTV Downloader", slug: "instagram-igtv-download" }
   ]
 
   return (

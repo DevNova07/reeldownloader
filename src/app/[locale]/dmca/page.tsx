@@ -8,41 +8,58 @@ export default function DMCAPage() {
     <div className="flex flex-col min-h-screen px-4 py-20 sm:px-6 lg:px-8 bg-white dark:bg-black">
       <div className="mx-auto max-w-4xl w-full">
         <div className="flex items-center gap-4 mb-8">
-           <div className="h-12 w-12 flex items-center justify-center rounded-2xl bg-red-50 dark:bg-red-900/20 text-red-600">
-             <AlertTriangle className="h-6 w-6" />
+           <div className="h-14 w-14 flex items-center justify-center rounded-3xl bg-red-500/10 text-red-600 border border-red-500/20 shadow-lg">
+             <AlertTriangle className="h-7 w-7" />
            </div>
-           <h1 className="text-4xl font-black tracking-tighter text-neutral-900 dark:text-white uppercase italic">DMCA Policy</h1>
+           <div>
+             <h1 className="text-4xl font-black tracking-tight text-neutral-900 dark:text-white uppercase italic">DMCA Policy</h1>
+             <p className="text-sm font-bold text-neutral-500 uppercase tracking-widest mt-1">Copyright Compliance & Takedown</p>
+           </div>
         </div>
         
-        <div className="prose prose-neutral dark:prose-invert max-w-none space-y-8">
-          <p className="text-lg font-bold text-neutral-600 dark:text-neutral-400 leading-relaxed">
-            SavClip respects the intellectual property rights of others and expects its users to do the same. In accordance with the Digital Millennium Copyright Act (DMCA), we have established the following procedure for reporting alleged copyright infringement.
-          </p>
-
-          <section className="space-y-4">
-            <h2 className="text-xl font-black uppercase italic tracking-widest text-neutral-900 dark:text-white">Reporting Infringement</h2>
-            <p className="text-neutral-500 dark:text-neutral-400 font-medium">
-              If you believe that your copyrighted work has been copied in a way that constitutes copyright infringement and is accessible on this site, you may notify our copyright agent. For your complaint to be valid under the DMCA, you must provide the following information:
+        <div className="prose prose-neutral dark:prose-invert max-w-none space-y-12 text-neutral-600 dark:text-neutral-400">
+          <section className="bg-neutral-50 dark:bg-neutral-900/50 p-8 rounded-[2.5rem] border border-neutral-200 dark:border-neutral-800">
+            <p className="text-lg font-bold leading-relaxed m-0">
+              SavClip respects the intellectual property rights of others and expects its users to do the same. In accordance with the Digital Millennium Copyright Act (DMCA), we have established a strict procedure for reporting and handling alleged copyright infringement.
             </p>
-            <ul className="list-disc pl-6 space-y-2 text-sm font-bold text-neutral-500 dark:text-neutral-400">
-              <li>A physical or electronic signature of a person authorized to act on behalf of the owner of an exclusive right that is allegedly infringed.</li>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-black uppercase italic tracking-widest text-neutral-900 dark:text-white mb-6">1. Reporting Infringement</h2>
+            <p className="font-medium leading-relaxed mb-6">
+              If you believe that your copyrighted work has been used in a way that constitutes copyright infringement, please submit a formal notification containing the following:
+            </p>
+            <ul className="list-disc pl-8 space-y-4 font-bold text-sm">
+              <li>A physical or electronic signature of the copyright owner or authorized representative.</li>
               <li>Identification of the copyrighted work claimed to have been infringed.</li>
-              <li>Identification of the material that is claimed to be infringing and that is to be removed or access to which is to be disabled.</li>
-              <li>Information reasonably sufficient to permit the service provider to contact you, such as an address, telephone number, and email address.</li>
+              <li>Identification of the specific URL or material that is claimed to be infringing.</li>
+              <li>Sufficient contact information including your address, telephone number, and email.</li>
+              <li>A statement that the information in the notification is accurate, and under penalty of perjury, that you are authorized to act on behalf of the owner.</li>
             </ul>
           </section>
 
-          <div className="p-8 rounded-3xl bg-neutral-50 dark:bg-neutral-900 border border-neutral-100 dark:border-neutral-800">
-             <h3 className="text-lg font-black uppercase italic text-neutral-900 dark:text-white mb-4 flex items-center gap-3">
-               <Mail className="h-5 w-5 text-pink-600" />
+          <div className="relative group overflow-hidden p-10 rounded-[3rem] bg-[#0a0a0a] border border-white/10 shadow-2xl">
+             <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+                <Mail className="h-24 w-24 text-pink-600" />
+             </div>
+             <h3 className="text-2xl font-black uppercase italic text-white mb-4 flex items-center gap-3 relative z-10">
+               <Mail className="h-6 w-6 text-pink-600" />
                Submit a Takedown Request
              </h3>
-             <p className="text-sm font-bold text-neutral-500 dark:text-neutral-400">
-               Please send all DMCA notices to our official legal contact:
-               <br />
-               <span className="text-pink-600 font-black">ramzaan0043@gmail.com</span>
+             <p className="text-white/60 font-medium leading-relaxed relative z-10 max-w-lg mb-6">
+               Our legal team will review and process all valid DMCA requests within 48-72 business hours. Please ensure your request is complete to avoid processing delays.
              </p>
+             <div className="bg-white/5 inline-block px-6 py-3 rounded-2xl border border-white/10 relative z-10">
+                <span className="text-pink-500 font-black text-lg">ramzaan0043@gmail.com</span>
+             </div>
           </div>
+
+          <section className="pt-10 border-t border-neutral-200 dark:border-neutral-800">
+             <h2 className="text-2xl font-black uppercase italic tracking-widest text-neutral-900 dark:text-white mb-4">2. Counter-Notification</h2>
+             <p className="font-medium leading-relaxed">
+               If you believe that your material was removed by mistake or misidentification, you may submit a counter-notification to our copyright agent with the required legal statements.
+             </p>
+          </section>
         </div>
       </div>
     </div>
