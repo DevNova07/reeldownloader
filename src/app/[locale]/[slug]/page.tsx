@@ -1,3 +1,4 @@
+import { getSeoAlternates } from "@/lib/seo";
 import { getDictionary } from "@/i18n";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";

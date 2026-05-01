@@ -1,3 +1,4 @@
+import { getSeoAlternates } from "@/lib/seo";
 import * as React from "react"
 import { type Locale, getDictionary } from "@/i18n"
 import { TwitterView } from "./TwitterView"
@@ -9,7 +10,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const twitter = dict.platforms.twitter;
   return {
     title: twitter.title,
-    description: twitter.subtitle,
+    alternates: getSeoAlternates("twitter", locale),
   };
 }
 

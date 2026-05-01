@@ -16,6 +16,7 @@ import type { Viewport } from "next";
 import { ScrollToTop } from "@/components/shared/ScrollToTop";
 import { Analytics } from "@/components/shared/Analytics";
 import { ToolSubNav } from "@/components/layout/ToolSubNav";
+import { getSeoAlternates } from "@/lib/seo";
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -23,7 +24,7 @@ const inter = Inter({
   variable: "--font-inter" 
 });
 
-const SITE_URL = "https://savclip.net";
+const SITE_URL = "https://savclip.com";
 
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const params = await props.params;
@@ -41,10 +42,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
     description: description,
     keywords: dict.seo?.keywords || "instagram downloader, reels download, story downloader",
     metadataBase: new URL(SITE_URL),
-    alternates: {
-      canonical: `${SITE_URL}/${locale}`,
-      languages: Object.fromEntries(locales.map(l => [l, `${SITE_URL}/${l}`]))
-    },
+    alternates: getSeoAlternates("", locale),
     openGraph: {
       title: title,
       description: description,
@@ -72,7 +70,10 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
     },
     manifest: "/manifest.json?v=2",
     icons: {
-      icon: "/favicon.ico",
+      icon: [
+        { url: "/favicon.ico", sizes: "any" },
+        { url: "/icon.png", type: "image/png", sizes: "512x512" },
+      ],
       shortcut: "/favicon.ico",
       apple: "/apple-touch-icon.png",
     },
@@ -141,6 +142,12 @@ export default async function RootLayout(props: {
     <html lang={locale} dir={direction} suppressHydrationWarning className="scroll-smooth" data-scroll-behavior="smooth">
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon-48x48.png" type="image/png" sizes="48x48" />
+        <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+        <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
+        <link rel="icon" href="/icon.png" type="image/png" sizes="512x512" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/manifest.json" />
         <Script
           id="service-worker-registration"
           strategy="afterInteractive"

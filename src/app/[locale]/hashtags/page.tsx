@@ -1,3 +1,4 @@
+import { getSeoAlternates } from "@/lib/seo";
 import * as React from "react"
 import { type Locale, getDictionary } from "@/i18n"
 import { HashtagView } from "./HashtagView"
@@ -9,7 +10,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const tag = dict.common.hashtag;
   return {
     title: tag.trending_title,
-    description: tag.subtitle,
+    alternates: getSeoAlternates("hashtags", locale),
   };
 }
 

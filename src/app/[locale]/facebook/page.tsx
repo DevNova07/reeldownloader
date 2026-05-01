@@ -1,3 +1,4 @@
+import { getSeoAlternates } from "@/lib/seo";
 import * as React from "react";
 import { getDictionary } from "@/i18n";
 import FacebookView from "./FacebookView";
@@ -17,9 +18,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   return {
     title: fb.seo?.title || "Facebook Downloader",
     description: fb.seo?.desc || "Download Facebook videos",
-    alternates: {
-      canonical: `https://savclip.net/${locale}/facebook`,
-    },
+    alternates: getSeoAlternates("facebook", locale),
   };
 }
 

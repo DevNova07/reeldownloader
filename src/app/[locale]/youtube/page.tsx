@@ -1,3 +1,4 @@
+import { getSeoAlternates } from "@/lib/seo";
 import * as React from "react"
 import { type Locale, getDictionary } from "@/i18n"
 import { YoutubeView } from "./YoutubeView"
@@ -9,7 +10,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const yt = dict.platforms.youtube;
   return {
     title: yt.title,
-    description: yt.subtitle,
+    alternates: getSeoAlternates("youtube", locale),
   };
 }
 

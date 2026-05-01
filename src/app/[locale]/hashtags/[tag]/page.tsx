@@ -1,3 +1,4 @@
+import { getSeoAlternates } from "@/lib/seo";
 import * as React from "react"
 import { HashtagDetailView } from "./HashtagDetailView"
 import { Metadata } from "next"

@@ -1,3 +1,4 @@
+import { getSeoAlternates } from "@/lib/seo";
 import * as React from "react"
 import { type Locale, getDictionary } from "@/i18n"
 import { TikTokView } from "./TikTokView"
@@ -9,7 +10,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const tiktok = dict.platforms.tiktok;
   return {
     title: tiktok.title,
-    description: tiktok.subtitle,
+    alternates: getSeoAlternates("tiktok", locale),
   };
 }
 

@@ -1,3 +1,4 @@
+import { getSeoAlternates } from "@/lib/seo";
 import * as React from "react"
 import { type Locale, getDictionary } from "@/i18n"
 import TelegramView from "./TelegramView"
@@ -9,7 +10,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const tele = dict.platforms.telegram;
   return {
     title: tele.seo.title,
-    description: tele.seo.desc,
+    alternates: getSeoAlternates("telegram", locale),
   };
 }
 

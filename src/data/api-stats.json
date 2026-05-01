@@ -1,6 +1,6 @@
 {
-  "totalRequests": 216,
-  "successfulRequests": 125,
+  "totalRequests": 228,
+  "successfulRequests": 137,
   "failedRequests": 91,
   "savedRequests": 0,
   "totalVisits": 0,
@@ -36,8 +36,8 @@
       }
     },
     "youtube": {
-      "total": 112,
-      "success": 43,
+      "total": 124,
+      "success": 55,
       "fail": 69,
       "keys": {
         "9ac29222efmsh81d43b990a8ce7dp17df2jsn6f83cbfb17b7": {
@@ -51,10 +51,10 @@
         "9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7": {
           "name": "API 1",
           "status": "active",
-          "remaining": "51",
+          "remaining": "37",
           "limit": "unkn",
-          "used": 23,
-          "lastCheck": "2026-04-30T18:22:43.609Z"
+          "used": 35,
+          "lastCheck": "2026-05-01T12:38:54.012Z"
         }
       }
     },

@@ -1,3 +1,4 @@
+import { getSeoAlternates } from "@/lib/seo";
 import * as React from "react"
 import { type Locale, getDictionary } from "@/i18n"
 import SnapchatView from "./SnapchatView"
@@ -9,7 +10,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const snap = dict.platforms.snapchat;
   return {
     title: snap.seo.title,
-    description: snap.seo.desc,
+    alternates: getSeoAlternates("snapchat", locale),
   };
 }
 

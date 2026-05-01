@@ -2,7 +2,7 @@ import { fetchWithRotation, resolveUrl } from "../api-utils";
 import { type PlatformResult, type Media } from "../../types/download";
 
 export async function snapchatHandler(url: string): Promise<PlatformResult> {
-  let resolvedUrl = await resolveUrl(url);
+  const resolvedUrl = await resolveUrl(url);
 
   // 1. If it's a specific spotlight link
   if (resolvedUrl.includes("/spotlight/") || resolvedUrl.includes("/p/")) {

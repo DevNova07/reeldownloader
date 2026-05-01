@@ -1,3 +1,4 @@
+import { getSeoAlternates } from "@/lib/seo";
 import { getBlogPostBySlug, blogPosts } from "@/data/blog";
 import { notFound } from "next/navigation";
 import Link from "next/link";

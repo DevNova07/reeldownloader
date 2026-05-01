@@ -1,3 +1,4 @@
+import { getSeoAlternates } from "@/lib/seo";
 import { Metadata } from "next";
 import { getDictionary } from "@/i18n";
 import { type Locale } from "@/i18n";
@@ -11,9 +12,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
     metadataBase: new URL("https://savclip.net"),
     title: dict.platforms.telegram.seo.title,
     description: dict.platforms.telegram.seo.desc,
-    alternates: {
-      canonical: `https://savclip.net/${locale}/telegram`,
-    },
+    alternates: getSeoAlternates("telegram", locale),
   };
 }
 

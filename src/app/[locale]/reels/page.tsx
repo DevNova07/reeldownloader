@@ -1,3 +1,4 @@
+import { getSeoAlternates } from "@/lib/seo";
 import { getDictionary, type Locale } from "@/i18n";
 import InstagramPage from "@/components/templates/InstagramPage";
 import { Metadata } from "next";
@@ -10,9 +11,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: reels.seo.title,
     description: reels.seo.desc,
-    alternates: {
-      canonical: `https://savclip.net/${locale}/reels`,
-    },
+    alternates: getSeoAlternates("reels", locale),
   };
 }
 
