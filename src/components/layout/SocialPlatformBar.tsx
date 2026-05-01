@@ -93,7 +93,7 @@ export function SocialPlatformBar({ activeId, className }: { activeId: string, c
   return (
     <div 
       suppressHydrationWarning={true}
-      className={cn("flex items-center justify-start sm:justify-center gap-2 sm:gap-6 px-3 sm:px-4 py-1.5 sm:py-2.5 rounded-full bg-black/10 dark:bg-white/5 backdrop-blur-xl border border-white/10 w-fit max-w-[calc(100vw-1rem)] overflow-x-auto no-scrollbar mx-auto", className)}
+      className={cn("flex items-center justify-between sm:justify-center sm:gap-6 px-2.5 sm:px-4 py-1.5 sm:py-2.5 rounded-[2rem] bg-black/10 dark:bg-white/5 backdrop-blur-xl border border-white/10 w-full sm:w-fit max-w-[calc(100vw-1rem)] md:max-w-none mx-auto", className)}
     >
       {PLATFORMS.map((platform) => {
         const isActive = platform.id === activeId
@@ -101,11 +101,11 @@ export function SocialPlatformBar({ activeId, className }: { activeId: string, c
           <Link
             key={platform.id}
             href={getLocalizedHref(platform.href)}
-            className="relative group"
+            className="relative group shrink-0"
           >
             <motion.div
               className={cn(
-                "flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full transition-all duration-300",
+                "flex h-9 w-9 sm:h-12 sm:w-12 items-center justify-center rounded-full transition-all duration-300",
                 isActive 
                   ? "bg-white text-pink-600 shadow-xl shadow-white/20 scale-110" 
                   : "text-white/70 hover:text-white hover:bg-white/10"

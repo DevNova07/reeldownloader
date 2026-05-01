@@ -72,9 +72,12 @@ export async function POST(request: Request) {
       result = await instagramHandler(url);
     } else if (platform === "telegram" || lowerUrl.includes("t.me") || lowerUrl.includes("telegram.me")) {
       result = await telegramHandler(url);
+    } else if (platform === "snapchat" || lowerUrl.includes("snapchat.com")) {
+      const { snapchatHandler } = await import("@/lib/handlers/snapchat");
+      result = await snapchatHandler(url);
     } else {
       return NextResponse.json({ 
-        error: "Currently only Instagram, Facebook, TikTok, YouTube, Twitter, and Telegram are supported." 
+        error: "Currently only Instagram, Facebook, TikTok, YouTube, Twitter, Snapchat, and Telegram are supported." 
       }, { status: 400 });
     }
 

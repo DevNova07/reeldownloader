@@ -1,6 +1,6 @@
 {
-  "totalRequests": 199,
-  "successfulRequests": 108,
+  "totalRequests": 216,
+  "successfulRequests": 125,
   "failedRequests": 91,
   "savedRequests": 0,
   "totalVisits": 0,
@@ -59,8 +59,8 @@
       }
     },
     "instagram": {
-      "total": 30,
-      "success": 28,
+      "total": 32,
+      "success": 30,
       "fail": 2,
       "keys": {
         "9ac29222efmsh81d43b990a8ce7dp17df2jsn6f83cbfb17b7": {
@@ -70,6 +70,14 @@
           "limit": "unkn",
           "used": 28,
           "lastCheck": "2026-04-30T16:46:21.106Z"
+        },
+        "9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7": {
+          "name": "API 1",
+          "status": "active",
+          "remaining": "2954",
+          "limit": "unkn",
+          "used": 2,
+          "lastCheck": "2026-05-01T08:13:52.654Z"
         }
       }
     },
@@ -85,6 +93,21 @@
           "limit": "unkn",
           "used": 1,
           "lastCheck": "2026-04-29T06:03:59.181Z"
+        }
+      }
+    },
+    "snapchat": {
+      "total": 15,
+      "success": 15,
+      "fail": 0,
+      "keys": {
+        "9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7": {
+          "name": "API 1",
+          "status": "active",
+          "remaining": "80",
+          "limit": "unkn",
+          "used": 15,
+          "lastCheck": "2026-05-01T07:54:28.403Z"
         }
       }
     }

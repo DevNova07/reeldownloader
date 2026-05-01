@@ -13,6 +13,7 @@ export const PLATFORM_KEYS: Record<string, string[]> = {
   youtube: ["9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7"],
   twitter: ["9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7"],
   telegram: ["9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7"],
+  snapchat: ["9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7"],
   global: ["9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7"]
 };
 
