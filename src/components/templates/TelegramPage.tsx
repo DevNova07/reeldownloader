@@ -17,7 +17,7 @@ import { DownloadCounter } from "@/components/ui/DownloadCounter"
 import { RelatedTools } from "@/components/shared/RelatedTools"
 import { useDownloadHistory, getCached, setCached } from "@/hooks/useDownloadHistory"
 import { HeroEffect } from "@/components/shared/HeroEffect"
-import { Send, FileText, Zap, ShieldCheck, CheckCircle2, HelpCircle, Info } from "lucide-react"
+import { CheckCircle2, FileText, HelpCircle, Info, Megaphone, Music as MusicIcon, Send, ShieldCheck, Users, Zap } from "lucide-react"
 import { toast } from "react-hot-toast"
 import { useRouter, useSearchParams } from "next/navigation"
 import { getPlatformFromUrl, getLocalizedRoute, isAnyPlatformUrl } from "@/utils/platform-detector"
@@ -110,17 +110,19 @@ function TelegramPageContent({ content, locale, dict }: TelegramPageProps) {
         />
       )}
       
-      <section className="relative overflow-hidden bg-linear-to-r from-sky-500 to-blue-600 px-4 pt-14 pb-8 sm:pt-16 sm:pb-20 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-linear-to-r from-sky-500 to-blue-600 px-4 pt-10 pb-6 sm:pt-16 sm:pb-20 sm:px-6 lg:px-8">
         <HeroEffect color="bg-sky-400" intensity="high" />
-        <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-4 sm:gap-6">
+        <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-3 sm:gap-6">
           <SocialPlatformBar activeId="telegram" />
           <PlatformTabs   
             activeId="media" 
             activeColor="text-sky-600"
             tabs={dict.tabs}
             items={[
-              { id: "media", label: dict.tabs.video, href: "/telegram", icon: <Send className="h-4 w-4" /> },
-              { id: "file", label: "Files", href: "/telegram", icon: <FileText className="h-4 w-4" /> },
+              { id: "media", label: dict.tabs?.video || "Video", href: "/telegram", icon: <Send className="h-4 w-4" /> },
+              { id: "channel", label: "Channels", href: "/telegram/channel", icon: <Megaphone className="h-4 w-4" /> },
+              { id: "group", label: "Groups", href: "/telegram/group", icon: <Users className="h-4 w-4" /> },
+              { id: "music", label: dict.tabs?.music || "Music", href: "/telegram/music", icon: <MusicIcon className="h-4 w-4" /> },
             ]} 
           />
 
@@ -129,12 +131,10 @@ function TelegramPageContent({ content, locale, dict }: TelegramPageProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <h1 className="mb-2 text-4xl font-black tracking-tight text-white sm:text-7xl drop-shadow-2xl uppercase italic">
+            <h1 className="mb-3 text-4xl font-black tracking-tight text-white sm:text-7xl drop-shadow-2xl uppercase italic">
               {content?.title || "Telegram Downloader"}
             </h1>
-            <p className="mx-auto mb-4 max-w-2xl text-lg font-medium text-white/90 sm:text-xl">
-              {content?.subtitle || content?.seo?.desc || "Fast and secure Telegram downloader."}
-            </p>
+            
           </motion.div>
           
           <div className="mx-auto max-w-3xl">
@@ -147,6 +147,10 @@ function TelegramPageContent({ content, locale, dict }: TelegramPageProps) {
               iconClass="text-sky-500"
               initialValue={searchParams.get('url') || ""}
             />
+
+            <p className="mx-auto mb-4 max-w-2xl mt-8 mb-2 text-sm font-bold text-white/60 uppercase tracking-widest hidden sm:block">
+              {content?.subtitle || content?.seo?.desc || "Fast and secure Telegram downloader."}
+            </p>
 
             <AnimatePresence>
               {error && (
@@ -205,7 +209,7 @@ function TelegramPageContent({ content, locale, dict }: TelegramPageProps) {
                   <Icon className="h-8 w-8 text-sky-500" />
                 </div>
                 <h3 className="text-xl font-bold text-neutral-900 dark:text-white uppercase italic">{dict.features.items[idx]?.title}</h3>
-                <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80">{dict.features.items[idx]?.desc}</p>
+                <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 hidden sm:block">{dict.features.items[idx]?.desc}</p>
               </div>
             ))}
           </div>
@@ -235,6 +239,7 @@ function TelegramPageContent({ content, locale, dict }: TelegramPageProps) {
               <Info className="h-8 w-8 text-sky-600" />
               {content?.seo?.title || content?.title || "Telegram Guide"}
             </h2>
+            <p className="mt-4 text-lg text-neutral-500 dark:text-neutral-400 font-medium italic opacity-80 sm:hidden hidden sm:block">{content?.seo?.desc || content?.subtitle || "Detailed information about downloading from Telegram."}</p>
             <p className="mt-6 text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed border-l-4 border-sky-400 pl-6 font-medium">
               {content?.seo?.desc || content?.subtitle || "Detailed information about downloading from Telegram."}
             </p>
@@ -244,8 +249,8 @@ function TelegramPageContent({ content, locale, dict }: TelegramPageProps) {
                 <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
                   {content.seo.features.map((feature: any, idx: number) => (
                     <div key={idx} className="rounded-2xl bg-neutral-50 p-6 dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 transition-all hover:scale-105">
-                      <h4 className="font-bold text-neutral-900 dark:text-white uppercase tracking-tighter">{feature.title}</h4>
-                      <p className="mt-4 text-sm text-neutral-500 dark:text-neutral-400 font-bold opacity-80">{feature.desc}</p>
+                      <h3 className="font-bold text-neutral-900 dark:text-white uppercase tracking-tighter">{feature.title}</h3>
+                      <p className="mt-4 text-sm text-neutral-500 dark:text-neutral-400 font-bold opacity-80 hidden sm:block">{feature.desc}</p>
                     </div>
                   ))}
                 </div>
@@ -259,7 +264,7 @@ function TelegramPageContent({ content, locale, dict }: TelegramPageProps) {
                 <div className="mt-10 space-y-6">
                   {(dict.faq.items || []).map((faq: any, idx: number) => (
                     <div key={idx} className="group rounded-2xl border border-neutral-200 p-6 dark:border-neutral-800 hover:border-sky-400/50 transition-all">
-                      <h4 className="font-bold text-neutral-900 dark:text-white group-hover:text-sky-500 transition-colors uppercase italic tracking-tighter text-lg">{faq.q}</h4>
+                      <h3 className="font-bold text-neutral-900 dark:text-white group-hover:text-sky-500 transition-colors uppercase italic tracking-tighter text-lg">{faq.q}</h3>
                       <p className="mt-4 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 group-hover:opacity-100 transition-opacity">{faq.a}</p>
                     </div>
                   ))}

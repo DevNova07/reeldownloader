@@ -1,0 +1,7 @@
+src/components/templates/FacebookPage.tsx
+src/components/templates/InstagramPage.tsx
+src/components/templates/SnapchatPage.tsx
+src/components/templates/TelegramPage.tsx
+src/components/templates/TiktokPage.tsx
+src/components/templates/TwitterPage.tsx
+src/components/templates/YoutubePage.tsx

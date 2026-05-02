@@ -13,7 +13,7 @@ export default function DisclaimerPage() {
            </div>
            <div>
              <h1 className="text-4xl font-black tracking-tight text-neutral-900 dark:text-white uppercase italic">Legal Disclaimer</h1>
-             <p className="text-sm font-bold text-neutral-500 uppercase tracking-widest mt-1">Platform Affiliation & Usage Rights</p>
+             <p className="text-sm font-bold text-neutral-500 uppercase tracking-widest mt-1 hidden sm:block">Platform Affiliation & Usage Rights</p>
            </div>
         </div>
         

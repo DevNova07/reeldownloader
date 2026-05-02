@@ -17,7 +17,7 @@ import { DownloadCounter } from "@/components/ui/DownloadCounter"
 import { RelatedTools } from "@/components/shared/RelatedTools"
 import { useDownloadHistory, getCached, setCached } from "@/hooks/useDownloadHistory"
 import { HeroEffect } from "@/components/shared/HeroEffect"
-import { Send, FileText, Zap, ShieldCheck, CheckCircle2, HelpCircle, Info, Music as MusicIcon } from "lucide-react"
+import { CheckCircle2, FileText, HelpCircle, Info, Megaphone, Music as MusicIcon, Send, ShieldCheck, Users, Zap } from "lucide-react"
 import { toast } from "react-hot-toast"
 import { useRouter } from "next/navigation"
 import { getPlatformFromUrl, getLocalizedRoute, isSmartInput, handleSmartRedirect } from "@/utils/platform-detector"
@@ -115,21 +115,34 @@ export default function TelegramView({ dict, locale }: { dict: any, locale: stri
           steps: telegramDict.howTo.steps
         }}
       />
+      <StructuredData
+        type="SoftwareApplication"
+        data={{
+          title: telegramDict.seo?.title || telegramDict.title,
+          description: telegramDict.seo?.desc || telegramDict.subtitle
+        }}
+      />
+      <StructuredData
+        type="FAQPage"
+        data={telegramDict.faq || dict.faq}
+      />
       
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-linear-to-r from-sky-500 to-blue-600 px-4 pt-14 pb-8 sm:pt-20 sm:pb-32 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-linear-to-r from-sky-500 to-blue-600 px-4 pt-10 pb-6 sm:pt-20 sm:pb-32 sm:px-6 lg:px-8">
         <HeroEffect color="bg-sky-400" intensity="high" />
         
-        <div className="relative z-10 mx-auto max-w-7xl text-center">
+        <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-3 sm:gap-6">
+          
           <SocialPlatformBar activeId="telegram" />
           <PlatformTabs   
             activeId="media" 
             activeColor="text-sky-600"
             tabs={dict.tabs}
             items={[
-              { id: "media", label: dict.tabs.video, href: "/telegram", icon: <Send className="h-4 w-4" /> },
-              { id: "file", label: "Files", href: "/telegram", icon: <FileText className="h-4 w-4" /> },
-              { id: "music", label: dict.tabs.music, href: "/telegram/music", icon: <MusicIcon className="h-4 w-4" /> },
+              { id: "media", label: dict.tabs?.video || "Video", href: "/telegram", icon: <Send className="h-4 w-4" /> },
+              { id: "channel", label: "Channels", href: "/telegram/channel", icon: <Megaphone className="h-4 w-4" /> },
+              { id: "group", label: "Groups", href: "/telegram/group", icon: <Users className="h-4 w-4" /> },
+              { id: "music", label: dict.tabs?.music || "Music", href: "/telegram/music", icon: <MusicIcon className="h-4 w-4" /> },
             ]} 
           />
 
@@ -138,13 +151,14 @@ export default function TelegramView({ dict, locale }: { dict: any, locale: stri
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <h1 className="mb-2 text-4xl font-black tracking-tight text-white sm:text-7xl drop-shadow-2xl uppercase italic">
+            <h1 className="mb-3 text-3xl min-[400px]:text-4xl font-black tracking-tight text-white sm:text-7xl drop-shadow-2xl uppercase italic text-balance">
               {telegramDict.title}
             </h1>
-            <p className="mx-auto mb-4 max-w-2xl text-lg font-medium text-white/90 sm:text-xl">
-              {telegramDict.subtitle}
-            </p>
+            <p className="mt-4 text-lg text-white/90 max-w-2xl mx-auto hidden sm:block">{telegramDict.subtitle}</p>
+            
           </motion.div>
+
+          
           
           <div className="mx-auto max-w-3xl">
             <SearchBar
@@ -193,7 +207,7 @@ export default function TelegramView({ dict, locale }: { dict: any, locale: stri
                   {feature.icon}
                 </div>
                 <h3 className="text-xl font-bold text-neutral-900 dark:text-white">{dict.features.items[idx].title}</h3>
-                <p className="mt-3 text-neutral-500 dark:text-neutral-400">{dict.features.items[idx].desc}</p>
+                <p className="mt-3 text-neutral-500 dark:text-neutral-400 hidden sm:block">{dict.features.items[idx].desc}</p>
               </div>
             ))}
           </div>
@@ -222,6 +236,7 @@ export default function TelegramView({ dict, locale }: { dict: any, locale: stri
               <Info className="h-8 w-8 text-sky-600" />
               {telegramDict.seo.title}
             </h2>
+            <p className="mt-4 text-lg text-neutral-500 dark:text-neutral-400 font-medium italic opacity-80 sm:hidden hidden sm:block">{telegramDict.subtitle}</p>
             <p className="mt-6 text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed italic border-l-4 border-sky-400 pl-6">
               {telegramDict.seo.desc}
             </p>
@@ -232,8 +247,8 @@ export default function TelegramView({ dict, locale }: { dict: any, locale: stri
                     {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                     {telegramDict.seo.features.map((feature: any, idx: number) => (
                       <div key={idx} className="rounded-2xl bg-neutral-50 p-6 dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 transition-all hover:scale-105">
-                        <h4 className="font-bold text-neutral-900 dark:text-white uppercase tracking-tighter">{feature.title}</h4>
-                        <p className="mt-4 text-sm text-neutral-500 dark:text-neutral-400">{feature.desc}</p>
+                        <h3 className="font-bold text-neutral-900 dark:text-white uppercase tracking-tighter">{feature.title}</h3>
+                        <p className="mt-4 text-sm text-neutral-500 dark:text-neutral-400 hidden sm:block">{feature.desc}</p>
                       </div>
                     ))}
                   </div>
@@ -248,7 +263,7 @@ export default function TelegramView({ dict, locale }: { dict: any, locale: stri
                     {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                     {dict.faq.items.map((faq: any, idx: number) => (
                       <div key={idx} className="group rounded-2xl border border-neutral-200 p-6 dark:border-neutral-800 hover:border-sky-400/50 transition-all">
-                        <h4 className="font-bold text-neutral-900 dark:text-white group-hover:text-sky-500 transition-colors">{faq.q}</h4>
+                        <h3 className="font-bold text-neutral-900 dark:text-white group-hover:text-sky-500 transition-colors">{faq.q}</h3>
                         <p className="mt-4 text-neutral-500 dark:text-neutral-400">{faq.a}</p>
                       </div>
                     ))}

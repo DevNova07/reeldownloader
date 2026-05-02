@@ -17,7 +17,7 @@ import { DownloadCounter } from "@/components/ui/DownloadCounter"
 import { RelatedTools } from "@/components/shared/RelatedTools"
 import { useDownloadHistory, getCached, setCached } from "@/hooks/useDownloadHistory"
 import { HeroEffect } from "@/components/shared/HeroEffect"
-import { Hash, Film, Zap, ShieldCheck, CheckCircle2, HelpCircle, Info } from "lucide-react"
+import { Camera, CheckCircle2, Film, Hash, HelpCircle, Info, Music as MusicIcon, ShieldCheck, User, Zap } from "lucide-react"
 import { toast } from "react-hot-toast"
 import { TrustBadges } from "@/components/ui/TrustBadges"
 import { ChromeExtensionBanner } from "@/components/layout/ChromeExtensionBanner"
@@ -99,9 +99,9 @@ function TwitterPageContent({ content, locale, dict }: TwitterPageProps) {
       )}
       {content.faq && <StructuredData type="FAQPage" data={content.faq} />}
       
-      <section className="relative overflow-hidden bg-linear-to-r from-slate-800 to-slate-950 px-4 pt-14 pb-8 sm:pt-16 sm:pb-20 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-linear-to-r from-slate-800 to-slate-950 px-4 pt-10 pb-6 sm:pt-16 sm:pb-20 sm:px-6 lg:px-8">
         <HeroEffect color="bg-slate-500" intensity="medium" />
-        <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-4 sm:gap-6">
+        <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-3 sm:gap-6">
           <SocialPlatformBar activeId="twitter" />
           <PlatformTabs   
             activeId="video" 
@@ -110,6 +110,8 @@ function TwitterPageContent({ content, locale, dict }: TwitterPageProps) {
             items={[
               { id: "video", label: dict.tabs?.video || "Video", href: "/twitter", icon: <Film className="h-4 w-4" /> },
               { id: "gif", label: dict.tabs?.gif || "GIF", href: "/twitter/gif", icon: <Hash className="h-4 w-4" /> },
+              { id: "photo", label: dict.tabs?.photo || "Photo", href: "/twitter/photo", icon: <Camera className="h-4 w-4" /> },
+              { id: "music", label: dict.tabs?.music || "Music", href: "/twitter/music", icon: <MusicIcon className="h-4 w-4" /> },
             ]} 
           />
 
@@ -118,12 +120,10 @@ function TwitterPageContent({ content, locale, dict }: TwitterPageProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <h1 className="mb-2 text-4xl font-black tracking-tight text-white sm:text-7xl drop-shadow-2xl uppercase italic">
+            <h1 className="mb-3 text-4xl font-black tracking-tight text-white sm:text-7xl drop-shadow-2xl uppercase italic">
               {content?.title || "Twitter Downloader"}
             </h1>
-            <p className="mx-auto mb-4 max-w-2xl text-lg font-medium text-white/90 sm:text-xl">
-              {content?.subtitle || content?.seo?.desc || "Fast and secure Twitter downloader."}
-            </p>
+            
           </motion.div>
           
           <div className="mx-auto max-w-3xl">
@@ -135,6 +135,10 @@ function TwitterPageContent({ content, locale, dict }: TwitterPageProps) {
               buttonClass="bg-white text-black hover:bg-neutral-200"
               iconClass="text-slate-800"
             />
+
+            <p className="mx-auto mb-4 max-w-2xl mt-8 mb-2 text-sm font-bold text-white/60 uppercase tracking-widest hidden sm:block">
+              {content?.subtitle || content?.seo?.desc || "Fast and secure Twitter downloader."}
+            </p>
 
             <AnimatePresence>
               {error && (
@@ -197,7 +201,7 @@ function TwitterPageContent({ content, locale, dict }: TwitterPageProps) {
                   <Icon className="h-8 w-8 text-slate-500" />
                 </div>
                 <h3 className="text-xl font-black text-neutral-900 dark:text-white uppercase italic">{dict.features?.items?.[idx]?.title || "Feature"}</h3>
-                <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80">{dict.features?.items?.[idx]?.desc || "Description"}</p>
+                <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 hidden sm:block">{dict.features?.items?.[idx]?.desc || "Description"}</p>
               </div>
             ))}
           </div>
@@ -227,6 +231,7 @@ function TwitterPageContent({ content, locale, dict }: TwitterPageProps) {
               <Info className="h-8 w-8 text-slate-800" />
               {content?.seo?.title || content?.title || "Twitter Guide"}
             </h2>
+            <p className="mt-4 text-lg text-neutral-500 dark:text-neutral-400 font-medium italic opacity-80 sm:hidden hidden sm:block">{content?.seo?.desc || content?.subtitle || "Detailed information about downloading from Twitter."}</p>
             <p className="mt-4 text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed border-l-4 border-slate-500 pl-8 font-medium">
               {content?.seo?.desc || content?.subtitle || "Detailed information about downloading from Twitter."}
             </p>
@@ -246,8 +251,8 @@ function TwitterPageContent({ content, locale, dict }: TwitterPageProps) {
               <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2">
                 {content.seo.features.map((feature: any, idx: number) => (
                   <div key={idx} className="rounded-[2rem] bg-neutral-50 p-8 dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 transition-all hover:scale-105 hover:bg-white dark:hover:bg-neutral-900 shadow-sm hover:shadow-2xl">
-                    <h4 className="font-black text-neutral-900 dark:text-white uppercase italic tracking-tighter text-lg">{feature.title}</h4>
-                    <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80">{feature.desc}</p>
+                    <h3 className="font-black text-neutral-900 dark:text-white uppercase italic tracking-tighter text-lg">{feature.title}</h3>
+                    <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 hidden sm:block">{feature.desc}</p>
                   </div>
                 ))}
               </div>
@@ -262,7 +267,7 @@ function TwitterPageContent({ content, locale, dict }: TwitterPageProps) {
             <div className="mt-12 space-y-6">
               {(content.faq?.items || dict.faq?.items || []).map((faq: any, idx: number) => (
                 <div key={idx} className="group rounded-[2rem] border border-neutral-200 p-8 dark:border-neutral-800 hover:border-slate-500/50 transition-all bg-white dark:bg-transparent hover:shadow-2xl">
-                  <h4 className="font-black text-neutral-900 dark:text-white group-hover:text-slate-600 transition-colors uppercase italic tracking-tighter text-lg">{faq.q}</h4>
+                  <h3 className="font-black text-neutral-900 dark:text-white group-hover:text-slate-600 transition-colors uppercase italic tracking-tighter text-lg">{faq.q}</h3>
                   <p className="mt-4 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 group-hover:opacity-100 transition-opacity">{faq.a}</p>
                 </div>
               ))}

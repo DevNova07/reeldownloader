@@ -118,6 +118,7 @@ export function RelatedTools({ currentPlatform, max = 4 }: RelatedToolsProps) {
               transition={{ delay: idx * 0.1, type: "spring", stiffness: 200, damping: 15 }}
             >
               <Link
+                prefetch={true}
                 href={getLocalizedHref(tool.href)}
                 className="group flex flex-col items-center text-center gap-5 rounded-3xl p-6 shadow-sm transition-all hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] hover:-translate-y-2 dark:backdrop-blur-sm"
               >

@@ -141,6 +141,7 @@ export function DownloadPreview({
       });
       
       sendDownloadCompleteNotification(data?.title || "Content");
+      window.dispatchEvent(new CustomEvent('savclip_download_success'));
       setShowSuccess(true);
       setTimeout(() => setShowSuccess(false), 3000);
     } catch (error: any) {
@@ -270,6 +271,7 @@ export function DownloadPreview({
       URL.revokeObjectURL(url);
 
       setDownloadStatus("Batch Success!");
+      window.dispatchEvent(new CustomEvent('savclip_download_success'));
       toast.success("Batch download complete! 🚀");
     } catch (error) {
       console.error("Batch download failed:", error);

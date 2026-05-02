@@ -920,17 +920,18 @@ export default function CaptionsPage() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.2 }}
-                        className="text-sm font-medium text-white/90 tracking-wide brightness-110 uppercase"
+                        className="text-sm font-medium text-white/90 tracking-wide brightness-110 uppercase hidden sm:block"
                     >
-                        enter your topic and we generate the best viral captions
+                        Find the perfect vibe for your next post
                     </motion.p>
                 </div>
             </section>
 
 
                  {/* 🎨 CAPTION LIBRARY BY MOOD (Accordion Style - Split UI) */}
-            <section id="mood-grid" className="px-4 pt-12 pb-20 bg-neutral-50/50">
-                <div className="mx-auto max-w-7xl">
+            <section className="px-4 py-8 bg-neutral-50 dark:bg-black/50">
+        <p className="mb-8 text-lg text-neutral-500 dark:text-neutral-400 font-medium italic opacity-80 sm:hidden text-center">Find the perfect vibe for your next post</p>
+        <div className="mx-auto max-w-7xl">
                     <div className="text-center mb-16 lg:text-left">
                         <motion.h2
                             initial={{ opacity: 0, y: 15 }}
@@ -1216,7 +1217,7 @@ export default function CaptionsPage() {
                                 </div>
 
                                 <div className="p-6 bg-pink-600">
-                                    <h4 className="text-white font-black uppercase tracking-tighter text-xl italic">Get Viral Now</h4>
+                                    <h3 className="text-white font-black uppercase tracking-tighter text-xl italic">Get Viral Now</h3>
                                     <p className="text-pink-100 text-[10px] font-bold uppercase tracking-widest mt-1">Free AI Hashtag Generator</p>
                                 </div>
                             </div>

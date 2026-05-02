@@ -19,14 +19,15 @@ export function StructuredData({ type, data }: StructuredDataProps) {
       "applicationCategory": "SocialNetworkingApplication",
       "aggregateRating": {
         "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "reviewCount": "12840"
+        "ratingValue": data.ratingValue || "4.9",
+        "reviewCount": data.reviewCount || "12840"
       },
       "offers": {
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "USD"
-      }
+      },
+      "description": data.description || "Free online social media downloader for videos, reels, and stories."
     }
   }
 

@@ -81,7 +81,7 @@ export default function ReelScriptGenerator() {
           <h1 className="text-5xl md:text-8xl font-black tracking-tighter text-neutral-900 uppercase italic leading-[0.8] dark:text-white">
             Reel <br className="sm:hidden" /> <span className="text-pink-600">Script</span>
           </h1>
-          <p className="text-lg font-bold text-neutral-500 tracking-tight opacity-70 max-w-2xl mx-auto px-4">
+          <p className="text-lg font-bold text-neutral-500 tracking-tight opacity-70 max-w-2xl mx-auto px-4 hidden sm:block">
             High-conversion scripts for Reels, TikToks, and Shorts in seconds.
           </p>
         </div>
@@ -256,7 +256,7 @@ export default function ReelScriptGenerator() {
                 <div key={item.step} className="p-8 rounded-[32px] bg-white dark:bg-neutral-900 border border-neutral-100 dark:border-neutral-800 shadow-xl">
                   <span className="text-5xl font-black text-pink-600/20 mb-4 block">{item.step}</span>
                   <h3 className="text-xl font-black uppercase italic mb-2 dark:text-white">{item.title}</h3>
-                  <p className="text-sm font-bold text-neutral-500 leading-relaxed">{item.desc}</p>
+                  <p className="text-sm font-bold text-neutral-500 leading-relaxed hidden sm:block">{item.desc}</p>
                 </div>
               ))}
             </div>
@@ -274,7 +274,7 @@ export default function ReelScriptGenerator() {
                 { q: "How many scripts can I generate?", a: "There are no limits. You can generate as many scripts as you need for your content calendar." }
               ].map((faq, i) => (
                 <div key={i} className="p-6 rounded-2xl bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800">
-                  <h4 className="text-sm font-black uppercase tracking-tight mb-2 dark:text-white">Q: {faq.q}</h4>
+                  <h3 className="text-sm font-black uppercase tracking-tight mb-2 dark:text-white">Q: {faq.q}</h3>
                   <p className="text-sm font-medium text-neutral-500 leading-relaxed">A: {faq.a}</p>
                 </div>
               ))}

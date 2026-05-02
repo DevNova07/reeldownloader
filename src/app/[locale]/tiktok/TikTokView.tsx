@@ -14,7 +14,7 @@ const VisualGuide = dynamic(() => import("@/components/shared/VisualGuide").then
 
 import { useRouter } from "next/navigation"
 import { type Locale } from "@/i18n"
-import { Music as MusicIcon, Film, StopCircle, Zap, ShieldCheck, CheckCircle2, HelpCircle, Info } from "lucide-react"
+import { Camera, CheckCircle2, Film, HelpCircle, Info, Music as MusicIcon, ShieldCheck, StopCircle, Zap } from "lucide-react"
 import { TrendingBar } from "@/components/layout/TrendingBar"
 import { LoadingBar } from "@/components/ui/LoadingBar"
 import { DownloadCounter } from "@/components/ui/DownloadCounter"
@@ -109,21 +109,34 @@ export function TikTokView({ locale, dict }: { locale: Locale, dict: any }) {
           steps: tiktokDict.howTo.steps
         }}
       />
+      <StructuredData
+        type="SoftwareApplication"
+        data={{
+          title: tiktokDict.seo.title,
+          description: tiktokDict.seo.desc
+        }}
+      />
+      <StructuredData
+        type="FAQPage"
+        data={tiktokDict.faq}
+      />
       
       {/* Hero Section */}
-      <section className="relative bg-linear-to-r from-neutral-900 via-neutral-900 to-pink-700 px-4 pt-14 pb-8 sm:pt-20 sm:pb-32 sm:px-6 lg:px-8">
+      <section className="relative bg-linear-to-r from-neutral-900 via-neutral-900 to-pink-700 px-4 pt-10 pb-6 sm:pt-20 sm:pb-32 sm:px-6 lg:px-8">
         <HeroEffect color="bg-pink-600" intensity="high" />
         
-        <div className="relative z-10 mx-auto max-w-7xl text-center">
+        <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-3 sm:gap-6">
+          
           <SocialPlatformBar   activeId="tiktok" />
           <PlatformTabs   
             activeId="video" 
             activeColor="text-pink-600"
             tabs={dict.tabs}
             items={[
-              { id: "video", label: dict.tabs.video, href: "/tiktok", icon: <Film className="h-4 w-4" /> },
-              { id: "story", label: dict.tabs.story, href: "/tiktok/story", icon: <StopCircle className="h-4 w-4" /> },
-              { id: "music", label: dict.tabs.music, href: "/tiktok/music", icon: <MusicIcon className="h-4 w-4" /> },
+              { id: "video", label: dict.tabs?.video || "Video", href: "/tiktok", icon: <Film className="h-4 w-4" /> },
+              { id: "story", label: dict.tabs?.story || "Story", href: "/tiktok/story", icon: <StopCircle className="h-4 w-4" /> },
+              { id: "music", label: dict.tabs?.music || "Music", href: "/tiktok/music", icon: <MusicIcon className="h-4 w-4" /> },
+              { id: "photo", label: dict.tabs?.photo || "Photo", href: "/tiktok/photo", icon: <Camera className="h-4 w-4" /> },
             ]} 
           />
 
@@ -132,13 +145,14 @@ export function TikTokView({ locale, dict }: { locale: Locale, dict: any }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <h1 className="mb-2 text-4xl font-black tracking-tight text-white sm:text-7xl drop-shadow-2xl uppercase italic">
+            <h1 className="mb-3 text-3xl min-[400px]:text-4xl font-black tracking-tight text-white sm:text-7xl drop-shadow-2xl uppercase italic text-balance">
               {tiktokDict.title}
             </h1>
-            <p className="mx-auto mb-4 max-w-2xl text-lg font-medium text-white/90 sm:text-xl">
-              {tiktokDict.subtitle}
-            </p>
+            <p className="mt-4 text-lg text-white/90 max-w-2xl mx-auto hidden sm:block">{tiktokDict.subtitle}</p>
+            
           </motion.div>
+
+          
           
           <div className="mx-auto max-w-3xl">
             <SearchBar 
@@ -187,7 +201,7 @@ export function TikTokView({ locale, dict }: { locale: Locale, dict: any }) {
                   {feature.icon}
                 </div>
                 <h3 className="text-xl font-black text-neutral-900 dark:text-white uppercase italic">{dict.features.items[idx].title}</h3>
-                <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80">{dict.features.items[idx].desc}</p>
+                <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 hidden sm:block">{dict.features.items[idx].desc}</p>
               </div>
             ))}
           </div>
@@ -216,6 +230,7 @@ export function TikTokView({ locale, dict }: { locale: Locale, dict: any }) {
               <Info className="h-8 w-8 text-pink-600" />
               {tiktokDict.seo.title}
             </h2>
+            <p className="mt-4 text-lg text-neutral-500 dark:text-neutral-400 font-medium italic opacity-80  sm:hidden hidden sm:block">{tiktokDict.subtitle}</p>
             <p className="mt-4 text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed italic border-l-4 border-pink-500 pl-8 font-medium">
               {tiktokDict.seo.desc}
             </p>
@@ -223,8 +238,8 @@ export function TikTokView({ locale, dict }: { locale: Locale, dict: any }) {
              <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2">
               {tiktokDict.seo.features.map((feature: { title: string; desc: string }, idx: number) => (
                     <div key={idx} className="rounded-4xl bg-neutral-50 p-8 dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 transition-all hover:scale-105 hover:bg-white dark:hover:bg-neutral-900 shadow-sm hover:shadow-2xl">
-                  <h4 className="font-black text-neutral-900 dark:text-white uppercase italic tracking-tighter text-lg">{feature.title}</h4>
-                  <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80">{feature.desc}</p>
+                  <h3 className="font-black text-neutral-900 dark:text-white uppercase italic tracking-tighter text-lg">{feature.title}</h3>
+                  <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 hidden sm:block">{feature.desc}</p>
                 </div>
               ))}
             </div>
@@ -238,7 +253,7 @@ export function TikTokView({ locale, dict }: { locale: Locale, dict: any }) {
             <div className="mt-12 space-y-6">
               {dict.faq.items.map((faq: { q: string; a: string }, idx: number) => (
                 <div key={idx} className="group rounded-4xl border border-neutral-200 p-8 dark:border-neutral-800 hover:border-pink-500/50 transition-all bg-white dark:bg-transparent hover:shadow-2xl">
-                  <h4 className="font-black text-neutral-900 dark:text-white group-hover:text-pink-600 transition-colors uppercase italic tracking-tighter text-lg">{faq.q}</h4>
+                  <h3 className="font-black text-neutral-900 dark:text-white group-hover:text-pink-600 transition-colors uppercase italic tracking-tighter text-lg">{faq.q}</h3>
                   <p className="mt-4 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 group-hover:opacity-100 transition-opacity">{faq.a}</p>
                 </div>
               ))}

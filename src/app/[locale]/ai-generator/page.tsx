@@ -67,7 +67,7 @@ export default function AIGenerator() {
                    <h1 className="text-4xl font-black tracking-tighter text-neutral-900 uppercase italic dark:text-white">
                      What&apos;s the <span className="text-pink-600">Vibe?</span>
                    </h1>
-                   <p className="text-lg font-bold text-neutral-500 tracking-tight opacity-70">
+                   <p className="text-lg font-bold text-neutral-500 tracking-tight opacity-70 hidden sm:block">
                      Tell us what your post is about in a few words.
                    </p>
                 </div>

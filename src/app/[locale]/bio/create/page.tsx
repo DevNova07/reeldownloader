@@ -97,7 +97,7 @@ function BioBuilderContent() {
                 <CheckCircle2 className="h-12 w-12" />
             </div>
             <h1 className="text-4xl font-black italic mb-4">YOUR PAGE IS LIVE!</h1>
-            <p className="text-neutral-400 mb-8 font-medium">Your stunning bio link has been created successfully. Share it with the world!</p>
+            <p className="text-neutral-400 mb-8 font-medium hidden sm:block">Your stunning bio link has been created successfully. Share it with the world!</p>
             
             <div className="p-4 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-between mb-8">
                 <span className="font-bold text-blue-400">savclip.me/{initialUsername || displayName.toLowerCase().replace(/\s/g, '')}</span>
@@ -182,7 +182,7 @@ function BioBuilderContent() {
           <header className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 sm:mb-12">
             <div>
               <h1 className="text-2xl sm:text-3xl font-black italic tracking-tight uppercase">Build Your Bio</h1>
-              <p className="text-sm sm:text-base text-neutral-500 font-medium">Customize your link-in-bio page in real-time.</p>
+              <p className="text-sm sm:text-base text-neutral-500 font-medium hidden sm:block">Customize your link-in-bio page in real-time.</p>
             </div>
             <button 
                 onClick={() => setIsFinished(true)}

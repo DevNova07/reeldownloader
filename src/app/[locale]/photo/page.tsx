@@ -10,7 +10,7 @@ export default function PhotoPage() {
           <Camera className="h-10 w-10 text-pink-600" />
         </div>
         <h1 className="text-4xl font-black tracking-tight text-neutral-900 dark:text-white mb-4 uppercase italic">Photo Downloader</h1>
-        <p className="text-neutral-500 dark:text-neutral-400 text-lg max-w-md mx-auto font-bold opacity-80">
+        <p className="text-neutral-500 dark:text-neutral-400 text-lg max-w-md mx-auto font-bold opacity-80 hidden sm:block">
           Our specialized tool for downloading high-resolution photos and images is currently under development. Stay tuned for the launch!
         </p>
         <div className="mt-4">

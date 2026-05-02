@@ -13,7 +13,7 @@ export default function DMCAPage() {
            </div>
            <div>
              <h1 className="text-4xl font-black tracking-tight text-neutral-900 dark:text-white uppercase italic">DMCA Policy</h1>
-             <p className="text-sm font-bold text-neutral-500 uppercase tracking-widest mt-1">Copyright Compliance & Takedown</p>
+             <p className="text-sm font-bold text-neutral-500 uppercase tracking-widest mt-1 hidden sm:block">Copyright Compliance & Takedown</p>
            </div>
         </div>
         

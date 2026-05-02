@@ -18,7 +18,7 @@ import { LoadingBar } from "@/components/ui/LoadingBar";
 import { DownloadCounter } from "@/components/ui/DownloadCounter";
 import { useDownloadHistory, getCached, setCached } from "@/hooks/useDownloadHistory";
 import { HeroEffect } from "@/components/shared/HeroEffect";
-import { Camera, PlaySquare, Film, StopCircle, Zap, ShieldCheck, CheckCircle2, HelpCircle, Info } from "lucide-react";
+import { Camera, PlaySquare, Film, StopCircle, Zap, ShieldCheck, CheckCircle2, HelpCircle, Info, Music as MusicIcon } from "lucide-react";
 import { cn, isValidInstaUrl } from "@/utils/cn";
 
 
@@ -136,7 +136,7 @@ function InstagramPageContent({
       <section className={`relative bg-linear-to-r ${cx.ribbon} px-4 pt-14 pb-8 sm:pt-16 sm:pb-20 sm:px-6 lg:px-8`}>
         <HeroEffect color={cx.effect} intensity="high" />
 
-        <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-4 sm:gap-6">
+        <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-3 sm:gap-6">
           <SocialPlatformBar activeId="instagram" />
           <PlatformTabs
             activeId="reels"
@@ -144,9 +144,10 @@ function InstagramPageContent({
             tabs={dict?.tabs}
             locale={locale}
             items={[
-              { id: "video", label: dict?.tabs?.video || "Video", href: "/", icon: <Camera className="h-4 w-4" /> },
+              { id: "video", label: dict?.tabs?.video || "Video", href: "/instagram", icon: <Camera className="h-4 w-4" /> },
               { id: "reels", label: dict?.tabs?.reels || "Reels", href: "/reels", icon: <PlaySquare className="h-4 w-4" /> },
               { id: "story", label: dict?.tabs?.story || "Story", href: "/story", icon: <StopCircle className="h-4 w-4" /> },
+              { id: "music", label: dict?.tabs?.music || "Music", href: "/music", icon: <MusicIcon className="h-4 w-4" /> },
             ]}
           />
 
@@ -156,12 +157,11 @@ function InstagramPageContent({
             transition={{ duration: 0.4, ease: "easeOut" }}
           >
 
-            <h1 className="mb-2 text-4xl font-black tracking-tight text-white sm:text-7xl drop-shadow-2xl uppercase italic">
+            <h1 className="mb-3 text-4xl font-black tracking-tight text-white sm:text-7xl drop-shadow-2xl uppercase italic">
               {pageTitle}
             </h1>
-            <p className="mx-auto mb-4 max-w-2xl text-lg font-medium text-white/90 sm:text-xl">
-              {content?.subtitle || pageSeo?.desc || "Fast and secure Instagram downloader."}
-            </p>
+            
+            
           </motion.div>
 
 
@@ -172,6 +172,8 @@ function InstagramPageContent({
             validate={isAnyPlatformUrl}
             initialValue={sharedUrl}
           />
+
+            <p className="mx-auto mb-4 max-w-2xl mt-8 mb-2 text-sm font-bold text-white/60 uppercase tracking-widest hidden sm:block">{content?.subtitle || pageSeo?.desc || "Fast and secure Instagram downloader."}</p>
 
           <AnimatePresence>
             {error && (
@@ -251,7 +253,7 @@ function InstagramPageContent({
                             className="object-cover rounded-xl transition-transform duration-500 group-hover:scale-110"
                           />
                           <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/90 p-3 text-left z-10 opacity-0 group-hover:opacity-100 transition-opacity">
-                            <p className="line-clamp-1 text-[10px] font-black text-white uppercase italic">{item.title}</p>
+                            <p className="line-clamp-1 text-[10px] font-black text-white uppercase italic hidden sm:block">{item.title}</p>
                           </div>
                         </motion.button>
                       ))}
@@ -354,8 +356,8 @@ function InstagramPageContent({
                     <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2">
                       {content.seo.features.map((feature: { title: string; desc: string }, idx: number) => (
                         <div key={idx} className="rounded-4xl bg-neutral-50 p-8 dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 transition-all hover:scale-105 hover:bg-white dark:hover:bg-neutral-900 shadow-sm hover:shadow-2xl">
-                          <h4 className="font-black text-neutral-900 dark:text-white uppercase italic tracking-tighter text-lg">{feature.title}</h4>
-                          <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80">{feature.desc}</p>
+                          <h3 className="font-black text-neutral-900 dark:text-white uppercase italic tracking-tighter text-lg">{feature.title}</h3>
+                          <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 hidden sm:block">{feature.desc}</p>
                         </div>
                       ))}
                     </div>
@@ -369,8 +371,8 @@ function InstagramPageContent({
                     <div className="mt-12 space-y-6">
                       {(content.faq?.items || dict.faq?.items || []).map((faq: { q: string; a: string }, idx: number) => (
                         <div key={idx} className="group rounded-4xl border border-neutral-200 p-8 dark:border-neutral-800 hover:border-pink-500/50 transition-all bg-white dark:bg-transparent hover:shadow-2xl">
-                          <h4 className={`font-black text-neutral-900 dark:text-white group-hover:${cx.text} transition-colors uppercase italic tracking-tighter text-lg mb-4`}>{faq.q}</h4>
-                          <p className="text-neutral-500 dark:text-neutral-400 font-bold opacity-80 leading-relaxed">{faq.a}</p>
+                          <h3 className={`font-black text-neutral-900 dark:text-white group-hover:${cx.text} transition-colors uppercase italic tracking-tighter text-lg mb-4`}>{faq.q}</h3>
+                          <p className="text-neutral-500 dark:text-neutral-400 font-bold opacity-80 leading-relaxed hidden sm:block">{faq.a}</p>
                         </div>
                       ))}
                     </div>
@@ -400,7 +402,7 @@ function InstagramPageContent({
                   </div>
                 ))}
                 <div className="mt-4 pt-4 border-t border-neutral-100 dark:border-neutral-800">
-                  <h4 className="text-[10px] font-black uppercase tracking-widest text-neutral-400 mb-4">Features</h4>
+                  <h3 className="text-[10px] font-black uppercase tracking-widest text-neutral-400 mb-4">Features</h3>
                   <div className="grid grid-cols-1 gap-4">
                      {dict.features?.items?.slice(0, 3).map((f: any, i: number) => (
                        <div key={i} className="flex items-center gap-3">
@@ -419,6 +421,7 @@ function InstagramPageContent({
             icon: ShieldCheck,
             children: (
               <div className="space-y-4">
+                 <p className="text-sm font-black text-neutral-500 dark:text-neutral-400 italic mb-4 sm:hidden">{content?.subtitle}</p>
                  <p className="text-xs font-bold text-neutral-500 dark:text-neutral-400 leading-relaxed mb-4">
                    {content?.seo?.desc || pageSeo?.desc}
                  </p>
@@ -442,7 +445,7 @@ function InstagramPageContent({
               <div className="space-y-6">
                 {(content.faq?.items || dict.faq?.items || []).slice(0, 5).map((faq: { q: string; a: string }, idx: number) => (
                   <div key={idx} className="space-y-2">
-                    <h4 className={cn("text-xs font-black uppercase italic italic", cx.text)}>{faq.q}</h4>
+                    <h3 className={cn("text-xs font-black uppercase italic italic", cx.text)}>{faq.q}</h3>
                     <p className="text-xs font-bold text-neutral-500 dark:text-neutral-400 leading-relaxed">{faq.a}</p>
                   </div>
                 ))}
@@ -472,6 +475,7 @@ function InstagramPageContent({
           }
         ]}
       />
+
 
     </div>
   );

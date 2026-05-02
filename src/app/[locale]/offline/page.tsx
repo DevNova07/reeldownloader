@@ -18,7 +18,7 @@ export default function OfflinePage() {
         You are Offline
       </h1>
       
-      <p className="mb-10 max-w-md text-lg font-medium text-neutral-500 dark:text-neutral-400">
+      <p className="mb-10 max-w-md text-lg font-medium text-neutral-500 dark:text-neutral-400 hidden sm:block">
         It looks like you've lost your internet connection. Don't worry, SavClip will be ready as soon as you're back online.
       </p>
 

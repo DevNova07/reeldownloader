@@ -12,7 +12,7 @@ import { VisualGuide } from "@/components/shared/VisualGuide"
 import { usePathname } from "next/navigation"
 import { type Locale } from "@/i18n"
 import { getDictionary } from "@/dictionaries/client"
-import { PlaySquare, StopCircle, Zap, ShieldCheck, CheckCircle2, HelpCircle, Info, Film, Music as MusicIcon } from "lucide-react"
+import { CheckCircle2, Film, HelpCircle, Info, Music as MusicIcon, PlaySquare, ShieldCheck, StopCircle, Zap } from "lucide-react"
 import { TrendingBar } from "@/components/layout/TrendingBar"
 import { LoadingBar } from "@/components/ui/LoadingBar"
 import { DownloadCounter } from "@/components/ui/DownloadCounter"
@@ -89,20 +89,20 @@ export default function FacebookReelsPage() {
       />
       
       {/* Hero Section */}
-      <section className="relative bg-linear-to-r from-blue-600 to-blue-800 px-4 pt-14 pb-8 sm:pt-20 sm:pb-32 sm:px-6 lg:px-8">
+      <section className="relative bg-linear-to-r from-blue-600 to-blue-800 px-4 pt-10 pb-6 sm:pt-20 sm:pb-32 sm:px-6 lg:px-8">
         <HeroEffect color="bg-blue-400" intensity="high" />
         
-        <div className="relative z-10 mx-auto max-w-7xl text-center">
+        <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-3 sm:gap-6">
           <SocialPlatformBar   activeId="facebook" />
           <PlatformTabs   
             activeId="reels" 
             activeColor="text-blue-600"
             tabs={dict.tabs}
             items={[
-              { id: "video", label: dict.tabs.video, href: "/facebook", icon: <Film className="h-4 w-4" /> },
-              { id: "reels", label: dict.tabs.reels, href: "/facebook/reels", icon: <PlaySquare className="h-4 w-4" /> },
-              { id: "story", label: dict.tabs.story, href: "/facebook/story", icon: <StopCircle className="h-4 w-4" /> },
-              { id: "music", label: dict.tabs.music, href: "/facebook/music", icon: <MusicIcon className="h-4 w-4" /> },
+              { id: "video", label: dict?.tabs?.video || "Video", href: "/facebook", icon: <Film className="h-4 w-4" /> },
+              { id: "reels", label: dict?.tabs?.reels || "Reels", href: "/facebook-reels-downloader", icon: <Film className="h-4 w-4" /> },
+              { id: "story", label: dict?.tabs?.story || "Story", href: "/facebook-story-downloader", icon: <StopCircle className="h-4 w-4" /> },
+              { id: "private", label: dict?.tabs?.private || "Private", href: "/facebook-private-video-downloader", icon: <ShieldCheck className="h-4 w-4" /> },
             ]} 
           />
 
@@ -111,12 +111,9 @@ export default function FacebookReelsPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <h1 className="mb-2 text-4xl font-black tracking-tight text-white sm:text-7xl drop-shadow-2xl uppercase italic">
+            <h1 className="mb-2 text-3xl min-[400px]:text-4xl font-black tracking-tight text-white sm:text-7xl drop-shadow-2xl uppercase italic text-balance">
               {fbDict.reels.title}
             </h1>
-            <p className="mx-auto mb-4 max-w-2xl text-lg font-medium text-white/90 sm:text-xl">
-              {fbDict.reels.subtitle}
-            </p>
           </motion.div>
           
           <div className="mx-auto max-w-3xl">
@@ -160,7 +157,7 @@ export default function FacebookReelsPage() {
                   {feature.icon}
                 </div>
                 <h3 className="text-xl font-black text-neutral-900 dark:text-white uppercase italic">{dict.features.items[idx].title}</h3>
-                <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80">{dict.features.items[idx].desc}</p>
+                <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 hidden sm:block">{dict.features.items[idx].desc}</p>
               </div>
             ))}
           </div>

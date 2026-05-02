@@ -17,7 +17,7 @@ export const LeftSidebar = React.memo(({ locale }: SidebarProps) => {
     <aside className="hidden 2xl:block absolute -left-[380px] top-0 w-80 space-y-12 h-fit select-none">
       <div className="p-8 rounded-4xl bg-neutral-50 border border-neutral-100 shadow-sm space-y-8">
         <div className="space-y-2">
-          <h4 className="text-[10px] font-black text-black uppercase tracking-[0.4em]">Instagram Suite</h4>
+          <h3 className="text-[10px] font-black text-black uppercase tracking-[0.4em]">Instagram Suite</h3>
           <div className="h-0.5 w-12 bg-lime-500" />
         </div>
         <nav className="space-y-2">
@@ -34,7 +34,7 @@ export const LeftSidebar = React.memo(({ locale }: SidebarProps) => {
         </nav>
 
         <div className="space-y-2 pt-4">
-          <h4 className="text-[10px] font-black text-black uppercase tracking-[0.4em]">Multi-Platform</h4>
+          <h3 className="text-[10px] font-black text-black uppercase tracking-[0.4em]">Multi-Platform</h3>
           <div className="h-0.5 w-12 bg-lime-500" />
         </div>
         <nav className="space-y-2">
@@ -70,9 +70,9 @@ export const LeftSidebar = React.memo(({ locale }: SidebarProps) => {
       </div>
 
       <div className="p-8 rounded-4xl bg-neutral-50 border border-neutral-100 shadow-sm space-y-6">
-        <h4 className="text-[10px] font-black text-black uppercase tracking-[0.4em] border-b border-neutral-200 pb-4">
+        <h3 className="text-[10px] font-black text-black uppercase tracking-[0.4em] border-b border-neutral-200 pb-4">
           Trending Keywords
-        </h4>
+        </h3>
         <div className="flex flex-wrap gap-2">
           {[
             "#ReelsDownloader", "#SavClip", "#ViralBio", "#InstagramStatus", 
@@ -105,7 +105,7 @@ export const LeftSidebar = React.memo(({ locale }: SidebarProps) => {
       </div>
       
       <div className="p-8 rounded-4xl border border-dashed border-neutral-200 space-y-6">
-        <h4 className="text-[10px] font-black text-neutral-400 uppercase tracking-widest">Browse More Collections</h4>
+        <h3 className="text-[10px] font-black text-neutral-400 uppercase tracking-widest">Browse More Collections</h3>
         <nav className="grid grid-cols-1 gap-3">
           {[
             "Sigma Collections", "Travel Aesthetics", "Gym Motivation", "Life Quotes",
@@ -121,9 +121,9 @@ export const LeftSidebar = React.memo(({ locale }: SidebarProps) => {
       </div>
 
       <div className="p-8 rounded-4xl bg-neutral-50 border border-neutral-100 shadow-sm space-y-8 pb-12">
-         <h4 className="text-[10px] font-black text-black uppercase tracking-[0.4em] border-b border-neutral-200 pb-4">
+         <h3 className="text-[10px] font-black text-black uppercase tracking-[0.4em] border-b border-neutral-200 pb-4">
           Growth Glossary
-        </h4>
+        </h3>
         <div className="grid grid-cols-1 gap-6">
           {[
             { t: "Algorithm", d: "The logic that decides what content stays on top." },
@@ -159,7 +159,7 @@ export const RightSidebar = React.memo(({ locale }: SidebarProps) => {
     <aside className="hidden 2xl:block absolute -right-[380px] top-20 w-80 space-y-12 h-fit select-none">
       <div className="p-8 rounded-4xl bg-neutral-50 border border-neutral-100 shadow-sm space-y-8">
         <div className="space-y-2">
-          <h4 className="text-[10px] font-black text-black uppercase tracking-[0.4em]">Creator Toolbox</h4>
+          <h3 className="text-[10px] font-black text-black uppercase tracking-[0.4em]">Creator Toolbox</h3>
           <div className="h-0.5 w-12 bg-lime-500" />
         </div>
         <nav className="space-y-2">
@@ -192,9 +192,9 @@ export const RightSidebar = React.memo(({ locale }: SidebarProps) => {
       </div>
 
       <div className="p-8 rounded-4xl bg-lime-50/30 border border-lime-100 shadow-sm space-y-6">
-         <h4 className="text-[10px] font-black text-black uppercase tracking-[0.4em] border-b border-lime-200 pb-4">
+         <h3 className="text-[10px] font-black text-black uppercase tracking-[0.4em] border-b border-lime-200 pb-4">
           Optimization Guide
-        </h4>
+        </h3>
         <div className="space-y-6">
           {[
             { q: "Keyword Density", a: "Use your main niche in the first 50 characters." },
@@ -210,9 +210,9 @@ export const RightSidebar = React.memo(({ locale }: SidebarProps) => {
       </div>
 
       <div className="p-8 rounded-4xl bg-neutral-900 text-white shadow-xl space-y-6">
-         <h4 className="text-[10px] font-black text-lime-500 uppercase tracking-[0.4em] border-b border-white/10 pb-4">
+         <h3 className="text-[10px] font-black text-lime-500 uppercase tracking-[0.4em] border-b border-white/10 pb-4">
           Viral Calendar
-        </h4>
+        </h3>
         <div className="grid grid-cols-1 gap-4">
           {[
             { d: "MON", h: "#Motivation", v: "Reels" },
@@ -231,9 +231,9 @@ export const RightSidebar = React.memo(({ locale }: SidebarProps) => {
       </div>
 
       <div className="p-8 rounded-4xl bg-neutral-50 border border-neutral-100 shadow-sm space-y-6">
-        <h4 className="text-[10px] font-black text-black uppercase tracking-[0.4em] border-b border-neutral-200 pb-4">
+        <h3 className="text-[10px] font-black text-black uppercase tracking-[0.4em] border-b border-neutral-200 pb-4">
           Infinite SEO Tags
-        </h4>
+        </h3>
         <div className="flex flex-wrap gap-2">
           {[
             "#RoyalBio", "#SigmaRule", "#AttitudeBio", "#InstaCreator", "#ViralNow",
@@ -249,7 +249,7 @@ export const RightSidebar = React.memo(({ locale }: SidebarProps) => {
       </div>
 
       <div className="p-8 rounded-4xl bg-black text-white shadow-2xl space-y-6 pb-12">
-         <h4 className="text-[10px] font-black text-lime-500 uppercase tracking-[0.4em]">Creator Manifesto</h4>
+         <h3 className="text-[10px] font-black text-lime-500 uppercase tracking-[0.4em]">Creator Manifesto</h3>
          <div className="space-y-6 italic">
             <p className="text-[10px] leading-relaxed text-neutral-400">
               &quot;Success on social media is a marathon, not a sprint. Focus on providing value, maintaining authenticity, and using the right tools to power your growth.&quot;

@@ -76,7 +76,7 @@ export function InternalToolLinks({ currentPlatform, dict, accentColor = "text-p
           <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-white dark:bg-black shadow-xl border border-neutral-100 dark:border-neutral-800 ${accentColor}`}>
             <Link2 className="h-6 w-6" />
           </div>
-          <h2 className="text-3xl font-black text-neutral-900 dark:text-white uppercase italic tracking-widest">
+          <h2 className="text-3xl font-black text-neutral-900 dark:text-white uppercase italic tracking-widest text-center">
             More {currentPlatform.charAt(0).toUpperCase() + currentPlatform.slice(1)} Tools
           </h2>
           <p className="mt-4 max-w-2xl text-lg font-medium text-neutral-500 dark:text-neutral-400">

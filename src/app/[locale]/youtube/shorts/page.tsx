@@ -12,7 +12,7 @@ import { VisualGuide } from "@/components/shared/VisualGuide"
 import { usePathname } from "next/navigation"
 import { type Locale } from "@/i18n"
 import { getDictionary } from "@/dictionaries/client"
-import { Youtube, PlaySquare, Music as MusicIcon, Film, Zap, ShieldCheck, CheckCircle2, HelpCircle, Info } from "lucide-react"
+import { CheckCircle2, Film, HelpCircle, Info, Music as MusicIcon, PlaySquare, ShieldCheck, Youtube, Zap } from "lucide-react"
 import { TrendingBar } from "@/components/layout/TrendingBar"
 import { LoadingBar } from "@/components/ui/LoadingBar"
 import { DownloadCounter } from "@/components/ui/DownloadCounter"
@@ -84,20 +84,20 @@ export default function YoutubeShortsPage() {
       />
       
       {/* Hero Section */}
-      <section className="relative bg-linear-to-r from-red-600 to-red-800 px-4 pt-14 pb-8 sm:pt-20 sm:pb-32 sm:px-6 lg:px-8">
+      <section className="relative bg-linear-to-r from-red-600 to-red-800 px-4 pt-10 pb-6 sm:pt-20 sm:pb-32 sm:px-6 lg:px-8">
         <HeroEffect color="bg-red-500" intensity="high" />
         
-        <div className="relative z-10 mx-auto max-w-7xl text-center">
+        <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-3 sm:gap-6">
           <SocialPlatformBar   activeId="youtube" />
           <PlatformTabs   
             activeId="shorts" 
             activeColor="text-red-600"
             tabs={dict.tabs}
             items={[
-               { id: "video", label: dict.tabs.video, href: "/youtube", icon: <Youtube className="h-4 w-4" /> },
-               { id: "shorts", label: dict.tabs.shorts, href: "/youtube/shorts", icon: <PlaySquare className="h-4 w-4" /> },
-               { id: "movies", label: dict.tabs.movies, href: "/youtube/movies", icon: <Film className="h-4 w-4" /> },
-               { id: "music", label: dict.tabs.music, href: "/youtube/music", icon: <MusicIcon className="h-4 w-4" /> },
+              { id: "video", label: dict.tabs?.video || "Video", href: "/youtube", icon: <Film className="h-4 w-4" /> },
+              { id: "shorts", label: dict.tabs?.shorts || "Shorts", href: "/youtube/shorts", icon: <PlaySquare className="h-4 w-4" /> },
+              { id: "movies", label: dict.tabs?.movies || "Movies", href: "/youtube/movies", icon: <Film className="h-4 w-4" /> },
+              { id: "music", label: dict.tabs?.music || "Music", href: "/youtube/music", icon: <MusicIcon className="h-4 w-4" /> },
             ]} 
           />
 
@@ -106,12 +106,9 @@ export default function YoutubeShortsPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <h1 className="mb-2 text-4xl font-black tracking-tight text-white sm:text-7xl drop-shadow-2xl uppercase italic">
+            <h1 className="mb-2 text-3xl min-[400px]:text-4xl font-black tracking-tight text-white sm:text-7xl drop-shadow-2xl uppercase italic text-balance">
               {ytDict.shorts.title}
             </h1>
-            <p className="mx-auto mb-4 max-w-2xl text-lg font-medium text-white/90 sm:text-xl">
-              {ytDict.shorts.subtitle}
-            </p>
           </motion.div>
           
           <div className="mx-auto max-w-3xl">
@@ -155,7 +152,7 @@ export default function YoutubeShortsPage() {
                   {feature.icon}
                 </div>
                 <h3 className="text-xl font-black text-neutral-900 dark:text-white uppercase italic">{dict.features.items[idx].title}</h3>
-                <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80">{dict.features.items[idx].desc}</p>
+                <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 hidden sm:block">{dict.features.items[idx].desc}</p>
               </div>
             ))}
           </div>

@@ -17,7 +17,7 @@ import { LoadingBar } from "@/components/ui/LoadingBar"
 import { DownloadCounter } from "@/components/ui/DownloadCounter"
 import { useDownloadHistory, getCached, setCached } from "@/hooks/useDownloadHistory"
 import { HeroEffect } from "@/components/shared/HeroEffect"
-import { Film, StopCircle, Zap, ShieldCheck, CheckCircle2, HelpCircle, Info } from "lucide-react"
+import { CheckCircle2, Film, HelpCircle, Info, ShieldCheck, StopCircle, Zap } from "lucide-react"
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs"
 import { toast } from "react-hot-toast"
 const TrustBadges = dynamic(() => import("@/components/ui/TrustBadges").then(m => m.TrustBadges))
@@ -127,10 +127,10 @@ function FacebookContent({
       {content.faq && <StructuredData type="FAQPage" data={content.faq} />}
       {content.howTo && <StructuredData type="HowTo" data={content.howTo} />}
       {/* Hero Section */}
-      <section className={`relative bg-linear-to-r ${cx.ribbon} px-4 pt-14 pb-8 sm:pt-16 sm:pb-20 sm:px-6 lg:px-8`}>
+      <section className={`relative bg-linear-to-r ${cx.ribbon} px-4 pt-10 pb-6 sm:pt-16 sm:pb-20 sm:px-6 lg:px-8`}>
         <HeroEffect color={cx.effect} intensity="high" />
         
-        <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-4 sm:gap-6">
+        <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-3 sm:gap-6">
           <SocialPlatformBar activeId="facebook" />
           <PlatformTabs   
             activeId={content.activeTab || "video"} 
@@ -142,7 +142,6 @@ function FacebookContent({
               { id: "reels", label: dict?.tabs?.reels || "Reels", href: "/facebook-reels-downloader", icon: <Film className="h-4 w-4" /> },
               { id: "story", label: dict?.tabs?.story || "Story", href: "/facebook-story-downloader", icon: <StopCircle className="h-4 w-4" /> },
               { id: "private", label: dict?.tabs?.private || "Private", href: "/facebook-private-video-downloader", icon: <ShieldCheck className="h-4 w-4" /> },
-              { id: "hd", label: dict?.tabs?.hd || "HD", href: "/facebook-hd-video-downloader", icon: <Zap className="h-4 w-4" /> },
             ]} 
           />
 
@@ -151,12 +150,10 @@ function FacebookContent({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <h1 className="mb-2 text-4xl font-black tracking-tight text-white sm:text-7xl drop-shadow-2xl uppercase italic">
+            <h1 className="mb-3 text-4xl font-black tracking-tight text-white sm:text-7xl drop-shadow-2xl uppercase italic">
               {pageTitle}
             </h1>
-            <p className="mx-auto mb-4 max-w-2xl text-lg font-medium text-white/90 sm:text-xl">
-              {content?.subtitle || pageSeo?.desc || "Fast and secure Facebook downloader."}
-            </p>
+            
           </motion.div>
           
           <div className="mx-auto max-w-3xl">
@@ -169,6 +166,10 @@ function FacebookContent({
               iconClass={`text-white`}
               initialValue={sharedUrl}
             />
+
+            <p className="mx-auto mb-4 max-w-2xl mt-8 mb-2 text-sm font-bold text-white/60 uppercase tracking-widest hidden sm:block">
+              {content?.subtitle || pageSeo?.desc || "Fast and secure Facebook downloader."}
+            </p>
 
             <AnimatePresence>
             </AnimatePresence>
@@ -222,7 +223,7 @@ function FacebookContent({
                   {feature.icon}
                 </div>
                 <h3 className="text-xl font-black text-neutral-900 dark:text-white uppercase italic">{dict?.features?.items?.[idx]?.title || "Feature"}</h3>
-                <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80">{dict?.features?.items?.[idx]?.desc || "Description"}</p>
+                <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 hidden sm:block">{dict?.features?.items?.[idx]?.desc || "Description"}</p>
               </div>
             ))}
           </div>
@@ -254,6 +255,7 @@ function FacebookContent({
                 <Info className={`h-8 w-8 ${cx.text}`} />
                 {content.seo.title}
               </h2>
+            <p className="mt-4 text-lg text-neutral-500 dark:text-neutral-400 font-medium italic opacity-80 sm:hidden hidden sm:block">{content?.seo?.desc || pageSeo?.desc}</p>
               <p className={`mt-4 text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed border-l-4 ${cx.border} pl-8 font-medium`}>
                 {content?.seo?.desc || pageSeo?.desc}
               </p>
@@ -284,8 +286,8 @@ function FacebookContent({
                   <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2">
                     {content.seo.features.map((feature: any, idx: number) => (
                       <div key={idx} className="rounded-4xl bg-neutral-50 p-8 dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 transition-all hover:scale-105 hover:bg-white dark:hover:bg-neutral-900 shadow-sm hover:shadow-2xl">
-                        <h4 className="font-black text-neutral-900 dark:text-white uppercase italic tracking-tighter text-lg">{feature.title}</h4>
-                        <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80">{feature.desc}</p>
+                        <h3 className="font-black text-neutral-900 dark:text-white uppercase italic tracking-tighter text-lg">{feature.title}</h3>
+                        <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 hidden sm:block">{feature.desc}</p>
                       </div>
                     ))}
                   </div>
@@ -299,7 +301,7 @@ function FacebookContent({
                   <div className="mt-12 space-y-6">
                     {(content.faq?.items || dict?.faq?.items || []).map((faq: any, idx: number) => (
                       <div key={idx} className={`group rounded-[2rem] border border-neutral-200 p-8 dark:border-neutral-800 hover:${cx.border}/50 transition-all bg-white dark:bg-transparent hover:shadow-2xl`}>
-                        <h4 className={`font-black text-neutral-900 dark:text-white group-hover:${cx.text} transition-colors uppercase italic tracking-tighter text-lg`}>{faq.q}</h4>
+                        <h3 className={`font-black text-neutral-900 dark:text-white group-hover:${cx.text} transition-colors uppercase italic tracking-tighter text-lg`}>{faq.q}</h3>
                         <p className="mt-4 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 group-hover:opacity-100 transition-opacity">{faq.a}</p>
                       </div>
                     ))}

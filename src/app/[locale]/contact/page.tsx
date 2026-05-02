@@ -51,7 +51,7 @@ export default function ContactPage() {
           <h1 className="text-5xl font-black tracking-tighter text-neutral-900 dark:text-white mb-4 uppercase italic">
             Get in <span className="text-pink-600">Touch</span>
           </h1>
-          <p className="text-neutral-500 dark:text-neutral-400 text-lg font-medium max-w-lg mx-auto">
+          <p className="text-neutral-500 dark:text-neutral-400 text-lg font-medium max-w-lg mx-auto hidden sm:block">
             Have questions, feedback, or business inquiries? We&apos;d love to hear from you.
           </p>
         </div>

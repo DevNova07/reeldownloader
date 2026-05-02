@@ -1,0 +1,4 @@
+src/app/[locale]/youtube/YoutubeView.tsx
+src/app/[locale]/youtube/movies/page.tsx
+src/app/[locale]/youtube/music/page.tsx
+src/app/[locale]/youtube/shorts/page.tsx

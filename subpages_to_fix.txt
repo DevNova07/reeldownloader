@@ -1,0 +1,10 @@
+src/app/[locale]/facebook/music/page.tsx
+src/app/[locale]/facebook/reels/page.tsx
+src/app/[locale]/facebook/story/page.tsx
+src/app/[locale]/snapchat/music/page.tsx
+src/app/[locale]/snapchat/story/page.tsx
+src/app/[locale]/telegram/music/page.tsx
+src/app/[locale]/tiktok/music/page.tsx
+src/app/[locale]/tiktok/story/page.tsx
+src/app/[locale]/twitter/gif/page.tsx
+src/app/[locale]/twitter/music/page.tsx

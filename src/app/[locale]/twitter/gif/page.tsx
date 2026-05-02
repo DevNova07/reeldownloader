@@ -12,7 +12,7 @@ import { VisualGuide } from "@/components/shared/VisualGuide"
 import { usePathname } from "next/navigation"
 import { type Locale } from "@/i18n"
 import { getDictionary } from "@/dictionaries/client"
-import { Hash, Film, Zap, ShieldCheck, CheckCircle2, HelpCircle, Info, Music as MusicIcon } from "lucide-react"
+import { Camera, CheckCircle2, Film, Hash, HelpCircle, Info, Music as MusicIcon, ShieldCheck, Zap } from "lucide-react"
 import { TrendingBar } from "@/components/layout/TrendingBar"
 import { LoadingBar } from "@/components/ui/LoadingBar"
 import { DownloadCounter } from "@/components/ui/DownloadCounter"
@@ -84,19 +84,20 @@ export default function TwitterGifPage() {
       />
       
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-linear-to-r from-slate-800 to-slate-950 px-4 pt-14 pb-32 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-linear-to-r from-slate-800 to-slate-950 px-4 pt-10 pb-6 sm:px-6 lg:px-8">
         <HeroEffect color="bg-slate-500" intensity="medium" />
         
-        <div className="relative z-10 mx-auto max-w-7xl text-center">
+        <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-3 sm:gap-6">
           <SocialPlatformBar   activeId="twitter" />
           <PlatformTabs   
             activeId="gif" 
             activeColor="text-slate-500"
             tabs={dict.tabs}
             items={[
-              { id: "video", label: dict.tabs.video, href: "/twitter", icon: <Film className="h-4 w-4" /> },
-              { id: "gif", label: dict.tabs.gif, href: "/twitter/gif", icon: <Hash className="h-4 w-4" /> },
-              { id: "music", label: dict.tabs.music, href: "/twitter/music", icon: <MusicIcon className="h-4 w-4" /> },
+              { id: "video", label: dict.tabs?.video || "Video", href: "/twitter", icon: <Film className="h-4 w-4" /> },
+              { id: "gif", label: dict.tabs?.gif || "GIF", href: "/twitter/gif", icon: <Hash className="h-4 w-4" /> },
+              { id: "photo", label: dict.tabs?.photo || "Photo", href: "/twitter/photo", icon: <Camera className="h-4 w-4" /> },
+              { id: "music", label: dict.tabs?.music || "Music", href: "/twitter/music", icon: <MusicIcon className="h-4 w-4" /> },
             ]} 
           />
 
@@ -105,12 +106,9 @@ export default function TwitterGifPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
-           <h1 className="mb-2 text-4xl font-black tracking-tight text-white sm:text-7xl drop-shadow-2xl uppercase italic">
+           <h1 className="mb-2 text-3xl min-[400px]:text-4xl font-black tracking-tight text-white sm:text-7xl drop-shadow-2xl uppercase italic text-balance">
               {twDict.gif.title}
             </h1>
-            <p className="mx-auto mb-4 max-w-2xl text-lg font-medium text-white/90 sm:text-xl">
-              {twDict.gif.subtitle}
-            </p>
           </motion.div>
           
           <div className="mx-auto max-w-3xl">
@@ -156,7 +154,7 @@ export default function TwitterGifPage() {
                   {feature.icon}
                 </div>
                 <h3 className="text-xl font-black text-neutral-900 dark:text-white uppercase italic">{dict.features.items[idx].title}</h3>
-                <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80">{dict.features.items[idx].desc}</p>
+                <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 hidden sm:block">{dict.features.items[idx].desc}</p>
               </div>
             ))}
           </div>
@@ -185,6 +183,8 @@ export default function TwitterGifPage() {
               <Info className="h-8 w-8 text-slate-800" />
               {twDict.gif.seo.title}
             </h2>
+            <p className="mt-4 text-lg text-neutral-500 dark:text-neutral-400 font-medium italic opacity-80 sm:hidden hidden sm:block">{dict.seo?.desc || dict.subtitle}</p>
+            <p className="mt-4 text-lg text-neutral-500 dark:text-neutral-400 font-medium italic opacity-80 hidden sm:block">{twDict.gif.subtitle}</p>
             <p className="mt-4 text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed italic border-l-4 border-slate-500 pl-8 font-medium">
               {twDict.gif.seo.desc}
             </p>
@@ -199,7 +199,7 @@ export default function TwitterGifPage() {
               {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
               {dict.faq.items.map((faq: any, idx: number) => (
                 <div key={idx} className="group rounded-[2rem] border border-neutral-200 p-8 dark:border-neutral-800 hover:border-slate-500/50 transition-all bg-white dark:bg-transparent hover:shadow-2xl">
-                  <h4 className="font-black text-neutral-900 dark:text-white group-hover:text-slate-600 transition-colors uppercase italic tracking-tighter text-lg">{faq.q}</h4>
+                  <h3 className="font-black text-neutral-900 dark:text-white group-hover:text-slate-600 transition-colors uppercase italic tracking-tighter text-lg">{faq.q}</h3>
                   <p className="mt-4 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 group-hover:opacity-100 transition-opacity">{faq.a}</p>
                 </div>
               ))}

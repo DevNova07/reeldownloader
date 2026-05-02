@@ -73,7 +73,7 @@ export default function AdminPage() {
               <Shield className="h-8 w-8 text-white" />
             </div>
             <h1 className="text-2xl font-black tracking-tight text-white uppercase italic">Admin <span className="text-pink-600">Access</span></h1>
-            <p className="mt-4 text-sm text-white/50">Enter password to manage API rotation nodes.</p>
+            <p className="mt-4 text-sm text-white/50 hidden sm:block">Enter password to manage API rotation nodes.</p>
           </div>
 
           <form onSubmit={handleLogin} className="space-y-4">
@@ -126,7 +126,7 @@ export default function AdminPage() {
             <h1 className="text-3xl font-black text-white tracking-tighter sm:text-4xl uppercase italic">
               API Cluster <span className="text-pink-600">Status</span>
             </h1>
-            <p className="mt-1 text-sm text-white/40 font-medium">Monitoring real-time failover nodes and rate limits.</p>
+            <p className="mt-1 text-sm text-white/40 font-medium hidden sm:block">Monitoring real-time failover nodes and rate limits.</p>
           </div>
           <div className="flex items-center gap-3">
             <button 

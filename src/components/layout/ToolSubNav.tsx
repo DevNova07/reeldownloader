@@ -33,6 +33,7 @@ export function ToolSubNav() {
                     
                     return (
                         <Link
+                            prefetch={true}
                             key={item.id}
                             href={fullHref}
                             className={cn(

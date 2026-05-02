@@ -31,7 +31,7 @@ export default function BlogPage() {
             <h1 className="text-4xl font-black tracking-tighter text-neutral-900 dark:text-white sm:text-7xl uppercase italic">
               INSIDE <span className="text-pink-600">SNAP</span>
             </h1>
-            <p className="mx-auto mt-2 max-w-lg text-[10px] font-black uppercase tracking-[0.4em] text-neutral-400">The Ultimate Social Media Download Guide</p>
+            <p className="mx-auto mt-2 max-w-lg text-[10px] font-black uppercase tracking-[0.4em] text-neutral-400 hidden sm:block">The Ultimate Social Media Download Guide</p>
           </div>
         </div>
 

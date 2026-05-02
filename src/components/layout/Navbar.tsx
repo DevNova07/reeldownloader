@@ -100,7 +100,7 @@ export function Navbar({ dict }: { dict: any }) {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-14 sm:h-16 items-center justify-between">
           <div className="flex items-center gap-4 lg:gap-8">
-            <Link href={getLocalizedHref("/")} className="flex items-center gap-2 group shrink-0">
+            <Link prefetch={true} href={getLocalizedHref("/")} className="flex items-center gap-2 group shrink-0">
               <div className={cn("relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl bg-linear-to-tr shadow-xl group-hover:scale-110 transition-transform", platform.bg)}>
                 <LogoIcon className={cn("h-6 w-6 text-white", (pathname.includes('/youtube')) && "fill-white")} />
               </div>
@@ -116,6 +116,7 @@ export function Navbar({ dict }: { dict: any }) {
                 return (
                   <div key={service.name} className="relative group/item">
                     <Link
+                      prefetch={true}
                       href={getLocalizedHref(service.href)}
                       className="flex items-center gap-1.5 text-[13px] font-bold text-neutral-500 hover:text-neutral-900 dark:hover:text-white transition-all hover:scale-105 py-4"
                     >
@@ -139,6 +140,7 @@ export function Navbar({ dict }: { dict: any }) {
                                  {cat.links.map((link) => (
                                    <li key={link.href}>
                                      <Link
+                                       prefetch={true}
                                        href={getLocalizedHref(link.href)}
                                        className={cn("text-xs font-bold text-neutral-600 dark:text-neutral-400 hover:translate-x-1 transition-all inline-block", navData.hoverColor)}
                                      >
@@ -160,6 +162,7 @@ export function Navbar({ dict }: { dict: any }) {
 
           <div className="flex items-center gap-2 sm:gap-4">
             <Link
+              prefetch={true}
               href={getLocalizedHref("/history")}
               title="Download History"
               className={cn(
@@ -256,9 +259,9 @@ export function Navbar({ dict }: { dict: any }) {
               </div>
               <div className="mt-4 pt-4 border-t border-neutral-100 dark:border-neutral-800">
                 <div className="flex items-center justify-around">
-                  <Link href={getLocalizedHref("/about")} onClick={() => setIsOpen(false)} className="text-sm font-bold text-neutral-600 dark:text-neutral-400 hover:text-pink-600">About Us</Link>
-                  <Link href={getLocalizedHref("/contact")} onClick={() => setIsOpen(false)} className="text-sm font-bold text-neutral-600 dark:text-neutral-400 hover:text-pink-600">Contact</Link>
-                  <Link href={getLocalizedHref("/privacy-policy")} onClick={() => setIsOpen(false)} className="text-sm font-bold text-neutral-600 dark:text-neutral-400 hover:text-pink-600">Privacy</Link>
+                  <Link prefetch={true} href={getLocalizedHref("/about")} onClick={() => setIsOpen(false)} className="text-sm font-bold text-neutral-600 dark:text-neutral-400 hover:text-pink-600">About Us</Link>
+                  <Link prefetch={true} href={getLocalizedHref("/contact")} onClick={() => setIsOpen(false)} className="text-sm font-bold text-neutral-600 dark:text-neutral-400 hover:text-pink-600">Contact</Link>
+                  <Link prefetch={true} href={getLocalizedHref("/privacy-policy")} onClick={() => setIsOpen(false)} className="text-sm font-bold text-neutral-600 dark:text-neutral-400 hover:text-pink-600">Privacy</Link>
                 </div>
               </div>
             </div>

@@ -17,6 +17,7 @@ export function useAutoDownload(
   const hasTriggered = React.useRef<string | null>(null)
 
   React.useEffect(() => {
+    let isMounted = true
     const sharedUrl = searchParams.get('url')
     if (!sharedUrl || sharedUrl === hasTriggered.current) return
 
@@ -45,8 +46,14 @@ export function useAutoDownload(
       const autoDownload = searchParams.get('autodownload') === 'true'
       hasTriggered.current = sharedUrl
       setTimeout(() => {
-        onSearch(sharedUrl, autoDownload)
+        if (isMounted) {
+          onSearch(sharedUrl, autoDownload)
+        }
       }, 300) // Small delay to ensure everything is initialized
+    }
+
+    return () => {
+      isMounted = false
     }
   }, [searchParams, locale, router, currentPlatform, onSearch])
 }

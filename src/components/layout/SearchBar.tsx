@@ -163,6 +163,24 @@ function SearchBarInner({
         transition={{ duration: 0.5 }}
         className="relative"
       >
+        {/* Badges Row */}
+        {/* Animated Hint */}
+        <motion.div 
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+          className="flex justify-center mb-3"
+        >
+          <motion.div 
+            animate={{ y: [0, -4, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm"
+          >
+            <span className="text-[10px] font-black text-white/80 uppercase tracking-[0.2em]">Paste link here</span>
+            <span className="text-sm">👇</span>
+          </motion.div>
+        </motion.div>
+
         <form onSubmit={handleSubmit} className="flex w-full flex-col gap-3 sm:flex-row sm:gap-0">
           <div className="relative flex-1 flex items-center overflow-hidden rounded-2xl bg-white shadow-2xl sm:rounded-r-none border border-neutral-200 dark:border-neutral-800 dark:bg-neutral-900 focus-within:ring-2 focus-within:ring-pink-500/20 transition-all">
             <input
@@ -218,7 +236,7 @@ function SearchBarInner({
             <div className="absolute inset-0 bg-linear-to-tr from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
           </button>
         </form>
-
+        
         <AnimatePresence>
           {error && (
             <motion.div
@@ -233,9 +251,16 @@ function SearchBarInner({
           )}
         </AnimatePresence>
 
-        <p className="mt-4 text-[9px] font-black text-white/50 uppercase tracking-[0.2em] leading-relaxed text-center drop-shadow-sm">
-          Zero Hosting Policy: We do not host any files on our servers. Content belongs to respective owners. For educational and personal use only.
-        </p>
+        {/* Badges Row - Bottom */}
+        <div className="flex items-center justify-between px-1 mt-8">
+           <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/10 backdrop-blur-md border border-white/10 shadow-sm transition-all hover:bg-white/20">
+              <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+              <span className="text-[10px] font-black text-white uppercase tracking-wider">Ultra HD / 4K</span>
+           </div>
+           <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-black/20 backdrop-blur-md border border-white/5 shadow-sm">
+              <span className="text-[10px] font-black text-white/90 uppercase tracking-wider">⚡ 10K+ Downloads Today</span>
+           </div>
+        </div>
       </motion.div>
     </div>
   )

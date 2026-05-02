@@ -48,7 +48,7 @@ function ShareTargetContent(props: { params: Promise<{ locale: string }> }) {
         </div>
         <div className="text-center space-y-2">
           <h1 className="text-2xl font-black uppercase italic tracking-tighter">Initializing Download</h1>
-          <p className="text-neutral-500 font-bold uppercase tracking-widest text-[10px]">Processing your shared content...</p>
+          <p className="text-neutral-500 font-bold uppercase tracking-widest text-[10px] hidden sm:block">Processing your shared content...</p>
         </div>
       </div>
     </div>

@@ -46,7 +46,7 @@ export default function TrendingContentFinder() {
             <h1 className="text-5xl md:text-8xl font-black tracking-tighter uppercase italic leading-[0.8] dark:text-white">
               Trending <br className="sm:hidden" /> <span className="text-pink-600">Now</span>
             </h1>
-            <p className="text-lg font-bold text-neutral-500 tracking-tight opacity-70">
+            <p className="text-lg font-bold text-neutral-500 tracking-tight opacity-70 hidden sm:block">
               Real-time data for viral topics, sounds, and tags.
             </p>
           </div>
@@ -84,13 +84,13 @@ export default function TrendingContentFinder() {
                     <span className="text-3xl sm:text-4xl font-black text-neutral-100 dark:text-neutral-800 group-hover:text-pink-600/20 transition-colors">0{idx + 1}</span>
                     <div>
                       <span className="text-[9px] font-black uppercase tracking-widest text-pink-600 mb-1 block">{topic.category}</span>
-                      <h4 className="text-lg sm:text-xl font-black uppercase italic group-hover:text-pink-600 transition-colors leading-tight">{topic.name}</h4>
+                      <h3 className="text-lg sm:text-xl font-black uppercase italic group-hover:text-pink-600 transition-colors leading-tight">{topic.name}</h3>
                     </div>
                   </div>
                   <div className="flex items-center gap-4 sm:gap-8">
                     <div className="text-right hidden sm:block">
                       <p className="text-[10px] font-black uppercase tracking-widest text-neutral-400">Reach</p>
-                      <p className="font-black italic">{topic.reach}</p>
+                      <p className="font-black italic hidden sm:block">{topic.reach}</p>
                     </div>
                     <div className="bg-green-100 dark:bg-green-900/30 px-3 py-1.5 rounded-xl text-green-600 font-black text-[10px] sm:text-xs flex items-center gap-1">
                       <ArrowUpRight className="h-3 w-3" /> {topic.trend}
@@ -178,7 +178,7 @@ export default function TrendingContentFinder() {
                 { q: "What does 'Viral Alert' mean?", a: "A Viral Alert means a specific topic is showing exponential growth in the last 24 hours and is likely to hit millions of views soon." }
               ].map((faq, i) => (
                 <div key={i} className="p-6 rounded-2xl bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800">
-                  <h4 className="text-sm font-black uppercase tracking-tight mb-2 dark:text-white">Q: {faq.q}</h4>
+                  <h3 className="text-sm font-black uppercase tracking-tight mb-2 dark:text-white">Q: {faq.q}</h3>
                   <p className="text-sm font-medium text-neutral-500 leading-relaxed">A: {faq.a}</p>
                 </div>
               ))}

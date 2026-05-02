@@ -12,7 +12,7 @@ import { VisualGuide } from "@/components/shared/VisualGuide"
 import { usePathname } from "next/navigation"
 import { type Locale } from "@/i18n"
 import { getDictionary } from "@/dictionaries/client"
-import { Twitter, Music as MusicIcon, Image as ImageIcon, Zap, ShieldCheck, CheckCircle2, HelpCircle, Info } from "lucide-react"
+import { Camera, CheckCircle2, Film, Hash, HelpCircle, Image as ImageIcon, Info, Music as MusicIcon, ShieldCheck, Twitter, Zap } from "lucide-react"
 import { TrendingBar } from "@/components/layout/TrendingBar"
 import { LoadingBar } from "@/components/ui/LoadingBar"
 import { DownloadCounter } from "@/components/ui/DownloadCounter"
@@ -82,19 +82,20 @@ export default function TwitterMusicPage() {
       />
       
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-linear-to-r from-slate-800 to-black px-4 pt-14 pb-32 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-linear-to-r from-slate-800 to-black px-4 pt-10 pb-6 sm:px-6 lg:px-8">
         <HeroEffect color="bg-slate-400" intensity="high" />
         
-        <div className="relative z-10 mx-auto max-w-7xl text-center">
+        <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-3 sm:gap-6">
           <SocialPlatformBar   activeId="twitter" />
           <PlatformTabs   
             activeId="music" 
             activeColor="text-slate-200"
             tabs={dict.tabs}
             items={[
-               { id: "video", label: dict.tabs.video, href: "/twitter", icon: <Twitter className="h-4 w-4" /> },
-               { id: "gif", label: dict.tabs.gif, href: "/twitter/gif", icon: <ImageIcon className="h-4 w-4" /> },
-               { id: "music", label: dict.tabs.music, href: "/twitter/music", icon: <MusicIcon className="h-4 w-4" /> },
+              { id: "video", label: dict.tabs?.video || "Video", href: "/twitter", icon: <Film className="h-4 w-4" /> },
+              { id: "gif", label: dict.tabs?.gif || "GIF", href: "/twitter/gif", icon: <Hash className="h-4 w-4" /> },
+              { id: "photo", label: dict.tabs?.photo || "Photo", href: "/twitter/photo", icon: <Camera className="h-4 w-4" /> },
+              { id: "music", label: dict.tabs?.music || "Music", href: "/twitter/music", icon: <MusicIcon className="h-4 w-4" /> },
             ]} 
           />
 
@@ -103,12 +104,9 @@ export default function TwitterMusicPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <h1 className="mb-2 text-4xl font-black tracking-tight text-white sm:text-7xl drop-shadow-2xl uppercase italic">
+            <h1 className="mb-2 text-3xl min-[400px]:text-4xl font-black tracking-tight text-white sm:text-7xl drop-shadow-2xl uppercase italic text-balance">
               {twDict.music.title}
             </h1>
-            <p className="mx-auto mb-4 max-w-2xl text-lg font-medium text-white/90 sm:text-xl">
-              {twDict.music.subtitle}
-            </p>
           </motion.div>
           
           <div className="mx-auto max-w-3xl">
@@ -154,7 +152,7 @@ export default function TwitterMusicPage() {
                   {feature.icon}
                 </div>
                 <h3 className="text-xl font-black text-neutral-900 dark:text-white uppercase italic">{dict.features.items[idx].title}</h3>
-                <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80">{dict.features.items[idx].desc}</p>
+                <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 hidden sm:block">{dict.features.items[idx].desc}</p>
               </div>
             ))}
           </div>

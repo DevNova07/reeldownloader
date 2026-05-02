@@ -11,7 +11,7 @@ export default function TermsPage() {
           </div>
           <div>
             <h1 className="text-4xl font-black tracking-tight text-neutral-900 dark:text-white uppercase italic">Terms of Service</h1>
-            <p className="text-sm font-bold text-neutral-500 uppercase tracking-widest mt-1">Last Updated: April 2026</p>
+            <p className="text-sm font-bold text-neutral-500 uppercase tracking-widest mt-1 hidden sm:block">Last Updated: April 2026</p>
           </div>
         </div>
 

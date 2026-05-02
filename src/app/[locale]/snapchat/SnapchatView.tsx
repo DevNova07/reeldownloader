@@ -18,7 +18,7 @@ import { DownloadCounter } from "@/components/ui/DownloadCounter"
 import { RelatedTools } from "@/components/shared/RelatedTools"
 import { useDownloadHistory, getCached, setCached } from "@/hooks/useDownloadHistory"
 import { HeroEffect } from "@/components/shared/HeroEffect"
-import { Ghost, StopCircle, Zap, ShieldCheck, CheckCircle2, HelpCircle, Info, Music as MusicIcon } from "lucide-react"
+import { Camera, CheckCircle2, Ghost, HelpCircle, Info, Music as MusicIcon, Play, ShieldCheck, StopCircle, Zap } from "lucide-react"
 import { toast } from "react-hot-toast"
 import { isSmartInput, handleSmartRedirect } from "@/utils/platform-detector"
 
@@ -91,21 +91,34 @@ export default function SnapchatView({ dict, locale }: { dict: any, locale: stri
           steps: snapDict.howTo.steps
         }}
       />
+      <StructuredData
+        type="SoftwareApplication"
+        data={{
+          title: snapDict.seo?.title || snapDict.title,
+          description: snapDict.seo?.desc || snapDict.subtitle
+        }}
+      />
+      <StructuredData
+        type="FAQPage"
+        data={snapDict.faq || dict.faq}
+      />
       
       {/* Hero Section */}
-      <section className="relative bg-linear-to-r from-yellow-400 to-yellow-500 px-4 pt-14 pb-8 sm:pt-20 sm:pb-32 sm:px-6 lg:px-8">
+      <section className="relative bg-linear-to-r from-yellow-400 to-yellow-500 px-4 pt-10 pb-6 sm:pt-20 sm:pb-32 sm:px-6 lg:px-8">
         <HeroEffect color="bg-yellow-300" intensity="high" />
         
-        <div className="relative z-10 mx-auto max-w-7xl text-center">
+        <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-3 sm:gap-6">
+          
           <SocialPlatformBar   activeId="snapchat" />
           <PlatformTabs   
             activeId="spotlight" 
             activeColor="text-yellow-600"
             tabs={dict.tabs}
             items={[
-              { id: "spotlight", label: "Spotlight", href: "/snapchat", icon: <Ghost className="h-4 w-4" /> },
-              { id: "story", label: dict.tabs.story, href: "/snapchat/story", icon: <StopCircle className="h-4 w-4" /> },
-              { id: "music", label: dict.tabs.music, href: "/snapchat/music", icon: <MusicIcon className="h-4 w-4" /> },
+              { id: "video", label: dict.tabs?.video || "Video", href: "/snapchat", icon: <Ghost className="h-4 w-4" /> },
+              { id: "spotlight", label: dict.tabs?.spotlight || "Spotlight", href: "/snapchat/spotlight", icon: <Play className="h-4 w-4" /> },
+              { id: "story", label: dict.tabs?.story || "Story", href: "/snapchat/story", icon: <StopCircle className="h-4 w-4" /> },
+              { id: "photo", label: dict.tabs?.photo || "Photo", href: "/snapchat/photo", icon: <Camera className="h-4 w-4" /> },
             ]} 
           />
 
@@ -114,13 +127,14 @@ export default function SnapchatView({ dict, locale }: { dict: any, locale: stri
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <h1 className="mb-2 text-4xl font-black tracking-tight text-black sm:text-7xl drop-shadow-2xl uppercase italic">
+            <h1 className="mb-3 text-3xl min-[400px]:text-4xl font-black tracking-tight text-black sm:text-7xl drop-shadow-2xl uppercase italic text-balance">
               {snapDict.title}
             </h1>
-            <p className="mx-auto mb-4 max-w-2xl text-lg font-medium text-black/80 sm:text-xl">
-              {snapDict.subtitle}
-            </p>
+            <p className="mt-4 text-lg text-white/90 max-w-2xl mx-auto hidden sm:block">{snapDict.subtitle}</p>
+            
           </motion.div>
+
+          
           
           <div className="mx-auto max-w-3xl">
             <SearchBar 
@@ -171,7 +185,7 @@ export default function SnapchatView({ dict, locale }: { dict: any, locale: stri
                   {feature.icon}
                 </div>
                 <h3 className="text-xl font-bold text-neutral-900 dark:text-white">{dict.features.items[idx].title}</h3>
-                <p className="mt-3 text-neutral-500 dark:text-neutral-400">{dict.features.items[idx].desc}</p>
+                <p className="mt-3 text-neutral-500 dark:text-neutral-400 hidden sm:block">{dict.features.items[idx].desc}</p>
               </div>
             ))}
           </div>
@@ -200,6 +214,7 @@ export default function SnapchatView({ dict, locale }: { dict: any, locale: stri
               <Info className="h-8 w-8 text-yellow-500" />
               {snapDict.seo.title}
             </h2>
+            <p className="mt-4 text-lg text-neutral-500 dark:text-neutral-400 font-medium italic opacity-80 sm:hidden hidden sm:block">{snapDict.subtitle}</p>
             <p className="mt-6 text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed italic border-l-4 border-yellow-500 pl-6">
               {snapDict.seo.desc}
             </p>
@@ -209,8 +224,8 @@ export default function SnapchatView({ dict, locale }: { dict: any, locale: stri
                 {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                 {snapDict.seo.features.map((feature: any, idx: number) => (
                   <div key={idx} className="rounded-2xl bg-neutral-50 p-6 dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 transition-all hover:scale-110">
-                    <h4 className="font-bold text-neutral-900 dark:text-white uppercase tracking-tighter italic">{feature.title}</h4>
-                    <p className="mt-4 text-sm text-neutral-500 dark:text-neutral-400">{feature.desc}</p>
+                    <h3 className="font-bold text-neutral-900 dark:text-white uppercase tracking-tighter italic">{feature.title}</h3>
+                    <p className="mt-4 text-sm text-neutral-500 dark:text-neutral-400 hidden sm:block">{feature.desc}</p>
                   </div>
                 ))}
               </div>
@@ -226,7 +241,7 @@ export default function SnapchatView({ dict, locale }: { dict: any, locale: stri
               {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
               {dict.faq.items.map((faq: any, idx: number) => (
                 <div key={idx} className="group rounded-2xl border border-neutral-200 p-6 dark:border-neutral-800 hover:border-yellow-500/50 transition-all">
-                  <h4 className="font-bold text-neutral-900 dark:text-white group-hover:text-yellow-600 transition-colors uppercase italic tracking-tighter">{faq.q}</h4>
+                  <h3 className="font-bold text-neutral-900 dark:text-white group-hover:text-yellow-600 transition-colors uppercase italic tracking-tighter">{faq.q}</h3>
                   <p className="mt-4 text-neutral-500 dark:text-neutral-400">{faq.a}</p>
                 </div>
               ))}

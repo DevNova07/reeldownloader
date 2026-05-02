@@ -71,7 +71,7 @@ export function HashtagView({ locale, dict }: { locale: Locale, dict: any }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-sm font-medium text-white/90 tracking-wide brightness-110 uppercase"
+            className="text-sm font-medium text-white/90 tracking-wide brightness-110 uppercase hidden sm:block"
           >
             {hashtagDict.subtitle}
           </motion.p>
@@ -98,6 +98,7 @@ export function HashtagView({ locale, dict }: { locale: Locale, dict: any }) {
 
       {/* Main Grid Container (Side-by-Side on PC) */}
       <div className="mx-auto max-w-7xl lg:grid lg:grid-cols-[1fr_470px] lg:gap-16 lg:items-start lg:px-8">
+        <p className="px-4 mt-8 text-lg text-neutral-500 dark:text-neutral-400 font-medium italic opacity-80 sm:hidden text-center hidden sm:block">{hashtagDict.subtitle}</p>
         
         {/* Left Column: Core Tool Information & Reviews */}
         <div className="space-y-24 pt-16">
@@ -219,7 +220,7 @@ export function HashtagView({ locale, dict }: { locale: Locale, dict: any }) {
                     <Tag className="h-3.5 w-3.5 text-[#a4d444]" />
                     <span className="uppercase tracking-widest">{item.tags}</span>
                   </div>
-                  <p className="text-[13px] font-medium text-neutral-500 dark:text-neutral-400 uppercase tracking-tight">{item.desc}</p>
+                  <p className="text-[13px] font-medium text-neutral-500 dark:text-neutral-400 uppercase tracking-tight hidden sm:block">{item.desc}</p>
                 </motion.div>
               ))}
             </div>

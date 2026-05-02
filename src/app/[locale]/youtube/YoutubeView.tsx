@@ -14,7 +14,7 @@ const VisualGuide = dynamic(() => import("@/components/shared/VisualGuide").then
 
 import { useRouter } from "next/navigation"
 import { type Locale } from "@/i18n"
-import { Youtube, PlaySquare, Music as MusicIcon, Film, Zap, ShieldCheck, CheckCircle2, HelpCircle, Info } from "lucide-react"
+import { CheckCircle2, Film, HelpCircle, Info, Music as MusicIcon, PlaySquare, ShieldCheck, Youtube, Zap } from "lucide-react"
 import { TrendingBar } from "@/components/layout/TrendingBar"
 import { LoadingBar } from "@/components/ui/LoadingBar"
 import { DownloadCounter } from "@/components/ui/DownloadCounter"
@@ -107,22 +107,34 @@ export function YoutubeView({ locale, dict }: { locale: Locale, dict: any }) {
           steps: ytDict.howTo.steps
         }}
       />
+      <StructuredData
+        type="SoftwareApplication"
+        data={{
+          title: ytDict.seo?.title || ytDict.title,
+          description: ytDict.seo?.desc || ytDict.subtitle
+        }}
+      />
+      <StructuredData
+        type="FAQPage"
+        data={ytDict.faq || dict.faq}
+      />
       
       {/* Hero Section */}
-      <section className="relative bg-linear-to-r from-red-600 to-red-800 px-4 pt-14 pb-8 sm:pt-20 sm:pb-32 sm:px-6 lg:px-8">
+      <section className="relative bg-linear-to-r from-red-600 to-red-800 px-4 pt-10 pb-6 sm:pt-20 sm:pb-32 sm:px-6 lg:px-8">
         <HeroEffect color="bg-red-500" intensity="high" />
         
-        <div className="relative z-10 mx-auto max-w-7xl text-center">
+        <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-3 sm:gap-6">
+          
           <SocialPlatformBar   activeId="youtube" />
           <PlatformTabs   
             activeId="video" 
             activeColor="text-red-600"
             tabs={dict.tabs}
             items={[
-              { id: "video", label: dict.tabs.video, href: "/youtube", icon: <Youtube className="h-4 w-4" /> },
-              { id: "shorts", label: dict.tabs.shorts, href: "/youtube/shorts", icon: <PlaySquare className="h-4 w-4" /> },
-              { id: "movies", label: dict.tabs.movies, href: "/youtube/movies", icon: <Film className="h-4 w-4" /> },
-              { id: "music", label: dict.tabs.music, href: "/youtube/music", icon: <MusicIcon className="h-4 w-4" /> },
+              { id: "video", label: dict.tabs?.video || "Video", href: "/youtube", icon: <Film className="h-4 w-4" /> },
+              { id: "shorts", label: dict.tabs?.shorts || "Shorts", href: "/youtube/shorts", icon: <PlaySquare className="h-4 w-4" /> },
+              { id: "movies", label: dict.tabs?.movies || "Movies", href: "/youtube/movies", icon: <Film className="h-4 w-4" /> },
+              { id: "music", label: dict.tabs?.music || "Music", href: "/youtube/music", icon: <MusicIcon className="h-4 w-4" /> },
             ]} 
           />
 
@@ -131,13 +143,14 @@ export function YoutubeView({ locale, dict }: { locale: Locale, dict: any }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <h1 className="mb-2 text-4xl font-black tracking-tight text-white sm:text-7xl drop-shadow-2xl uppercase italic">
+            <h1 className="mb-2 text-3xl min-[400px]:text-4xl font-black tracking-tight text-white sm:text-7xl drop-shadow-2xl uppercase italic text-balance">
               {ytDict.title}
             </h1>
-            <p className="mx-auto mb-4 max-w-2xl text-lg font-medium text-white/90 sm:text-xl">
-              {ytDict.subtitle}
-            </p>
+            <p className="mt-4 text-lg text-white/90 max-w-2xl mx-auto hidden sm:block">{ytDict.subtitle}</p>
+            
           </motion.div>
+
+          
           
           <div className="mx-auto max-w-3xl">
             <SearchBar 
@@ -186,7 +199,7 @@ export function YoutubeView({ locale, dict }: { locale: Locale, dict: any }) {
                   {feature.icon}
                 </div>
                 <h3 className="text-xl font-black text-neutral-900 dark:text-white uppercase italic">{dict.features.items[idx].title}</h3>
-                <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80">{dict.features.items[idx].desc}</p>
+                <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 hidden sm:block">{dict.features.items[idx].desc}</p>
               </div>
             ))}
           </div>
@@ -215,6 +228,7 @@ export function YoutubeView({ locale, dict }: { locale: Locale, dict: any }) {
               <Info className="h-8 w-8 text-red-600" />
               {ytDict.seo.title}
             </h2>
+            <p className="mt-4 text-lg text-neutral-500 dark:text-neutral-400 font-medium italic opacity-80  sm:hidden hidden sm:block">{ytDict.subtitle}</p>
             <p className="mt-4 text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed italic border-l-4 border-red-500 pl-8 font-medium">
               {ytDict.seo.desc}
             </p>
@@ -223,8 +237,8 @@ export function YoutubeView({ locale, dict }: { locale: Locale, dict: any }) {
               {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
               {ytDict.seo.features.map((feature: any, idx: number) => (
                 <div key={idx} className="rounded-[2rem] bg-neutral-50 p-8 dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 transition-all hover:scale-105 hover:bg-white dark:hover:bg-neutral-900 shadow-sm hover:shadow-2xl">
-                  <h4 className="font-black text-neutral-900 dark:text-white uppercase italic tracking-tighter text-lg">{feature.title}</h4>
-                  <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80">{feature.desc}</p>
+                  <h3 className="font-black text-neutral-900 dark:text-white uppercase italic tracking-tighter text-lg">{feature.title}</h3>
+                  <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 hidden sm:block">{feature.desc}</p>
                 </div>
               ))}
             </div>
@@ -239,7 +253,7 @@ export function YoutubeView({ locale, dict }: { locale: Locale, dict: any }) {
               {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
               {dict.faq.items.map((faq: any, idx: number) => (
                 <div key={idx} className="group rounded-[2rem] border border-neutral-200 p-8 dark:border-neutral-800 hover:border-red-500/50 transition-all bg-white dark:bg-transparent hover:shadow-2xl">
-                  <h4 className="font-black text-neutral-900 dark:text-white group-hover:text-red-600 transition-colors uppercase italic tracking-tighter text-lg">{faq.q}</h4>
+                  <h3 className="font-black text-neutral-900 dark:text-white group-hover:text-red-600 transition-colors uppercase italic tracking-tighter text-lg">{faq.q}</h3>
                   <p className="mt-4 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 group-hover:opacity-100 transition-opacity">{faq.a}</p>
                 </div>
               ))}

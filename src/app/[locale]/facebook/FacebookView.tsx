@@ -19,7 +19,7 @@ import { DownloadCounter } from "@/components/ui/DownloadCounter"
 import { RelatedTools } from "@/components/shared/RelatedTools"
 import { useDownloadHistory, getCached, setCached } from "@/hooks/useDownloadHistory"
 import { HeroEffect } from "@/components/shared/HeroEffect"
-import { Film, StopCircle, Zap, ShieldCheck, CheckCircle2, HelpCircle, Info, Music as MusicIcon } from "lucide-react"
+import { CheckCircle2, Film, HelpCircle, Info, Music as MusicIcon, ShieldCheck, StopCircle, Zap } from "lucide-react"
 import { toast } from "react-hot-toast"
 import { getPlatformFromUrl, getLocalizedRoute, isAnyPlatformUrl, isSmartInput, handleSmartRedirect } from "@/utils/platform-detector"
 
@@ -114,22 +114,34 @@ export default function FacebookView({ dict, locale }: { dict: any, locale: stri
           steps: fbDict.howTo.steps
         }}
       />
+      <StructuredData
+        type="SoftwareApplication"
+        data={{
+          title: fbDict.seo.title,
+          description: fbDict.seo.desc
+        }}
+      />
+      <StructuredData
+        type="FAQPage"
+        data={fbDict.faq}
+      />
       
       {/* Hero Section */}
-      <section className="relative bg-linear-to-r from-blue-600 to-cyan-500 px-4 pt-14 pb-8 sm:pt-20 sm:pb-32 sm:px-6 lg:px-8">
+      <section className="relative bg-linear-to-r from-blue-600 to-cyan-500 px-4 pt-10 pb-6 sm:pt-20 sm:pb-32 sm:px-6 lg:px-8">
         <HeroEffect color="bg-blue-400" intensity="high" />
         
-        <div className="relative z-10 mx-auto max-w-7xl text-center">
+        <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-3 sm:gap-6">
+          
           <SocialPlatformBar   activeId="facebook" />
           <PlatformTabs   
             activeId="video" 
             activeColor="text-blue-600"
             tabs={dict.tabs}
             items={[
-              { id: "video", label: dict.tabs.video, href: "/facebook", icon: <Film className="h-4 w-4" /> },
-              { id: "reels", label: dict.tabs.reels, href: "/facebook/reels", icon: <Film className="h-4 w-4" /> },
-              { id: "story", label: dict.tabs.story, href: "/facebook/story", icon: <StopCircle className="h-4 w-4" /> },
-              { id: "music", label: dict.tabs.music, href: "/facebook/music", icon: <MusicIcon className="h-4 w-4" /> },
+              { id: "video", label: dict?.tabs?.video || "Video", href: "/facebook", icon: <Film className="h-4 w-4" /> },
+              { id: "reels", label: dict?.tabs?.reels || "Reels", href: "/facebook-reels-downloader", icon: <Film className="h-4 w-4" /> },
+              { id: "story", label: dict?.tabs?.story || "Story", href: "/facebook-story-downloader", icon: <StopCircle className="h-4 w-4" /> },
+              { id: "private", label: dict?.tabs?.private || "Private", href: "/facebook-private-video-downloader", icon: <ShieldCheck className="h-4 w-4" /> },
             ]} 
           />
 
@@ -138,13 +150,14 @@ export default function FacebookView({ dict, locale }: { dict: any, locale: stri
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <h1 className="mb-2 text-4xl font-black tracking-tight text-white sm:text-7xl drop-shadow-2xl uppercase italic">
+            <h1 className="mb-3 text-3xl min-[400px]:text-4xl font-black tracking-tight text-white sm:text-7xl drop-shadow-2xl uppercase italic text-balance">
               {fbDict.title}
             </h1>
-            <p className="mx-auto mb-4 max-w-2xl text-lg font-medium text-white/90 sm:text-xl">
-              {fbDict.subtitle}
-            </p>
+            <p className="mt-4 text-lg text-white/90 max-w-2xl mx-auto hidden sm:block">{fbDict.subtitle}</p>
+            
           </motion.div>
+
+          
           
           <div className="mx-auto max-w-3xl">
             <SearchBar 
@@ -195,7 +208,7 @@ export default function FacebookView({ dict, locale }: { dict: any, locale: stri
                   {feature.icon}
                 </div>
                 <h3 className="text-xl font-black text-neutral-900 dark:text-white uppercase italic">{dict.features.items[idx].title}</h3>
-                <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80">{dict.features.items[idx].desc}</p>
+                <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 hidden sm:block">{dict.features.items[idx].desc}</p>
               </div>
             ))}
           </div>
@@ -224,6 +237,7 @@ export default function FacebookView({ dict, locale }: { dict: any, locale: stri
               <Info className="h-8 w-8 text-blue-600" />
               {fbDict.seo.title}
             </h2>
+            <p className="mt-4 text-lg text-neutral-500 dark:text-neutral-400 font-medium italic opacity-80  sm:hidden hidden sm:block">{fbDict.subtitle}</p>
             <p className="mt-4 text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed italic border-l-4 border-blue-500 pl-8 font-medium">
               {fbDict.seo.desc}
             </p>
@@ -232,8 +246,8 @@ export default function FacebookView({ dict, locale }: { dict: any, locale: stri
               {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
               {fbDict.seo.features.map((feature: any, idx: number) => (
                 <div key={idx} className="rounded-4xl bg-neutral-50 p-8 dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 transition-all hover:scale-105 hover:bg-white dark:hover:bg-neutral-900 shadow-sm hover:shadow-2xl">
-                  <h4 className="font-black text-neutral-900 dark:text-white uppercase italic tracking-tighter text-lg">{feature.title}</h4>
-                  <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80">{feature.desc}</p>
+                  <h3 className="font-black text-neutral-900 dark:text-white uppercase italic tracking-tighter text-lg">{feature.title}</h3>
+                  <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 hidden sm:block">{feature.desc}</p>
                 </div>
               ))}
             </div>
@@ -248,7 +262,7 @@ export default function FacebookView({ dict, locale }: { dict: any, locale: stri
               {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
               {dict.faq.items.map((faq: any, idx: number) => (
                 <div key={idx} className="group rounded-[2rem] border border-neutral-200 p-8 dark:border-neutral-800 hover:border-blue-500/50 transition-all bg-white dark:bg-transparent hover:shadow-2xl">
-                  <h4 className="font-black text-neutral-900 dark:text-white group-hover:text-blue-600 transition-colors uppercase italic tracking-tighter text-lg">{faq.q}</h4>
+                  <h3 className="font-black text-neutral-900 dark:text-white group-hover:text-blue-600 transition-colors uppercase italic tracking-tighter text-lg">{faq.q}</h3>
                   <p className="mt-4 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 group-hover:opacity-100 transition-opacity">{faq.a}</p>
                 </div>
               ))}

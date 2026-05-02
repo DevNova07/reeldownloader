@@ -41,7 +41,7 @@ export default function HistoryPage({ dict, locale }: { dict: any, locale: strin
             <h1 className="text-4xl font-black text-white sm:text-6xl uppercase italic tracking-tighter">
               {dict.common?.history || "Download History"}
             </h1>
-            <p className="mt-4 max-w-2xl text-lg font-medium text-white/50 uppercase tracking-widest text-xs">
+            <p className="mt-4 max-w-2xl text-lg font-medium text-white/50 uppercase tracking-widest text-xs hidden sm:block">
               Saved locally on your device • No login required
             </p>
 

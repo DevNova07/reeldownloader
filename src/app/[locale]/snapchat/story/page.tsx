@@ -12,7 +12,7 @@ import { VisualGuide } from "@/components/shared/VisualGuide"
 import { usePathname } from "next/navigation"
 import { type Locale } from "@/i18n"
 import { getDictionary } from "@/dictionaries/client"
-import { Ghost, Zap, ShieldCheck, CheckCircle2, HelpCircle, Info, StopCircle, Music as MusicIcon } from "lucide-react"
+import { Camera, CheckCircle2, Ghost, HelpCircle, Info, Music as MusicIcon, Play, ShieldCheck, StopCircle, Zap } from "lucide-react"
 import { TrendingBar } from "@/components/layout/TrendingBar"
 import { LoadingBar } from "@/components/ui/LoadingBar"
 import { DownloadCounter } from "@/components/ui/DownloadCounter"
@@ -84,19 +84,20 @@ export default function SnapchatStoryPage() {
       />
       
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-linear-to-r from-yellow-400 to-yellow-500 px-4 pt-14 pb-32 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-linear-to-r from-yellow-400 to-yellow-500 px-4 pt-10 pb-6 sm:px-6 lg:px-8">
         <HeroEffect color="bg-yellow-300" intensity="high" />
         
-        <div className="relative z-10 mx-auto max-w-7xl text-center">
+        <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-3 sm:gap-6">
           <SocialPlatformBar   activeId="snapchat" />
           <PlatformTabs   
             activeId="story" 
             activeColor="text-yellow-600"
             tabs={dict.tabs}
             items={[
-              { id: "spotlight", label: dict.tabs.spotlight || "Spotlight", href: "/snapchat", icon: <Ghost className="h-4 w-4" /> },
-              { id: "story", label: dict.tabs.story, href: "/snapchat/story", icon: <StopCircle className="h-4 w-4" /> },
-              { id: "music", label: dict.tabs.music, href: "/snapchat/music", icon: <MusicIcon className="h-4 w-4" /> },
+              { id: "video", label: dict.tabs?.video || "Video", href: "/snapchat", icon: <Ghost className="h-4 w-4" /> },
+              { id: "spotlight", label: dict.tabs?.spotlight || "Spotlight", href: "/snapchat/spotlight", icon: <Play className="h-4 w-4" /> },
+              { id: "story", label: dict.tabs?.story || "Story", href: "/snapchat/story", icon: <StopCircle className="h-4 w-4" /> },
+              { id: "photo", label: dict.tabs?.photo || "Photo", href: "/snapchat/photo", icon: <Camera className="h-4 w-4" /> },
             ]} 
           />
 
@@ -105,12 +106,9 @@ export default function SnapchatStoryPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <h1 className="mb-2 text-4xl font-black tracking-tight text-black sm:text-7xl drop-shadow-2xl uppercase italic">
+            <h1 className="mb-2 text-3xl min-[400px]:text-4xl font-black tracking-tight text-black sm:text-7xl drop-shadow-2xl uppercase italic text-balance">
               {snapDict.story.title}
             </h1>
-            <p className="mx-auto mb-4 max-w-2xl text-lg font-medium text-black/80 sm:text-xl">
-              {snapDict.story.subtitle}
-            </p>
           </motion.div>
           
           <div className="mx-auto max-w-3xl">
@@ -156,7 +154,7 @@ export default function SnapchatStoryPage() {
                   {feature.icon}
                 </div>
                 <h3 className="text-xl font-black text-neutral-900 dark:text-white uppercase italic">{dict.features.items[idx].title}</h3>
-                <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80">{dict.features.items[idx].desc}</p>
+                <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 hidden sm:block">{dict.features.items[idx].desc}</p>
               </div>
             ))}
           </div>

@@ -17,7 +17,7 @@ export default function NotFound() {
         404
       </h1>
       
-      <p className="mb-8 max-w-md text-lg font-bold text-neutral-500 dark:text-neutral-400">
+      <p className="mb-8 max-w-md text-lg font-bold text-neutral-500 dark:text-neutral-400 hidden sm:block">
         Oops! The clip you're looking for has been moved or deleted. Let's get you back on track.
       </p>
 

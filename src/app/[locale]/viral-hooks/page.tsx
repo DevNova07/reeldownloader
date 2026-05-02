@@ -79,7 +79,7 @@ export default function ViralHookGenerator() {
           <h1 className="text-5xl md:text-8xl font-black tracking-tighter uppercase italic leading-[0.8]">
             Viral <br className="sm:hidden" /> <span className="text-transparent bg-clip-text bg-linear-to-r from-yellow-400 to-orange-600">Hooks</span>
           </h1>
-          <p className="text-lg font-bold text-neutral-500 tracking-tight opacity-70 max-w-2xl mx-auto px-4">
+          <p className="text-lg font-bold text-neutral-500 tracking-tight opacity-70 max-w-2xl mx-auto px-4 hidden sm:block">
             Generate scroll-stopping hooks that force engagement.
           </p>
         </div>
@@ -212,7 +212,7 @@ export default function ViralHookGenerator() {
                 { q: "Can I use these hooks for TikTok and Reels?", a: "Yes, these hooks are universal for all short-form video platforms including Shorts, Reels, and TikTok." }
               ].map((faq, i) => (
                 <div key={i} className="space-y-2 border-b border-neutral-100 dark:border-neutral-800 pb-6">
-                  <h4 className="text-lg font-black uppercase tracking-tight dark:text-white">{faq.q}</h4>
+                  <h3 className="text-lg font-black uppercase tracking-tight dark:text-white">{faq.q}</h3>
                   <p className="text-sm font-medium text-neutral-500 leading-relaxed">{faq.a}</p>
                 </div>
               ))}

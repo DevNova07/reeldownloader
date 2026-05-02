@@ -224,7 +224,7 @@ export function Footer({ locale, dict }: { locale: string, dict: any }) {
                    { name: "Image Downloader", href: "/instagram-image-downloader" },
                    { name: "Reels Download HD", href: "/instagram-reels-download-hd" },
                  ].map((link) => (
-                   <Link key={link.href} href={getLocalizedHref(link.href)} prefetch={false} className="text-[10px] font-bold text-neutral-400 hover:text-pink-600 dark:text-neutral-500 dark:hover:text-pink-400 transition-colors flex items-center gap-2 group">
+                   <Link key={link.href} href={getLocalizedHref(link.href)} prefetch={true} className="text-[10px] font-bold text-neutral-400 hover:text-pink-600 dark:text-neutral-500 dark:hover:text-pink-400 transition-colors flex items-center gap-2 group">
                      <div className="w-1 h-1 rounded-full bg-neutral-200 dark:bg-neutral-800 group-hover:bg-pink-600 transition-colors" />
                      {link.name}
                    </Link>
@@ -303,7 +303,7 @@ export function Footer({ locale, dict }: { locale: string, dict: any }) {
                    { name: "Funny Videos", href: "/facebook-funny-videos-download" },
                    { name: "Bulk Downloader", href: "/facebook-bulk-downloader" },
                  ].map((link) => (
-                   <Link key={link.href} href={getLocalizedHref(link.href)} prefetch={false} className="text-[10px] font-bold text-neutral-400 hover:text-blue-600 dark:text-neutral-500 dark:hover:text-blue-400 transition-colors flex items-center gap-2 group">
+                   <Link key={link.href} href={getLocalizedHref(link.href)} prefetch={true} className="text-[10px] font-bold text-neutral-400 hover:text-blue-600 dark:text-neutral-500 dark:hover:text-blue-400 transition-colors flex items-center gap-2 group">
                      <div className="w-1 h-1 rounded-full bg-neutral-200 dark:bg-neutral-800 group-hover:bg-blue-600 transition-colors" />
                      {link.name}
                    </Link>
@@ -356,7 +356,7 @@ export function Footer({ locale, dict }: { locale: string, dict: any }) {
                    { name: "Trending TikTok", href: "/tiktok-trending" },
                    { name: "Bulk Downloader", href: "/tiktok-bulk-downloader" },
                  ].map((link) => (
-                   <Link key={link.href} href={getLocalizedHref(link.href)} prefetch={false} className="text-[10px] font-bold text-neutral-400 hover:text-black dark:hover:text-white transition-colors flex items-center gap-2 group">
+                   <Link key={link.href} href={getLocalizedHref(link.href)} prefetch={true} className="text-[10px] font-bold text-neutral-400 hover:text-black dark:hover:text-white transition-colors flex items-center gap-2 group">
                      <div className="w-1.5 h-1.5 rounded-full bg-neutral-200 dark:bg-neutral-800 group-hover:bg-black dark:group-hover:bg-white transition-colors" />
                      {link.name}
                    </Link>
@@ -402,7 +402,7 @@ export function Footer({ locale, dict }: { locale: string, dict: any }) {
                    { name: "Video to MP3", href: "/youtube-video-to-mp3" },
                    { name: "Bulk Downloader", href: "/youtube-bulk-downloader" },
                  ].map((link) => (
-                   <Link key={link.href} href={getLocalizedHref(link.href)} prefetch={false} className="text-[10px] font-bold text-neutral-400 hover:text-red-600 transition-colors flex items-center gap-2 group">
+                   <Link key={link.href} href={getLocalizedHref(link.href)} prefetch={true} className="text-[10px] font-bold text-neutral-400 hover:text-red-600 transition-colors flex items-center gap-2 group">
                      <div className="w-1.5 h-1.5 rounded-full bg-neutral-200 dark:bg-neutral-800 group-hover:bg-red-600 transition-colors" />
                      {link.name}
                    </Link>
@@ -452,7 +452,7 @@ export function Footer({ locale, dict }: { locale: string, dict: any }) {
                       { name: "Online Downloader", href: "/snapchat-downloader-online" },
                       { name: "Bulk Downloader", href: "/snapchat-bulk-downloader" },
                     ].map((link) => (
-                      <Link key={link.href} href={getLocalizedHref(link.href)} prefetch={false} className="text-[10px] font-bold text-neutral-400 hover:text-yellow-600 transition-colors flex items-center gap-2 group">
+                      <Link key={link.href} href={getLocalizedHref(link.href)} prefetch={true} className="text-[10px] font-bold text-neutral-400 hover:text-yellow-600 transition-colors flex items-center gap-2 group">
                         <div className="w-1.5 h-1.5 rounded-full bg-neutral-200 dark:bg-neutral-800 group-hover:bg-yellow-500 transition-colors" />
                         {link.name}
                       </Link>
@@ -495,7 +495,7 @@ export function Footer({ locale, dict }: { locale: string, dict: any }) {
                       { name: "X Online Pro", href: "/x-video-downloader-online" },
                       { name: "Bulk Downloader", href: "/twitter-bulk-downloader" },
                     ].map((link) => (
-                      <Link key={link.href} href={getLocalizedHref(link.href)} prefetch={false} className="text-[10px] font-bold text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors flex items-center gap-2 group">
+                      <Link key={link.href} href={getLocalizedHref(link.href)} prefetch={true} className="text-[10px] font-bold text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors flex items-center gap-2 group">
                         <div className="w-1.5 h-1.5 rounded-full bg-neutral-200 dark:bg-neutral-800 group-hover:bg-black dark:group-hover:bg-white transition-colors" />
                         {link.name}
                       </Link>
@@ -531,7 +531,7 @@ export function Footer({ locale, dict }: { locale: string, dict: any }) {
                       { name: "How to Save", href: "/how-to-download-telegram-video" },
                       { name: "Bulk Downloader", href: "/telegram-bulk-downloader" },
                     ].map((link) => (
-                      <Link key={link.href} href={getLocalizedHref(link.href)} prefetch={false} className="text-[10px] font-bold text-neutral-400 hover:text-sky-600 transition-colors flex items-center gap-2 group">
+                      <Link key={link.href} href={getLocalizedHref(link.href)} prefetch={true} className="text-[10px] font-bold text-neutral-400 hover:text-sky-600 transition-colors flex items-center gap-2 group">
                         <div className="w-1.5 h-1.5 rounded-full bg-neutral-200 dark:bg-neutral-800 group-hover:bg-sky-500 transition-colors" />
                         {link.name}
                       </Link>

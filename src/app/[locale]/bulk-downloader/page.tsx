@@ -172,7 +172,7 @@ export default function BulkDownloader() {
             Bulk <span className="text-transparent bg-clip-text bg-linear-to-r from-pink-600 via-rose-500 to-orange-500 drop-shadow-sm pr-2">Downloader</span>
           </h1>
           
-          <p className="text-base sm:text-xl font-bold text-neutral-500 tracking-tight opacity-80 max-w-2xl mx-auto leading-relaxed px-4">
+          <p className="text-base sm:text-xl font-bold text-neutral-500 tracking-tight opacity-80 max-w-2xl mx-auto leading-relaxed px-4 hidden sm:block">
             Unleash the power of batch downloading. Paste a profile link or username to grab everything in high definition instantly.
           </p>
         </div>
@@ -393,7 +393,7 @@ export default function BulkDownloader() {
                           )}
                         </div>
                         <div className="space-y-1">
-                           <p className="text-base sm:text-lg font-black tracking-tighter uppercase italic">{item.title}</p>
+                           <p className="text-base sm:text-lg font-black tracking-tighter uppercase italic hidden sm:block">{item.title}</p>
                            <p className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.3em] text-neutral-400">Media Hash: {item.id}</p>
                            <div className="flex gap-2">
                              <span className="text-[8px] font-black uppercase bg-neutral-100 dark:bg-neutral-800 px-2 py-0.5 rounded text-neutral-500">4K ULTRA</span>
@@ -505,7 +505,7 @@ export default function BulkDownloader() {
                   {card.icon}
                 </div>
                 <div className="space-y-3">
-                  <h4 className="text-xl font-black uppercase italic tracking-tighter leading-none">{card.title}</h4>
+                  <h3 className="text-xl font-black uppercase italic tracking-tighter leading-none">{card.title}</h3>
                   <p className="text-base font-bold text-neutral-500 dark:text-neutral-400 leading-relaxed opacity-80">{card.desc}</p>
                 </div>
              </motion.div>
