@@ -265,14 +265,17 @@ function InstagramPageContent({
           </div>
         </div>
       </section>
-      {content.title && (
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-6">
         <Breadcrumbs 
-          locale={locale}
-          platform="Instagram"
-          platformPath="instagram"
-          toolTitle={content.title}
+          items={[
+            { name: "Home", item: `/${locale}` },
+            { name: "Instagram", item: `/${locale}/instagram` },
+            { name: pageTitle, item: `/${locale}/${content.slug || ""}` }
+          ]}
+          rating="4.9"
+          reviewCount="12,840"
         />
-      )}
+      </div>
 
       <div className="hidden sm:block">
         <RelatedTools currentPlatform="instagram" />

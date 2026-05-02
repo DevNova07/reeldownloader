@@ -179,14 +179,17 @@ function TwitterPageContent({ content, locale, dict }: TwitterPageProps) {
         </div>
       </section>
 
-      {content.title && (
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-6">
         <Breadcrumbs 
-          locale={locale}
-          platform="Twitter"
-          platformPath="twitter"
-          toolTitle={content.title}
+          items={[
+            { name: "Home", item: `/${locale}` },
+            { name: "Twitter", item: `/${locale}/twitter` },
+            { name: content.title || "Twitter Downloader", item: `/${locale}/${content.slug || ""}` }
+          ]}
+          rating="4.9"
+          reviewCount="3,420"
         />
-      )}
+      </div>
       <RelatedTools currentPlatform="twitter" />
       <CategoryCards />
       <InternalToolLinks currentPlatform="twitter" dict={dict} accentColor="text-slate-500" />

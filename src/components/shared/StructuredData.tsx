@@ -2,13 +2,26 @@ import Script from "next/script"
 import { useId } from "react"
 
 interface StructuredDataProps {
-  type: "FAQPage" | "HowTo" | "SoftwareApplication"
+  type: "FAQPage" | "HowTo" | "SoftwareApplication" | "BreadcrumbList" | "WebSite"
   data: any
 }
 
 export function StructuredData({ type, data }: StructuredDataProps) {
   const generatedId = useId()
     let schema: any = {}
+
+  if (type === "BreadcrumbList") {
+    schema = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": Array.isArray(data) ? data.map((item: any, index: number) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": item.name,
+        "item": item.item
+      })) : []
+    }
+  }
 
   if (type === "SoftwareApplication") {
     schema = {
@@ -42,6 +55,21 @@ export function StructuredData({ type, data }: StructuredDataProps) {
         "position": index + 1,
         "text": typeof step === 'string' ? step : (step.desc || step.title || step.text)
       })) : []
+    }
+  }
+
+  if (type === "WebSite") {
+    schema = {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "SavClip",
+      "alternateName": ["Sav Clip", "Savclip.com"],
+      "url": "https://savclip.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://savclip.com/en?url={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
     }
   }
 

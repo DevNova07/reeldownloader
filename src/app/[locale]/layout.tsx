@@ -73,6 +73,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
       icon: [
         { url: "/icon-192x192.png", type: "image/png", sizes: "192x192" },
         { url: "/icon.png", type: "image/png", sizes: "512x512" },
+        { url: "/icon.svg", type: "image/svg+xml" },
       ],
       shortcut: "/icon-192x192.png",
       apple: "/apple-touch-icon.png",
@@ -83,6 +84,9 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
       title: "SavClip",
     },
     applicationName: "SavClip",
+    other: {
+      "apple-mobile-web-app-title": "SavClip",
+    }
   };
 }
 
@@ -216,7 +220,7 @@ export default async function RootLayout(props: {
                 "@id": "https://savclip.com/#website",
                 "url": "https://savclip.com/",
                 "name": "SavClip",
-                "alternateName": ["SavClip Downloader", "SavClip.com"],
+                "alternateName": ["SavClip Downloader", "Sav Clip"],
                 "publisher": {
                   "@type": "Organization",
                   "@id": "https://savclip.com/#organization"

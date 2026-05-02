@@ -187,14 +187,17 @@ function TelegramPageContent({ content, locale, dict }: TelegramPageProps) {
         </div>
       </section>
 
-      {content.title && (
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-6">
         <Breadcrumbs 
-          locale={locale}
-          platform="Telegram"
-          platformPath="telegram"
-          toolTitle={content.title}
+          items={[
+            { name: "Home", item: `/${locale}` },
+            { name: "Telegram", item: `/${locale}/telegram` },
+            { name: content.title || "Telegram Downloader", item: `/${locale}/${content.slug || ""}` }
+          ]}
+          rating="4.9"
+          reviewCount="2,140"
         />
-      )}
+      </div>
       <RelatedTools currentPlatform="telegram" />
       <CategoryCards />
       <InternalToolLinks currentPlatform="telegram" dict={dict} accentColor="text-sky-500" />

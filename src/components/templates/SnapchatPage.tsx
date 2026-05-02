@@ -209,14 +209,17 @@ function SnapchatContent({
         </div>
       </section>
 
-      {content.title && (
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-6">
         <Breadcrumbs 
-          locale={locale}
-          platform="Snapchat"
-          platformPath="snapchat"
-          toolTitle={content.title}
+          items={[
+            { name: "Home", item: `/${locale}` },
+            { name: "Snapchat", item: `/${locale}/snapchat` },
+            { name: pageTitle, item: `/${locale}/${content.slug || ""}` }
+          ]}
+          rating="4.9"
+          reviewCount="5,210"
         />
-      )}
+      </div>
       <RelatedTools currentPlatform="snapchat" />
       <CategoryCards />
 

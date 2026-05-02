@@ -17,8 +17,8 @@ interface ExpandableSectionProps {
 export function ExpandableSection({
   children,
   maxHeight = 350,
-  labelOpen = "More",
-  labelClose = "Less",
+  labelOpen = "Read More",
+  labelClose = "Read Less",
   className,
   gradientClassName,
 }: ExpandableSectionProps) {

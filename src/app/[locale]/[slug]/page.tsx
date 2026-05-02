@@ -15,7 +15,7 @@ const TwitterPage = dynamic(() => import("@/components/templates/TwitterPage"));
 const TelegramPage = dynamic(() => import("@/components/templates/TelegramPage"));
 import { locales } from "@/i18n";
 
-const SITE_URL = "https://savclip.net";
+const SITE_URL = "https://savclip.com";
 
 interface PageProps {
   params: Promise<{ locale: string; slug: string }>;
@@ -235,7 +235,7 @@ export default async function Page(props: PageProps) {
     const colors = ["pink", "amber", "purple"];
     const themeColor = colors[Math.abs(jsonKey.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0) % colors.length)];
     
-    const templateProps = { content, locale: locale as any, themeColor, dict: minimalDict };
+    const templateProps = { content: { ...content, slug }, locale: locale as any, themeColor, dict: minimalDict };
 
     if (s.includes("facebook") || s.includes("fb-")) return <FacebookPage {...templateProps} />;
     if (s.includes("instagram") || s.includes("insta-") || s.includes("reels-")) return <InstagramPage {...templateProps} />;

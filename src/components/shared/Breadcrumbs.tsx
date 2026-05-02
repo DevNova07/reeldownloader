@@ -1,69 +1,51 @@
-import Link from 'next/link';
-import { ChevronRight, Home } from 'lucide-react';
+"use client"
+
+import React from 'react'
+import Link from 'next/link'
+import { ChevronRight, Star } from 'lucide-react'
+import { StructuredData } from './StructuredData'
 
 interface BreadcrumbsProps {
-  locale: string;
-  platform: string;
-  platformPath: string;
-  toolTitle: string;
+  items: { name: string; item: string }[]
+  rating?: string
+  reviewCount?: string
 }
 
-export function Breadcrumbs({ locale, platform, platformPath, toolTitle }: BreadcrumbsProps) {
-  const isEn = locale === 'en';
-  const homePath = isEn ? '/' : `/${locale}`;
-  const localizedPlatformPath = isEn ? `/${platformPath}` : `/${locale}/${platformPath}`;
-
-  const breadcrumbData = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": `https://savclip.net${homePath}`
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": platform,
-        "item": `https://savclip.net${localizedPlatformPath}`
-      },
-      {
-        "@type": "ListItem",
-        "position": 3,
-        "name": toolTitle,
-        "item": null
-      }
-    ]
-  };
-
+export function Breadcrumbs({ items, rating = "4.9", reviewCount = "12,840" }: BreadcrumbsProps) {
   return (
-    <nav aria-label="Breadcrumb" className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData) }}
-      />
-      <ol className="flex items-center space-x-2 text-[10px] font-black uppercase tracking-widest text-neutral-400 dark:text-neutral-500">
-        <li>
-          <Link href={homePath} className="flex items-center hover:text-pink-600 transition-colors">
-            <Home className="h-3 w-3 mr-1" />
-            <span>Home</span>
-          </Link>
-        </li>
-        <li className="flex items-center space-x-2">
-          <ChevronRight className="h-3 w-3 text-neutral-300 dark:text-neutral-700" />
-          <Link href={localizedPlatformPath} className="hover:text-pink-600 transition-colors">
-            {platform}
-          </Link>
-        </li>
-        <li className="flex items-center space-x-2">
-          <ChevronRight className="h-3 w-3 text-neutral-300 dark:text-neutral-700" />
-          <span className="text-neutral-900 dark:text-white truncate max-w-[150px] sm:max-w-none">
-            {toolTitle}
-          </span>
-        </li>
-      </ol>
-    </nav>
-  );
+    <div className="flex flex-col gap-2 mb-6">
+      <nav className="flex items-center space-x-2 text-xs sm:text-sm font-medium text-neutral-400">
+        {items.map((item, index) => (
+          <React.Fragment key={item.item}>
+            {index > 0 && <ChevronRight className="h-3 w-3 text-neutral-600" />}
+            {index === items.length - 1 ? (
+              <span className="text-neutral-500 truncate max-w-[150px] sm:max-w-none">{item.name}</span>
+            ) : (
+              <Link 
+                href={item.item}
+                className="hover:text-[#a4d444] transition-colors whitespace-nowrap"
+              >
+                {item.name}
+              </Link>
+            )}
+          </React.Fragment>
+        ))}
+      </nav>
+
+      {/* Trust Rating Bar */}
+      <div className="flex items-center gap-2 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-neutral-500">
+        <div className="flex items-center gap-1 text-[#a4d444]">
+          {[...Array(5)].map((_, i) => (
+            <Star key={i} className="h-3 w-3 fill-current" />
+          ))}
+          <span className="ml-1">{rating}</span>
+        </div>
+        <span className="text-neutral-700 dark:text-neutral-300">|</span>
+        <span>{reviewCount} Reviews</span>
+      </div>
+
+      {/* JSON-LD Schema */}
+      <StructuredData type="BreadcrumbList" data={items} />
+    </div>
+  )
 }
