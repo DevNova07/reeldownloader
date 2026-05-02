@@ -227,10 +227,7 @@ export default function BioLandingPage() {
                 <div className="bg-neutral-50 h-20 w-20 rounded-full flex items-center justify-center mx-auto mb-6">
                   <Search className="h-8 w-8 text-neutral-300" />
                 </div>
-                <motion.h2 className="text-3xl font-black text-neutral-900 dark:text-white uppercase italic tracking-widest text-center mb-12">
-                  Why Use Our Bio Link?
-                </motion.h2>
-                <p className="mt-4 text-lg text-neutral-500 dark:text-neutral-400 font-medium italic opacity-80 sm:hidden mb-8 text-center hidden sm:block">{dict.subtitle}</p>
+                {/* Redundant subtitle removed to fix build error */}
                 <h3 className="text-2xl font-bold text-black uppercase tracking-tight mb-2">
                   No match for &quot;{bioDescription}&quot;
                 </h3>

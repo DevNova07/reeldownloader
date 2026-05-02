@@ -183,7 +183,7 @@ export default function TwitterGifPage() {
               <Info className="h-8 w-8 text-slate-800" />
               {twDict.gif.seo.title}
             </h2>
-            <p className="mt-4 text-lg text-neutral-500 dark:text-neutral-400 font-medium italic opacity-80 sm:hidden hidden sm:block">{dict.seo?.desc || dict.subtitle}</p>
+            {/* Redundant description removed to fix build error */}
             <p className="mt-4 text-lg text-neutral-500 dark:text-neutral-400 font-medium italic opacity-80 hidden sm:block">{twDict.gif.subtitle}</p>
             <p className="mt-4 text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed italic border-l-4 border-slate-500 pl-8 font-medium">
               {twDict.gif.seo.desc}
