@@ -9,7 +9,8 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const dict = await getDictionary(locale);
   const twitter = dict.platforms.twitter;
   return {
-    title: twitter.title,
+    title: twitter.seo?.title || twitter.title,
+    description: twitter.seo?.desc,
     alternates: getSeoAlternates("twitter", locale),
   };
 }

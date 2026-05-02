@@ -71,10 +71,10 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
     manifest: "/manifest.json?v=2",
     icons: {
       icon: [
-        { url: "/favicon.ico", sizes: "any" },
+        { url: "/icon-192x192.png", type: "image/png", sizes: "192x192" },
         { url: "/icon.png", type: "image/png", sizes: "512x512" },
       ],
-      shortcut: "/favicon.ico",
+      shortcut: "/icon-192x192.png",
       apple: "/apple-touch-icon.png",
     },
     appleWebApp: {
@@ -82,6 +82,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
       statusBarStyle: "default",
       title: "SavClip",
     },
+    applicationName: "SavClip",
   };
 }
 
@@ -141,10 +142,7 @@ export default async function RootLayout(props: {
   return (
     <html lang={locale} dir={direction} suppressHydrationWarning className="scroll-smooth" data-scroll-behavior="smooth">
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/favicon-48x48.png" type="image/png" sizes="48x48" />
-        <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
-        <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
+        <link rel="icon" href="/icon-192x192.png" type="image/png" sizes="192x192" />
         <link rel="icon" href="/icon.png" type="image/png" sizes="512x512" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
@@ -203,23 +201,50 @@ export default async function RootLayout(props: {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "SoftwareApplication",
-              "name": "SavClip",
-              "operatingSystem": "WINDOWS, macOS, Android, iOS",
-              "applicationCategory": "UtilitiesApplication",
-              "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "USD"
+            __html: JSON.stringify([
+              {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                "@id": "https://savclip.com/#website",
+                "url": "https://savclip.com/",
+                "name": "SavClip",
+                "alternateName": ["SavClip Downloader", "SavClip.com"],
+                "publisher": {
+                  "@type": "Organization",
+                  "@id": "https://savclip.com/#organization"
+                }
               },
-              "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "4.9",
-                "ratingCount": "15420"
+              {
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                "@id": "https://savclip.com/#organization",
+                "name": "SavClip",
+                "url": "https://savclip.com/",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://savclip.com/icon.png",
+                  "width": 512,
+                  "height": 512
+                }
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "SoftwareApplication",
+                "name": "SavClip",
+                "operatingSystem": "WINDOWS, macOS, Android, iOS",
+                "applicationCategory": "UtilitiesApplication",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "0",
+                  "priceCurrency": "USD"
+                },
+                "aggregateRating": {
+                  "@type": "AggregateRating",
+                  "ratingValue": "4.9",
+                  "ratingCount": "15420"
+                }
               }
-            })
+            ])
           }}
         />
          <InstallPWA />

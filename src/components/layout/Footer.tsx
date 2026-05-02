@@ -35,10 +35,6 @@ export function Footer({ locale, dict }: { locale: string, dict: any }) {
           {/* Column 1: Branding & Philosophy */}
           <div className="lg:col-span-4 space-y-8">
             <Link href={getLocalizedHref("/")} className="flex items-center gap-3 group">
-              <div className="relative flex h-14 w-14 items-center justify-center overflow-hidden rounded-[1.25rem] bg-black shadow-2xl group-hover:scale-105 transition-transform duration-500">
-                 <Image src="/icon.png" alt="SavClip Logo" width={56} height={56} className="object-contain" />
-                 <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-              </div>
               <span className="text-3xl font-black tracking-tighter text-neutral-900 dark:text-white uppercase italic">
                 Sav<span className="text-pink-600">Clip</span>
               </span>

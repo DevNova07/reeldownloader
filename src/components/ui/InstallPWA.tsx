@@ -14,20 +14,26 @@ export function InstallPWA() {
     const isStandalone = window.matchMedia('(display-mode: standalone)').matches
     if (isStandalone) return;
 
-    // Force show on every refresh if not installed
+    // Force show on every refresh if not installed after a small delay
     const checkTriggers = () => {
-      setShowInstallPrompt(true)
-    }
+      const dismissed = localStorage.getItem('savclip_pwa_dismissed');
+      if (!dismissed) {
+        setShowInstallPrompt(true);
+      }
+    };
+
+    const timer = setTimeout(checkTriggers, 2000);
 
     const handleBeforeInstallPrompt = (e: Event) => {
       e.preventDefault();
       setDeferredPrompt(e);
-      setShowInstallPrompt(true)
+      setShowInstallPrompt(true);
     };
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
     return () => {
       window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+      clearTimeout(timer);
     };
   }, []);
 
@@ -44,6 +50,7 @@ export function InstallPWA() {
 
   const handleDismiss = () => {
     setShowInstallPrompt(false);
+    localStorage.setItem('savclip_pwa_dismissed', 'true');
   };
 
   return (

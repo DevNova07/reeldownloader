@@ -32,7 +32,7 @@ export default function AdminPage() {
     setError("")
 
     try {
-      const response = await fetch(`/api/admin/stats?password=${encodeURIComponent(password)}`)
+      const response = await fetch(`/api/admin/stats?password=${encodeURIComponent(password)}`, { cache: 'no-store' })
       const result = await response.json()
       if (result.success) {
         setStats(result.stats)
@@ -50,7 +50,7 @@ export default function AdminPage() {
   const refreshStats = async () => {
     setIsLoading(true)
     try {
-      const response = await fetch(`/api/admin/stats?password=${encodeURIComponent(password)}`)
+      const response = await fetch(`/api/admin/stats?password=${encodeURIComponent(password)}`, { cache: 'no-store' })
       const result = await response.json()
       if (result.success) {
         setStats(result.stats)

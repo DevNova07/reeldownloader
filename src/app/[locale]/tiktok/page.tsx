@@ -9,7 +9,8 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const dict = await getDictionary(locale);
   const tiktok = dict.platforms.tiktok;
   return {
-    title: tiktok.title,
+    title: tiktok.seo?.title || tiktok.title,
+    description: tiktok.seo?.desc,
     alternates: getSeoAlternates("tiktok", locale),
   };
 }
