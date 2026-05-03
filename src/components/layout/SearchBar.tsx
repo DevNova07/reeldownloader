@@ -158,7 +158,7 @@ function SearchBarInner({
       )} />
 
       <motion.div
-        initial={{ opacity: 0, scale: 0.98, y: 10 }}
+        initial={false}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className="relative"
@@ -166,7 +166,7 @@ function SearchBarInner({
         {/* Badges Row */}
         {/* Animated Hint */}
         <motion.div 
-          initial={{ opacity: 0, y: 10 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
           className="flex justify-center mb-3"
@@ -240,7 +240,7 @@ function SearchBarInner({
         <AnimatePresence>
           {error && (
             <motion.div
-              initial={{ opacity: 0, y: -10 }}
+              initial={false}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               className="mt-3 flex items-center gap-2 text-sm text-red-100" // lighter text since bg will be gradient
@@ -252,7 +252,7 @@ function SearchBarInner({
         </AnimatePresence>
 
         {/* Badges Row - Bottom */}
-        <div className="flex items-center justify-between px-1 mt-8">
+        <div className="flex items-center justify-between px-1 mt-8 sm:hidden">
            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/10 backdrop-blur-md border border-white/10 shadow-sm transition-all hover:bg-white/20">
               <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
               <span className="text-[10px] font-black text-white uppercase tracking-wider">Ultra HD / 4K</span>

@@ -112,7 +112,7 @@ export function RelatedTools({ currentPlatform, max = 4 }: RelatedToolsProps) {
           {tools.map((tool, idx) => (
             <motion.div
               key={tool.id}
-              initial={{ opacity: 0, y: 30 }}
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1, type: "spring", stiffness: 200, damping: 15 }}

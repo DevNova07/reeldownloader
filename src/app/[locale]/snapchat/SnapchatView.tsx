@@ -109,19 +109,6 @@ export default function SnapchatView({ dict, locale }: { dict: any, locale: stri
         
         <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-3 sm:gap-6">
           
-          <SocialPlatformBar   activeId="snapchat" />
-          <PlatformTabs   
-            activeId="spotlight" 
-            activeColor="text-yellow-600"
-            tabs={dict.tabs}
-            items={[
-              { id: "video", label: dict.tabs?.video || "Video", href: "/snapchat", icon: <Ghost className="h-4 w-4" /> },
-              { id: "spotlight", label: dict.tabs?.spotlight || "Spotlight", href: "/snapchat/spotlight", icon: <Play className="h-4 w-4" /> },
-              { id: "story", label: dict.tabs?.story || "Story", href: "/snapchat/story", icon: <StopCircle className="h-4 w-4" /> },
-              { id: "photo", label: dict.tabs?.photo || "Photo", href: "/snapchat/photo", icon: <Camera className="h-4 w-4" /> },
-            ]} 
-          />
-
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -131,6 +118,12 @@ export default function SnapchatView({ dict, locale }: { dict: any, locale: stri
               {snapDict.title}
             </h1>
           </motion.div>
+
+          <p className=" mx-auto  max-w-2xl mt-2  text-sm font-bold text-black/60 tracking-widest uppercase italic hidden sm:block">
+              {snapDict.subtitle}
+            </p>
+
+          
 
           
           
@@ -144,9 +137,9 @@ export default function SnapchatView({ dict, locale }: { dict: any, locale: stri
               iconClass="text-yellow-500"
             />
 
-            <p className="mx-auto mb-4 max-w-2xl mt-8 mb-2 text-sm font-bold text-black/60 tracking-widest uppercase italic hidden sm:block">
-              {snapDict.subtitle}
-            </p>
+          
+
+            
 
             {!downloadData && !isLoading && (
               <div className="overflow-hidden">

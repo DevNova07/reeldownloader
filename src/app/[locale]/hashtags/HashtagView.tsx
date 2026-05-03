@@ -56,6 +56,12 @@ export function HashtagView({ locale, dict }: { locale: Locale, dict: any }) {
             {(hashtagDict?.trending_title || 'TRENDING').split(' ')[0]} <span className="text-[#a4d444] font-normal">{(hashtagDict?.trending_title || 'NEW').split(' ')[1] || 'NEW'}</span> {(hashtagDict?.title || 'HASHTAGS').split(' ')[1] || 'HASHTAGS'}
           </motion.h1>
 
+          <p className="mt-2 text-sm font-medium text-white/90 tracking-wide brightness-110 hidden sm:block">
+            {hashtagDict.subtitle}
+          </p>
+
+          
+
           {/* Search Bar Container */}
           <PremiumSearch 
             value={keyword}
@@ -67,14 +73,7 @@ export function HashtagView({ locale, dict }: { locale: Locale, dict: any }) {
             buttonColor="bg-[#a4d444]"
           />
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="text-sm font-medium text-white/90 tracking-wide brightness-110 hidden sm:block"
-          >
-            {hashtagDict.subtitle}
-          </motion.p>
+          
         </div>
       </section>
 

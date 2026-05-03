@@ -56,7 +56,7 @@ export function DownloadCounter({ accentColor = "text-pink-400" }: { accentColor
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 10 }}
+      initial={false}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.3 }}
       className="hidden md:flex mx-auto mt-5 w-fit items-center gap-3 rounded-full border border-white/10 bg-white/10 px-5 py-2.5 backdrop-blur-md will-change-transform"

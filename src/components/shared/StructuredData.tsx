@@ -63,7 +63,7 @@ export function StructuredData({ type, data }: StructuredDataProps) {
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "SavClip",
-      "alternateName": ["Sav Clip", "Savclip.com"],
+      "alternateName": ["SavClip Downloader", "savclip.com"],
       "url": "https://savclip.com",
       "potentialAction": {
         "@type": "SearchAction",

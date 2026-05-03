@@ -30,7 +30,7 @@ export function AISearchBar({
     <div className="mx-auto w-full max-w-4xl px-4 space-y-4">
       {/* Input Group */}
       <motion.div 
-        initial={{ opacity: 0, y: 10 }}
+        initial={false}
         animate={{ opacity: 1, y: 0 }}
         className="relative flex items-center rounded-3xl border border-neutral-800 bg-[#0a0a0a] p-1.5 shadow-2xl ring-1 ring-white/5 transition-all focus-within:ring-2 focus-within:ring-white/10"
       >
@@ -49,7 +49,7 @@ export function AISearchBar({
 
       {/* Action Button */}
       <motion.button
-        initial={{ opacity: 0, y: 10 }}
+        initial={false}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
         onClick={onSearch}

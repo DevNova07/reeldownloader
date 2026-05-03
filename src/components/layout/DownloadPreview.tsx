@@ -324,7 +324,7 @@ export function DownloadPreview({
         {isLoading ? (
           <motion.div
             key="loading"
-            initial={{ opacity: 0, y: 10 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             className="mx-auto mt-10 w-full max-w-5xl rounded-[2.5rem] p-4 md:p-12 bg-white/10 backdrop-blur-3xl border border-white/20 overflow-hidden relative"
@@ -355,7 +355,7 @@ export function DownloadPreview({
         ) : data ? (
           <motion.div
             key="content"
-            initial={{ opacity: 0, scale: 0.9, y: 30 }}
+            initial={false}
             animate={{ 
               opacity: 1, 
               scale: 1, 
@@ -416,7 +416,7 @@ export function DownloadPreview({
                   {data.items?.map((item, idx) => (
                     <motion.div
                       key={item.id}
-                      initial={{ opacity: 0, y: 20 }}
+                      initial={false}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: idx * 0.05 }}
                       onClick={() => onSearch?.(item.url)}
@@ -545,7 +545,7 @@ export function DownloadPreview({
 
                           {isThisDownloading && (
                             <motion.div
-                              initial={{ opacity: 0, height: 0 }}
+                              initial={false}
                               animate={{ opacity: 1, height: "auto" }}
                               exit={{ opacity: 0, height: 0 }}
                             >
@@ -578,7 +578,7 @@ export function DownloadPreview({
 
                     {isAudioDownloading && (
                       <motion.div
-                        initial={{ opacity: 0, height: 0 }}
+                        initial={false}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
                       >
@@ -727,7 +727,7 @@ export function DownloadPreview({
                         return (
                           <motion.div
                             key={i}
-                            initial={{ opacity: 0, scale: 0.95 }}
+                            initial={false}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: i * 0.1 }}
                             className="flex items-start gap-3 rounded-2xl bg-white/5 backdrop-blur-sm p-4 transition-all hover:bg-white/10 cursor-default border border-white/5"

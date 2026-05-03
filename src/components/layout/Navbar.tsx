@@ -82,7 +82,7 @@ export function Navbar({ dict }: { dict: any }) {
     if (pathWithoutLocale.startsWith('/captions')) return { id: 'AI Caption', prefix: 'AI ', suffix: 'Caption', icon: Sparkles, bg: 'from-pink-600 to-rose-600', text: 'text-pink-600' }
 
     // Default (Instagram)
-    return { id: dict?.categories?.insta || "Instagram", prefix: 'Sav', suffix: 'Clip', icon: Camera, bg: 'from-[#cc00ff] to-[#ff0080]', text: 'text-pink-600' }
+    return { id: dict?.categories?.insta || "Instagram", prefix: 'Sav', suffix: 'Clip', icon: Camera, bg: 'from-blue-600 to-indigo-700', text: 'text-blue-600' }
   }, [pathname, dict?.categories])
 
   const sortedServices = React.useMemo(() => {
@@ -187,7 +187,7 @@ export function Navbar({ dict }: { dict: any }) {
               <AnimatePresence>
                 {isLangOpen && (
                   <motion.div
-                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                    initial={false}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 10, scale: 0.95 }}
                     className="absolute inset-inline-end-0 mt-3 w-[min(90vw,320px)] max-h-[80vh] overflow-y-auto rounded-2xl border border-neutral-100 bg-white/80 p-3 shadow-2xl backdrop-blur-xl dark:border-neutral-800 dark:bg-neutral-900/90 scrollbar-thin scrollbar-thumb-neutral-200 dark:scrollbar-thumb-neutral-800"
@@ -229,7 +229,7 @@ export function Navbar({ dict }: { dict: any }) {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
+            initial={false}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             className="overflow-hidden border-t border-neutral-100 bg-white/95 backdrop-blur-lg dark:border-neutral-800 dark:bg-black/95"

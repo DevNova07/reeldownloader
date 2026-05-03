@@ -46,7 +46,7 @@ export function PopularTools() {
           {tools.map((tool, idx) => (
             <motion.div
               key={tool.slug}
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={false}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ delay: idx * 0.05 }}
               whileHover={{ y: -5 }}

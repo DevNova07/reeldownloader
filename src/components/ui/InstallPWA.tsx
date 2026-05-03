@@ -58,7 +58,7 @@ export function InstallPWA() {
     <AnimatePresence>
       {showInstallPrompt && (
         <motion.div
-          initial={{ opacity: 0, y: 30, scale: 0.98 }}
+          initial={false}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 30, scale: 0.98 }}
           className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] w-[calc(100%-2rem)] max-w-[400px] overflow-hidden rounded-[2rem] border border-white/10 bg-black/80 px-4 py-3 shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur-3xl sm:left-auto sm:right-6 sm:translate-x-0"

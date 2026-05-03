@@ -25,7 +25,7 @@ export function PremiumInfoSection({
       <div className="mx-auto max-w-4xl text-center">
         <div className="flex flex-col items-center gap-12">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
@@ -49,7 +49,7 @@ export function PremiumInfoSection({
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={false}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, type: "spring" }}

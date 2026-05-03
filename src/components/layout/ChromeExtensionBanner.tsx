@@ -18,7 +18,7 @@ export function ChromeExtensionBanner({ dict }: ChromeExtensionBannerProps) {
   return (
     <section className="mx-auto max-w-7xl px-4 py-8 sm:py-16 sm:px-6 lg:px-8">
       <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
+        initial={false}
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}

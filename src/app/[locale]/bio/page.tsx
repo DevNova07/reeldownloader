@@ -115,6 +115,11 @@ export default function BioLandingPage() {
             </h1>
           </motion.div>
 
+          <p className="mx-auto  max-w-3xl mt-2 text-[10px] sm:text-[11px] font-light text-white/90 tracking-[0.2em] sm:tracking-[0.25em] drop-shadow-md leading-relaxed hidden sm:block">
+            GENERATE THE MOST VIRAL BIOS FOR YOUR REELS, TIKTOK, AND SHORTS USING OUR SMART AI ALGORITHM.
+          </p>
+
+
           <PremiumSearch 
             value={bioDescription}
             onChange={setBioDescription}
@@ -125,14 +130,8 @@ export default function BioLandingPage() {
             buttonColor="bg-[#d9f99d]"
           />
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="text-[10px] sm:text-[11px] font-light text-white/90 tracking-[0.2em] sm:tracking-[0.25em] max-w-3xl mx-auto drop-shadow-md leading-relaxed hidden sm:block"
-          >
-            GENERATE THE MOST VIRAL BIOS FOR YOUR REELS, TIKTOK, AND SHORTS USING OUR SMART AI ALGORITHM.
-          </motion.p>
+          
+
         </div>
       </section>
 

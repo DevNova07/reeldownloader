@@ -16,7 +16,7 @@ export function Breadcrumbs({ items, rating = "4.9", reviewCount = "12,840" }: B
     <div className="flex flex-col gap-2 mb-6">
       <nav className="flex items-center space-x-2 text-xs sm:text-sm font-medium text-neutral-400">
         {items.map((item, index) => (
-          <React.Fragment key={item.item}>
+          <React.Fragment key={`${item.item}-${index}`}>
             {index > 0 && <ChevronRight className="h-3 w-3 text-neutral-600" />}
             {index === items.length - 1 ? (
               <span className="text-neutral-500 truncate max-w-[150px] sm:max-w-none">{item.name}</span>

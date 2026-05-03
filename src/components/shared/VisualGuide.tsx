@@ -61,7 +61,7 @@ export function VisualGuide({ platformName, accentColor, bgAccentColor, Icon, st
     <section id="how-to-use" className="px-4 py-10 sm:py-20 bg-white dark:bg-black sm:px-6 lg:px-8 overflow-hidden">
       <div className="mx-auto max-w-7xl">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center mb-16"
@@ -79,7 +79,7 @@ export function VisualGuide({ platformName, accentColor, bgAccentColor, Icon, st
           {steps.map((step, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 40 }}
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.2 }}

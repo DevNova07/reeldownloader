@@ -37,7 +37,7 @@ export function HeroQuickGuide({ steps, accentColor = "text-white", className }:
         {steps.slice(0, 3).map((step, idx) => (
           <React.Fragment key={idx}>
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={false}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 + idx * 0.1 }}
               className="flex items-center gap-3 rounded-full bg-white/10 px-6 py-2.5 backdrop-blur-md ring-1 ring-white/20 transition-all hover:bg-white/20"
@@ -57,7 +57,7 @@ export function HeroQuickGuide({ steps, accentColor = "text-white", className }:
             
             {idx < 2 && (
               <motion.div
-                initial={{ opacity: 0 }}
+                initial={false}
                 animate={{ opacity: 0.4 }}
                 transition={{ delay: 0.3 + idx * 0.1 }}
               >

@@ -26,7 +26,7 @@ export function PurpleStepGuide({ title, steps, className }: PurpleStepGuideProp
   return (
     <section className={cn("px-4 py-12 sm:py-24", className)}>
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
+        initial={false}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -42,7 +42,7 @@ export function PurpleStepGuide({ title, steps, className }: PurpleStepGuideProp
         
         <div className="relative z-10 flex flex-col items-center">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={false}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             className="flex items-center gap-3 mb-4"
@@ -59,7 +59,7 @@ export function PurpleStepGuide({ title, steps, className }: PurpleStepGuideProp
             {steps.map((step, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 30 }}
+                initial={false}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.2 }}

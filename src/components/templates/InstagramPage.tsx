@@ -21,7 +21,6 @@ import { HeroEffect } from "@/components/shared/HeroEffect";
 import { Camera, PlaySquare, Film, StopCircle, Zap, ShieldCheck, CheckCircle2, HelpCircle, Info, Music as MusicIcon } from "lucide-react";
 import { cn, isValidInstaUrl } from "@/utils/cn";
 
-
 import { MobileAccordion } from "@/components/ui/MobileAccordion";
 const TrustBadges = dynamic(() => import("@/components/ui/TrustBadges").then(m => m.TrustBadges));
 
@@ -71,8 +70,6 @@ function InstagramPageContent({
 
   const { history: recentDownloads, addToHistory, clearHistory } = useDownloadHistory("instagram");
   const searchParams = useSearchParams()
-
-
 
   const handleSearch = async (url: string, isAutoTrigger = false) => {
     setSearchCounter(prev => prev + 1);
@@ -143,21 +140,21 @@ function InstagramPageContent({
 
         <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-3 sm:gap-6">
           <SocialPlatformBar activeId="instagram" />
-          <PlatformTabs
-            activeId={activeTab}
+          <PlatformTabs   
+            activeId={activeTab} 
             activeColor={cx.text}
             tabs={dict?.tabs}
             locale={locale}
             items={[
-              { id: "video", label: dict?.tabs?.video || "Video", href: "/instagram", icon: <Camera className="h-4 w-4" /> },
-              { id: "reels", label: dict?.tabs?.reels || "Reels", href: "/reels", icon: <PlaySquare className="h-4 w-4" /> },
-              { id: "story", label: dict?.tabs?.story || "Story", href: "/story", icon: <StopCircle className="h-4 w-4" /> },
-              { id: "music", label: dict?.tabs?.music || "Music", href: "/music", icon: <MusicIcon className="h-4 w-4" /> },
-            ]}
+              { id: "reels", label: dict?.tabs?.reels || "Reels", href: "/instagram-reels-downloader", icon: <Film className="h-4 w-4" /> },
+              { id: "video", label: dict?.tabs?.video || "Video", href: "/instagram-video-downloader", icon: <Film className="h-4 w-4" /> },
+              { id: "story", label: dict?.tabs?.story || "Story", href: "/instagram-story-downloader", icon: <StopCircle className="h-4 w-4" /> },
+              { id: "photo", label: dict?.tabs?.photo || "Photo", href: "/instagram-photo-downloader", icon: <Camera className="h-4 w-4" /> },
+            ]} 
           />
 
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
@@ -166,6 +163,9 @@ function InstagramPageContent({
             </h1>
           </motion.div>
 
+          <p className=" mx-auto  max-w-2xl mt-2  text-sm font-bold text-white/60 tracking-widest uppercase italic hidden sm:block">{content?.subtitle || pageSeo?.desc || "Fast and secure Instagram downloader."}</p>
+
+          
 
           <SearchBar
             onSearch={handleSearch}
@@ -175,14 +175,12 @@ function InstagramPageContent({
             initialValue={sharedUrl}
           />
 
-          <p className="mx-auto mb-4 max-w-2xl mt-8 mb-2 text-sm font-bold text-white/60 tracking-widest uppercase italic hidden sm:block">{content?.subtitle || pageSeo?.desc || "Fast and secure Instagram downloader."}</p>
-
-
+          
 
           <AnimatePresence>
             {error && (
               <motion.div
-                initial={{ opacity: 0, y: -10 }}
+                initial={false}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 className="mx-auto max-w-3xl mt-4 p-4 rounded-2xl bg-red-500/20 border-2 border-red-500/50 text-white font-black tracking-wider shadow-2xl backdrop-blur-md"
@@ -225,7 +223,7 @@ function InstagramPageContent({
               <AnimatePresence>
                 {!isLoading && !downloadData && recentDownloads.length > 0 && (
                   <motion.div
-                    initial={{ opacity: 0, y: 10 }}
+                    initial={false}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     className="mx-auto mt-16 w-full max-w-4xl"
@@ -269,7 +267,6 @@ function InstagramPageContent({
           </div>
         </div>
       </section>
-
 
       <PremiumInfoSection 
         title="Instagram Video Downloader"
@@ -501,6 +498,7 @@ function InstagramPageContent({
         ]}
       />
 
+      
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 my-12 border-t border-neutral-100 dark:border-neutral-800 pt-10">
         <Breadcrumbs 
@@ -513,7 +511,7 @@ function InstagramPageContent({
           reviewCount="12,840"
         />
       </div>
-    </div>
+</div>
   );
 }
 

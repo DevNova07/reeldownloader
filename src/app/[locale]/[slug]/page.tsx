@@ -126,6 +126,14 @@ export default async function Page(props: PageProps) {
   }
 
   // Generate Structured Data (JSON-LD)
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "SavClip",
+    "url": SITE_URL,
+    "logo": `${SITE_URL}/icon.png`
+  };
+
   const softwareSchema = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -292,6 +300,7 @@ export default async function Page(props: PageProps) {
 
   return (
     <>
+      <JSONLD data={organizationSchema} />
       <JSONLD data={softwareSchema} />
       {howToSchema && <JSONLD data={howToSchema} />}
       {faqSchema && <JSONLD data={faqSchema} />}

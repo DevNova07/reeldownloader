@@ -16,6 +16,7 @@ import type { Viewport } from "next";
 import { ScrollToTop } from "@/components/shared/ScrollToTop";
 import { Analytics } from "@/components/shared/Analytics";
 import { ToolSubNav } from "@/components/layout/ToolSubNav";
+import { GlobalPlatformNav } from "@/components/layout/GlobalPlatformNav";
 import { getSeoAlternates } from "@/lib/seo";
 
 const inter = Inter({ 
@@ -71,11 +72,11 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
     manifest: "/manifest.json?v=2",
     icons: {
       icon: [
-        { url: "/icon-192x192.png", type: "image/png", sizes: "192x192" },
         { url: "/icon.png", type: "image/png", sizes: "512x512" },
+        { url: "/icon-192x192.png", type: "image/png", sizes: "192x192" },
         { url: "/icon.svg", type: "image/svg+xml" },
       ],
-      shortcut: "/icon-192x192.png",
+      shortcut: "/icon.png",
       apple: "/apple-touch-icon.png",
     },
     appleWebApp: {
@@ -86,6 +87,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
     applicationName: "SavClip",
     other: {
       "apple-mobile-web-app-title": "SavClip",
+      "google-site-verification": "google-site-verification-id-here", // User should replace this
     }
   };
 }
@@ -146,10 +148,18 @@ export default async function RootLayout(props: {
   return (
     <html lang={locale} dir={direction} suppressHydrationWarning className="scroll-smooth" data-scroll-behavior="smooth">
       <head>
-        <link rel="icon" href="/icon-192x192.png" type="image/png" sizes="192x192" />
-        <link rel="icon" href="/icon.png" type="image/png" sizes="512x512" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="512x512" href="/icon.png" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
+        
+        
+        
+        
+        
+        
+        
+        
         <Script
           id="service-worker-registration"
           strategy="afterInteractive"
@@ -210,6 +220,7 @@ export default async function RootLayout(props: {
             }}
           />
 
+        
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -218,25 +229,19 @@ export default async function RootLayout(props: {
                 "@context": "https://schema.org",
                 "@type": "WebSite",
                 "@id": "https://savclip.com/#website",
-                "url": "https://savclip.com/",
+                "url": "https://savclip.com",
                 "name": "SavClip",
-                "alternateName": ["SavClip Downloader", "Sav Clip"],
+                "alternateName": ["SavClip Downloader", "savclip.com"],
                 "publisher": {
                   "@type": "Organization",
-                  "@id": "https://savclip.com/#organization"
-                }
-              },
-              {
-                "@context": "https://schema.org",
-                "@type": "Organization",
-                "@id": "https://savclip.com/#organization",
-                "name": "SavClip",
-                "url": "https://savclip.com/",
-                "logo": {
-                  "@type": "ImageObject",
-                  "url": "https://savclip.com/icon.png",
-                  "width": 512,
-                  "height": 512
+                  "@id": "https://savclip.com/#organization",
+                  "name": "SavClip",
+                  "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://savclip.com/icon.png",
+                    "width": 512,
+                    "height": 512
+                  }
                 }
               },
               {

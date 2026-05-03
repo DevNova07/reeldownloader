@@ -88,7 +88,7 @@ export function InternalToolLinks({ currentPlatform, dict, accentColor = "text-p
           {relatedTools.map((tool, idx) => (
             <motion.div
               key={tool.key}
-              initial={{ opacity: 0, scale: 0.95 }}
+              initial={false}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.05 }}

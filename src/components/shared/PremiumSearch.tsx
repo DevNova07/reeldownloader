@@ -35,7 +35,7 @@ export function PremiumSearch({
       )} />
 
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={false}
         animate={{ opacity: 1, y: 0 }}
         className="relative group flex items-center bg-white dark:bg-neutral-900 rounded-2xl shadow-2xl border border-neutral-100 dark:border-neutral-800 p-1 transition-all duration-300 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-[#a4d444]"
       >
@@ -80,7 +80,7 @@ export function PremiumSearch({
 
       {/* Suggested Tags / Micro-labels below */}
       <motion.div 
-        initial={{ opacity: 0 }}
+        initial={false}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5 }}
         className="mt-4 flex flex-wrap justify-center gap-2"

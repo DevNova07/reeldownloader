@@ -59,7 +59,7 @@ export function MobileAccordion({ items, className, accentColor = "text-pink-600
             <AnimatePresence initial={false}>
               {isOpen && (
                 <motion.div
-                  initial={{ height: 0, opacity: 0 }}
+                  initial={false}
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}

@@ -31,7 +31,7 @@ export default function HistoryPage({ dict, locale }: { dict: any, locale: strin
         <div className="relative z-10 mx-auto max-w-7xl">
           <div className="flex flex-col items-center text-center">
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={false}
               animate={{ opacity: 1, scale: 1 }}
               className="mb-6 flex h-16 w-16 items-center justify-center rounded-3xl bg-white/10 shadow-2xl backdrop-blur-xl ring-1 ring-white/20"
             >
@@ -106,7 +106,7 @@ export default function HistoryPage({ dict, locale }: { dict: any, locale: strin
                 <motion.div
                   layout
                   key={item.id}
-                  initial={{ opacity: 0, scale: 0.9 }}
+                  initial={false}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ delay: idx * 0.05 }}
