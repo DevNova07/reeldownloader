@@ -106,7 +106,7 @@ export default function TwitterGifPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
-           <h1 className="mb-2 text-3xl min-[400px]:text-4xl font-black tracking-tight text-white sm:text-7xl drop-shadow-2xl uppercase italic text-balance">
+            <h1 className="mb-2 text-3xl min-[400px]:text-4xl font-black tracking-tight uppercase italic text-white sm:text-7xl drop-shadow-2xl">
               {twDict.gif.title}
             </h1>
           </motion.div>
@@ -119,6 +119,10 @@ export default function TwitterGifPage() {
               buttonClass="bg-white text-black hover:bg-neutral-200"
               iconClass="text-slate-800"
             />
+
+            <p className="mx-auto mb-4 max-w-2xl mt-8 mb-2 text-sm font-bold text-white/60 tracking-widest uppercase italic hidden sm:block">
+              {twDict.gif.subtitle}
+            </p>
 
             <TrustBadges dict={dict} />
 
@@ -142,7 +146,7 @@ export default function TwitterGifPage() {
 
       <section className="bg-neutral-50 px-4 py-4 dark:bg-neutral-900/50 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <h2 className="mb-12 text-center text-3xl font-black text-neutral-900 dark:text-white uppercase italic tracking-widest">{dict.features.title}</h2>
+          <h2 className="mb-12 text-center text-3xl font-black text-neutral-900 dark:text-white tracking-widest uppercase italic">{dict.features.title}</h2>
           <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
             {[
               { icon: <Zap className="h-8 w-8 text-slate-500" /> },
@@ -153,7 +157,7 @@ export default function TwitterGifPage() {
                 <div className="mb-6 rounded-2xl bg-white p-5 shadow-2xl dark:bg-black transition-all hover:scale-110 hover:-rotate-3 border border-neutral-100 dark:border-neutral-800">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-black text-neutral-900 dark:text-white uppercase italic">{dict.features.items[idx].title}</h3>
+                <h3 className="text-xl font-black text-neutral-900 dark:text-white">{dict.features.items[idx].title}</h3>
                 <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 hidden sm:block">{dict.features.items[idx].desc}</p>
               </div>
             ))}
@@ -179,19 +183,19 @@ export default function TwitterGifPage() {
       <section className="px-4 py-20 bg-white dark:bg-black sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl">
           <div className="mt-10">
-            <h2 className="flex items-center gap-3 text-3xl font-black text-neutral-900 dark:text-white uppercase italic tracking-widest">
+            <h2 className="flex items-center gap-3 text-3xl font-black text-neutral-900 dark:text-white tracking-widest uppercase italic">
               <Info className="h-8 w-8 text-slate-800" />
               {twDict.gif.seo.title}
             </h2>
             {/* Redundant description removed to fix build error */}
-            <p className="mt-4 text-lg text-neutral-500 dark:text-neutral-400 font-medium italic opacity-80 hidden sm:block">{twDict.gif.subtitle}</p>
-            <p className="mt-4 text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed italic border-l-4 border-slate-500 pl-8 font-medium">
+            <p className="mt-4 text-lg text-neutral-500 dark:text-neutral-400 font-medium opacity-80 hidden sm:block">{twDict.gif.subtitle}</p>
+            <p className="mt-4 text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed border-l-4 border-slate-500 pl-8 font-medium">
               {twDict.gif.seo.desc}
             </p>
           </div>
 
           <div className="mt-44">
-            <h2 className="flex items-center gap-3 text-3xl font-black text-neutral-900 dark:text-white uppercase italic tracking-widest">
+            <h2 className="flex items-center gap-3 text-3xl font-black text-neutral-900 dark:text-white tracking-widest uppercase italic">
               <HelpCircle className="h-8 w-8 text-slate-800" />
               {dict.faq.title}
             </h2>
@@ -199,7 +203,7 @@ export default function TwitterGifPage() {
               {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
               {dict.faq.items.map((faq: any, idx: number) => (
                 <div key={idx} className="group rounded-[2rem] border border-neutral-200 p-8 dark:border-neutral-800 hover:border-slate-500/50 transition-all bg-white dark:bg-transparent hover:shadow-2xl">
-                  <h3 className="font-black text-neutral-900 dark:text-white group-hover:text-slate-600 transition-colors uppercase italic tracking-tighter text-lg">{faq.q}</h3>
+                  <h3 className="font-black text-neutral-900 dark:text-white group-hover:text-slate-600 transition-colors tracking-tight uppercase italicer text-lg">{faq.q}</h3>
                   <p className="mt-4 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 group-hover:opacity-100 transition-opacity">{faq.a}</p>
                 </div>
               ))}

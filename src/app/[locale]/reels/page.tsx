@@ -27,5 +27,5 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
   };
   const reels = platforms?.instagram?.reels;
 
-  return <InstagramPage content={reels} locale={locale} dict={dict} themeColor="pink" />;
+  return <InstagramPage content={reels} locale={locale} dict={dict} themeColor="pink" activeTab="reels" />;
 }

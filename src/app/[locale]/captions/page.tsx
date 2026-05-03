@@ -901,7 +901,7 @@ export default function CaptionsPage() {
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-3xl font-light tracking-[0.2em] text-white uppercase md:text-5xl"
+                        className="text-3xl font-light tracking-[0.2em] text-white md:text-5xl"
                     >
                         GENERATE <span className="text-[#a4d444] font-medium">AI</span> CAPTIONS
                     </motion.h1>
@@ -920,7 +920,7 @@ export default function CaptionsPage() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.2 }}
-                        className="text-sm font-medium text-white/90 tracking-wide brightness-110 uppercase hidden sm:block"
+                        className="text-sm font-medium text-white/90 tracking-wide brightness-110 hidden sm:block"
                     >
                         Find the perfect vibe for your next post
                     </motion.p>
@@ -930,17 +930,17 @@ export default function CaptionsPage() {
 
                  {/* 🎨 CAPTION LIBRARY BY MOOD (Accordion Style - Split UI) */}
             <section className="px-4 py-8 bg-neutral-50 dark:bg-black/50">
-        <p className="mb-8 text-lg text-neutral-500 dark:text-neutral-400 font-medium italic opacity-80 sm:hidden text-center">Find the perfect vibe for your next post</p>
+        <p className="mb-8 text-lg text-neutral-500 dark:text-neutral-400 font-medium opacity-80 sm:hidden text-center">Find the perfect vibe for your next post</p>
         <div className="mx-auto max-w-7xl">
                     <div className="text-center mb-16 lg:text-left">
                         <motion.h2
                             initial={{ opacity: 0, y: 15 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            className="text-4xl font-bold uppercase tracking-tighter text-neutral-900 md:text-6xl"
+                            className="text-4xl font-bold tracking-tight uppercase italicer text-neutral-900 md:text-6xl"
                         >
                             EXPLORE BY <span className="text-[#a4d444]">MOOD</span>
                         </motion.h2>
-                        <p className="mt-2 text-[11px] font-bold text-neutral-400 uppercase tracking-[0.3em]">Use the search above to find your vibe</p>
+                        <p className="mt-2 text-[11px] font-bold text-neutral-400 tracking-[0.3em]">Use the search above to find your vibe</p>
                     </div>
 
                     <div className="lg:grid lg:grid-cols-[1fr_470px] lg:gap-16 lg:items-start">
@@ -968,7 +968,7 @@ export default function CaptionsPage() {
                                                         isExpanded ? "text-[#a4d444] scale-110" : "text-black group-hover:text-black/70"
                                                     )} />
                                                     <h3 className={cn(
-                                                        "text-lg font-bold uppercase tracking-tighter transition-all duration-300",
+                                                        "text-lg font-bold tracking-tight uppercase italicer transition-all duration-300",
                                                         isExpanded ? "text-neutral-900" : "text-black group-hover:text-neutral-600"
                                                     )}>
                                                         {collection.title}
@@ -1071,7 +1071,7 @@ export default function CaptionsPage() {
                                                             </p>
                                                             
                                                             {/* The Massive Hashtag Cloud */}
-                                                            <p className="text-sm font-bold text-blue-600 dark:text-blue-400 mt-3 leading-relaxed tracking-tight">
+                                                            <p className="text-sm font-bold text-blue-600 dark:text-blue-400 mt-3 leading-relaxed tracking-tight uppercase italic">
                                                                 #viral #growth #strategy #instagram #captions #ai #marketing #business #creators #explorepage #trending #contentcreator #socialmedia #hacks #tips #insta #reels #shorts #tiktok #success #mindset #hustle #digitalmarketing #seo #hashtags #best #yummy #lifestyle #desi #viralcontent
                                                             </p>
                                                             
@@ -1147,7 +1147,7 @@ export default function CaptionsPage() {
                                             <br /><br />
                                             Tag a creator who needs this! 🔥💎
                                         </p>
-                                        <p className="text-sm font-black text-blue-600 dark:text-blue-400 mt-3 leading-relaxed tracking-tight underline decoration-blue-500/30 decoration-1 underline-offset-4">
+                                        <p className="text-sm font-black text-blue-600 dark:text-blue-400 mt-3 leading-relaxed tracking-tight uppercase italic underline decoration-blue-500/30 decoration-1 underline-offset-4">
                                             #viral #growth #strategy #instagram #captions #ai #marketing #business #creators #explorepage #trending #hacks #innovation #success #mindset #hustle #digitalmarketing #branding #socialmediamarketing #tips #tricks
                                         </p>
                                     </div>
@@ -1169,12 +1169,12 @@ export default function CaptionsPage() {
                                     <div className="flex items-center gap-3">
                                         <div className="h-10 w-10 rounded-full bg-neutral-100 p-0.5 border border-neutral-100 dark:border-neutral-800 dark:bg-neutral-800">
                                             <div className="h-full w-full rounded-full bg-[#f8faf2] flex items-center justify-center">
-                                                <span className="text-[#a4d444] font-black italic">S</span>
+                                                <span className="text-[#a4d444] font-black">S</span>
                                             </div>
                                         </div>
                                         <div className="leading-tight">
                                             <p className="text-sm font-black text-neutral-900 dark:text-white">snaphashtags_official</p>
-                                            <p className="text-xs font-medium text-neutral-400 uppercase tracking-widest">Sponsored</p>
+                                            <p className="text-xs font-medium text-neutral-400 tracking-widest uppercase italic">Sponsored</p>
                                         </div>
                                     </div>
                                 </div>
@@ -1188,8 +1188,8 @@ export default function CaptionsPage() {
                                         className="h-full w-full object-cover"
                                     />
                                     <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-sm p-4 border border-black/5 shadow-xl">
-                                        <p className="text-xs font-black uppercase tracking-[0.2em] text-neutral-900">Vibe Check</p>
-                                        <p className="text-[10px] font-bold text-neutral-500 mt-1 uppercase">Level up your aesthetic</p>
+                                        <p className="text-xs font-black tracking-[0.2em] text-neutral-900">Vibe Check</p>
+                                        <p className="text-[10px] font-bold text-neutral-500 mt-1">Level up your aesthetic</p>
                                     </div>
                                 </div>
 
@@ -1210,15 +1210,15 @@ export default function CaptionsPage() {
                                             <br /><br />
                                             Get the look. Get the views. 💎👑
                                         </p>
-                                        <p className="text-sm font-black text-blue-600 dark:text-blue-400 mt-3 leading-relaxed tracking-tight">
+                                        <p className="text-sm font-black text-blue-600 dark:text-blue-400 mt-3 leading-relaxed tracking-tight uppercase italic">
                                             #aesthetic #vibe #lifestyle #creators #quality #snaphashtags #trending #reels #foryou #fyp #picoftheday #instadaily #photooftheday #fashion #style #design #art #luxury #minimalist
                                         </p>
                                     </div>
                                 </div>
 
                                 <div className="p-6 bg-pink-600">
-                                    <h3 className="text-white font-black uppercase tracking-tighter text-xl italic">Get Viral Now</h3>
-                                    <p className="text-pink-100 text-[10px] font-bold uppercase tracking-widest mt-1">Free AI Hashtag Generator</p>
+                                    <h3 className="text-white font-black tracking-tight uppercase italicer text-xl">Get Viral Now</h3>
+                                    <p className="text-pink-100 text-[10px] font-bold tracking-widest uppercase italic mt-1">Free AI Hashtag Generator</p>
                                 </div>
                             </div>
                         </aside>
@@ -1277,7 +1277,7 @@ export default function CaptionsPage() {
                             </p>
                             
                             {/* The Massive Hashtag Cloud */}
-                            <p className="text-sm font-bold text-blue-600 dark:text-blue-400 mt-3 leading-relaxed tracking-tight">
+                            <p className="text-sm font-bold text-blue-600 dark:text-blue-400 mt-3 leading-relaxed tracking-tight uppercase italic">
                                 #foodie #food #foodporn #instafood #foodphotography #foodstagram #foodblogger #yummy #foodlover #delicious #foodgasm #instagood #foodies #homemade #healthyfood #tasty #foodpics #dinner #foodiesofinstagram #love #lunch #yum #dessert #cooking #breakfast #foodblog #chef #eat #restaurant #bhfyp
                             </p>
                         </div>

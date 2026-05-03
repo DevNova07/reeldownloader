@@ -25,6 +25,9 @@ import { TrustBadges } from "@/components/ui/TrustBadges"
 import { ChromeExtensionBanner } from "@/components/layout/ChromeExtensionBanner"
 import { ExpandableSection } from "@/components/ui/ExpandableSection"
 import { useAutoDownload } from "@/hooks/useAutoDownload"
+import { PremiumInfoSection } from "../shared/PremiumInfoSection"
+import { PurpleStepGuide } from "../shared/PurpleStepGuide"
+import { cn } from "@/utils/cn"
 
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs"
 import { InternalToolLinks } from "@/components/shared/InternalToolLinks"
@@ -33,9 +36,10 @@ interface TelegramPageProps {
   content: any
   locale: string
   dict: any
+  activeTab?: string
 }
 
-function TelegramPageContent({ content, locale, dict }: TelegramPageProps) {
+function TelegramPageContent({ content, locale, dict, activeTab = "media" }: TelegramPageProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
 
@@ -115,7 +119,7 @@ function TelegramPageContent({ content, locale, dict }: TelegramPageProps) {
         <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-3 sm:gap-6">
           <SocialPlatformBar activeId="telegram" />
           <PlatformTabs   
-            activeId="media" 
+            activeId={activeTab} 
             activeColor="text-sky-600"
             tabs={dict.tabs}
             items={[
@@ -131,10 +135,9 @@ function TelegramPageContent({ content, locale, dict }: TelegramPageProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <h1 className="mb-3 text-4xl font-black tracking-tight text-white sm:text-7xl drop-shadow-2xl uppercase italic">
+            <h1 className="mb-2 text-3xl min-[400px]:text-4xl font-black tracking-tight uppercase italic text-white sm:text-7xl drop-shadow-2xl">
               {content?.title || "Telegram Downloader"}
             </h1>
-            
           </motion.div>
           
           <div className="mx-auto max-w-3xl">
@@ -148,9 +151,11 @@ function TelegramPageContent({ content, locale, dict }: TelegramPageProps) {
               initialValue={searchParams.get('url') || ""}
             />
 
-            <p className="mx-auto mb-4 max-w-2xl mt-8 mb-2 text-sm font-bold text-white/60 uppercase tracking-widest hidden sm:block">
+            <p className="mx-auto mb-4 max-w-2xl mt-8 mb-2 text-sm font-bold text-white/60 tracking-widest uppercase italic hidden sm:block">
               {content?.subtitle || content?.seo?.desc || "Fast and secure Telegram downloader."}
             </p>
+
+
 
             <AnimatePresence>
               {error && (
@@ -158,7 +163,7 @@ function TelegramPageContent({ content, locale, dict }: TelegramPageProps) {
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className="mx-auto max-w-3xl mt-4 p-4 rounded-2xl bg-red-500/20 border-2 border-red-500/50 text-white font-black uppercase italic tracking-wider shadow-2xl backdrop-blur-md text-left"
+                  className="mx-auto max-w-3xl mt-4 p-4 rounded-2xl bg-red-500/20 border-2 border-red-500/50 text-white font-black tracking-wider shadow-2xl backdrop-blur-md text-left"
                 >
                   <div className="flex items-center gap-3">
                     <div className="bg-red-500 p-1.5 rounded-lg shrink-0">
@@ -187,31 +192,44 @@ function TelegramPageContent({ content, locale, dict }: TelegramPageProps) {
         </div>
       </section>
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-6">
-        <Breadcrumbs 
-          items={[
-            { name: "Home", item: `/${locale}` },
-            { name: "Telegram", item: `/${locale}/telegram` },
-            { name: content.title || "Telegram Downloader", item: `/${locale}/${content.slug || ""}` }
-          ]}
-          rating="4.9"
-          reviewCount="2,140"
-        />
-      </div>
+      <PremiumInfoSection 
+        title={content?.title || "Telegram Downloader"}
+        description={content?.seo?.desc || content?.subtitle || "Fast and secure Telegram downloader."}
+        imageSrc="/images/telegram-3d-logo.png"
+      />
+
+      <PurpleStepGuide 
+        title={`How to Download ${dict.categories?.tele || "Telegram"} Videos`}
+        steps={[
+          {
+            title: dict.guide?.steps?.[0]?.title?.replace('{platform}', 'Telegram') || "Copy the URL",
+            description: dict.guide?.steps?.[0]?.desc?.replace('{platform}', 'Telegram') || "Open the Telegram app, go to the video or file you want to download. Tap the 'Share' or 'Menu' button and select 'Copy Link'."
+          },
+          {
+            title: dict.guide?.steps?.[1]?.title?.replace('{platform}', 'Telegram') || "Paste the Link",
+            description: dict.guide?.steps?.[1]?.desc?.replace('{platform}', 'Telegram') || "Come back to SavClip, paste the copied link into the input field at the top of the page and click the 'Download' button."
+          },
+          {
+            title: dict.guide?.steps?.[2]?.title?.replace('{platform}', 'Telegram') || "Download Your Media",
+            description: dict.guide?.steps?.[2]?.desc?.replace('{platform}', 'Telegram') || "Review the results and find the file you want to save. Click the 'Download' button. Done!"
+          }
+        ]}
+      />
+
       <RelatedTools currentPlatform="telegram" />
       <CategoryCards />
       <InternalToolLinks currentPlatform="telegram" dict={dict} accentColor="text-sky-500" />
 
       <section className="bg-neutral-50 px-4 py-4 dark:bg-neutral-900/50 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <h2 className="mb-12 text-center text-3xl font-bold text-neutral-900 dark:text-white uppercase italic tracking-widest">{dict.features.title}</h2>
+          <h2 className="mb-12 text-center text-3xl font-bold text-neutral-900 dark:text-white tracking-widest uppercase italic">{dict.features.title}</h2>
           <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
             {[Zap, ShieldCheck, CheckCircle2].map((Icon, idx) => (
               <div key={idx} className="flex flex-col items-center text-center">
                 <div className="mb-6 rounded-2xl bg-white p-4 shadow-md dark:bg-black">
                   <Icon className="h-8 w-8 text-sky-500" />
                 </div>
-                <h3 className="text-xl font-bold text-neutral-900 dark:text-white uppercase italic">{dict.features.items[idx]?.title}</h3>
+                <h3 className="text-xl font-bold text-neutral-900 dark:text-white">{dict.features.items[idx]?.title}</h3>
                 <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 hidden sm:block">{dict.features.items[idx]?.desc}</p>
               </div>
             ))}
@@ -237,22 +255,21 @@ function TelegramPageContent({ content, locale, dict }: TelegramPageProps) {
 
       <section className="px-4 py-4 sm:py-12 bg-white dark:bg-black sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl">
-          <div className="mt-10">
-            <h2 className="flex items-center gap-2 text-3xl font-bold text-neutral-900 dark:text-white uppercase italic tracking-widest">
-              <Info className="h-8 w-8 text-sky-600" />
-              {content?.seo?.title || content?.title || "Telegram Guide"}
-            </h2>
-            <p className="mt-4 text-lg text-neutral-500 dark:text-neutral-400 font-medium italic opacity-80 sm:hidden hidden sm:block">{content?.seo?.desc || content?.subtitle || "Detailed information about downloading from Telegram."}</p>
-            <p className="mt-6 text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed border-l-4 border-sky-400 pl-6 font-medium">
-              {content?.seo?.desc || content?.subtitle || "Detailed information about downloading from Telegram."}
-            </p>
+            <div className="mt-10">
+              <h2 className="flex items-center justify-center gap-3 text-3xl font-black text-neutral-900 dark:text-white tracking-widest uppercase italic text-center">
+                <Info className="h-8 w-8 text-sky-600" />
+                {content?.seo?.title || content?.title || "Telegram Guide"}
+              </h2>
+              <p className={cn("mt-6 text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed font-medium text-center max-w-3xl mx-auto opacity-90")}>
+                {content?.seo?.desc || content?.subtitle || "Detailed information about downloading from Telegram."}
+              </p>
 
             <ExpandableSection maxHeight={400} className="mt-16">
               {content.seo?.features && (
-                <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
+                <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 text-center">
                   {content.seo.features.map((feature: any, idx: number) => (
-                    <div key={idx} className="rounded-2xl bg-neutral-50 p-6 dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 transition-all hover:scale-105">
-                      <h3 className="font-bold text-neutral-900 dark:text-white uppercase tracking-tighter">{feature.title}</h3>
+                    <div key={idx} className="rounded-2xl bg-neutral-50 p-6 dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 transition-all hover:scale-105 flex flex-col items-center">
+                      <h3 className="font-black text-neutral-900 dark:text-white tracking-tight uppercase italicer">{feature.title}</h3>
                       <p className="mt-4 text-sm text-neutral-500 dark:text-neutral-400 font-bold opacity-80 hidden sm:block">{feature.desc}</p>
                     </div>
                   ))}
@@ -260,14 +277,14 @@ function TelegramPageContent({ content, locale, dict }: TelegramPageProps) {
               )}
 
               <div className="mt-40">
-                <h2 className="flex items-center gap-2 text-3xl font-bold text-neutral-900 dark:text-white uppercase italic tracking-widest">
+                <h2 className="flex items-center justify-center gap-3 text-3xl font-black text-neutral-900 dark:text-white tracking-widest uppercase italic text-center">
                   <HelpCircle className="h-8 w-8 text-sky-600" />
                   {dict.faq.title}
                 </h2>
-                <div className="mt-10 space-y-6">
+                <div className="mt-10 space-y-6 text-center">
                   {(dict.faq.items || []).map((faq: any, idx: number) => (
-                    <div key={idx} className="group rounded-2xl border border-neutral-200 p-6 dark:border-neutral-800 hover:border-sky-400/50 transition-all">
-                      <h3 className="font-bold text-neutral-900 dark:text-white group-hover:text-sky-500 transition-colors uppercase italic tracking-tighter text-lg">{faq.q}</h3>
+                    <div key={idx} className="group rounded-2xl border border-neutral-200 p-6 dark:border-neutral-800 hover:border-sky-400/50 transition-all bg-white dark:bg-transparent hover:shadow-2xl">
+                      <h3 className="font-black text-neutral-900 dark:text-white group-hover:text-sky-500 transition-colors tracking-tight uppercase italicer text-lg">{faq.q}</h3>
                       <p className="mt-4 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 group-hover:opacity-100 transition-opacity">{faq.a}</p>
                     </div>
                   ))}
@@ -277,6 +294,17 @@ function TelegramPageContent({ content, locale, dict }: TelegramPageProps) {
           </div>
         </div>
       </section>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 my-12 border-t border-neutral-100 dark:border-neutral-800 pt-10">
+        <Breadcrumbs 
+          items={[
+            { name: "Home", item: `/${locale}` },
+            { name: "Telegram", item: `/${locale}/telegram` },
+            { name: content.title || "Telegram Downloader", item: `/${locale}/${content.slug || ""}` }
+          ]}
+          rating="4.9"
+          reviewCount="1,500"
+        />
+      </div>
     </div>
   )
 }

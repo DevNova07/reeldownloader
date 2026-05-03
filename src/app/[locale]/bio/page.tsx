@@ -109,8 +109,8 @@ export default function BioLandingPage() {
             animate={{ opacity: 1, y: 0 }}
             className="flex flex-col gap-2"
           >
-            <h1 className="text-4xl sm:text-7xl font-light tracking-[0.2em] sm:tracking-[0.3em] text-white uppercase leading-[1.1] drop-shadow-2xl">
-              TRENDING <span className="text-[#a4d444] italic">CATEGORIES</span><br />
+            <h1 className="text-4xl sm:text-7xl font-light tracking-[0.2em] sm:tracking-[0.3em] text-white leading-[1.1] drop-shadow-2xl">
+              TRENDING <span className="text-[#a4d444]">CATEGORIES</span><br />
               <span className="text-[#d9f99d]">BIO</span>
             </h1>
           </motion.div>
@@ -129,7 +129,7 @@ export default function BioLandingPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-[10px] sm:text-[11px] font-light text-white/90 tracking-[0.2em] sm:tracking-[0.25em] uppercase max-w-3xl mx-auto drop-shadow-md leading-relaxed hidden sm:block"
+            className="text-[10px] sm:text-[11px] font-light text-white/90 tracking-[0.2em] sm:tracking-[0.25em] max-w-3xl mx-auto drop-shadow-md leading-relaxed hidden sm:block"
           >
             GENERATE THE MOST VIRAL BIOS FOR YOUR REELS, TIKTOK, AND SHORTS USING OUR SMART AI ALGORITHM.
           </motion.p>
@@ -152,11 +152,11 @@ export default function BioLandingPage() {
 
           {/* Heading Block */}
           <div className="text-center mb-16 space-y-4">
-            <h2 className="text-4xl sm:text-6xl font-black text-black uppercase tracking-tight leading-none">
+            <h2 className="text-4xl sm:text-6xl font-black text-black tracking-tight uppercase italic leading-none">
               EXPLORE BY <span className="text-[#a4d444]">MOOD</span>
             </h2>
             {!bioDescription.trim() && (
-              <p className="text-[10px] sm:text-[12px] font-light text-neutral-400 uppercase tracking-[0.4em]">
+              <p className="text-[10px] sm:text-[12px] font-light text-neutral-400 tracking-[0.4em]">
                 RESULTS WILL APPEAR BELOW AS YOU TYPE
               </p>
             )}
@@ -172,7 +172,7 @@ export default function BioLandingPage() {
                       <span className={cn("text-xl", cat.color)}>
                         <DynamicIcon name={cat.icon} className="h-6 w-6 opacity-40" />
                       </span>
-                      <span className="text-xl sm:text-3xl font-black text-black uppercase tracking-tighter">
+                      <span className="text-xl sm:text-3xl font-black text-black tracking-tight uppercase italicer">
                         {cat.name}
                       </span>
                     </div>
@@ -205,7 +205,7 @@ export default function BioLandingPage() {
                                   )}
                                 >
                                   {copiedKey === `${cat.id}-${index}` ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-                                  <span className="text-[10px] font-bold uppercase tracking-widest">
+                                  <span className="text-[10px] font-bold tracking-widest uppercase italic">
                                     {copiedKey === `${cat.id}-${index}` ? "Copied" : "Copy Profile"}
                                   </span>
                                 </button>
@@ -215,7 +215,7 @@ export default function BioLandingPage() {
                       ) : (
                         <div className="col-span-full py-20 text-center space-y-4">
                           <Icons.Search className="h-12 w-12 text-neutral-200 mx-auto" />
-                          <p className="text-neutral-400 uppercase tracking-widest text-[10px] font-bold">Generating bios...</p>
+                          <p className="text-neutral-400 tracking-widest uppercase italic text-[10px] font-bold">Generating bios...</p>
                         </div>
                       )}
                     </div>
@@ -228,10 +228,10 @@ export default function BioLandingPage() {
                   <Search className="h-8 w-8 text-neutral-300" />
                 </div>
                 {/* Redundant subtitle removed to fix build error */}
-                <h3 className="text-2xl font-bold text-black uppercase tracking-tight mb-2">
+                <h3 className="text-2xl font-bold text-black tracking-tight uppercase italic mb-2">
                   No match for &quot;{bioDescription}&quot;
                 </h3>
-                <button onClick={() => setBioDescription("")} className="bg-black text-[#d9f99d] px-10 py-4 rounded-full font-black text-xs uppercase tracking-widest hover:scale-105 transition-all shadow-xl">
+                <button onClick={() => setBioDescription("")} className="bg-black text-[#d9f99d] px-10 py-4 rounded-full font-black text-xs tracking-widest uppercase italic hover:scale-105 transition-all shadow-xl">
                   Clear Search
                 </button>
               </motion.div>

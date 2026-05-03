@@ -11,7 +11,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const sitemapEntries: MetadataRoute.Sitemap = []
 
   // 1. Static Pages (Home, About, etc.)
-  const staticRoutes = ["", "/about", "/contact", "/privacy-policy", "/terms", "/faq"]
+  const staticRoutes = [
+    "", 
+    "/facebook", 
+    "/youtube", 
+    "/tiktok", 
+    "/snapchat", 
+    "/telegram", 
+    "/twitter", 
+    "/hashtags",
+    "/about", 
+    "/contact", 
+    "/privacy-policy", 
+    "/terms", 
+    "/faq",
+    "/history"
+  ]
 
   locales.forEach((locale) => {
     // Add static routes for this locale

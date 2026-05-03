@@ -24,7 +24,7 @@ export function ToolSubNav() {
   const locale = pathname.split('/')[1] || 'en'
   
   return (
-    <nav suppressHydrationWarning className="sticky top-14 sm:top-16 z-40 border-b border-neutral-100 bg-white/95 backdrop-blur-md md:hidden">
+    <nav suppressHydrationWarning className="sticky top-14 sm:top-16 z-40 border-b border-white/10 dark:border-black/10 bg-black/95 dark:bg-white/95 backdrop-blur-md md:hidden">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 lg:px-8">
             <div className="flex items-center gap-4 sm:gap-8 overflow-x-auto no-scrollbar scroll-smooth">
                 {SUB_NAV.map((item) => {
@@ -39,14 +39,14 @@ export function ToolSubNav() {
                             className={cn(
                                 "group flex shrink-0 items-center gap-2 text-[10px] sm:text-[11px] font-black uppercase tracking-[0.15em] transition-all",
                                 isActive 
-                                    ? "text-neutral-950 scale-105" 
-                                    : "text-neutral-400 hover:text-neutral-600"
+                                    ? "text-white dark:text-black scale-105" 
+                                    : "text-neutral-400 dark:text-neutral-500 hover:text-white dark:hover:text-black"
                             )}
                         >
                             {item.name}
                             <ChevronRight className={cn(
                                 "h-3 w-3 transition-opacity",
-                                isActive ? "opacity-100 text-neutral-900" : "opacity-20 group-hover:opacity-100"
+                                isActive ? "opacity-100 text-white dark:text-black" : "opacity-30 group-hover:opacity-100 text-neutral-500 dark:text-neutral-400 group-hover:text-white dark:group-hover:text-black"
                             )} />
                         </Link>
                     )
@@ -59,7 +59,7 @@ export function ToolSubNav() {
                 <input 
                     type="text" 
                     placeholder="Search tools or blog..." 
-                    className="h-11 w-full rounded-xl border border-neutral-100 bg-neutral-50 pl-11 pr-12 text-[11px] font-bold text-neutral-900 outline-none ring-offset-2 transition-all focus:ring-2 focus:ring-rose-500 focus:bg-white"
+                    className="h-11 w-full rounded-xl border border-neutral-100 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 pl-11 pr-12 text-[11px] font-bold text-neutral-900 dark:text-white outline-none ring-offset-2 transition-all focus:ring-2 focus:ring-rose-500 focus:bg-white dark:focus:bg-black"
                 />
                 <button className="absolute right-1.5 top-1.5 h-8 w-10 rounded-lg bg-neutral-900 text-white flex items-center justify-center hover:bg-black transition-colors shadow-lg">
                     <Search className="h-4 w-4" />

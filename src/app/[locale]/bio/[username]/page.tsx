@@ -58,7 +58,7 @@ export default async function BioProfilePage({ params }: { params: Promise<{ loc
         <div className="mt-16 text-center">
           <Link 
             href="/en/bio" 
-            className={cn("text-xs font-bold uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity flex items-center justify-center gap-2", theme.textColor)}
+            className={cn("text-xs font-bold tracking-widest uppercase italic opacity-50 hover:opacity-100 transition-opacity flex items-center justify-center gap-2", theme.textColor)}
           >
             <span className={theme.accentColor}>⚡</span> Created with SavClip
           </Link>

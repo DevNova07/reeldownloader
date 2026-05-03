@@ -3,12 +3,13 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Camera, Send, Mail, Globe, ShieldCheck, Zap, HelpCircle, HardDrive, Share2, Apple as AppleIcon, Music, Play, Ghost, Hash, Instagram } from "lucide-react"
-import { useParams } from "next/navigation"
+import { useParams, usePathname } from "next/navigation"
 import { locales, languageNames, languageFlags, type Locale } from "@/i18n"
 import { ReactNode } from "react"
 
 export function Footer({ locale, dict }: { locale: string, dict: any }) {
   const normalizedLocale = (locales.includes(locale as any) ? locale : 'en') as Locale;
+  const pathname = usePathname() || "";
   
   const branding = dict?.footer_branding || {
     title: "SavClip – Fast & Secure",
@@ -35,12 +36,20 @@ export function Footer({ locale, dict }: { locale: string, dict: any }) {
           {/* Column 1: Branding & Philosophy */}
           <div className="lg:col-span-4 space-y-8">
             <Link href={getLocalizedHref("/")} className="flex items-center gap-3 group">
-              <span className="text-3xl font-black tracking-tighter text-neutral-900 dark:text-white uppercase italic">
-                Sav<span className="text-pink-600">Clip</span>
+              <span className="text-3xl font-black tracking-tighter uppercase italic text-neutral-900 dark:text-white">
+                Sav<span className={
+                  pathname.includes('/facebook') ? 'text-blue-600' :
+                  pathname.includes('/youtube') ? 'text-red-600' :
+                  pathname.includes('/tiktok') ? 'text-pink-600' :
+                  pathname.includes('/snapchat') ? 'text-yellow-500' :
+                  pathname.includes('/telegram') ? 'text-sky-500' :
+                  pathname.includes('/twitter') ? 'text-neutral-900 dark:text-white' :
+                  'text-pink-600'
+                }>Clip</span>
               </span>
             </Link>
             
-            <h2 className="text-lg font-black text-neutral-900 dark:text-white uppercase italic tracking-tighter leading-tight">
+            <h2 className="text-lg font-black text-neutral-900 dark:text-white tracking-tighter uppercase italic leading-tight">
               {branding.title}
             </h2>
             <p className="max-w-sm text-sm font-bold leading-relaxed text-neutral-500 dark:text-neutral-400 opacity-90">
@@ -53,7 +62,7 @@ export function Footer({ locale, dict }: { locale: string, dict: any }) {
                   <div className="flex items-center gap-1.5">
                      <Globe className="w-3.5 h-3.5 text-white" />
                      <div className="flex flex-col">
-                        <span className="text-[5px] font-black text-white/50 uppercase leading-none">Get it on</span>
+                        <span className="text-[5px] font-black text-white/50 leading-none">Get it on</span>
                         <span className="text-[10px] font-black text-white leading-none">Google Play</span>
                      </div>
                   </div>
@@ -62,7 +71,7 @@ export function Footer({ locale, dict }: { locale: string, dict: any }) {
                   <div className="flex items-center gap-1.5">
                      <AppleIcon className="w-3.5 h-3.5 text-white" />
                      <div className="flex flex-col">
-                        <span className="text-[5px] font-black text-white/50 uppercase leading-none">Download on</span>
+                        <span className="text-[5px] font-black text-white/50 leading-none">Download on</span>
                         <span className="text-[10px] font-black text-white leading-none">App Store</span>
                      </div>
                   </div>
@@ -71,20 +80,20 @@ export function Footer({ locale, dict }: { locale: string, dict: any }) {
 
             <div className="pt-4 flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-10">
                <div className="flex flex-col">
-                  <p className="text-[10px] font-black uppercase tracking-widest text-neutral-400 mb-1">Founder / CEO</p>
-                  <p className="text-sm font-black text-neutral-900 dark:text-white italic">Ramzan Ahmad</p>
-                  <p className="text-[9px] font-bold text-neutral-500 uppercase tracking-tighter">Web Developer | 3+ Years Exp.</p>
+                  <p className="text-[10px] font-black tracking-widest uppercase italic text-neutral-400 mb-1">Founder / CEO</p>
+                  <p className="text-sm font-black text-neutral-900 dark:text-white">Ramzan Ahmad</p>
+                  <p className="text-[9px] font-bold text-neutral-500 tracking-tighter uppercase italic">Web Developer | 3+ Years Exp.</p>
                </div>
                <div className="hidden sm:block h-12 w-px bg-neutral-100 dark:bg-neutral-800" />
                <div className="flex flex-col">
-                  <p className="text-[10px] font-black uppercase tracking-widest text-neutral-400 mb-1">Direct Contact</p>
+                  <p className="text-[10px] font-black tracking-widest uppercase italic text-neutral-400 mb-1">Direct Contact</p>
                   <Link href="mailto:ramzaan0043@gmail.com" className="text-sm font-black text-pink-600 hover:underline">ramzaan0043@gmail.com</Link>
-                  <p className="text-[9px] font-bold text-neutral-500 uppercase tracking-tighter">Response Time: 24h</p>
+                  <p className="text-[9px] font-bold text-neutral-500 tracking-tighter uppercase italic">Response Time: 24h</p>
                </div>
             </div>
           </div>          {/* Column 2: Quick Links & Legal */}
           <div className="lg:col-span-3">
-             <h3 className="text-[11px] font-black uppercase tracking-[0.3em] text-neutral-900 dark:text-white mb-8 bg-neutral-50 dark:bg-neutral-800 px-3 py-1 rounded inline-block">
+             <h3 className="text-[11px] font-black tracking-[0.3em] text-neutral-900 dark:text-white mb-8 bg-neutral-50 dark:bg-neutral-800 px-3 py-1 rounded inline-block">
                 Company & Legal
              </h3>
              <ul className="grid grid-cols-1 gap-4">
@@ -98,7 +107,7 @@ export function Footer({ locale, dict }: { locale: string, dict: any }) {
                   { name: "DMCA Report", href: "/dmca" },
                 ].map((link) => (
                   <li key={link.name}>
-                    <Link href={getLocalizedHref(link.href)} className="text-sm font-bold text-neutral-500 hover:text-pink-600 dark:text-neutral-400 transition-all hover:translate-x-1 inline-block">
+                    <Link href={getLocalizedHref(link.href)} prefetch={true} className="text-sm font-bold text-neutral-500 hover:text-pink-600 dark:text-neutral-400 transition-all hover:translate-x-1 inline-block">
                       {link.name}
                     </Link>
                   </li>
@@ -108,7 +117,7 @@ export function Footer({ locale, dict }: { locale: string, dict: any }) {
 
           {/* Column 3: Premium Features */}
           <div className="lg:col-span-4">
-             <h3 className="text-[11px] font-black uppercase tracking-[0.3em] text-neutral-900 dark:text-white mb-8 bg-neutral-50 dark:bg-neutral-800 px-3 py-1 rounded inline-block">
+             <h3 className="text-[11px] font-black tracking-[0.3em] text-neutral-900 dark:text-white mb-8 bg-neutral-50 dark:bg-neutral-800 px-3 py-1 rounded inline-block">
                 Premium Tools
              </h3>
              <div className="flex flex-wrap gap-x-6 gap-y-3">
@@ -123,7 +132,7 @@ export function Footer({ locale, dict }: { locale: string, dict: any }) {
                   { name: "Link-in-Bio", href: "/bio" },
                   { name: "AI Hashtags", href: "/hashtags" },
                 ].map((link) => (
-                  <Link key={link.name} href={getLocalizedHref(link.href)} className="text-[10px] font-black uppercase tracking-widest text-neutral-400 hover:text-pink-600 transition-colors">
+                  <Link key={link.name} href={getLocalizedHref(link.href)} prefetch={true} className="text-[10px] font-black tracking-widest uppercase italic text-neutral-400 hover:text-pink-600 transition-colors">
                     {link.name}
                   </Link>
                 ))}
@@ -137,11 +146,11 @@ export function Footer({ locale, dict }: { locale: string, dict: any }) {
           {/* 1. Instagram Section */}
           <div className="space-y-10">
               <div className="flex items-center justify-between">
-                <h3 className="text-[11px] font-black uppercase tracking-[0.4em] text-neutral-900 dark:text-white bg-pink-50 dark:bg-pink-900/20 px-5 py-2.5 rounded-full inline-flex items-center gap-3 border border-pink-100 dark:border-pink-800/30">
+                <h3 className="text-[11px] font-black tracking-[0.4em] text-neutral-900 dark:text-white bg-pink-50 dark:bg-pink-900/20 px-5 py-2.5 rounded-full inline-flex items-center gap-3 border border-pink-100 dark:border-pink-800/30">
                    <Instagram className="w-4 h-4 text-pink-600" />
                    Instagram Platform Explorer
                 </h3>
-                <span className="text-[9px] font-black uppercase tracking-widest text-neutral-400" suppressHydrationWarning={true}>80+ Professional Tools</span>
+                <span className="text-[9px] font-black tracking-widest uppercase italic text-neutral-400" suppressHydrationWarning={true}>80+ Professional Tools</span>
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-8 gap-y-4" suppressHydrationWarning={true}>
                  {[
@@ -235,11 +244,11 @@ export function Footer({ locale, dict }: { locale: string, dict: any }) {
           {/* 2. Facebook Section */}
           <div className="space-y-10">
               <div className="flex items-center justify-between">
-                <h3 className="text-[11px] font-black uppercase tracking-[0.4em] text-neutral-900 dark:text-white bg-blue-50 dark:bg-blue-900/20 px-5 py-2.5 rounded-full inline-flex items-center gap-3 border border-blue-100 dark:border-blue-800/30">
+                <h3 className="text-[11px] font-black tracking-[0.4em] text-neutral-900 dark:text-white bg-blue-50 dark:bg-blue-900/20 px-5 py-2.5 rounded-full inline-flex items-center gap-3 border border-blue-100 dark:border-blue-800/30">
                    <Globe className="w-4 h-4 text-blue-600" />
                    Facebook Platform Explorer
                 </h3>
-                <span className="text-[9px] font-black uppercase tracking-widest text-neutral-400" suppressHydrationWarning={true}>60+ Professional Tools</span>
+                <span className="text-[9px] font-black tracking-widest uppercase italic text-neutral-400" suppressHydrationWarning={true}>60+ Professional Tools</span>
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-8 gap-y-4" suppressHydrationWarning={true}>
                  {[
@@ -312,11 +321,11 @@ export function Footer({ locale, dict }: { locale: string, dict: any }) {
           </div>          {/* 3. TikTok Section */}
           <div className="space-y-10">
               <div className="flex items-center justify-between">
-                <h3 className="text-[11px] font-black uppercase tracking-[0.4em] text-neutral-900 dark:text-white bg-neutral-50 dark:bg-neutral-800 px-5 py-2.5 rounded-full inline-flex items-center gap-3 border border-neutral-100 dark:border-neutral-800/30">
+                <h3 className="text-[11px] font-black tracking-[0.4em] text-neutral-900 dark:text-white bg-neutral-50 dark:bg-neutral-800 px-5 py-2.5 rounded-full inline-flex items-center gap-3 border border-neutral-100 dark:border-neutral-800/30">
                    <Music className="w-4 h-4 text-neutral-900 dark:text-white" />
                    TikTok Platform Explorer
                 </h3>
-                <span className="text-[9px] font-black uppercase tracking-widest text-neutral-400" suppressHydrationWarning={true}>30+ Professional Tools</span>
+                <span className="text-[9px] font-black tracking-widest uppercase italic text-neutral-400" suppressHydrationWarning={true}>30+ Professional Tools</span>
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-8 gap-y-4" suppressHydrationWarning={true}>
                  {[
@@ -367,11 +376,11 @@ export function Footer({ locale, dict }: { locale: string, dict: any }) {
           {/* 4. YouTube Section */}
           <div className="space-y-10">
               <div className="flex items-center justify-between">
-                <h3 className="text-[11px] font-black uppercase tracking-[0.4em] text-neutral-900 dark:text-white bg-red-50 dark:bg-red-900/20 px-5 py-2.5 rounded-full inline-flex items-center gap-3 border border-red-100 dark:border-red-800/30">
+                <h3 className="text-[11px] font-black tracking-[0.4em] text-neutral-900 dark:text-white bg-red-50 dark:bg-red-900/20 px-5 py-2.5 rounded-full inline-flex items-center gap-3 border border-red-100 dark:border-red-800/30">
                    <Play className="w-4 h-4 text-red-600 fill-current" />
                    YouTube Platform Explorer
                 </h3>
-                <span className="text-[9px] font-black uppercase tracking-widest text-neutral-400">25+ Professional Tools</span>
+                <span className="text-[9px] font-black tracking-widest uppercase italic text-neutral-400">25+ Professional Tools</span>
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-8 gap-y-4" suppressHydrationWarning={true}>
                  {[
@@ -415,11 +424,11 @@ export function Footer({ locale, dict }: { locale: string, dict: any }) {
               {/* Snapchat Explorer */}
               <div className="space-y-10">
                  <div className="flex items-center justify-between">
-                   <h4 className="text-[11px] font-black uppercase tracking-[0.4em] text-yellow-600 bg-yellow-50 dark:bg-yellow-900/20 px-5 py-2.5 rounded-full inline-flex items-center gap-3 border border-yellow-100 dark:border-yellow-800/30">
+                   <h4 className="text-[11px] font-black tracking-[0.4em] text-yellow-600 bg-yellow-50 dark:bg-yellow-900/20 px-5 py-2.5 rounded-full inline-flex items-center gap-3 border border-yellow-100 dark:border-yellow-800/30">
                       <Ghost className="w-4 h-4" />
                       Snapchat Platform Explorer
                    </h4>
-                   <span className="text-[9px] font-black uppercase tracking-widest text-neutral-400">25+ Professional Tools</span>
+                   <span className="text-[9px] font-black tracking-widest uppercase italic text-neutral-400">25+ Professional Tools</span>
                  </div>
                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-8 gap-y-4" suppressHydrationWarning={true}>
                     {[
@@ -463,11 +472,11 @@ export function Footer({ locale, dict }: { locale: string, dict: any }) {
               {/* X (Twitter) Explorer */}
               <div className="space-y-10">
                  <div className="flex items-center justify-between">
-                   <h4 className="text-[11px] font-black uppercase tracking-[0.4em] text-neutral-900 dark:text-white bg-neutral-50 dark:bg-neutral-800 px-5 py-2.5 rounded-full inline-flex items-center gap-3 border border-neutral-100 dark:border-neutral-800/30">
+                   <h4 className="text-[11px] font-black tracking-[0.4em] text-neutral-900 dark:text-white bg-neutral-50 dark:bg-neutral-800 px-5 py-2.5 rounded-full inline-flex items-center gap-3 border border-neutral-100 dark:border-neutral-800/30">
                       <Hash className="w-4 h-4" />
                       X (Twitter) Platform Explorer
                    </h4>
-                   <span className="text-[9px] font-black uppercase tracking-widest text-neutral-400">20+ Professional Tools</span>
+                   <span className="text-[9px] font-black tracking-widest uppercase italic text-neutral-400">20+ Professional Tools</span>
                  </div>
                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-8 gap-y-4" suppressHydrationWarning={true}>
                     {[
@@ -506,11 +515,11 @@ export function Footer({ locale, dict }: { locale: string, dict: any }) {
               {/* Telegram Explorer */}
               <div className="space-y-10">
                  <div className="flex items-center justify-between">
-                   <h4 className="text-[11px] font-black uppercase tracking-[0.4em] text-sky-600 bg-sky-50 dark:bg-sky-900/20 px-5 py-2.5 rounded-full inline-flex items-center gap-3 border border-sky-100 dark:border-sky-800/30">
+                   <h4 className="text-[11px] font-black tracking-[0.4em] text-sky-600 bg-sky-50 dark:bg-sky-900/20 px-5 py-2.5 rounded-full inline-flex items-center gap-3 border border-sky-100 dark:border-sky-800/30">
                       <Send className="w-4 h-4" />
                       Telegram Platform Explorer
                    </h4>
-                   <span className="text-[9px] font-black uppercase tracking-widest text-neutral-400">15+ Professional Tools</span>
+                   <span className="text-[9px] font-black tracking-widest uppercase italic text-neutral-400">15+ Professional Tools</span>
                  </div>
                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-8 gap-y-4" suppressHydrationWarning={true}>
                     {[
@@ -551,65 +560,66 @@ export function Footer({ locale, dict }: { locale: string, dict: any }) {
                 <span className="inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
                 <span className="relative inline-flex h-3 w-3 rounded-full bg-green-500"></span>
              </div>
-             <p className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-400">
+             <p className="text-[10px] font-black tracking-[0.4em] text-neutral-400">
                 System Status: <span className="text-green-500">Fully Operational</span>
              </p>
           </div>
           
-          <p className="max-w-4xl text-[10px] font-black uppercase tracking-[0.2em] text-pink-600/80 mb-6 px-4">
+          <p className="max-w-4xl text-[10px] font-black tracking-[0.2em] text-pink-600/80 mb-6 px-4">
             SavClip is maintained by Ramzan Ahmad, built with Next.js for ultimate speed & security.
           </p>
           
           <div className="w-full max-w-6xl mb-16 px-4">
               <div className="flex items-center justify-between mb-8">
-                <h3 className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-400 dark:text-neutral-500 bg-neutral-50 dark:bg-neutral-800 px-4 py-2 rounded-full border border-neutral-100 dark:border-neutral-700/50">
+                <h3 className="text-[10px] font-black tracking-[0.4em] text-neutral-400 dark:text-neutral-500 bg-neutral-50 dark:bg-neutral-800 px-4 py-2 rounded-full border border-neutral-100 dark:border-neutral-700/50">
                    Global Language Index
                 </h3>
-                <span className="text-[9px] font-black uppercase tracking-widest text-neutral-400">23+ International Versions</span>
+                <span className="text-[9px] font-black tracking-widest uppercase italic text-neutral-400">23+ International Versions</span>
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
                  {locales.map((loc) => (
                    <Link 
                      key={loc} 
                      href={`/${loc}`} 
+                     prefetch={true}
                      className="group flex items-center gap-3 p-2.5 rounded-xl border border-neutral-100 dark:border-neutral-800 hover:border-pink-200 dark:hover:border-pink-900/50 hover:bg-white dark:hover:bg-neutral-900 shadow-xs transition-all active:scale-95"
                    >
                      <span className="text-lg group-hover:scale-125 transition-transform">{languageFlags[loc]}</span>
                      <div className="flex flex-col">
                        <span className="text-[10px] font-black text-neutral-900 dark:text-white group-hover:text-pink-600 transition-colors">{languageNames[loc]}</span>
-                       <span className="text-[8px] font-bold text-neutral-400 uppercase tracking-tighter">{loc}</span>
+                       <span className="text-[8px] font-bold text-neutral-400 tracking-tighter uppercase italic">{loc}</span>
                      </div>
                    </Link>
                  ))}
               </div>
           </div>
 
-          <p className="text-[11px] font-black uppercase tracking-[0.3em] text-neutral-900 dark:text-white">
+          <p className="text-[11px] font-black tracking-[0.3em] text-neutral-900 dark:text-white">
             © {new Date().getFullYear()} SavClip. Global Authority in Media Extraction.
           </p>
 
           <div className="max-w-4xl w-full bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 p-8 rounded-3xl space-y-6">
              <div className="flex items-center justify-center gap-4 text-pink-600">
                 <ShieldCheck className="h-5 w-5" />
-                <h4 className="text-xs font-black uppercase tracking-[0.4em] m-0">Legal Protection Shield</h4>
+                <h4 className="text-xs font-black tracking-[0.4em] m-0">Legal Protection Shield</h4>
              </div>
              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="space-y-2">
-                   <p className="text-[10px] font-black text-neutral-900 dark:text-white uppercase italic">Zero Hosting Policy</p>
-                   <p className="text-[9px] font-bold text-neutral-400 uppercase leading-relaxed">We do not host any files or media on our servers. All content is fetched directly from social platforms.</p>
+                   <p className="text-[10px] font-black text-neutral-900 dark:text-white">Zero Hosting Policy</p>
+                   <p className="text-[9px] font-bold text-neutral-400 leading-relaxed">We do not host any files or media on our servers. All content is fetched directly from social platforms.</p>
                 </div>
                 <div className="space-y-2">
-                   <p className="text-[10px] font-black text-neutral-900 dark:text-white uppercase italic">Ownership Rights</p>
-                   <p className="text-[9px] font-bold text-neutral-400 uppercase leading-relaxed">All content and trademarks belong to their respective owners. We respect intellectual property rights.</p>
+                   <p className="text-[10px] font-black text-neutral-900 dark:text-white">Ownership Rights</p>
+                   <p className="text-[9px] font-bold text-neutral-400 leading-relaxed">All content and trademarks belong to their respective owners. We respect intellectual property rights.</p>
                 </div>
                 <div className="space-y-2">
-                   <p className="text-[10px] font-black text-neutral-900 dark:text-white uppercase italic">Ethical Usage</p>
-                   <p className="text-[9px] font-bold text-neutral-400 uppercase leading-relaxed">This tool is intended for educational and personal use only. Unauthorized distribution is discouraged.</p>
+                   <p className="text-[10px] font-black text-neutral-900 dark:text-white">Ethical Usage</p>
+                   <p className="text-[9px] font-bold text-neutral-400 leading-relaxed">This tool is intended for educational and personal use only. Unauthorized distribution is discouraged.</p>
                 </div>
              </div>
           </div>
           
-          <p className="max-w-5xl text-[9px] font-bold text-neutral-400 dark:text-neutral-500 uppercase tracking-widest px-4 leading-relaxed opacity-40">
+          <p className="max-w-5xl text-[9px] font-bold text-neutral-400 dark:text-neutral-500 tracking-widest uppercase italic px-4 leading-relaxed opacity-40">
             Disclaimer: SavClip is an independent tool and is not affiliated, associated, or endorsed by YouTube, Instagram, TikTok, Facebook, Snapchat, X, or Telegram.
           </p>
         </div>

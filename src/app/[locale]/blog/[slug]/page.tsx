@@ -40,7 +40,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     .replace(/^###\s+(.*)$/gm, '<h3 class="text-xl font-bold mt-4 mb-4 text-neutral-800 dark:text-neutral-200">$1</h3>')
     .replace(/\*\*(.*?)\*\*/g, '<strong class="font-black text-pink-600 dark:text-pink-400">$1</strong>')
     .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" class="text-pink-600 hover:text-pink-500 underline decoration-2 underline-offset-4">$1</a>')
-    .replace(/^>\s+(.*)$/gm, '<blockquote class="border-l-4 border-pink-500 pl-4 py-2 my-6 bg-pink-50 dark:bg-pink-900/10 italic text-neutral-700 dark:text-neutral-300">$1</blockquote>')
+    .replace(/^>\s+(.*)$/gm, '<blockquote class="border-l-4 border-pink-500 pl-4 py-2 my-6 bg-pink-50 dark:bg-pink-900/10 text-neutral-700 dark:text-neutral-300">$1</blockquote>')
     .replace(/^(?!<h|<ul|<ol|<li|<blockquote)(.*$)/gm, '<p class="mb-6 leading-relaxed text-lg text-neutral-600 dark:text-neutral-400">$1</p>')
     .replace(/<p><\/p>/g, '') // Remove empty paragraphs
 
@@ -67,7 +67,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             {/* Header Content */}
             <header className="mb-12 border-b border-neutral-100 pb-10 dark:border-neutral-800">
               <div className="flex items-center gap-4 mb-6">
-                <span className="inline-block rounded-full bg-pink-100 px-3 py-1 text-xs font-black uppercase tracking-widest text-pink-600 dark:bg-pink-500/20 dark:text-pink-400">
+                <span className="inline-block rounded-full bg-pink-100 px-3 py-1 text-xs font-black tracking-widest uppercase italic text-pink-600 dark:bg-pink-500/20 dark:text-pink-400">
                   {post.category}
                 </span>
                 <span className="flex items-center gap-1.5 text-sm font-medium text-neutral-500 dark:text-neutral-400">
@@ -76,7 +76,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 </span>
               </div>
               
-              <h1 className="mb-2 text-4xl font-black tracking-tight text-neutral-900 dark:text-white sm:text-5xl lg:text-6xl leading-[1.1]">
+              <h1 className="mb-2 text-4xl font-black tracking-tight uppercase italic text-neutral-900 dark:text-white sm:text-5xl lg:text-6xl leading-[1.1]">
                 {post.title}
               </h1>
               
@@ -129,7 +129,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               <p className="text-pink-100 text-sm mb-6 font-medium">SavClip is the fastest, safest way to save social media content in 4K resolution.</p>
               <Link 
                 href="/"
-                className="inline-flex w-full items-center justify-center rounded-xl bg-white px-6 py-4 text-sm font-black uppercase tracking-widest text-pink-600 shadow-xl transition-all hover:scale-105 active:scale-95"
+                className="inline-flex w-full items-center justify-center rounded-xl bg-white px-6 py-4 text-sm font-black tracking-widest uppercase italic text-pink-600 shadow-xl transition-all hover:scale-105 active:scale-95"
               >
                 Try it now
               </Link>
@@ -138,7 +138,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             {/* Related Posts */}
             {relatedPosts.length > 0 && (
               <div>
-                <h3 className="text-lg font-black uppercase tracking-widest text-neutral-900 dark:text-white mb-6 flex items-center gap-2">
+                <h3 className="text-lg font-black tracking-widest uppercase italic text-neutral-900 dark:text-white mb-6 flex items-center gap-2">
                   <span className="h-2 w-2 rounded-full bg-pink-600" />
                   Related Reads
                 </h3>

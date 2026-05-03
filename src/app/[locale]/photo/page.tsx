@@ -9,12 +9,12 @@ export default function PhotoPage() {
         <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-pink-600/10 mx-auto">
           <Camera className="h-10 w-10 text-pink-600" />
         </div>
-        <h1 className="text-4xl font-black tracking-tight text-neutral-900 dark:text-white mb-4 uppercase italic">Photo Downloader</h1>
+        <h1 className="text-4xl font-black tracking-tight uppercase italic text-neutral-900 dark:text-white mb-4">Photo Downloader</h1>
         <p className="text-neutral-500 dark:text-neutral-400 text-lg max-w-md mx-auto font-bold opacity-80 hidden sm:block">
           Our specialized tool for downloading high-resolution photos and images is currently under development. Stay tuned for the launch!
         </p>
         <div className="mt-4">
-          <Link href="/" className="inline-flex h-12 items-center justify-center rounded-xl bg-pink-600 px-8 text-sm font-bold text-white shadow-lg hover:bg-pink-700 transition-all uppercase tracking-widest">
+          <Link href="/" className="inline-flex h-12 items-center justify-center rounded-xl bg-pink-600 px-8 text-sm font-bold text-white shadow-lg hover:bg-pink-700 transition-all tracking-widest uppercase italic">
             Go back Home
           </Link>
         </div>

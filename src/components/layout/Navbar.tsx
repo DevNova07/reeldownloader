@@ -104,8 +104,8 @@ export function Navbar({ dict }: { dict: any }) {
               <div className={cn("relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl bg-linear-to-tr shadow-xl group-hover:scale-110 transition-transform", platform.bg)}>
                 <LogoIcon className={cn("h-6 w-6 text-white", (pathname.includes('/youtube')) && "fill-white")} />
               </div>
-              <span className="text-2xl font-black tracking-tighter text-neutral-900 dark:text-white">
-                Sav<span className="text-pink-600">Clip</span>
+              <span className="text-2xl font-black tracking-tighter uppercase italic text-neutral-900 dark:text-white">
+                Sav<span className={platform.text}>Clip</span>
               </span>
             </Link>
 
@@ -133,7 +133,7 @@ export function Navbar({ dict }: { dict: any }) {
                         <div className={cn("w-[600px] grid grid-cols-2 gap-8 bg-white/95 dark:bg-neutral-900/95 backdrop-blur-xl p-8 rounded-3xl shadow-2xl border border-neutral-100 dark:border-neutral-800", navData.borderColor)}>
                            {navData.categories.map((cat) => (
                              <div key={cat.titleKey} className="flex flex-col gap-4">
-                               <p className="text-[10px] font-black uppercase tracking-widest text-neutral-400">
+                               <p className="text-[10px] font-black tracking-widest text-neutral-400">
                                  {dict.navbar?.[cat.titleKey as keyof typeof dict.navbar] || cat.titleKey}
                                </p>
                                <ul className="flex flex-col gap-2.5">
@@ -180,7 +180,7 @@ export function Navbar({ dict }: { dict: any }) {
                 className="flex items-center gap-1.5 cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-800 px-2.5 py-1.5 sm:px-3 rounded-xl border border-neutral-200 dark:border-neutral-800 transition-all hover:scale-105 bg-neutral-50 dark:bg-neutral-900/50 shadow-xs active:scale-95"
               >
                 <span className="text-sm">{languageFlags[currentLocale]}</span>
-                <span className="text-xs sm:text-[11px] font-black text-neutral-700 dark:text-neutral-300 uppercase tracking-tighter">{currentLocale}</span>
+                <span className="text-xs sm:text-[11px] font-black text-neutral-700 dark:text-neutral-300 tracking-tighter uppercase italic">{currentLocale}</span>
                 <ChevronDown className="h-3 w-3 text-neutral-400" />
               </button>
 
@@ -235,7 +235,7 @@ export function Navbar({ dict }: { dict: any }) {
             className="overflow-hidden border-t border-neutral-100 bg-white/95 backdrop-blur-lg dark:border-neutral-800 dark:bg-black/95"
           >
             <div className="mx-auto max-w-7xl px-4 py-6 space-y-4">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">{dict.navbar.services}</p>
+              <p className="text-[10px] font-bold tracking-widest text-neutral-400">{dict.navbar.services}</p>
               <div className="grid grid-cols-1 gap-1">
                 {sortedServices.map((service) => (
                   <div

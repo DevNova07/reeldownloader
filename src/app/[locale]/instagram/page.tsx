@@ -26,5 +26,5 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
   };
   const insta = platforms?.instagram;
 
-  return <InstagramPage content={insta} locale={locale} dict={dict} />;
+  return <InstagramPage content={insta} locale={locale} dict={dict} activeTab="video" />;
 }

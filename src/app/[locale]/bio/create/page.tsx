@@ -96,7 +96,7 @@ function BioBuilderContent() {
             <div className="h-24 w-24 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mx-auto mb-8">
                 <CheckCircle2 className="h-12 w-12" />
             </div>
-            <h1 className="text-4xl font-black italic mb-4">YOUR PAGE IS LIVE!</h1>
+            <h1 className="text-4xl font-black mb-4">YOUR PAGE IS LIVE!</h1>
             <p className="text-neutral-400 mb-8 font-medium hidden sm:block">Your stunning bio link has been created successfully. Share it with the world!</p>
             
             <div className="p-4 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-between mb-8">
@@ -108,7 +108,7 @@ function BioBuilderContent() {
 
             <button 
                 onClick={() => router.push(`/bio`)}
-                className="w-full py-4 rounded-xl bg-white text-black font-black uppercase text-sm tracking-widest hover:scale-105 transition-transform"
+                className="w-full py-4 rounded-xl bg-white text-black font-black text-sm tracking-widest uppercase italic hover:scale-105 transition-transform"
             >
                 Back to Dashboard
             </button>
@@ -169,7 +169,7 @@ function BioBuilderContent() {
                         />
                       )}
                   </div>
-                  <span className={cn("text-[10px] font-black uppercase tracking-widest transition-colors", activeTab === tab.id ? "text-white" : "text-neutral-500")}>
+                  <span className={cn("text-[10px] font-black tracking-widest uppercase italic transition-colors", activeTab === tab.id ? "text-white" : "text-neutral-500")}>
                       {tab.label}
                   </span>
               </button>
@@ -181,7 +181,7 @@ function BioBuilderContent() {
         <div className="max-w-2xl mx-auto">
           <header className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 sm:mb-12">
             <div>
-              <h1 className="text-2xl sm:text-3xl font-black italic tracking-tight uppercase">Build Your Bio</h1>
+              <h1 className="text-2xl sm:text-3xl font-black tracking-tight uppercase italic">Build Your Bio</h1>
               <p className="text-sm sm:text-base text-neutral-500 font-medium hidden sm:block">Customize your link-in-bio page in real-time.</p>
             </div>
             <button 
@@ -203,7 +203,7 @@ function BioBuilderContent() {
               >
                 {/* Profile Info */}
                 <div className="p-8 rounded-3xl bg-neutral-900 border border-white/5 space-y-6">
-                    <h3 className="text-xs font-black uppercase tracking-widest text-neutral-500">Profile Details</h3>
+                    <h3 className="text-xs font-black tracking-widest uppercase italic text-neutral-500">Profile Details</h3>
                     <div className="space-y-4">
                         <div className="space-y-2">
                             <label className="text-xs font-bold text-neutral-400">Display Name</label>
@@ -228,10 +228,10 @@ function BioBuilderContent() {
                 {/* Links Management */}
                 <div className="space-y-4">
                     <div className="flex items-center justify-between">
-                        <h3 className="text-xs font-black uppercase tracking-widest text-neutral-500">Your Links</h3>
+                        <h3 className="text-xs font-black tracking-widest uppercase italic text-neutral-500">Your Links</h3>
                         <button 
                             onClick={addLink}
-                            className="text-xs font-black uppercase tracking-widest text-purple-500 flex items-center gap-1 hover:underline"
+                            className="text-xs font-black tracking-widest uppercase italic text-purple-500 flex items-center gap-1 hover:underline"
                         >
                             <Plus className="h-4 w-4" /> Add Link
                         </button>
@@ -280,7 +280,7 @@ function BioBuilderContent() {
                 className="space-y-8"
               >
                   <div className="p-8 rounded-3xl bg-neutral-900 border border-white/5">
-                      <h3 className="text-xs font-black uppercase tracking-widest text-neutral-500 mb-6">Choose Theme</h3>
+                      <h3 className="text-xs font-black tracking-widest uppercase italic text-neutral-500 mb-6">Choose Theme</h3>
                       <div className="grid grid-cols-2 gap-4">
                           {[
                               { id: "glass" as const, name: "Glassmorphism", colors: "bg-white/20" },
@@ -297,7 +297,7 @@ function BioBuilderContent() {
                                 )}
                               >
                                   <div className={cn("h-12 w-full rounded-lg", t.colors)} />
-                                  <span className="text-xs font-black uppercase">{t.name}</span>
+                                  <span className="text-xs font-black">{t.name}</span>
                               </button>
                           ))}
                       </div>
@@ -311,8 +311,8 @@ function BioBuilderContent() {
       {/* Right Panel - Live Preview */}
       <div className="hidden lg:flex w-[460px] border-l border-white/5 bg-neutral-900/30 items-center justify-center relative">
           <div className="absolute top-8 flex gap-2 p-1 rounded-xl bg-white/5 border border-white/10 z-20">
-              <button className="px-3 py-1.5 rounded-lg bg-white text-black text-[10px] font-black uppercase">Mobile</button>
-              <button className="px-3 py-1.5 rounded-lg text-neutral-500 text-[10px] font-black uppercase hover:text-white">Desktop</button>
+              <button className="px-3 py-1.5 rounded-lg bg-white text-black text-[10px] font-black">Mobile</button>
+              <button className="px-3 py-1.5 rounded-lg text-neutral-500 text-[10px] font-black hover:text-white">Desktop</button>
           </div>
 
           <div className="relative aspect-9/16 h-[720px] w-[340px] shadow-2xl">
@@ -338,8 +338,8 @@ function BioBuilderContent() {
                               </div>
                           </div>
                           <div>
-                              <h2 className={cn("text-2xl font-black italic tracking-tighter", s.text)}>{displayName}</h2>
-                              <p className={cn("text-[11px] font-bold tracking-[0.2em] uppercase opacity-60 mt-1", s.text)}>@{initialUsername || "yourname"}</p>
+                              <h2 className={cn("text-2xl font-black tracking-tight uppercase italicer", s.text)}>{displayName}</h2>
+                              <p className={cn("text-[11px] font-bold tracking-[0.2em] opacity-60 mt-1", s.text)}>@{initialUsername || "yourname"}</p>
                           </div>
                           <p className={cn("text-xs font-medium leading-relaxed max-w-[200px]", s.sub)}>
                               {bioText}
@@ -360,13 +360,13 @@ function BioBuilderContent() {
                                   key={link.id} 
                                   className={cn("w-full py-3.5 px-6 rounded-2xl border transition-all text-center", s.card)}
                               >
-                                  <span className={cn("text-xs font-black uppercase tracking-wider", s.text)}>{link.title || "Untitled Link"}</span>
+                                  <span className={cn("text-xs font-black tracking-wider", s.text)}>{link.title || "Untitled Link"}</span>
                               </div>
                           ))}
                       </div>
 
                       <div className="mt-auto pb-6">
-                        <span className={cn("text-[8px] font-black uppercase tracking-[0.2em] opacity-30", s.text)}>⚡ CREATED WITH SAVCLIP</span>
+                        <span className={cn("text-[8px] font-black tracking-[0.2em] opacity-30", s.text)}>⚡ CREATED WITH SAVCLIP</span>
                       </div>
                   </div>
               </div>

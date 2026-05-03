@@ -1,7 +1,7 @@
 import { getSeoAlternates } from "@/lib/seo";
 import * as React from "react"
 import { type Locale, getDictionary } from "@/i18n"
-import { YoutubeView } from "./YoutubeView"
+import YoutubePageTemplate from "@/components/templates/YoutubePage"
 import { Metadata } from "next"
 
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -29,5 +29,5 @@ export default async function YoutubePage(props: { params: Promise<{ locale: str
     }
   };
 
-  return <YoutubeView locale={locale} dict={dict} />
+  return <YoutubePageTemplate locale={locale} dict={dict} content={platforms?.youtube} />
 }

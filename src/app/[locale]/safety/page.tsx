@@ -5,7 +5,7 @@ export default function SafetyPage() {
   return (
     <div className="flex flex-col min-h-[60vh] px-4 py-20 sm:px-6 lg:px-8 bg-white dark:bg-black">
       <div className="mx-auto max-w-3xl w-full">
-        <h1 className="flex items-center gap-3 text-4xl font-black tracking-tight text-neutral-900 dark:text-white mb-12">
+        <h1 className="flex items-center gap-3 text-4xl font-black tracking-tight uppercase italic text-neutral-900 dark:text-white mb-12">
            <ShieldCheck className="h-10 w-10 text-green-500" />
            Safety Tips
         </h1>

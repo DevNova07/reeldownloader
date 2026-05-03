@@ -47,8 +47,8 @@ function ShareTargetContent(props: { params: Promise<{ locale: string }> }) {
            <Loader2 className="h-12 w-12 animate-spin text-pink-500 relative z-10" />
         </div>
         <div className="text-center space-y-2">
-          <h1 className="text-2xl font-black uppercase italic tracking-tighter">Initializing Download</h1>
-          <p className="text-neutral-500 font-bold uppercase tracking-widest text-[10px] hidden sm:block">Processing your shared content...</p>
+          <h1 className="text-2xl font-black tracking-tight uppercase italicer">Initializing Download</h1>
+          <p className="text-neutral-500 font-bold tracking-widest uppercase italic text-[10px] hidden sm:block">Processing your shared content...</p>
         </div>
       </div>
     </div>

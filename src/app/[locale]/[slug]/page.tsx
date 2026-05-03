@@ -237,13 +237,55 @@ export default async function Page(props: PageProps) {
     
     const templateProps = { content: { ...content, slug }, locale: locale as any, themeColor, dict: minimalDict };
 
-    if (s.includes("facebook") || s.includes("fb-")) return <FacebookPage {...templateProps} />;
-    if (s.includes("instagram") || s.includes("insta-") || s.includes("reels-")) return <InstagramPage {...templateProps} />;
-    if (s.includes("tiktok")) return <TiktokPage {...templateProps} />;
-    if (s.includes("youtube") || s.includes("yt-")) return <YoutubePage {...templateProps} />;
-    if (s.includes("snapchat")) return <SnapchatPage {...templateProps} />;
-    if (s.includes("twitter") || s.includes("x-video")) return <TwitterPage {...templateProps} />;
-    if (s.includes("telegram")) return <TelegramPage {...templateProps} />;
+    if (s.includes("facebook") || s.includes("fb-")) {
+      let activeTab = "video";
+      if (s.includes("reels")) activeTab = "reels";
+      else if (s.includes("story") || s.includes("stories")) activeTab = "story";
+      else if (s.includes("private")) activeTab = "private";
+      return <FacebookPage {...templateProps} activeTab={activeTab} />;
+    }
+    if (s.includes("instagram") || s.includes("insta-") || s.includes("reels-")) {
+      let activeTab = "video";
+      if (s.includes("reels")) activeTab = "reels";
+      else if (s.includes("story") || s.includes("stories") || s.includes("highlights")) activeTab = "story";
+      else if (s.includes("music") || s.includes("audio") || s.includes("mp3")) activeTab = "music";
+      else if (s.includes("photo") || s.includes("dp") || s.includes("picture") || s.includes("image")) activeTab = "photo";
+      return <InstagramPage {...templateProps} activeTab={activeTab} />;
+    }
+    if (s.includes("tiktok")) {
+      let activeTab = "video";
+      if (s.includes("music") || s.includes("audio") || s.includes("mp3")) activeTab = "music";
+      else if (s.includes("story") || s.includes("stories")) activeTab = "story";
+      else if (s.includes("photo") || s.includes("image")) activeTab = "photo";
+      return <TiktokPage {...templateProps} activeTab={activeTab} />;
+    }
+    if (s.includes("youtube") || s.includes("yt-")) {
+      let activeTab = "video";
+      if (s.includes("shorts")) activeTab = "shorts";
+      else if (s.includes("music") || s.includes("audio") || s.includes("mp3")) activeTab = "music";
+      else if (s.includes("movie")) activeTab = "movies";
+      return <YoutubePage {...templateProps} activeTab={activeTab} />;
+    }
+    if (s.includes("snapchat")) {
+      let activeTab = "video";
+      if (s.includes("spotlight")) activeTab = "spotlight";
+      else if (s.includes("story") || s.includes("stories")) activeTab = "story";
+      return <SnapchatPage {...templateProps} activeTab={activeTab} />;
+    }
+    if (s.includes("twitter") || s.includes("x-video")) {
+      let activeTab = "video";
+      if (s.includes("gif")) activeTab = "gif";
+      else if (s.includes("photo") || s.includes("image")) activeTab = "photo";
+      else if (s.includes("music") || s.includes("audio")) activeTab = "music";
+      return <TwitterPage {...templateProps} activeTab={activeTab} />;
+    }
+    if (s.includes("telegram")) {
+      let activeTab = "media";
+      if (s.includes("channel")) activeTab = "channel";
+      else if (s.includes("group")) activeTab = "group";
+      else if (s.includes("music") || s.includes("audio")) activeTab = "music";
+      return <TelegramPage {...templateProps} activeTab={activeTab} />;
+    }
     
     return <InstagramPage {...templateProps} />;
   };

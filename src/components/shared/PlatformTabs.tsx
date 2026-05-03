@@ -19,9 +19,10 @@ interface PlatformTabsProps {
   tabs?: Record<string, string>
   className?: string
   locale?: string
+  indicatorColor?: string
 }
 
-export function PlatformTabs({ items, activeId, activeColor = "text-pink-600", tabs, className, locale = "en" }: PlatformTabsProps) {
+export function PlatformTabs({ items, activeId, activeColor = "text-pink-600", tabs, className, locale = "en", indicatorColor = "bg-white" }: PlatformTabsProps) {
   const getLocalizedHref = (path: string) => {
     const cleanPath = path.startsWith('/') ? path : `/${path}`
     return `/${locale}${cleanPath === '/' ? '' : cleanPath}`
@@ -36,6 +37,7 @@ export function PlatformTabs({ items, activeId, activeColor = "text-pink-600", t
             <Link
               key={item.id}
               href={getLocalizedHref(item.href)}
+              prefetch={true}
               className={cn(
                 "group relative flex shrink-0 items-center justify-center gap-1.5 rounded-full px-4 py-2.5 text-[11px] sm:text-[13px] font-black tracking-tight transition-all duration-300",
                 isActive ? activeColor : "text-white/60 hover:text-white"
@@ -48,7 +50,7 @@ export function PlatformTabs({ items, activeId, activeColor = "text-pink-600", t
               {isActive && (
                 <motion.div
                   layoutId="activeTabIndicator"
-                  className="absolute inset-0 rounded-full bg-white shadow-[0_4px_20px_rgba(255,255,255,0.4)]"
+                  className={cn("absolute inset-0 rounded-full shadow-[0_4px_20px_rgba(255,255,255,0.4)]", indicatorColor)}
                   transition={{ type: "spring", bounce: 0.25, duration: 0.6 }}
                 />
               )}

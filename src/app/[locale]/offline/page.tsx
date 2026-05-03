@@ -14,7 +14,7 @@ export default function OfflinePage() {
         </div>
       </div>
 
-      <h1 className="mb-4 text-4xl font-black tracking-tight text-neutral-900 dark:text-white uppercase italic">
+      <h1 className="mb-4 text-4xl font-black tracking-tight uppercase italic text-neutral-900 dark:text-white">
         You are Offline
       </h1>
       
@@ -25,7 +25,7 @@ export default function OfflinePage() {
       <div className="flex flex-col gap-4 sm:flex-row">
         <button 
           onClick={() => window.location.reload()}
-          className="flex items-center justify-center gap-2 rounded-2xl bg-neutral-900 px-8 py-4 text-lg font-black text-white transition-all hover:scale-105 active:scale-95 dark:bg-white dark:text-black uppercase italic"
+          className="flex items-center justify-center gap-2 rounded-2xl bg-neutral-900 px-8 py-4 text-lg font-black text-white transition-all hover:scale-105 active:scale-95 dark:bg-white dark:text-black"
         >
           <RefreshCw size={20} />
           Retry Connection
@@ -33,14 +33,14 @@ export default function OfflinePage() {
         
         <Link 
           href="/"
-          className="flex items-center justify-center gap-2 rounded-2xl border-2 border-neutral-200 px-8 py-4 text-lg font-black text-neutral-900 transition-all hover:bg-neutral-50 dark:border-neutral-800 dark:text-white dark:hover:bg-neutral-900 uppercase italic"
+          className="flex items-center justify-center gap-2 rounded-2xl border-2 border-neutral-200 px-8 py-4 text-lg font-black text-neutral-900 transition-all hover:bg-neutral-50 dark:border-neutral-800 dark:text-white dark:hover:bg-neutral-900"
         >
           <Home size={20} />
           Go Home
         </Link>
       </div>
 
-      <div className="mt-20 flex items-center gap-2 text-sm font-bold text-neutral-400 uppercase tracking-widest">
+      <div className="mt-20 flex items-center gap-2 text-sm font-bold text-neutral-400 tracking-widest uppercase italic">
         <div className="h-2 w-2 rounded-full bg-pink-500 animate-pulse" />
         Waiting for signal...
       </div>

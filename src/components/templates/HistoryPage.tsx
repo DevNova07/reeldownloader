@@ -38,10 +38,10 @@ export default function HistoryPage({ dict, locale }: { dict: any, locale: strin
               <History className="h-8 w-8 text-pink-500" />
             </motion.div>
             
-            <h1 className="text-4xl font-black text-white sm:text-6xl uppercase italic tracking-tighter">
+            <h1 className="text-4xl font-black text-white sm:text-6xl tracking-tight uppercase italicer">
               {dict.common?.history || "Download History"}
             </h1>
-            <p className="mt-4 max-w-2xl text-lg font-medium text-white/50 uppercase tracking-widest text-xs hidden sm:block">
+            <p className="mt-4 max-w-2xl text-lg font-medium text-white/50 tracking-widest uppercase italic text-xs hidden sm:block">
               Saved locally on your device • No login required
             </p>
 
@@ -66,7 +66,7 @@ export default function HistoryPage({ dict, locale }: { dict: any, locale: strin
         <div className="flex items-center justify-between mb-8 border-b border-neutral-200 dark:border-neutral-800 pb-4">
           <div className="flex items-center gap-2">
              <Clock className="h-4 w-4 text-neutral-400" />
-             <span className="text-[10px] font-black uppercase tracking-widest text-neutral-400">Total: {filteredHistory.length} Items</span>
+             <span className="text-[10px] font-black tracking-widest uppercase italic text-neutral-400">Total: {filteredHistory.length} Items</span>
           </div>
           {history.length > 0 && (
             <button
@@ -75,7 +75,7 @@ export default function HistoryPage({ dict, locale }: { dict: any, locale: strin
                   clearHistory()
                 }
               }}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-red-500/5 text-red-500 hover:bg-red-500/10 transition-all text-[10px] font-black uppercase tracking-widest"
+              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-red-500/5 text-red-500 hover:bg-red-500/10 transition-all text-[10px] font-black tracking-widest uppercase italic"
             >
               <Trash2 className="h-3.5 w-3.5" />
               Clear All
@@ -88,13 +88,13 @@ export default function HistoryPage({ dict, locale }: { dict: any, locale: strin
             <div className="mb-6 rounded-full bg-neutral-100 p-8 dark:bg-neutral-900">
               <History className="h-12 w-12 text-neutral-300 dark:text-neutral-700" />
             </div>
-            <h3 className="text-xl font-black text-neutral-900 dark:text-white uppercase italic tracking-widest">No history found</h3>
+            <h3 className="text-xl font-black text-neutral-900 dark:text-white tracking-widest uppercase italic">No history found</h3>
             <p className="mt-2 max-w-xs text-neutral-500 dark:text-neutral-400 font-medium">
               Start downloading content from your favorite social media platforms to see it here.
             </p>
             <Link 
               href="/"
-              className="mt-8 rounded-2xl bg-pink-600 px-8 py-4 text-sm font-black uppercase tracking-widest text-white shadow-xl shadow-pink-600/20 hover:bg-pink-500 transition-all active:scale-95"
+              className="mt-8 rounded-2xl bg-pink-600 px-8 py-4 text-sm font-black tracking-widest uppercase italic text-white shadow-xl shadow-pink-600/20 hover:bg-pink-500 transition-all active:scale-95"
             >
               Go to Home
             </Link>
@@ -124,14 +124,14 @@ export default function HistoryPage({ dict, locale }: { dict: any, locale: strin
                     <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent opacity-60" />
                     
                     {/* Platform Badge */}
-                    <div className="absolute top-4 left-4 rounded-full bg-white/20 backdrop-blur-md px-3 py-1 text-[8px] font-black uppercase tracking-widest text-white ring-1 ring-white/20">
+                    <div className="absolute top-4 left-4 rounded-full bg-white/20 backdrop-blur-md px-3 py-1 text-[8px] font-black tracking-widest uppercase italic text-white ring-1 ring-white/20">
                       {item.platform || "App"}
                     </div>
 
                     <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
                        <div className="flex items-center gap-1.5 text-white">
                           <Calendar className="h-3 w-3 opacity-60" />
-                          <span className="text-[9px] font-black uppercase tracking-tighter opacity-80">
+                          <span className="text-[9px] font-black tracking-tight uppercase italicer opacity-80">
                              {new Date(item.timestamp).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
                           </span>
                        </div>
@@ -139,7 +139,7 @@ export default function HistoryPage({ dict, locale }: { dict: any, locale: strin
                   </div>
 
                   <div className="p-5 flex flex-col flex-1">
-                    <h3 className="text-sm font-black text-neutral-900 dark:text-white line-clamp-2 leading-snug uppercase italic mb-6">
+                    <h3 className="text-sm font-black text-neutral-900 dark:text-white line-clamp-2 leading-snug mb-6">
                       {item.title}
                     </h3>
                     
@@ -150,7 +150,7 @@ export default function HistoryPage({ dict, locale }: { dict: any, locale: strin
                            const localePrefix = locale === 'en' ? '' : `/${locale}`;
                            router.push(`${localePrefix}${platformPath}?url=${encodeURIComponent(item.url)}`);
                          }}
-                         className="flex-1 flex items-center justify-center gap-2 rounded-xl bg-pink-600 py-3 text-[10px] font-black uppercase tracking-widest text-white shadow-lg shadow-pink-600/20 hover:bg-pink-500 transition-all active:scale-95"
+                         className="flex-1 flex items-center justify-center gap-2 rounded-xl bg-pink-600 py-3 text-[10px] font-black tracking-widest uppercase italic text-white shadow-lg shadow-pink-600/20 hover:bg-pink-500 transition-all active:scale-95"
                        >
                          <Download className="h-3.5 w-3.5" />
                          Redownload

@@ -1,7 +1,7 @@
 import { getSeoAlternates } from "@/lib/seo";
 import * as React from "react";
 import { getDictionary } from "@/i18n";
-import FacebookView from "./FacebookView";
+import FacebookPage from "@/components/templates/FacebookPage";
 import { Metadata } from "next";
 
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -45,7 +45,12 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
   
   return (
     <React.Suspense fallback={null}>
-      <FacebookView dict={filteredDict} locale={locale} />
+      <FacebookPage 
+        content={platforms?.facebook} 
+        locale={locale} 
+        dict={filteredDict} 
+        themeColor="blue"
+      />
     </React.Suspense>
   );
 }

@@ -44,8 +44,8 @@ export default function AboutPage() {
                 
                 {/* Float Badge */}
                 <div className="absolute -bottom-6 -right-6 bg-white dark:bg-neutral-900 p-6 rounded-3xl shadow-2xl border border-neutral-100 dark:border-neutral-800 backdrop-blur-xl">
-                   <p className="text-[10px] font-black uppercase tracking-widest text-pink-600 mb-1">Founder / CEO</p>
-                   <h3 className="text-xl font-black text-neutral-900 dark:text-white italic">Ramzan Ahmad</h3>
+                   <p className="text-[10px] font-black tracking-widest uppercase italic text-pink-600 mb-1">Founder / CEO</p>
+                   <h3 className="text-xl font-black text-neutral-900 dark:text-white">Ramzan Ahmad</h3>
                 </div>
               </motion.div>
 
@@ -55,7 +55,7 @@ export default function AboutPage() {
                     <Mail className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest">General Inquiry</p>
+                    <p className="text-[10px] font-bold text-neutral-400 tracking-widest uppercase italic">General Inquiry</p>
                     <p className="text-sm font-black text-neutral-900 dark:text-white">ramzaan0043@gmail.com</p>
                   </div>
                 </div>
@@ -65,7 +65,7 @@ export default function AboutPage() {
                     <Globe className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest">Global HQ</p>
+                    <p className="text-[10px] font-bold text-neutral-400 tracking-widest uppercase italic">Global HQ</p>
                     <p className="text-sm font-black text-neutral-900 dark:text-white">Kolkata, WB, India</p>
                   </div>
                 </div>
@@ -81,20 +81,20 @@ export default function AboutPage() {
               >
                 <div className="flex items-center gap-3 mb-6">
                   <div className="h-px w-12 bg-pink-600" />
-                  <span className="text-xs font-black uppercase tracking-[0.4em] text-pink-600">The Legend behind SavClip</span>
+                  <span className="text-xs font-black tracking-[0.4em] text-pink-600">The Legend behind SavClip</span>
                 </div>
-                <h1 className="text-5xl sm:text-7xl font-black tracking-tighter text-neutral-900 dark:text-white uppercase italic mb-8">
+                <h1 className="text-5xl sm:text-7xl font-black tracking-tight uppercase italicer text-neutral-900 dark:text-white mb-8">
                   {content.title}
                 </h1>
                 <div className="flex items-center gap-4 py-4 mb-8">
-                   <div className="px-4 py-2 rounded-full border-2 border-pink-600 text-pink-600 font-black text-xs uppercase tracking-widest italic animate-pulse">
+                   <div className="px-4 py-2 rounded-full border-2 border-pink-600 text-pink-600 font-black text-xs tracking-widest uppercase italic animate-pulse">
                       Professional Web Developer
                    </div>
-                   <div className="px-4 py-2 rounded-full border-2 border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400 font-black text-xs uppercase tracking-widest italic">
+                   <div className="px-4 py-2 rounded-full border-2 border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400 font-black text-xs tracking-widest uppercase italic">
                       3+ Years Exp.
                    </div>
                 </div>
-                <p className="text-xl sm:text-2xl font-bold text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-3xl border-l-4 border-pink-600 pl-8 italic">
+                <p className="text-xl sm:text-2xl font-bold text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-3xl border-l-4 border-pink-600 pl-8">
                   {content.intro}
                 </p>
               </motion.div>
@@ -104,12 +104,12 @@ export default function AboutPage() {
                    {content.founder_story}
                 </p>
                 <div className="p-8 rounded-[2.5rem] bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 my-12">
-                   <p className="text-lg leading-relaxed text-neutral-900 dark:text-white italic font-bold mb-4">
+                   <p className="text-lg leading-relaxed text-neutral-900 dark:text-white font-bold mb-4">
                       "SavClip is not just a tool; it's a testament to what we can build when we prioritize the user's need for speed and the creator's need for respect."
                    </p>
-                   <p className="text-sm font-black text-pink-600 uppercase tracking-widest">— Ramzan Ahmad</p>
+                   <p className="text-sm font-black text-pink-600 tracking-widest uppercase italic">— Ramzan Ahmad</p>
                 </div>
-                <p className="text-lg leading-relaxed text-neutral-500 dark:text-neutral-400 italic font-semibold">
+                <p className="text-lg leading-relaxed text-neutral-500 dark:text-neutral-400 font-semibold">
                    {content.differentiator}
                 </p>
               </div>
@@ -117,7 +117,7 @@ export default function AboutPage() {
               {/* Offerings Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-8">
                  <div className="space-y-6">
-                    <h3 className="flex items-center gap-3 text-xl font-black uppercase italic tracking-widest text-neutral-900 dark:text-white">
+                    <h3 className="flex items-center gap-3 text-xl font-black tracking-widest uppercase italic text-neutral-900 dark:text-white">
                       <Zap className="h-6 w-6 text-pink-600" />
                       {content.offerings.title}
                     </h3>
@@ -133,7 +133,7 @@ export default function AboutPage() {
                  
                  <div className="space-y-12">
                     <div className="space-y-4">
-                      <h3 className="flex items-center gap-3 text-xl font-black uppercase italic tracking-widest text-neutral-900 dark:text-white">
+                      <h3 className="flex items-center gap-3 text-xl font-black tracking-widest uppercase italic text-neutral-900 dark:text-white">
                         <Target className="h-6 w-6 text-pink-600" />
                         {content.mission.title}
                       </h3>
@@ -143,7 +143,7 @@ export default function AboutPage() {
                     </div>
 
                     <div className="space-y-4">
-                      <h3 className="flex items-center gap-3 text-xl font-black uppercase italic tracking-widest text-neutral-900 dark:text-white">
+                      <h3 className="flex items-center gap-3 text-xl font-black tracking-widest uppercase italic text-neutral-900 dark:text-white">
                         <Award className="h-6 w-6 text-pink-600" />
                         {content.vision.title}
                       </h3>
@@ -169,8 +169,8 @@ export default function AboutPage() {
             { label: "Uptime", val: "99.9%" }
           ].map((stat, i) => (
             <div key={i}>
-              <p className="text-4xl font-black text-neutral-900 dark:text-white italic tracking-tighter mb-2">{stat.val}</p>
-              <p className="text-[10px] font-black uppercase tracking-widest text-neutral-400">{stat.label}</p>
+              <p className="text-4xl font-black text-neutral-900 dark:text-white tracking-tight uppercase italicer mb-2">{stat.val}</p>
+              <p className="text-[10px] font-black tracking-widest uppercase italic text-neutral-400">{stat.label}</p>
             </div>
           ))}
         </div>

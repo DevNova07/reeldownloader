@@ -73,15 +73,15 @@ export default function ReelScriptGenerator() {
           <motion.div 
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="inline-flex items-center gap-2 rounded-full bg-pink-100 px-5 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-pink-600 dark:bg-pink-900/30"
+            className="inline-flex items-center gap-2 rounded-full bg-pink-100 px-5 py-2 text-[10px] font-black tracking-[0.2em] text-pink-600 dark:bg-pink-900/30"
           >
             <Sparkles className="h-3.5 w-3.5" />
             AI Content Studio
           </motion.div>
-          <h1 className="text-5xl md:text-8xl font-black tracking-tighter text-neutral-900 uppercase italic leading-[0.8] dark:text-white">
+          <h1 className="text-5xl md:text-8xl font-black tracking-tight uppercase italicer text-neutral-900 leading-[0.8] dark:text-white">
             Reel <br className="sm:hidden" /> <span className="text-pink-600">Script</span>
           </h1>
-          <p className="text-lg font-bold text-neutral-500 tracking-tight opacity-70 max-w-2xl mx-auto px-4 hidden sm:block">
+          <p className="text-lg font-bold text-neutral-500 tracking-tight uppercase italic opacity-70 max-w-2xl mx-auto px-4 hidden sm:block">
             High-conversion scripts for Reels, TikToks, and Shorts in seconds.
           </p>
         </div>
@@ -107,11 +107,11 @@ export default function ReelScriptGenerator() {
                 className="space-y-8"
               >
                 <div className="space-y-3">
-                   <h2 className="text-2xl font-black tracking-tighter text-neutral-900 uppercase italic dark:text-white flex items-center gap-2">
+                   <h2 className="text-2xl font-black tracking-tight uppercase italicer text-neutral-900 dark:text-white flex items-center gap-2">
                      <Target className="h-6 w-6 text-pink-600" />
                      Topic?
                    </h2>
-                   <p className="text-sm font-bold text-neutral-500 tracking-tight opacity-70">
+                   <p className="text-sm font-bold text-neutral-500 tracking-tight uppercase italic opacity-70">
                      What is your video about?
                    </p>
                 </div>
@@ -119,12 +119,12 @@ export default function ReelScriptGenerator() {
                   placeholder="e.g. 3 Morning habits to double your productivity..."
                   value={topic}
                   onChange={(e) => setTopic(e.target.value)}
-                  className="h-48 w-full rounded-3xl border-none bg-neutral-100 p-6 text-lg font-bold tracking-tight outline-none ring-2 ring-transparent transition-all focus:bg-white focus:ring-pink-600/20 dark:bg-neutral-800 dark:focus:bg-neutral-800"
+                  className="h-48 w-full rounded-3xl border-none bg-neutral-100 p-6 text-lg font-bold tracking-tight uppercase italic outline-none ring-2 ring-transparent transition-all focus:bg-white focus:ring-pink-600/20 dark:bg-neutral-800 dark:focus:bg-neutral-800"
                 />
                 <button
                   onClick={() => topic.trim() && setStep(2)}
                   disabled={!topic.trim()}
-                  className="group w-full h-16 items-center justify-center gap-4 rounded-2xl bg-black text-[11px] font-black uppercase tracking-[0.2em] text-white shadow-2xl transition-all hover:scale-[1.02] active:scale-95 dark:bg-white dark:text-black disabled:opacity-50 flex"
+                  className="group w-full h-16 items-center justify-center gap-4 rounded-2xl bg-black text-[11px] font-black tracking-[0.2em] text-white shadow-2xl transition-all hover:scale-[1.02] active:scale-95 dark:bg-white dark:text-black disabled:opacity-50 flex"
                 >
                   Continue
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -142,7 +142,7 @@ export default function ReelScriptGenerator() {
               >
                 <div className="space-y-10">
                   <div className="space-y-6">
-                    <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-neutral-400 flex items-center gap-2">
+                    <h3 className="text-[10px] font-black tracking-[0.3em] text-neutral-400 flex items-center gap-2">
                       <Mic className="h-3.5 w-3.5" /> Script Tone
                     </h3>
                     <div className="grid grid-cols-2 gap-3">
@@ -150,7 +150,7 @@ export default function ReelScriptGenerator() {
                         <button 
                           key={t}
                           onClick={() => setTone(t)}
-                          className={`rounded-2xl border-2 py-4 text-[10px] font-black uppercase tracking-widest transition-all ${tone === t ? "border-pink-600 bg-pink-600 text-white shadow-lg shadow-pink-500/20" : "border-neutral-100 bg-neutral-100 text-neutral-500 hover:border-pink-200 dark:border-neutral-800 dark:bg-neutral-800"}`}
+                          className={`rounded-2xl border-2 py-4 text-[10px] font-black tracking-widest uppercase italic transition-all ${tone === t ? "border-pink-600 bg-pink-600 text-white shadow-lg shadow-pink-500/20" : "border-neutral-100 bg-neutral-100 text-neutral-500 hover:border-pink-200 dark:border-neutral-800 dark:bg-neutral-800"}`}
                         >
                           {t}
                         </button>
@@ -159,7 +159,7 @@ export default function ReelScriptGenerator() {
                   </div>
 
                   <div className="space-y-6">
-                    <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-neutral-400 flex items-center gap-2">
+                    <h3 className="text-[10px] font-black tracking-[0.3em] text-neutral-400 flex items-center gap-2">
                       <Video className="h-3.5 w-3.5" /> Duration
                     </h3>
                     <div className="grid grid-cols-2 gap-3">
@@ -167,7 +167,7 @@ export default function ReelScriptGenerator() {
                         <button 
                           key={d}
                           onClick={() => setDuration(d)}
-                          className={`rounded-2xl border-2 py-4 text-[10px] font-black uppercase tracking-widest transition-all ${duration === d ? "border-pink-600 bg-pink-600 text-white shadow-lg shadow-pink-500/20" : "border-neutral-100 bg-neutral-100 text-neutral-500 hover:border-pink-200 dark:border-neutral-800 dark:bg-neutral-800"}`}
+                          className={`rounded-2xl border-2 py-4 text-[10px] font-black tracking-widest uppercase italic transition-all ${duration === d ? "border-pink-600 bg-pink-600 text-white shadow-lg shadow-pink-500/20" : "border-neutral-100 bg-neutral-100 text-neutral-500 hover:border-pink-200 dark:border-neutral-800 dark:bg-neutral-800"}`}
                         >
                           {d}
                         </button>
@@ -183,7 +183,7 @@ export default function ReelScriptGenerator() {
                   <button
                     onClick={handleGenerate}
                     disabled={isGenerating}
-                    className="group flex-1 h-16 items-center justify-center gap-4 rounded-2xl bg-linear-to-tr from-rose-500 to-pink-600 text-[11px] font-black uppercase tracking-[0.2em] text-white shadow-2xl shadow-rose-500/30 transition-all hover:scale-[1.02] active:scale-95 flex"
+                    className="group flex-1 h-16 items-center justify-center gap-4 rounded-2xl bg-linear-to-tr from-rose-500 to-pink-600 text-[11px] font-black tracking-[0.2em] text-white shadow-2xl shadow-rose-500/30 transition-all hover:scale-[1.02] active:scale-95 flex"
                   >
                     {isGenerating ? "Creating..." : "Magic"}
                     <Sparkles className={`h-4 w-4 ${isGenerating ? "animate-spin" : ""}`} />
@@ -200,12 +200,12 @@ export default function ReelScriptGenerator() {
                 className="space-y-8"
               >
                 <div className="space-y-2 text-center">
-                  <h2 className="text-3xl font-black tracking-tighter text-neutral-900 uppercase italic dark:text-white">
+                  <h2 className="text-3xl font-black tracking-tight uppercase italicer text-neutral-900 dark:text-white">
                     Ready to <span className="text-pink-600">Shoot</span>
                   </h2>
                 </div>
 
-                <div className="relative rounded-[32px] bg-neutral-950 p-6 md:p-12 text-base md:text-lg font-medium leading-relaxed tracking-tight text-white shadow-2xl border border-white/10">
+                <div className="relative rounded-[32px] bg-neutral-950 p-6 md:p-12 text-base md:text-lg font-medium leading-relaxed tracking-tight uppercase italic text-white shadow-2xl border border-white/10">
                    <div className="absolute top-4 right-4 md:top-6 md:right-6">
                      <div className="h-2 w-2 rounded-full bg-red-600 animate-pulse shadow-[0_0_10px_rgba(220,38,38,1)]" />
                    </div>
@@ -219,14 +219,14 @@ export default function ReelScriptGenerator() {
                 <div className="flex flex-col gap-3">
                   <button
                     onClick={handleCopy}
-                    className="flex h-16 w-full items-center justify-center gap-3 rounded-2xl bg-pink-600 text-[11px] font-black uppercase tracking-[0.2em] text-white shadow-xl shadow-pink-500/30 transition-all active:scale-95"
+                    className="flex h-16 w-full items-center justify-center gap-3 rounded-2xl bg-pink-600 text-[11px] font-black tracking-[0.2em] text-white shadow-xl shadow-pink-500/30 transition-all active:scale-95"
                   >
                     {copyStatus ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
                     {copyStatus ? "Copied" : "Copy Script"}
                   </button>
                   <button
                     onClick={() => setStep(1)}
-                    className="flex h-14 items-center justify-center gap-3 rounded-2xl bg-neutral-100 text-[10px] font-black uppercase tracking-widest text-neutral-900 transition-all dark:bg-neutral-800 dark:text-white"
+                    className="flex h-14 items-center justify-center gap-3 rounded-2xl bg-neutral-100 text-[10px] font-black tracking-widest uppercase italic text-neutral-900 transition-all dark:bg-neutral-800 dark:text-white"
                   >
                     <RefreshCcw className="h-3.5 w-3.5" />
                     New Idea
@@ -242,10 +242,10 @@ export default function ReelScriptGenerator() {
           {/* How it Works */}
           <section className="space-y-12">
             <div className="text-center space-y-4">
-              <h2 className="text-4xl font-black tracking-tighter uppercase italic dark:text-white">
+              <h2 className="text-4xl font-black tracking-tight uppercase italicer dark:text-white">
                 How to Use <span className="text-pink-600">Reel AI</span>
               </h2>
-              <p className="text-neutral-500 font-bold uppercase tracking-widest text-[10px]">3 Simple Steps to Virality</p>
+              <p className="text-neutral-500 font-bold tracking-widest uppercase italic text-[10px]">3 Simple Steps to Virality</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
@@ -255,7 +255,7 @@ export default function ReelScriptGenerator() {
               ].map((item) => (
                 <div key={item.step} className="p-8 rounded-[32px] bg-white dark:bg-neutral-900 border border-neutral-100 dark:border-neutral-800 shadow-xl">
                   <span className="text-5xl font-black text-pink-600/20 mb-4 block">{item.step}</span>
-                  <h3 className="text-xl font-black uppercase italic mb-2 dark:text-white">{item.title}</h3>
+                  <h3 className="text-xl font-black mb-2 dark:text-white">{item.title}</h3>
                   <p className="text-sm font-bold text-neutral-500 leading-relaxed hidden sm:block">{item.desc}</p>
                 </div>
               ))}
@@ -264,7 +264,7 @@ export default function ReelScriptGenerator() {
 
           {/* FAQs */}
           <section className="space-y-12">
-            <h2 className="text-4xl font-black tracking-tighter uppercase italic text-center dark:text-white">
+            <h2 className="text-4xl font-black tracking-tight uppercase italicer text-center dark:text-white">
               Common <span className="text-pink-600">Questions</span>
             </h2>
             <div className="max-w-3xl mx-auto space-y-4">
@@ -274,7 +274,7 @@ export default function ReelScriptGenerator() {
                 { q: "How many scripts can I generate?", a: "There are no limits. You can generate as many scripts as you need for your content calendar." }
               ].map((faq, i) => (
                 <div key={i} className="p-6 rounded-2xl bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800">
-                  <h3 className="text-sm font-black uppercase tracking-tight mb-2 dark:text-white">Q: {faq.q}</h3>
+                  <h3 className="text-sm font-black tracking-tight uppercase italic mb-2 dark:text-white">Q: {faq.q}</h3>
                   <p className="text-sm font-medium text-neutral-500 leading-relaxed">A: {faq.a}</p>
                 </div>
               ))}

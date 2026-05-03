@@ -27,5 +27,5 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
   };
   const music = platforms?.instagram?.music;
 
-  return <InstagramPage content={music} locale={locale} dict={dict} themeColor="purple" />;
+  return <InstagramPage content={music} locale={locale} dict={dict} themeColor="purple" activeTab="music" />;
 }

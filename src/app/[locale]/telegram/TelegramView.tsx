@@ -151,11 +151,9 @@ export default function TelegramView({ dict, locale }: { dict: any, locale: stri
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <h1 className="mb-3 text-3xl min-[400px]:text-4xl font-black tracking-tight text-white sm:text-7xl drop-shadow-2xl uppercase italic text-balance">
+            <h1 className="mb-2 text-3xl min-[400px]:text-4xl font-black tracking-tight uppercase italic text-white sm:text-7xl drop-shadow-2xl">
               {telegramDict.title}
             </h1>
-            <p className="mt-4 text-lg text-white/90 max-w-2xl mx-auto hidden sm:block">{telegramDict.subtitle}</p>
-            
           </motion.div>
 
           
@@ -169,6 +167,10 @@ export default function TelegramView({ dict, locale }: { dict: any, locale: stri
               buttonClass="bg-linear-to-br from-blue-600 to-indigo-600 text-white shadow-[0_20px_50px_rgba(37,99,235,0.3)] ring-1 ring-inset ring-white/20"
               iconClass="text-blue-500"
             />
+
+            <p className="mx-auto mb-4 max-w-2xl mt-8 mb-2 text-sm font-bold text-white/60 tracking-widest uppercase italic hidden sm:block">
+              {telegramDict.subtitle}
+            </p>
 
             <TrustBadges dict={dict} />
 
@@ -236,8 +238,8 @@ export default function TelegramView({ dict, locale }: { dict: any, locale: stri
               <Info className="h-8 w-8 text-sky-600" />
               {telegramDict.seo.title}
             </h2>
-            <p className="mt-4 text-lg text-neutral-500 dark:text-neutral-400 font-medium italic opacity-80 sm:hidden hidden sm:block">{telegramDict.subtitle}</p>
-            <p className="mt-6 text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed italic border-l-4 border-sky-400 pl-6">
+            <p className="mt-4 text-lg text-neutral-500 dark:text-neutral-400 font-medium opacity-80 sm:hidden hidden sm:block">{telegramDict.subtitle}</p>
+            <p className="mt-6 text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed border-l-4 border-sky-400 pl-6">
               {telegramDict.seo.desc}
             </p>
 
@@ -247,7 +249,7 @@ export default function TelegramView({ dict, locale }: { dict: any, locale: stri
                     {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                     {telegramDict.seo.features.map((feature: any, idx: number) => (
                       <div key={idx} className="rounded-2xl bg-neutral-50 p-6 dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 transition-all hover:scale-105">
-                        <h3 className="font-bold text-neutral-900 dark:text-white uppercase tracking-tighter">{feature.title}</h3>
+                        <h3 className="font-bold text-neutral-900 dark:text-white tracking-tight uppercase italicer">{feature.title}</h3>
                         <p className="mt-4 text-sm text-neutral-500 dark:text-neutral-400 hidden sm:block">{feature.desc}</p>
                       </div>
                     ))}

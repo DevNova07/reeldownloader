@@ -1,7 +1,7 @@
 import { getSeoAlternates } from "@/lib/seo";
 import * as React from "react"
 import { type Locale, getDictionary } from "@/i18n"
-import { TikTokView } from "./TikTokView"
+import TiktokPageTemplate from "@/components/templates/TiktokPage"
 import { Metadata } from "next"
 
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -29,5 +29,5 @@ export default async function TikTokPage(props: { params: Promise<{ locale: stri
     }
   };
 
-  return <TikTokView locale={locale} dict={dict} />
+  return <TiktokPageTemplate locale={locale} dict={dict} content={platforms?.tiktok} />
 }

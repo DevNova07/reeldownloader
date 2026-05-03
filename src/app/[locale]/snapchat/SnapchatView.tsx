@@ -127,11 +127,9 @@ export default function SnapchatView({ dict, locale }: { dict: any, locale: stri
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <h1 className="mb-3 text-3xl min-[400px]:text-4xl font-black tracking-tight text-black sm:text-7xl drop-shadow-2xl uppercase italic text-balance">
+            <h1 className="mb-2 text-3xl min-[400px]:text-4xl font-black tracking-tight uppercase italic text-white sm:text-7xl drop-shadow-2xl">
               {snapDict.title}
             </h1>
-            <p className="mt-4 text-lg text-white/90 max-w-2xl mx-auto hidden sm:block">{snapDict.subtitle}</p>
-            
           </motion.div>
 
           
@@ -145,6 +143,10 @@ export default function SnapchatView({ dict, locale }: { dict: any, locale: stri
               buttonClass="bg-black text-white hover:bg-neutral-800"
               iconClass="text-yellow-500"
             />
+
+            <p className="mx-auto mb-4 max-w-2xl mt-8 mb-2 text-sm font-bold text-black/60 tracking-widest uppercase italic hidden sm:block">
+              {snapDict.subtitle}
+            </p>
 
             {!downloadData && !isLoading && (
               <div className="overflow-hidden">
@@ -214,8 +216,8 @@ export default function SnapchatView({ dict, locale }: { dict: any, locale: stri
               <Info className="h-8 w-8 text-yellow-500" />
               {snapDict.seo.title}
             </h2>
-            <p className="mt-4 text-lg text-neutral-500 dark:text-neutral-400 font-medium italic opacity-80 sm:hidden hidden sm:block">{snapDict.subtitle}</p>
-            <p className="mt-6 text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed italic border-l-4 border-yellow-500 pl-6">
+            <p className="mt-4 text-lg text-neutral-500 dark:text-neutral-400 font-medium opacity-80 sm:hidden hidden sm:block">{snapDict.subtitle}</p>
+            <p className="mt-6 text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed border-l-4 border-yellow-500 pl-6">
               {snapDict.seo.desc}
             </p>
 
@@ -224,7 +226,7 @@ export default function SnapchatView({ dict, locale }: { dict: any, locale: stri
                 {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                 {snapDict.seo.features.map((feature: any, idx: number) => (
                   <div key={idx} className="rounded-2xl bg-neutral-50 p-6 dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 transition-all hover:scale-110">
-                    <h3 className="font-bold text-neutral-900 dark:text-white uppercase tracking-tighter italic">{feature.title}</h3>
+                    <h3 className="font-bold text-neutral-900 dark:text-white tracking-tight uppercase italicer">{feature.title}</h3>
                     <p className="mt-4 text-sm text-neutral-500 dark:text-neutral-400 hidden sm:block">{feature.desc}</p>
                   </div>
                 ))}
@@ -241,7 +243,7 @@ export default function SnapchatView({ dict, locale }: { dict: any, locale: stri
               {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
               {dict.faq.items.map((faq: any, idx: number) => (
                 <div key={idx} className="group rounded-2xl border border-neutral-200 p-6 dark:border-neutral-800 hover:border-yellow-500/50 transition-all">
-                  <h3 className="font-bold text-neutral-900 dark:text-white group-hover:text-yellow-600 transition-colors uppercase italic tracking-tighter">{faq.q}</h3>
+                  <h3 className="font-bold text-neutral-900 dark:text-white group-hover:text-yellow-600 transition-colors tracking-tight uppercase italicer">{faq.q}</h3>
                   <p className="mt-4 text-neutral-500 dark:text-neutral-400">{faq.a}</p>
                 </div>
               ))}

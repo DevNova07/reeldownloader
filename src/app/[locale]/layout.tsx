@@ -176,7 +176,7 @@ export default async function RootLayout(props: {
           }}
         />
       </head>
-      <body suppressHydrationWarning className={`${inter.variable} font-sans bg-white text-neutral-900 antialiased dark:bg-black dark:text-neutral-100 transition-colors duration-300`}>
+      <body suppressHydrationWarning className={`${inter.variable} font-sans bg-white text-neutral-900 antialiased dark:bg-black dark:text-neutral-100`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -263,7 +263,7 @@ export default async function RootLayout(props: {
           <div className="flex min-h-screen flex-col overflow-x-hidden">
             <Navbar dict={layoutDict} />
             <ToolSubNav />
-            <main className="flex-1 min-h-[80vh] animate-in fade-in duration-200 fill-mode-both">
+            <main className="flex-1 min-h-[80vh]">
               {props.children}
             </main>
             <Footer locale={locale} dict={layoutDict} />

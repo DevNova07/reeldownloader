@@ -12,8 +12,8 @@ export default function DMCAPage() {
              <AlertTriangle className="h-7 w-7" />
            </div>
            <div>
-             <h1 className="text-4xl font-black tracking-tight text-neutral-900 dark:text-white uppercase italic">DMCA Policy</h1>
-             <p className="text-sm font-bold text-neutral-500 uppercase tracking-widest mt-1 hidden sm:block">Copyright Compliance & Takedown</p>
+             <h1 className="text-4xl font-black tracking-tight uppercase italic text-neutral-900 dark:text-white">DMCA Policy</h1>
+             <p className="text-sm font-bold text-neutral-500 tracking-widest uppercase italic mt-1 hidden sm:block">Copyright Compliance & Takedown</p>
            </div>
         </div>
         
@@ -25,7 +25,7 @@ export default function DMCAPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-black uppercase italic tracking-widest text-neutral-900 dark:text-white mb-6">1. Reporting Infringement</h2>
+            <h2 className="text-2xl font-black tracking-widest uppercase italic text-neutral-900 dark:text-white mb-6">1. Reporting Infringement</h2>
             <p className="font-medium leading-relaxed mb-6">
               If you believe that your copyrighted work has been used in a way that constitutes copyright infringement, please submit a formal notification containing the following:
             </p>
@@ -42,7 +42,7 @@ export default function DMCAPage() {
              <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
                 <Mail className="h-24 w-24 text-pink-600" />
              </div>
-             <h3 className="text-2xl font-black uppercase italic text-white mb-4 flex items-center gap-3 relative z-10">
+             <h3 className="text-2xl font-black text-white mb-4 flex items-center gap-3 relative z-10">
                <Mail className="h-6 w-6 text-pink-600" />
                Submit a Takedown Request
              </h3>
@@ -55,7 +55,7 @@ export default function DMCAPage() {
           </div>
 
           <section className="pt-10 border-t border-neutral-200 dark:border-neutral-800">
-             <h2 className="text-2xl font-black uppercase italic tracking-widest text-neutral-900 dark:text-white mb-4">2. Counter-Notification</h2>
+             <h2 className="text-2xl font-black tracking-widest uppercase italic text-neutral-900 dark:text-white mb-4">2. Counter-Notification</h2>
              <p className="font-medium leading-relaxed">
                If you believe that your material was removed by mistake or misidentification, you may submit a counter-notification to our copyright agent with the required legal statements.
              </p>

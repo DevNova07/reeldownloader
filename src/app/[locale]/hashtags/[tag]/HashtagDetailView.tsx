@@ -46,7 +46,7 @@ export function HashtagDetailView({ locale, tag }: { locale: string, tag: string
       {/* Breadcrumbs / Header Bar */}
       <div className="w-full border-b border-neutral-100 dark:border-neutral-800 bg-neutral-50/30 dark:bg-neutral-900/30">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 md:px-8">
-          <h1 className="text-xl font-bold text-neutral-600 dark:text-neutral-400 tracking-tight">
+          <h1 className="text-xl font-bold text-neutral-600 dark:text-neutral-400 tracking-tight uppercase italic">
             Hashtags for #{tag}
           </h1>
           <nav className="flex items-center gap-2 text-sm font-medium text-neutral-400">
@@ -69,7 +69,7 @@ export function HashtagDetailView({ locale, tag }: { locale: string, tag: string
               <motion.h2 
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="hidden md:block text-4xl md:text-5xl font-black text-neutral-800 dark:text-white tracking-tighter uppercase italic"
+                className="hidden md:block text-4xl md:text-5xl font-black text-neutral-800 dark:text-white tracking-tight uppercase italicer"
               >
                 BEST #{tag} HASHTAGS
               </motion.h2>
@@ -78,7 +78,7 @@ export function HashtagDetailView({ locale, tag }: { locale: string, tag: string
                     #{tag} - <span className="text-[#a4d444]">4.1M</span> uses in the last 7 days
                 </p>
                 <p className="text-lg font-medium text-neutral-500 dark:text-neutral-400 max-w-2xl leading-relaxed">
-                    Grow your instagram using the most popular <span className="font-black text-neutral-800 dark:text-white uppercase italic">{tag}</span> hashtags
+                    Grow your instagram using the most popular <span className="font-black text-neutral-800 dark:text-white">{tag}</span> hashtags
                 </p>
               </div>
             </div>
@@ -88,7 +88,7 @@ export function HashtagDetailView({ locale, tag }: { locale: string, tag: string
               <button 
                 onClick={() => handleCopy(primaryHashtags, 'primary')}
                 className={cn(
-                    "absolute -top-10 left-0 flex items-center gap-2 px-6 py-2 rounded-t-lg transition-all font-black uppercase text-sm tracking-widest",
+                    "absolute -top-10 left-0 flex items-center gap-2 px-6 py-2 rounded-t-lg transition-all font-black text-sm tracking-widest uppercase italic",
                     copyStatus['primary'] ? "bg-emerald-500 text-white" : "bg-[#a4d444] text-white hover:bg-[#8bc33e]"
                 )}
               >
@@ -109,13 +109,13 @@ export function HashtagDetailView({ locale, tag }: { locale: string, tag: string
             {/* Secondary Hashtag Cloud */}
             <div className="space-y-4 pt-2">
               <h3 className="text-xl font-bold text-neutral-500 dark:text-neutral-400 max-w-2xl">
-                Second most liked instagram hashtags used with <span className="font-black text-neutral-800 dark:text-white uppercase italic">{tag}</span>
+                Second most liked instagram hashtags used with <span className="font-black text-neutral-800 dark:text-white">{tag}</span>
               </h3>
               <div className="relative group mt-20 md:mt-24">
                 <button 
                   onClick={() => handleCopy(secondaryHashtags, 'secondary')}
                   className={cn(
-                      "absolute -top-10 left-0 flex items-center gap-2 px-6 py-2 rounded-t-lg transition-all font-black uppercase text-sm tracking-widest",
+                      "absolute -top-10 left-0 flex items-center gap-2 px-6 py-2 rounded-t-lg transition-all font-black text-sm tracking-widest uppercase italic",
                       copyStatus['secondary'] ? "bg-emerald-500 text-white" : "bg-[#a4d444] text-white hover:bg-[#8bc33e]"
                   )}
                 >
@@ -139,7 +139,7 @@ export function HashtagDetailView({ locale, tag }: { locale: string, tag: string
           <div className="lg:col-span-4 space-y-8">
             <div className="flex items-center gap-3 mb-4">
                 <LineChart className="h-6 w-6 text-neutral-300 dark:text-neutral-700" />
-                <h3 className="text-3xl font-black text-neutral-800 dark:text-white tracking-tighter uppercase italic">Hashtag report</h3>
+                <h3 className="text-3xl font-black text-neutral-800 dark:text-white tracking-tight uppercase italicer">Hashtag report</h3>
             </div>
             
             <div className="space-y-10">
@@ -220,7 +220,7 @@ export function HashtagDetailView({ locale, tag }: { locale: string, tag: string
             <div className="mt-12 p-8 border border-neutral-100 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900/50 rounded-2xl space-y-4">
                 <div className="flex items-center gap-2 text-[#a4d444]">
                     <TrendingUp className="h-5 w-5" />
-                    <span className="font-black uppercase tracking-widest text-sm">Engagement Insights</span>
+                    <span className="font-black tracking-widest uppercase italic text-sm">Engagement Insights</span>
                 </div>
                 <p className="text-[15px] font-medium text-neutral-500 dark:text-neutral-400 leading-relaxed">
                     Posts using <span className="text-neutral-900 dark:text-white font-black">#{tag}</span> typically see a higher reach during peak hours between 6PM and 9PM EST. Using this tag alongside related hashtags can boost visibility by up to 40%.
@@ -246,7 +246,7 @@ export function HashtagDetailView({ locale, tag }: { locale: string, tag: string
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="text-4xl md:text-5xl font-black text-neutral-800 dark:text-white tracking-tighter uppercase italic mb-6 leading-none"
+                className="text-4xl md:text-5xl font-black text-neutral-800 dark:text-white tracking-tight uppercase italicer mb-6 leading-none"
             >
                 Get more <span className="text-[#a4d444]">Likes</span>
             </motion.h2>

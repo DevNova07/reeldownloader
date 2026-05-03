@@ -35,6 +35,7 @@ export function BottomNav() {
             <Link 
               key={item.href} 
               href={item.href}
+              prefetch={true}
               className="relative flex flex-col items-center justify-center gap-1 group"
             >
               <div className={cn(

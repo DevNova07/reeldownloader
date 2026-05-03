@@ -17,7 +17,7 @@ export const LeftSidebar = React.memo(({ locale }: SidebarProps) => {
     <aside className="hidden 2xl:block absolute -left-[380px] top-0 w-80 space-y-12 h-fit select-none">
       <div className="p-8 rounded-4xl bg-neutral-50 border border-neutral-100 shadow-sm space-y-8">
         <div className="space-y-2">
-          <h3 className="text-[10px] font-black text-black uppercase tracking-[0.4em]">Instagram Suite</h3>
+          <h3 className="text-[10px] font-black text-black tracking-[0.4em]">Instagram Suite</h3>
           <div className="h-0.5 w-12 bg-lime-500" />
         </div>
         <nav className="space-y-2">
@@ -28,13 +28,13 @@ export const LeftSidebar = React.memo(({ locale }: SidebarProps) => {
           ].map(tool => (
             <button key={tool.n} onClick={() => router.push(tool.h)} className="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-white hover:shadow-md transition-all group/item">
               <tool.i className="h-4 w-4 text-neutral-400 group-hover/item:text-lime-500" />
-              <span className="text-[11px] font-bold text-neutral-500 uppercase tracking-wider group-hover/item:text-black">{tool.n}</span>
+              <span className="text-[11px] font-bold text-neutral-500 tracking-wider group-hover/item:text-black">{tool.n}</span>
             </button>
           ))}
         </nav>
 
         <div className="space-y-2 pt-4">
-          <h3 className="text-[10px] font-black text-black uppercase tracking-[0.4em]">Multi-Platform</h3>
+          <h3 className="text-[10px] font-black text-black tracking-[0.4em]">Multi-Platform</h3>
           <div className="h-0.5 w-12 bg-lime-500" />
         </div>
         <nav className="space-y-2">
@@ -48,7 +48,7 @@ export const LeftSidebar = React.memo(({ locale }: SidebarProps) => {
           ].map(tool => (
             <button key={tool.n} onClick={() => router.push(tool.h)} className="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-white hover:shadow-md transition-all group/item">
               <tool.i className="h-4 w-4 text-neutral-400 group-hover/item:text-lime-500" />
-              <span className="text-[11px] font-bold text-neutral-500 uppercase tracking-wider group-hover/item:text-black">{tool.n}</span>
+              <span className="text-[11px] font-bold text-neutral-500 tracking-wider group-hover/item:text-black">{tool.n}</span>
             </button>
           ))}
         </nav>
@@ -57,7 +57,7 @@ export const LeftSidebar = React.memo(({ locale }: SidebarProps) => {
       <div className="p-8 rounded-4xl bg-neutral-900 text-white shadow-xl space-y-6">
         <div className="flex items-center gap-2 mb-4">
           <div className="h-2 w-2 rounded-full bg-lime-500 animate-pulse" />
-          <span className="text-[10px] font-black uppercase tracking-widest text-lime-500">Systems Operational</span>
+          <span className="text-[10px] font-black tracking-widest uppercase italic text-lime-500">Systems Operational</span>
         </div>
         <div className="grid grid-cols-2 gap-4">
           {["INSTAGRAM", "TIKTOK", "YOUTUBE", "FACEBOOK"].map(sys => (
@@ -70,7 +70,7 @@ export const LeftSidebar = React.memo(({ locale }: SidebarProps) => {
       </div>
 
       <div className="p-8 rounded-4xl bg-neutral-50 border border-neutral-100 shadow-sm space-y-6">
-        <h3 className="text-[10px] font-black text-black uppercase tracking-[0.4em] border-b border-neutral-200 pb-4">
+        <h3 className="text-[10px] font-black text-black tracking-[0.4em] border-b border-neutral-200 pb-4">
           Trending Keywords
         </h3>
         <div className="flex flex-wrap gap-2">
@@ -89,15 +89,15 @@ export const LeftSidebar = React.memo(({ locale }: SidebarProps) => {
       <div className="p-8 rounded-4xl bg-black text-white shadow-2xl relative overflow-hidden">
         <div className="absolute top-0 right-0 h-40 w-40 bg-lime-500/10 blur-[80px] -mr-20 -mt-20" />
         <div className="relative z-10 space-y-4">
-          <p className="text-[9px] font-black text-lime-500 uppercase tracking-widest">Global Reach</p>
+          <p className="text-[9px] font-black text-lime-500 tracking-widest uppercase italic">Global Reach</p>
           <div className="space-y-6">
             <div className="flex items-center gap-4">
               <div className="h-12 w-12 rounded-2xl bg-white/5 flex items-center justify-center">
                 <Icons.Globe className="h-5 w-5 text-lime-500" />
               </div>
               <div>
-                <p className="text-xl font-black tracking-tighter">190+</p>
-                <p className="text-[9px] font-bold text-neutral-500 uppercase">Countries Support</p>
+                <p className="text-xl font-black tracking-tight uppercase italicer">190+</p>
+                <p className="text-[9px] font-bold text-neutral-500">Countries Support</p>
               </div>
             </div>
           </div>
@@ -105,7 +105,7 @@ export const LeftSidebar = React.memo(({ locale }: SidebarProps) => {
       </div>
       
       <div className="p-8 rounded-4xl border border-dashed border-neutral-200 space-y-6">
-        <h3 className="text-[10px] font-black text-neutral-400 uppercase tracking-widest">Browse More Collections</h3>
+        <h3 className="text-[10px] font-black text-neutral-400 tracking-widest uppercase italic">Browse More Collections</h3>
         <nav className="grid grid-cols-1 gap-3">
           {[
             "Sigma Collections", "Travel Aesthetics", "Gym Motivation", "Life Quotes",
@@ -121,7 +121,7 @@ export const LeftSidebar = React.memo(({ locale }: SidebarProps) => {
       </div>
 
       <div className="p-8 rounded-4xl bg-neutral-50 border border-neutral-100 shadow-sm space-y-8 pb-12">
-         <h3 className="text-[10px] font-black text-black uppercase tracking-[0.4em] border-b border-neutral-200 pb-4">
+         <h3 className="text-[10px] font-black text-black tracking-[0.4em] border-b border-neutral-200 pb-4">
           Growth Glossary
         </h3>
         <div className="grid grid-cols-1 gap-6">
@@ -136,14 +136,14 @@ export const LeftSidebar = React.memo(({ locale }: SidebarProps) => {
             { t: "Viral Loop", d: "When shares lead to more shares exponentially." }
           ].map((term, i) => (
             <div key={i} className="space-y-1">
-              <p className="text-[10px] font-black text-black uppercase tracking-tighter">{term.t}</p>
+              <p className="text-[10px] font-black text-black tracking-tight uppercase italicer">{term.t}</p>
               <p className="text-[9px] text-neutral-400 leading-relaxed font-medium">{term.d}</p>
             </div>
           ))}
         </div>
       </div>
 
-      <div className="p-8 rounded-4xl bg-neutral-900 text-white/40 text-[9px] font-bold uppercase tracking-[0.3em] text-center italic">
+      <div className="p-8 rounded-4xl bg-neutral-900 text-white/40 text-[9px] font-bold tracking-[0.3em] text-center">
         Empowering 1M+ Creators Globally
       </div>
     </aside>
@@ -159,7 +159,7 @@ export const RightSidebar = React.memo(({ locale }: SidebarProps) => {
     <aside className="hidden 2xl:block absolute -right-[380px] top-20 w-80 space-y-12 h-fit select-none">
       <div className="p-8 rounded-4xl bg-neutral-50 border border-neutral-100 shadow-sm space-y-8">
         <div className="space-y-2">
-          <h3 className="text-[10px] font-black text-black uppercase tracking-[0.4em]">Creator Toolbox</h3>
+          <h3 className="text-[10px] font-black text-black tracking-[0.4em]">Creator Toolbox</h3>
           <div className="h-0.5 w-12 bg-lime-500" />
         </div>
         <nav className="space-y-2">
@@ -171,20 +171,20 @@ export const RightSidebar = React.memo(({ locale }: SidebarProps) => {
           ].map(tool => (
             <button key={tool.n} onClick={() => router.push(tool.h)} className="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-white hover:shadow-md transition-all group/item">
               <tool.i className="h-4 w-4 text-neutral-400 group-hover/item:text-lime-500" />
-              <span className="text-[11px] font-bold text-neutral-500 uppercase tracking-wider group-hover/item:text-black">{tool.n}</span>
+              <span className="text-[11px] font-bold text-neutral-500 tracking-wider group-hover/item:text-black">{tool.n}</span>
             </button>
           ))}
         </nav>
 
         <div className="p-6 rounded-3xl bg-white border border-neutral-100 shadow-sm space-y-4 pt-6">
-          <h5 className="text-[10px] font-black text-black uppercase tracking-widest">Growth Analytics</h5>
+          <h5 className="text-[10px] font-black text-black tracking-widest uppercase italic">Growth Analytics</h5>
           <div className="space-y-4">
             <div className="flex items-center justify-between group/stat">
-              <span className="text-[10px] font-bold text-neutral-400 uppercase">Copy Accuracy</span>
+              <span className="text-[10px] font-bold text-neutral-400">Copy Accuracy</span>
               <span className="text-xs font-black text-lime-600">99.8%</span>
             </div>
             <div className="flex items-center justify-between group/stat">
-              <span className="text-[10px] font-bold text-neutral-400 uppercase">Daily Users</span>
+              <span className="text-[10px] font-bold text-neutral-400">Daily Users</span>
               <span className="text-xs font-black text-black">12.5K+</span>
             </div>
           </div>
@@ -192,7 +192,7 @@ export const RightSidebar = React.memo(({ locale }: SidebarProps) => {
       </div>
 
       <div className="p-8 rounded-4xl bg-lime-50/30 border border-lime-100 shadow-sm space-y-6">
-         <h3 className="text-[10px] font-black text-black uppercase tracking-[0.4em] border-b border-lime-200 pb-4">
+         <h3 className="text-[10px] font-black text-black tracking-[0.4em] border-b border-lime-200 pb-4">
           Optimization Guide
         </h3>
         <div className="space-y-6">
@@ -202,7 +202,7 @@ export const RightSidebar = React.memo(({ locale }: SidebarProps) => {
             { q: "CTA Impact", a: "Always end with a clear link or action word." }
           ].map((guide, i) => (
             <div key={i} className="space-y-1">
-              <p className="text-[11px] font-black text-black uppercase tracking-tight">{guide.q}</p>
+              <p className="text-[11px] font-black text-black tracking-tight uppercase italic">{guide.q}</p>
               <p className="text-[10px] text-neutral-500 leading-relaxed font-medium">{guide.a}</p>
             </div>
           ))}
@@ -210,7 +210,7 @@ export const RightSidebar = React.memo(({ locale }: SidebarProps) => {
       </div>
 
       <div className="p-8 rounded-4xl bg-neutral-900 text-white shadow-xl space-y-6">
-         <h3 className="text-[10px] font-black text-lime-500 uppercase tracking-[0.4em] border-b border-white/10 pb-4">
+         <h3 className="text-[10px] font-black text-lime-500 tracking-[0.4em] border-b border-white/10 pb-4">
           Viral Calendar
         </h3>
         <div className="grid grid-cols-1 gap-4">
@@ -231,7 +231,7 @@ export const RightSidebar = React.memo(({ locale }: SidebarProps) => {
       </div>
 
       <div className="p-8 rounded-4xl bg-neutral-50 border border-neutral-100 shadow-sm space-y-6">
-        <h3 className="text-[10px] font-black text-black uppercase tracking-[0.4em] border-b border-neutral-200 pb-4">
+        <h3 className="text-[10px] font-black text-black tracking-[0.4em] border-b border-neutral-200 pb-4">
           Infinite SEO Tags
         </h3>
         <div className="flex flex-wrap gap-2">
@@ -241,7 +241,7 @@ export const RightSidebar = React.memo(({ locale }: SidebarProps) => {
             "#ContentMaster", "#SavClip", "#BioGen", "#CaptionKing", "#StatusMaker",
             "#Profiles", "#Influence", "#DigitalGrowth", "#ViralStrategies", "#CreatorEconomy"
           ].map(tag => (
-             <span key={tag} className="px-2 py-1 bg-white border border-neutral-200 rounded-lg text-[8px] font-black text-neutral-400 uppercase tracking-tighter shadow-xs">
+             <span key={tag} className="px-2 py-1 bg-white border border-neutral-200 rounded-lg text-[8px] font-black text-neutral-400 tracking-tight uppercase italicer shadow-xs">
               {tag}
             </span>
           ))}
@@ -249,8 +249,8 @@ export const RightSidebar = React.memo(({ locale }: SidebarProps) => {
       </div>
 
       <div className="p-8 rounded-4xl bg-black text-white shadow-2xl space-y-6 pb-12">
-         <h3 className="text-[10px] font-black text-lime-500 uppercase tracking-[0.4em]">Creator Manifesto</h3>
-         <div className="space-y-6 italic">
+         <h3 className="text-[10px] font-black text-lime-500 tracking-[0.4em]">Creator Manifesto</h3>
+         <div className="space-y-6">
             <p className="text-[10px] leading-relaxed text-neutral-400">
               &quot;Success on social media is a marathon, not a sprint. Focus on providing value, maintaining authenticity, and using the right tools to power your growth.&quot;
             </p>
@@ -262,7 +262,7 @@ export const RightSidebar = React.memo(({ locale }: SidebarProps) => {
 
       <div className="p-12 rounded-4xl border-2 border-dashed border-neutral-100 flex flex-col items-center justify-center text-center space-y-4">
          <Icons.ShieldCheck className="h-10 w-10 text-lime-500 opacity-20" />
-         <p className="text-[10px] font-black text-neutral-300 uppercase tracking-widest">End of Portal Reach</p>
+         <p className="text-[10px] font-black text-neutral-300 tracking-widest uppercase italic">End of Portal Reach</p>
       </div>
     </aside>
   )

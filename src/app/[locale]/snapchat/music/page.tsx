@@ -104,7 +104,7 @@ export default function SnapchatMusicPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <h1 className="mb-2 text-3xl min-[400px]:text-4xl font-black tracking-tight text-black sm:text-7xl drop-shadow-2xl uppercase italic text-balance">
+            <h1 className="mb-2 text-3xl min-[400px]:text-4xl font-black tracking-tight uppercase italic text-white sm:text-7xl drop-shadow-2xl">
               {snapDict.music.title}
             </h1>
           </motion.div>
@@ -117,6 +117,10 @@ export default function SnapchatMusicPage() {
               buttonClass="bg-black text-yellow-400"
               iconClass="text-yellow-600"
             />
+
+            <p className="mx-auto mb-4 max-w-2xl mt-8 mb-2 text-sm font-bold text-black/60 tracking-widest uppercase italic hidden sm:block">
+              {snapDict.music.subtitle}
+            </p>
 
             <TrustBadges dict={dict} />
             <TrendingBar accentColor="bg-yellow-700" />
@@ -140,7 +144,7 @@ export default function SnapchatMusicPage() {
 
       <section className="bg-neutral-50 px-4 py-4 dark:bg-neutral-900/50 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <h2 className="mb-12 text-center text-3xl font-black text-neutral-900 dark:text-white uppercase italic tracking-widest">{dict.features.title}</h2>
+          <h2 className="mb-12 text-center text-3xl font-black text-neutral-900 dark:text-white tracking-widest uppercase italic">{dict.features.title}</h2>
           <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
             {[
               { icon: <Zap className="h-8 w-8 text-yellow-600" /> },
@@ -151,7 +155,7 @@ export default function SnapchatMusicPage() {
                 <div className="mb-6 rounded-2xl bg-white p-5 shadow-2xl dark:bg-black transition-all hover:scale-110 hover:-rotate-3 border border-neutral-100 dark:border-neutral-800">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-black text-neutral-900 dark:text-white uppercase italic">{dict.features.items[idx].title}</h3>
+                <h3 className="text-xl font-black text-neutral-900 dark:text-white">{dict.features.items[idx].title}</h3>
                 <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 hidden sm:block">{dict.features.items[idx].desc}</p>
               </div>
             ))}

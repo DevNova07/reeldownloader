@@ -34,8 +34,10 @@ const ChromeExtensionBanner = dynamic(() => import("@/components/layout/ChromeEx
 import { ExpandableSection } from "@/components/ui/ExpandableSection"
 import { type PlatformResult } from "@/types/download"
 import Image from "next/image"
+import { PremiumInfoSection } from "@/components/shared/PremiumInfoSection"
+import { PurpleStepGuide } from "@/components/shared/PurpleStepGuide"
 
-export function HomeView({ locale, dict }: { locale: Locale, dict: any }) {
+function HomeViewContent({ locale, dict }: { locale: Locale, dict: any }) {
   const router = useRouter()
   const [downloadData, setDownloadData] = React.useState<PlatformResult | null>(null)
   const [isLoading, setIsLoading] = React.useState(false)
@@ -146,16 +148,13 @@ export function HomeView({ locale, dict }: { locale: Locale, dict: any }) {
           />
 
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
+            transition={{ duration: 0.4 }}
           >
-            <h1 className="mb-3 text-3xl min-[400px]:text-4xl font-black tracking-tight text-white sm:text-7xl drop-shadow-2xl uppercase italic text-balance">
-              <span className="block">{instaDict.title.split(' ').slice(0, -1).join(' ')}</span>
-              <span className="block">{instaDict.title.split(' ').slice(-1)[0]}</span>
+            <h1 className="mb-2 text-3xl min-[400px]:text-4xl font-black tracking-tight uppercase italic text-white sm:text-7xl drop-shadow-2xl">
+              {instaDict.title}
             </h1>
-            <p className="mt-4 text-lg text-white/90 max-w-2xl mx-auto hidden sm:block">{instaDict.subtitle}</p>
-            
             <h2 className="sr-only">SavClip - Instagram Downloader</h2>
           </motion.div>
 
@@ -169,6 +168,10 @@ export function HomeView({ locale, dict }: { locale: Locale, dict: any }) {
             validate={isSmartInput}
             initialValue={sharedUrl}
           />
+
+          <p className="mx-auto mb-4 max-w-2xl mt-8 mb-2 text-sm font-bold text-white/60 tracking-widest uppercase italic hidden sm:block">
+            {instaDict.subtitle}
+          </p>
 
           <HeroQuickGuide steps={dict?.guide?.steps || []} accentColor="text-pink-400" />
 
@@ -206,7 +209,7 @@ export function HomeView({ locale, dict }: { locale: Locale, dict: any }) {
                   <h3 className="text-xl font-black tracking-widest uppercase italic">{dict.common.recent}</h3>
                   <button
                     onClick={clearHistory}
-                    className="text-sm font-bold opacity-60 hover:opacity-100 transition-opacity uppercase tracking-tighter"
+                    className="text-sm font-bold opacity-60 hover:opacity-100 transition-opacity tracking-tight uppercase italicer"
                   >
                     {dict.common.clear}
                   </button>
@@ -230,7 +233,7 @@ export function HomeView({ locale, dict }: { locale: Locale, dict: any }) {
                         className="object-cover rounded-xl transition-transform duration-500 group-hover:scale-110"
                       />
                       <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/90 p-3 text-left z-10 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <p className="line-clamp-1 text-[10px] font-black text-white uppercase italic hidden sm:block">{item.title}</p>
+                        <p className="line-clamp-1 text-[10px] font-black text-white hidden sm:block">{item.title}</p>
                       </div>
                     </motion.button>
                   ))}
@@ -240,6 +243,30 @@ export function HomeView({ locale, dict }: { locale: Locale, dict: any }) {
           </AnimatePresence>
         </div>
       </section>
+      
+      <PremiumInfoSection 
+        title="Instagram Video Downloader"
+        description="Download Instagram videos in HD quality for free. No watermark, no login required. Save IG Reels, IGTV & Stories instantly on any device. Fast & secure Instagram video downloader."
+        imageSrc="/images/instagram-3d-logo.png"
+      />
+
+      <PurpleStepGuide 
+        title="How to Download Instagram Videos"
+        steps={[
+          {
+            title: "Copy the URL",
+            description: "Open the Instagram app or website, go to the video, Reel, IGTV, or Story you want to download. Tap the three dots (...) and select 'Copy Link', or copy the URL from your browser address bar."
+          },
+          {
+            title: "Paste the Link",
+            description: "Come back to SavClip, paste the copied link into the input field at the top of the page and click the 'Download' button to start processing."
+          },
+          {
+            title: "Download Your Video",
+            description: "Review the results and find the file you want to save. Click the 'Download' button. Done! The video is saved to your device in its original HD quality."
+          }
+        ]}
+      />
 
       <RelatedTools currentPlatform="instagram" />
 
@@ -249,7 +276,7 @@ export function HomeView({ locale, dict }: { locale: Locale, dict: any }) {
 
       <section className="bg-neutral-50 px-4 py-4 dark:bg-neutral-900/50 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <h2 className="mb-12 text-center text-3xl font-black text-neutral-900 dark:text-white uppercase italic tracking-widest">{dict.features.title}</h2>
+          <h2 className="mb-12 text-center text-3xl font-black text-neutral-900 dark:text-white tracking-widest uppercase italic">{dict.features.title}</h2>
           <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
             {[
               { icon: <Zap className="h-8 w-8 text-pink-600" /> },
@@ -260,7 +287,7 @@ export function HomeView({ locale, dict }: { locale: Locale, dict: any }) {
                 <div className="mb-6 rounded-2xl bg-white p-5 shadow-2xl dark:bg-black transition-all hover:scale-110 hover:-rotate-3 border border-neutral-100 dark:border-neutral-800">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-black text-neutral-900 dark:text-white uppercase italic">{dict?.features?.items?.[idx]?.title || "Feature"}</h3>
+                <h3 className="text-xl font-black text-neutral-900 dark:text-white">{dict?.features?.items?.[idx]?.title || "Feature"}</h3>
                 <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80">{dict?.features?.items?.[idx]?.desc || "Description"}</p>
               </div>
             ))}
@@ -288,34 +315,33 @@ export function HomeView({ locale, dict }: { locale: Locale, dict: any }) {
       <section className="px-4 py-4 sm:py-20 bg-white dark:bg-black sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl">
           <div className="mt-10">
-            <h2 className="flex items-center gap-3 text-3xl font-black text-neutral-900 dark:text-white uppercase italic tracking-widest">
+            <h2 className="flex items-center justify-center gap-3 text-3xl font-black text-neutral-900 dark:text-white tracking-widest uppercase italic text-center">
               <Info className="h-8 w-8 text-pink-600" />
               {instaDict.seo?.title || "Instagram Downloader"}
             </h2>
-            <p className="mt-4 text-lg text-neutral-500 dark:text-neutral-400 font-medium italic opacity-80  sm:hidden hidden sm:block">{instaDict.subtitle}</p>
-            <p className="mt-4 text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed italic border-l-4 border-pink-500 pl-8 font-medium">
+            <p className="mt-4 text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed text-center max-w-3xl mx-auto font-medium">
               {instaDict.seo?.desc || "Download Instagram videos and photos easily."}
             </p>
 
             <ExpandableSection maxHeight={400} className="mt-12">
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 text-center">
                 {(instaDict.seo?.features || []).map((feature: { title: string; desc: string }, idx: number) => (
-                  <div key={idx} className="rounded-4xl bg-neutral-50 p-8 dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 transition-all hover:scale-105 hover:bg-white dark:hover:bg-neutral-900 shadow-sm hover:shadow-2xl">
-                    <h3 className="font-black text-neutral-900 dark:text-white uppercase italic tracking-tighter text-lg">{feature.title}</h3>
+                  <div key={idx} className="rounded-4xl bg-neutral-50 p-8 dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 transition-all hover:scale-105 hover:bg-white dark:hover:bg-neutral-900 shadow-sm hover:shadow-2xl flex flex-col items-center">
+                    <h3 className="font-black text-neutral-900 dark:text-white tracking-tight uppercase italicer text-lg">{feature.title}</h3>
                     <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 hidden sm:block">{feature.desc}</p>
                   </div>
                 ))}
               </div>
 
               <div className="mt-6 sm:mt-20">
-                <h2 className="flex items-center gap-3 text-3xl font-black text-neutral-900 dark:text-white uppercase italic tracking-widest">
+                <h2 className="flex items-center justify-center gap-3 text-3xl font-black text-neutral-900 dark:text-white tracking-widest uppercase italic text-center">
                   <HelpCircle className="h-8 w-8 text-pink-600" />
                   {dict.faq.title}
                 </h2>
-                <div className="mt-12 space-y-6">
+                <div className="mt-12 space-y-6 text-center">
                   {(dict?.faq?.items || []).map((faq: { q: string; a: string }, idx: number) => (
                     <div key={idx} className="group rounded-4xl border border-neutral-200 p-8 dark:border-neutral-800 hover:border-pink-500/50 transition-all bg-white dark:bg-transparent hover:shadow-2xl">
-                      <h3 className="font-black text-neutral-900 dark:text-white group-hover:text-pink-600 transition-colors uppercase italic tracking-tighter text-lg">{faq.q}</h3>
+                      <h3 className="font-black text-neutral-900 dark:text-white group-hover:text-pink-600 transition-colors tracking-tight uppercase italicer text-lg">{faq.q}</h3>
                       <p className="mt-4 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 group-hover:opacity-100 transition-opacity">{faq.a}</p>
                     </div>
                   ))}
@@ -326,5 +352,13 @@ export function HomeView({ locale, dict }: { locale: Locale, dict: any }) {
         </div>
       </section>
     </div>
+  )
+}
+
+export function HomeView(props: { locale: Locale, dict: any }) {
+  return (
+    <React.Suspense fallback={<div className="min-h-screen bg-slate-50 dark:bg-black" />}>
+      <HomeViewContent {...props} />
+    </React.Suspense>
   )
 }

@@ -72,7 +72,7 @@ export default function AdminPage() {
             <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-linear-to-tr from-pink-600 to-purple-600 shadow-lg">
               <Shield className="h-8 w-8 text-white" />
             </div>
-            <h1 className="text-2xl font-black tracking-tight text-white uppercase italic">Admin <span className="text-pink-600">Access</span></h1>
+            <h1 className="text-2xl font-black tracking-tight uppercase italic text-white">Admin <span className="text-pink-600">Access</span></h1>
             <p className="mt-4 text-sm text-white/50 hidden sm:block">Enter password to manage API rotation nodes.</p>
           </div>
 
@@ -95,7 +95,7 @@ export default function AdminPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="group relative w-full overflow-hidden rounded-2xl bg-white py-4 text-sm font-black uppercase tracking-widest text-black transition-all hover:bg-pink-600 hover:text-white active:scale-95 disabled:opacity-50"
+              className="group relative w-full overflow-hidden rounded-2xl bg-white py-4 text-sm font-black tracking-widest uppercase italic text-black transition-all hover:bg-pink-600 hover:text-white active:scale-95 disabled:opacity-50"
             >
               {isLoading ? "Validating..." : "Unlock Dashboard"}
             </button>
@@ -104,7 +104,7 @@ export default function AdminPage() {
               <motion.p 
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-center text-xs font-bold text-red-500 uppercase tracking-widest"
+                className="text-center text-xs font-bold text-red-500 tracking-widest uppercase italic"
               >
                 {error}
               </motion.p>
@@ -123,7 +123,7 @@ export default function AdminPage() {
         {/* Header */}
         <div className="mb-10 flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
           <div>
-            <h1 className="text-3xl font-black text-white tracking-tighter sm:text-4xl uppercase italic">
+            <h1 className="text-3xl font-black text-white tracking-tight uppercase italicer sm:text-4xl">
               API Cluster <span className="text-pink-600">Status</span>
             </h1>
             <p className="mt-1 text-sm text-white/40 font-medium hidden sm:block">Monitoring real-time failover nodes and rate limits.</p>
@@ -141,7 +141,7 @@ export default function AdminPage() {
             <div className="rounded-xl bg-green-500/10 border border-green-500/20 px-4 py-2.5">
                <div className="flex items-center gap-2">
                  <div className="h-2 w-2 animate-pulse rounded-full bg-green-500" />
-                 <span className="text-[10px] font-black uppercase tracking-widest text-green-500">System Live</span>
+                 <span className="text-[10px] font-black tracking-widest uppercase italic text-green-500">System Live</span>
                </div>
             </div>
           </div>
@@ -166,7 +166,7 @@ export default function AdminPage() {
               <div className={`mb-4 flex h-10 w-10 items-center justify-center rounded-xl ${card.color}`}>
                 {card.icon}
               </div>
-              <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40">{card.label}</p>
+              <p className="text-[10px] font-black tracking-[0.2em] text-white/40">{card.label}</p>
               <h3 className="mt-1 text-2xl font-black text-white">{card.value}</h3>
             </motion.div>
           ))}
@@ -182,11 +182,11 @@ export default function AdminPage() {
               <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
                  <Zap className="h-24 w-24 text-pink-600" />
               </div>
-              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-pink-500 mb-2">Live Traffic</p>
-              <h2 className="text-5xl font-black text-white italic tracking-tighter">
+              <p className="text-[10px] font-black tracking-[0.3em] text-pink-500 mb-2">Live Traffic</p>
+              <h2 className="text-5xl font-black text-white tracking-tight uppercase italicer">
                 {stats?.realtime?.activeUsers || 0}
               </h2>
-              <p className="text-xs font-bold text-white/40 uppercase tracking-widest mt-1">Users handling links now</p>
+              <p className="text-xs font-bold text-white/40 tracking-widest uppercase italic mt-1">Users handling links now</p>
               
               {/* Activity Sparkline */}
               <div className="mt-4 flex items-end gap-1 h-16 w-full">
@@ -199,7 +199,7 @@ export default function AdminPage() {
                   />
                 ))}
               </div>
-              <div className="mt-4 flex justify-between items-center text-[8px] font-black uppercase tracking-widest text-white/20">
+              <div className="mt-4 flex justify-between items-center text-[8px] font-black tracking-widest uppercase italic text-white/20">
                 <span>30m ago</span>
                 <span>Real-time Activity</span>
                 <span>Now</span>
@@ -213,8 +213,8 @@ export default function AdminPage() {
            >
               <div className="flex items-center justify-between mb-6">
                 <div>
-                  <h3 className="text-xl font-black text-white uppercase italic">Most <span className="text-pink-600">Downloaded</span></h3>
-                  <p className="text-[10px] font-bold text-white/30 uppercase tracking-widest">Trending content across all platforms</p>
+                  <h3 className="text-xl font-black text-white">Most <span className="text-pink-600">Downloaded</span></h3>
+                  <p className="text-[10px] font-bold text-white/30 tracking-widest uppercase italic">Trending content across all platforms</p>
                 </div>
                 <Clock className="h-5 w-5 text-white/20" />
               </div>
@@ -235,14 +235,14 @@ export default function AdminPage() {
                         </div>
                         <div className="text-right shrink-0 ml-4">
                            <p className="text-lg font-black text-pink-600 leading-none">{link.count}</p>
-                           <p className="text-[8px] font-bold text-white/30 uppercase tracking-tighter">Saves</p>
+                           <p className="text-[8px] font-bold text-white/30 tracking-tight uppercase italicer">Saves</p>
                         </div>
                      </div>
                    ))
                  ) : (
                    <div className="flex flex-col items-center justify-center py-12 text-center border border-dashed border-white/10 rounded-3xl">
                       <Search className="h-8 w-8 text-white/10 mb-3" />
-                      <p className="text-[10px] font-bold text-white/20 uppercase tracking-widest italic">No data logged yet...</p>
+                      <p className="text-[10px] font-bold text-white/20 tracking-widest uppercase italic">No data logged yet...</p>
                    </div>
                  )}
               </div>
@@ -298,43 +298,43 @@ export default function AdminPage() {
                       {platformIcons[platformId] || platformIcons.other}
                     </div>
                     <div>
-                      <h3 className="text-lg font-black text-white uppercase italic">{platformId}</h3>
-                      <p className="text-[10px] font-bold text-white/30 uppercase tracking-widest">{total} Total Requests</p>
+                      <h3 className="text-lg font-black text-white">{platformId}</h3>
+                      <p className="text-[10px] font-bold text-white/30 tracking-widest uppercase italic">{total} Total Requests</p>
                     </div>
                   </div>
                   <div className="text-right">
-                    <span className="text-[10px] font-black text-green-500 uppercase tracking-widest">{success} OK</span>
-                    <div className="text-[10px] font-black text-red-500 uppercase tracking-widest">{fail} ERR</div>
+                    <span className="text-[10px] font-black text-green-500 tracking-widest uppercase italic">{success} OK</span>
+                    <div className="text-[10px] font-black text-red-500 tracking-widest uppercase italic">{fail} ERR</div>
                   </div>
                 </div>
 
                 <div className="space-y-4">
                   {allKeys.length === 0 ? (
                     <div className="rounded-2xl border border-dashed border-white/10 p-6 text-center">
-                      <p className="text-[10px] font-bold text-white/20 uppercase tracking-widest italic">Waiting for request...</p>
+                      <p className="text-[10px] font-bold text-white/20 tracking-widest uppercase italic">Waiting for request...</p>
                     </div>
                   ) : (
                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     allKeys.map((kData: any) => (
                       <div key={`${kData.platformId}-${kData.k}`} className="rounded-2xl bg-black/40 p-4 border border-white/5 shadow-inner">
                         <div className="flex items-center justify-between mb-3">
-                          <span className="text-xs font-black text-white/80 uppercase tracking-wider">{kData.displayName}</span>
-                          <span className={`text-[9px] font-black uppercase px-2 py-0.5 rounded-md ${kData.status === 'active' ? 'bg-green-500/10 text-green-500' : 'bg-red-500/10 text-red-500'}`}>
+                          <span className="text-xs font-black text-white/80 tracking-wider">{kData.displayName}</span>
+                          <span className={`text-[9px] font-black px-2 py-0.5 rounded-md ${kData.status === 'active' ? 'bg-green-500/10 text-green-500' : 'bg-red-500/10 text-red-500'}`}>
                             {kData.status}
                           </span>
                         </div>
                         
                         <div className="grid grid-cols-3 gap-2 text-center">
                           <div className="space-y-1">
-                            <p className="text-[8px] font-bold text-white/30 uppercase">Limit</p>
+                            <p className="text-[8px] font-bold text-white/30">Limit</p>
                             <p className="text-sm font-black text-white">{kData.limit === 'unkn' ? '0' : kData.limit}</p>
                           </div>
                           <div className="space-y-1">
-                            <p className="text-[8px] font-bold text-white/30 uppercase">Bacha</p>
+                            <p className="text-[8px] font-bold text-white/30">Bacha</p>
                             <p className="text-sm font-black text-green-500">{kData.remaining === 'unkn' ? '0' : kData.remaining}</p>
                           </div>
                           <div className="space-y-1">
-                            <p className="text-[8px] font-bold text-white/30 uppercase">Use</p>
+                            <p className="text-[8px] font-bold text-white/30">Use</p>
                             <p className="text-sm font-black text-pink-600">{kData.used}</p>
                           </div>
                         </div>

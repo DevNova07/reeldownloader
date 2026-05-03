@@ -51,7 +51,7 @@ export function HashtagView({ locale, dict }: { locale: Locale, dict: any }) {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-3xl font-light tracking-[0.2em] text-white uppercase md:text-5xl"
+            className="text-3xl font-light tracking-[0.2em] text-white md:text-5xl"
           >
             {(hashtagDict?.trending_title || 'TRENDING').split(' ')[0]} <span className="text-[#a4d444] font-normal">{(hashtagDict?.trending_title || 'NEW').split(' ')[1] || 'NEW'}</span> {(hashtagDict?.title || 'HASHTAGS').split(' ')[1] || 'HASHTAGS'}
           </motion.h1>
@@ -71,7 +71,7 @@ export function HashtagView({ locale, dict }: { locale: Locale, dict: any }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-sm font-medium text-white/90 tracking-wide brightness-110 uppercase hidden sm:block"
+            className="text-sm font-medium text-white/90 tracking-wide brightness-110 hidden sm:block"
           >
             {hashtagDict.subtitle}
           </motion.p>
@@ -88,7 +88,7 @@ export function HashtagView({ locale, dict }: { locale: Locale, dict: any }) {
             <Link 
               key={item.name} 
               href={item.href}
-              className="whitespace-nowrap text-[13px] font-bold tracking-widest text-neutral-400 transition-colors hover:text-[#a4d444] uppercase"
+              className="whitespace-nowrap text-[13px] font-bold tracking-widest uppercase italic text-neutral-400 transition-colors hover:text-[#a4d444]"
             >
               {item.name}
             </Link>
@@ -98,7 +98,7 @@ export function HashtagView({ locale, dict }: { locale: Locale, dict: any }) {
 
       {/* Main Grid Container (Side-by-Side on PC) */}
       <div className="mx-auto max-w-7xl lg:grid lg:grid-cols-[1fr_470px] lg:gap-16 lg:items-start lg:px-8">
-        <p className="px-4 mt-8 text-lg text-neutral-500 dark:text-neutral-400 font-medium italic opacity-80 sm:hidden text-center hidden sm:block">{hashtagDict.subtitle}</p>
+        <p className="px-4 mt-8 text-lg text-neutral-500 dark:text-neutral-400 font-medium opacity-80 sm:hidden text-center hidden sm:block">{hashtagDict.subtitle}</p>
         
         {/* Left Column: Core Tool Information & Reviews */}
         <div className="space-y-24 pt-16">
@@ -117,7 +117,7 @@ export function HashtagView({ locale, dict }: { locale: Locale, dict: any }) {
                   <Settings className="h-10 w-10 text-neutral-400" strokeWidth={1} />
                 </div>
                 <div className="space-y-3">
-                  <h3 className="text-2xl font-bold text-neutral-900 dark:text-white tracking-tight">Best Hashtags for your posts</h3>
+                  <h3 className="text-2xl font-bold text-neutral-900 dark:text-white tracking-tight uppercase italic">Best Hashtags for your posts</h3>
                   <p className="text-sm font-normal text-neutral-500 dark:text-neutral-400 leading-relaxed max-w-[320px] mx-auto">
                     Our algorithm calculates the best hashtags for you based on historical data. For TikTok you can try <span className="text-[#a4d444] font-medium cursor-pointer hover:underline">tiktok hashtags</span>.
                   </p>
@@ -136,7 +136,7 @@ export function HashtagView({ locale, dict }: { locale: Locale, dict: any }) {
                   <Workflow className="h-10 w-10 text-neutral-400" strokeWidth={1} />
                 </div>
                 <div className="space-y-3">
-                  <h3 className="text-2xl font-bold text-neutral-900 dark:text-white tracking-tight">Get more Comments</h3>
+                  <h3 className="text-2xl font-bold text-neutral-900 dark:text-white tracking-tight uppercase italic">Get more Comments</h3>
                   <p className="text-sm font-normal text-neutral-500 dark:text-neutral-400 leading-relaxed max-w-[320px] mx-auto">
                     Increase comments and engagement by using the hashtags chosen by our algorithm
                   </p>
@@ -155,7 +155,7 @@ export function HashtagView({ locale, dict }: { locale: Locale, dict: any }) {
                   <Heart className="h-10 w-10 text-neutral-400" strokeWidth={1} />
                 </div>
                 <div className="space-y-3">
-                  <h3 className="text-2xl font-bold text-neutral-900 dark:text-white tracking-tight">Get more Likes</h3>
+                  <h3 className="text-2xl font-bold text-neutral-900 dark:text-white tracking-tight uppercase italic">Get more Likes</h3>
                   <p className="text-sm font-normal text-neutral-500 dark:text-neutral-400 leading-relaxed max-w-[320px] mx-auto">
                     Boost your reach and gain more likes by using top trending hashtags for your specific content.
                   </p>
@@ -194,8 +194,8 @@ export function HashtagView({ locale, dict }: { locale: Locale, dict: any }) {
               viewport={{ once: true }}
               className="mb-16 space-y-4"
             >
-              <h2 className="text-3xl font-bold text-neutral-900 dark:text-white tracking-tight uppercase underline decoration-[#a4d444] decoration-2 underline-offset-12">Instagram Hashtags</h2>
-              <p className="max-w-2xl text-[11px] font-bold text-neutral-400 pt-4 uppercase tracking-[0.2em]">
+              <h2 className="text-3xl font-bold text-neutral-900 dark:text-white tracking-tight uppercase italic underline decoration-[#a4d444] decoration-2 underline-offset-12">Instagram Hashtags</h2>
+              <p className="max-w-2xl text-[11px] font-bold text-neutral-400 pt-4 tracking-[0.2em]">
                 Receives 10 times more likes to your posts on Instagram using the hashtags suggested by us.
               </p>
             </motion.div>
@@ -214,13 +214,13 @@ export function HashtagView({ locale, dict }: { locale: Locale, dict: any }) {
                   transition={{ delay: i * 0.1 }}
                   className="space-y-4"
                 >
-                  <h3 className="text-xl font-bold text-neutral-900 dark:text-white uppercase">{item.title}</h3>
+                  <h3 className="text-xl font-bold text-neutral-900 dark:text-white">{item.title}</h3>
                   <div className="h-0.5 w-10 bg-black dark:bg-white" />
                   <div className="flex items-center gap-2 text-[10px] font-bold text-neutral-400">
                     <Tag className="h-3.5 w-3.5 text-[#a4d444]" />
-                    <span className="uppercase tracking-widest">{item.tags}</span>
+                    <span className="uppercase tracking-widest uppercase italic">{item.tags}</span>
                   </div>
-                  <p className="text-[13px] font-medium text-neutral-500 dark:text-neutral-400 uppercase tracking-tight hidden sm:block">{item.desc}</p>
+                  <p className="text-[13px] font-medium text-neutral-500 dark:text-neutral-400 tracking-tight uppercase italic hidden sm:block">{item.desc}</p>
                 </motion.div>
               ))}
             </div>
@@ -234,8 +234,8 @@ export function HashtagView({ locale, dict }: { locale: Locale, dict: any }) {
               viewport={{ once: true }}
               className="mb-16 space-y-4"
             >
-              <h2 className="text-3xl font-bold text-neutral-800 dark:text-white tracking-tight uppercase underline decoration-[#a4d444] decoration-2 underline-offset-12">What Our Users Say</h2>
-              <p className="max-w-2xl text-[11px] font-bold text-neutral-500 dark:text-neutral-400 pt-4 uppercase tracking-[0.2em]">
+              <h2 className="text-3xl font-bold text-neutral-800 dark:text-white tracking-tight uppercase italic underline decoration-[#a4d444] decoration-2 underline-offset-12">What Our Users Say</h2>
+              <p className="max-w-2xl text-[11px] font-bold text-neutral-500 dark:text-neutral-400 pt-4 tracking-[0.2em]">
                 Thousands of creators trust Snap for their hashtag strategy and growth.
               </p>
             </motion.div>
@@ -267,7 +267,7 @@ export function HashtagView({ locale, dict }: { locale: Locale, dict: any }) {
                     </div>
                     <div className="flex flex-col">
                       <span className="text-[13px] font-bold text-neutral-900 dark:text-white leading-tight">{review.name}</span>
-                      <span className="text-[9px] text-neutral-400 font-bold uppercase tracking-widest">{review.handle} • Verified</span>
+                      <span className="text-[9px] text-neutral-400 font-bold tracking-widest uppercase italic">{review.handle} • Verified</span>
                     </div>
                   </div>
                 </motion.div>
@@ -317,7 +317,7 @@ export function HashtagView({ locale, dict }: { locale: Locale, dict: any }) {
                       <span className="text-[12px] font-bold text-[#a4d444]">snaphashtags.com</span>
                   </div>
                   <div className="absolute left-6 top-[78%] bg-[#a4d444] px-4 py-1.5 rounded-[2px] shadow-lg">
-                      <span className="text-3xl font-bold text-white tracking-tighter uppercase">#foodie</span>
+                      <span className="text-3xl font-bold text-white tracking-tight uppercase italicer">#foodie</span>
                   </div>
               </div>
 
@@ -341,7 +341,7 @@ export function HashtagView({ locale, dict }: { locale: Locale, dict: any }) {
                       </p>
                       
                       {/* The Massive Hashtag Cloud */}
-                      <p className="text-[14px] font-bold text-[#00376b] dark:text-sky-400 mt-3 leading-relaxed tracking-tight">
+                      <p className="text-[14px] font-bold text-[#00376b] dark:text-sky-400 mt-3 leading-relaxed tracking-tight uppercase italic">
                           #foodie #food #foodporn #instafood #foodphotography #foodstagram #foodblogger #yummy #foodlover #delicious #foodgasm #instagood #foodies #homemade #healthyfood #tasty #foodpics #dinner #foodiesofinstagram #love #lunch #yum #dessert #cooking #breakfast #foodblog #chef #eat #restaurant #bhfyp
                       </p>
                       

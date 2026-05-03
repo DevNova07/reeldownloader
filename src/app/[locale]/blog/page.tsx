@@ -28,10 +28,10 @@ export default function BlogPage() {
         <div className="relative z-10 mx-auto max-w-7xl text-center mb-10">
           <SocialPlatformBar activeId="none" />
           <div className="mt-8">
-            <h1 className="text-4xl font-black tracking-tighter text-neutral-900 dark:text-white sm:text-7xl uppercase italic">
+            <h1 className="text-4xl font-black tracking-tight uppercase italicer text-neutral-900 dark:text-white sm:text-7xl">
               INSIDE <span className="text-pink-600">SNAP</span>
             </h1>
-            <p className="mx-auto mt-2 max-w-lg text-[10px] font-black uppercase tracking-[0.4em] text-neutral-400 hidden sm:block">The Ultimate Social Media Download Guide</p>
+            <p className="mx-auto mt-2 max-w-lg text-[10px] font-black tracking-[0.4em] text-neutral-400 hidden sm:block">The Ultimate Social Media Download Guide</p>
           </div>
         </div>
 
@@ -59,23 +59,23 @@ export default function BlogPage() {
                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-black/20 opacity-75"></span>
                        <span className="relative inline-flex rounded-full h-2 w-2 bg-black"></span>
                     </span>
-                    <span className="text-[10px] font-black uppercase tracking-widest text-black/80">Premium Guide</span>
+                    <span className="text-[10px] font-black tracking-widest uppercase italic text-black/80">Premium Guide</span>
                  </div>
                  
-                 <h2 className="max-w-3xl text-3xl font-black tracking-tight text-black md:text-5xl lg:text-5xl leading-[1.1]">
+                 <h2 className="max-w-3xl text-3xl font-black tracking-tight uppercase italic text-black md:text-5xl lg:text-5xl leading-[1.1]">
                     {blogPosts[0].title}
                  </h2>
-                 <p className="mt-4 max-w-xl text-sm font-bold text-black/60 line-clamp-2 md:text-base leading-relaxed italic">
+                 <p className="mt-4 max-w-xl text-sm font-bold text-black/60 line-clamp-2 md:text-base leading-relaxed">
                     {blogPosts[0].excerpt}
                  </p>
                  
                  <div className="mt-10 flex items-center gap-4">
-                    <div className="inline-flex h-12 items-center gap-6 rounded-full bg-black px-8 text-xs font-black uppercase tracking-tight text-white transition-all group-hover:bg-neutral-800">
+                    <div className="inline-flex h-12 items-center gap-6 rounded-full bg-black px-8 text-xs font-black tracking-tight uppercase italic text-white transition-all group-hover:bg-neutral-800">
                       Read full Guide
                       <ChevronRight className="h-4 w-4" />
                     </div>
                     <div className="hidden md:flex items-center gap-6 text-xs font-bold text-black/40">
-                      <span className="flex items-center gap-2 font-black uppercase tracking-widest"><Clock className="h-4 w-4 text-black" /> {blogPosts[0].readTime}</span>
+                      <span className="flex items-center gap-2 font-black tracking-widest uppercase italic"><Clock className="h-4 w-4 text-black" /> {blogPosts[0].readTime}</span>
                     </div>
                  </div>
               </div>
@@ -89,13 +89,13 @@ export default function BlogPage() {
           <div className="flex items-center gap-3 overflow-x-auto pb-1 scrollbar-none no-scrollbar">
             <div className="flex shrink-0 items-center gap-2 pr-4 border-r border-neutral-100 dark:border-neutral-800">
                <Hash className="h-4 w-4 text-pink-600" />
-               <span className="text-[10px] font-black uppercase tracking-widest text-neutral-400">Filter Topics</span>
+               <span className="text-[10px] font-black tracking-widest uppercase italic text-neutral-400">Filter Topics</span>
             </div>
             
             <div className="flex items-center gap-2 pl-2">
               <Link 
                 href="/blog" 
-                className="shrink-0 rounded-full bg-neutral-900 px-5 py-2 text-xs font-black uppercase tracking-tight text-white shadow-lg shadow-neutral-200 active:scale-95 transition-all dark:bg-white dark:text-black dark:shadow-none"
+                className="shrink-0 rounded-full bg-neutral-900 px-5 py-2 text-xs font-black tracking-tight uppercase italic text-white shadow-lg shadow-neutral-200 active:scale-95 transition-all dark:bg-white dark:text-black dark:shadow-none"
               >
                 All Stories
               </Link>
@@ -103,7 +103,7 @@ export default function BlogPage() {
                 <button 
                   key={category}
                   onClick={() => setSearchQuery(category)}
-                  className="shrink-0 rounded-full bg-white px-5 py-2 text-xs font-black uppercase tracking-tight text-neutral-500 border border-neutral-100 hover:border-pink-200 hover:text-pink-600 dark:bg-neutral-900/50 dark:text-neutral-400 dark:border-neutral-800 dark:hover:border-pink-500/50 transition-all active:scale-90"
+                  className="shrink-0 rounded-full bg-white px-5 py-2 text-xs font-black tracking-tight uppercase italic text-neutral-500 border border-neutral-100 hover:border-pink-200 hover:text-pink-600 dark:bg-neutral-900/50 dark:text-neutral-400 dark:border-neutral-800 dark:hover:border-pink-500/50 transition-all active:scale-90"
                 >
                   {category}
                 </button>
@@ -117,7 +117,7 @@ export default function BlogPage() {
                  value={searchQuery}
                  onChange={(e) => setSearchQuery(e.target.value)}
                  placeholder="Search guides..."
-                 className="w-48 rounded-full border border-neutral-100 bg-neutral-50 px-9 py-2 text-[10px] font-black uppercase tracking-widest outline-none focus:border-pink-200 focus:w-64 transition-all dark:bg-neutral-900 dark:border-neutral-800"
+                 className="w-48 rounded-full border border-neutral-100 bg-neutral-50 px-9 py-2 text-[10px] font-black tracking-widest uppercase italic outline-none focus:border-pink-200 focus:w-64 transition-all dark:bg-neutral-900 dark:border-neutral-800"
                />
                {searchQuery && (
                  <button 
@@ -138,7 +138,7 @@ export default function BlogPage() {
           {filteredPosts.length === 0 ? (
             <div className="text-center py-20 opacity-30">
                <Search className="h-16 w-16 mx-auto mb-4" />
-               <p className="text-sm font-black uppercase tracking-widest">No matching stories found</p>
+               <p className="text-sm font-black tracking-widest uppercase italic">No matching stories found</p>
                <button onClick={() => setSearchQuery("")} className="mt-4 text-xs font-bold text-pink-600 underline">Clear search</button>
             </div>
           ) : (
@@ -150,7 +150,7 @@ export default function BlogPage() {
                     className="group flex flex-col justify-between rounded-none bg-white p-6 shadow-sm border border-neutral-100 hover:shadow-xl hover:border-pink-200 transition-all duration-300 hover:-translate-y-1 dark:bg-neutral-900/80 dark:border-neutral-800 dark:hover:border-pink-500/30"
                   >
                     <div>
-                      <div className="mb-4 inline-block rounded-full bg-pink-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-pink-600 dark:bg-pink-500/10 dark:text-pink-400">
+                      <div className="mb-4 inline-block rounded-full bg-pink-50 px-3 py-1 text-xs font-black tracking-widest uppercase italic text-pink-600 dark:bg-pink-500/10 dark:text-pink-400">
                         {post.category}
                       </div>
                       <h2 className="mb-3 text-2xl font-black text-neutral-900 dark:text-white line-clamp-2 leading-tight group-hover:text-pink-600 transition-colors">
@@ -188,13 +188,13 @@ export default function BlogPage() {
                           
                           <div className="relative z-10 flex flex-col items-center max-w-2xl mx-auto">
                              <div className="mb-6 rounded-full bg-white/10 px-4 py-2 border border-white/10">
-                               <span className="text-[10px] font-black uppercase tracking-[0.3em] text-pink-500">Join the inner circle</span>
+                               <span className="text-[10px] font-black tracking-[0.3em] text-pink-500">Join the inner circle</span>
                              </div>
                              
-                             <h3 className="text-3xl font-black text-white md:text-5xl tracking-tighter uppercase italic leading-none mb-4">
+                             <h3 className="text-3xl font-black text-white md:text-5xl tracking-tight uppercase italicer leading-none mb-4">
                                Never Miss a <span className="text-pink-600">Viral</span> Strategy
                              </h3>
-                             <p className="text-sm font-medium text-neutral-400 uppercase tracking-widest max-w-md mb-10 brightness-125">
+                             <p className="text-sm font-medium text-neutral-400 tracking-widest uppercase italic max-w-md mb-10 brightness-125">
                                Get the latest social media guides, case studies, and trends delivered once a week.
                              </p>
                              
@@ -202,13 +202,13 @@ export default function BlogPage() {
                                 <input 
                                   type="email" 
                                   placeholder="ENTER YOUR EMAIL" 
-                                  className="flex-1 bg-transparent px-6 py-4 text-xs font-black uppercase tracking-widest text-white outline-none placeholder:text-neutral-600"
+                                  className="flex-1 bg-transparent px-6 py-4 text-xs font-black tracking-widest uppercase italic text-white outline-none placeholder:text-neutral-600"
                                 />
-                                <button className="h-12 rounded-xl bg-pink-600 px-10 text-[10px] font-black uppercase tracking-widest text-white transition-all hover:bg-pink-500 hover:scale-[1.02] active:scale-95 shadow-lg shadow-pink-600/20">
+                                <button className="h-12 rounded-xl bg-pink-600 px-10 text-[10px] font-black tracking-widest uppercase italic text-white transition-all hover:bg-pink-500 hover:scale-[1.02] active:scale-95 shadow-lg shadow-pink-600/20">
                                   SUBSCRIBE
                                 </button>
                              </div>
-                             <p className="mt-4 text-[9px] font-black uppercase tracking-widest text-neutral-600">No spam. Only high-performance content.</p>
+                             <p className="mt-4 text-[9px] font-black tracking-widest uppercase italic text-neutral-600">No spam. Only high-performance content.</p>
                           </div>
                        </div>
                     </div>

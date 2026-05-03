@@ -95,6 +95,7 @@ export function InternalToolLinks({ currentPlatform, dict, accentColor = "text-p
             >
               <Link
                 href={tool.href}
+                prefetch={true}
                 className="group flex items-center justify-between gap-4 rounded-3xl bg-white p-6 shadow-sm border border-neutral-100 transition-all hover:shadow-2xl hover:border-pink-500/20 dark:bg-neutral-900 dark:border-neutral-800 dark:hover:border-pink-500/30"
               >
                 <div className="flex flex-col">

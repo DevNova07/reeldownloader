@@ -1,7 +1,7 @@
 import { getSeoAlternates } from "@/lib/seo";
 import * as React from "react"
 import { type Locale, getDictionary } from "@/i18n"
-import { TwitterView } from "./TwitterView"
+import TwitterPageTemplate from "@/components/templates/TwitterPage"
 import { Metadata } from "next"
 
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -29,5 +29,5 @@ export default async function TwitterPage(props: { params: Promise<{ locale: str
     }
   };
 
-  return <TwitterView locale={locale} dict={dict} />
+  return <TwitterPageTemplate locale={locale} dict={dict} content={platforms?.twitter} />
 }

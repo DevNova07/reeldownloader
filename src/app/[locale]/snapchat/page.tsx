@@ -1,7 +1,7 @@
 import { getSeoAlternates } from "@/lib/seo";
 import * as React from "react"
 import { type Locale, getDictionary } from "@/i18n"
-import SnapchatView from "./SnapchatView"
+import SnapchatPageTemplate from "@/components/templates/SnapchatPage"
 import { Metadata } from "next"
 
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -28,5 +28,5 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
     }
   };
 
-  return <SnapchatView locale={locale} dict={dict} />
+  return <SnapchatPageTemplate locale={locale} dict={dict} content={platforms?.snapchat} />
 }

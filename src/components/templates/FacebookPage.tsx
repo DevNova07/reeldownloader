@@ -18,6 +18,7 @@ import { DownloadCounter } from "@/components/ui/DownloadCounter"
 import { useDownloadHistory, getCached, setCached } from "@/hooks/useDownloadHistory"
 import { HeroEffect } from "@/components/shared/HeroEffect"
 import { CheckCircle2, Film, HelpCircle, Info, ShieldCheck, StopCircle, Zap } from "lucide-react"
+import { cn } from "@/utils/cn"
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs"
 import { toast } from "react-hot-toast"
 const TrustBadges = dynamic(() => import("@/components/ui/TrustBadges").then(m => m.TrustBadges))
@@ -27,6 +28,8 @@ import { ExpandableSection } from "@/components/ui/ExpandableSection"
 import { HeroQuickGuide } from "../shared/HeroQuickGuide"
 import { useSearchParams, useRouter } from "next/navigation"
 import { getPlatformFromUrl, getLocalizedRoute, isAnyPlatformUrl } from "@/utils/platform-detector"
+import { PremiumInfoSection } from "../shared/PremiumInfoSection"
+import { PurpleStepGuide } from "../shared/PurpleStepGuide"
 
 // Dynamic imports for improved performance (below-the-fold content)
 const CategoryCards = dynamic(() => import("@/components/layout/CategoryCards").then(m => m.CategoryCards));
@@ -41,6 +44,7 @@ interface FacebookPageProps {
   locale: string;
   themeColor?: string;
   dict: any;
+  activeTab?: string;
 }
 
 function FacebookContent({
@@ -48,6 +52,7 @@ function FacebookContent({
   locale,
   themeColor = "blue",
   dict,
+  activeTab = "video",
 }: FacebookPageProps) {
   const router = useRouter()
   // Defensive check to prevent crashes if dictionary is missing for a slug
@@ -133,7 +138,7 @@ function FacebookContent({
         <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-3 sm:gap-6">
           <SocialPlatformBar activeId="facebook" />
           <PlatformTabs   
-            activeId={content.activeTab || "video"} 
+            activeId={activeTab} 
             activeColor={cx.text}
             tabs={dict?.tabs}
             locale={locale}
@@ -150,10 +155,9 @@ function FacebookContent({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <h1 className="mb-3 text-4xl font-black tracking-tight text-white sm:text-7xl drop-shadow-2xl uppercase italic">
+            <h1 className="mb-2 text-3xl min-[400px]:text-4xl font-black tracking-tight uppercase italic text-white sm:text-7xl drop-shadow-2xl">
               {pageTitle}
             </h1>
-            
           </motion.div>
           
           <div className="mx-auto max-w-3xl">
@@ -167,9 +171,11 @@ function FacebookContent({
               initialValue={sharedUrl}
             />
 
-            <p className="mx-auto mb-4 max-w-2xl mt-8 mb-2 text-sm font-bold text-white/60 uppercase tracking-widest hidden sm:block">
+            <p className="mx-auto mb-4 max-w-2xl mt-8 mb-2 text-sm font-bold text-white/60 tracking-widest uppercase italic hidden sm:block">
               {content?.subtitle || pageSeo?.desc || "Fast and secure Facebook downloader."}
             </p>
+
+
 
             <AnimatePresence>
             </AnimatePresence>
@@ -195,17 +201,31 @@ function FacebookContent({
         </div>
       </section>
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-6">
-        <Breadcrumbs 
-          items={[
-            { name: "Home", item: `/${locale}` },
-            { name: "Facebook", item: `/${locale}/facebook` },
-            { name: pageTitle, item: `/${locale}/${content.slug || ""}` }
-          ]}
-          rating="4.9"
-          reviewCount="8,450"
-        />
-      </div>
+
+
+      <PremiumInfoSection 
+        title={pageTitle}
+        description={content?.seo?.desc || pageSeo?.desc}
+        imageSrc="/images/facebook-3d-logo.png"
+      />
+
+      <PurpleStepGuide 
+        title={`How to Download ${dict.categories?.fb || "Facebook"} Videos`}
+        steps={[
+          {
+            title: dict.guide?.steps?.[0]?.title?.replace('{platform}', 'Facebook') || "Copy the URL",
+            description: dict.guide?.steps?.[0]?.desc?.replace('{platform}', 'Facebook') || "Open the Facebook app or website, go to the video or Reel you want to download. Tap the 'Share' button and select 'Copy Link'."
+          },
+          {
+            title: dict.guide?.steps?.[1]?.title?.replace('{platform}', 'Facebook') || "Paste the Link",
+            description: dict.guide?.steps?.[1]?.desc?.replace('{platform}', 'Facebook') || "Come back to SavClip, paste the copied link into the input field at the top of the page and click the 'Download' button."
+          },
+          {
+            title: dict.guide?.steps?.[2]?.title?.replace('{platform}', 'Facebook') || "Download Your Video",
+            description: dict.guide?.steps?.[2]?.desc?.replace('{platform}', 'Facebook') || "Review the results and find the file you want to save. Click the 'Download' button. Done!"
+          }
+        ]}
+      />
 
       <RelatedTools currentPlatform="facebook" />
       <CategoryCards />
@@ -214,7 +234,7 @@ function FacebookContent({
 
       <section className="bg-neutral-50 px-4 py-4 dark:bg-neutral-900/50 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <h2 className="mb-12 text-center text-3xl font-black text-neutral-900 dark:text-white uppercase italic tracking-widest">{dict?.features?.title || "Features"}</h2>
+          <h2 className="mb-12 text-center text-3xl font-black text-neutral-900 dark:text-white tracking-widest uppercase italic">{dict?.features?.title || "Features"}</h2>
           <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
             {[
               { icon: <Zap className={`h-8 w-8 ${cx.text}`} /> },
@@ -225,7 +245,7 @@ function FacebookContent({
                 <div className="mb-6 rounded-2xl bg-white p-5 shadow-2xl dark:bg-black transition-all hover:scale-110 hover:-rotate-3 border border-neutral-100 dark:border-neutral-800">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-black text-neutral-900 dark:text-white uppercase italic">{dict?.features?.items?.[idx]?.title || "Feature"}</h3>
+                <h3 className="text-xl font-black text-neutral-900 dark:text-white">{dict?.features?.items?.[idx]?.title || "Feature"}</h3>
                 <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 hidden sm:block">{dict?.features?.items?.[idx]?.desc || "Description"}</p>
               </div>
             ))}
@@ -254,24 +274,23 @@ function FacebookContent({
         <section className="px-4 py-4 sm:py-12 bg-white dark:bg-black sm:px-6 lg:px-8">
           <div className="mx-auto max-w-4xl">
             <div className="mt-10">
-              <h2 className="flex items-center gap-3 text-3xl font-black text-neutral-900 dark:text-white uppercase italic tracking-widest">
+              <h2 className="flex items-center justify-center gap-3 text-3xl font-black text-neutral-900 dark:text-white tracking-widest uppercase italic text-center">
                 <Info className={`h-8 w-8 ${cx.text}`} />
                 {content.seo.title}
               </h2>
-            <p className="mt-4 text-lg text-neutral-500 dark:text-neutral-400 font-medium italic opacity-80 sm:hidden hidden sm:block">{content?.seo?.desc || pageSeo?.desc}</p>
-              <p className={`mt-4 text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed border-l-4 ${cx.border} pl-8 font-medium`}>
+              <p className={cn("mt-6 text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed font-medium text-center max-w-3xl mx-auto opacity-90")}>
                 {content?.seo?.desc || pageSeo?.desc}
               </p>
               <ExpandableSection maxHeight={400} className="mt-16">
                 {content?.article_content && (
                   <div>
-                    <div className="flex items-center gap-4 mb-8">
-                      <div className={`p-3 rounded-2xl bg-white dark:bg-neutral-900 shadow-xl border border-neutral-100 dark:border-neutral-800 ${cx.text}`}>
+                    <div className="flex flex-col items-center mb-8">
+                      <div className={`p-3 rounded-2xl bg-white dark:bg-neutral-900 shadow-xl border border-neutral-100 dark:border-neutral-800 ${cx.text} mb-4`}>
                         <ShieldCheck className="h-6 w-6" />
                       </div>
                       <div>
-                        <h3 className="text-2xl font-black text-neutral-900 dark:text-white uppercase italic tracking-widest">Expert Guide & Safety</h3>
-                        <p className="text-xs font-black text-neutral-400 uppercase tracking-widest mt-1">Verified Secure • Ethical Usage • HD Quality</p>
+                        <h3 className="text-2xl font-black text-neutral-900 dark:text-white tracking-widest uppercase italic text-center">Expert Guide & Safety</h3>
+                        <p className="text-xs font-black text-neutral-400 tracking-widest uppercase italic mt-1 text-center">Verified Secure • Ethical Usage • HD Quality</p>
                       </div>
                     </div>
                     
@@ -286,10 +305,10 @@ function FacebookContent({
                 )}
       
                 {content.seo?.features && (
-                  <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2">
+                  <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 text-center">
                     {content.seo.features.map((feature: any, idx: number) => (
-                      <div key={idx} className="rounded-4xl bg-neutral-50 p-8 dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 transition-all hover:scale-105 hover:bg-white dark:hover:bg-neutral-900 shadow-sm hover:shadow-2xl">
-                        <h3 className="font-black text-neutral-900 dark:text-white uppercase italic tracking-tighter text-lg">{feature.title}</h3>
+                      <div key={idx} className="rounded-4xl bg-neutral-50 p-8 dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 transition-all hover:scale-105 hover:bg-white dark:hover:bg-neutral-900 shadow-sm hover:shadow-2xl flex flex-col items-center">
+                        <h3 className="font-black text-neutral-900 dark:text-white tracking-tight uppercase italicer text-lg">{feature.title}</h3>
                         <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 hidden sm:block">{feature.desc}</p>
                       </div>
                     ))}
@@ -297,14 +316,14 @@ function FacebookContent({
                 )}
 
                 <div className="mt-6 sm:mt-20">
-                  <h2 className="flex items-center gap-3 text-3xl font-black text-neutral-900 dark:text-white uppercase italic tracking-widest">
+                  <h2 className="flex items-center justify-center gap-3 text-3xl font-black text-neutral-900 dark:text-white tracking-widest uppercase italic text-center">
                     <HelpCircle className={`h-8 w-8 ${cx.text}`} />
                     {content.faq?.title || dict?.faq?.title || "FAQ"}
                   </h2>
-                  <div className="mt-12 space-y-6">
+                  <div className="mt-12 space-y-6 text-center">
                     {(content.faq?.items || dict?.faq?.items || []).map((faq: any, idx: number) => (
                       <div key={idx} className={`group rounded-[2rem] border border-neutral-200 p-8 dark:border-neutral-800 hover:${cx.border}/50 transition-all bg-white dark:bg-transparent hover:shadow-2xl`}>
-                        <h3 className={`font-black text-neutral-900 dark:text-white group-hover:${cx.text} transition-colors uppercase italic tracking-tighter text-lg`}>{faq.q}</h3>
+                        <h3 className={`font-black text-neutral-900 dark:text-white group-hover:${cx.text} transition-colors tracking-tight uppercase italicer text-lg`}>{faq.q}</h3>
                         <p className="mt-4 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 group-hover:opacity-100 transition-opacity">{faq.a}</p>
                       </div>
                     ))}
@@ -315,6 +334,18 @@ function FacebookContent({
           </div>
         </section>
       )}
+
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 my-12 border-t border-neutral-100 dark:border-neutral-800 pt-10">
+        <Breadcrumbs 
+          items={[
+            { name: "Home", item: `/${locale}` },
+            { name: "Facebook", item: `/${locale}/facebook` },
+            { name: pageTitle, item: `/${locale}/${content.slug || ""}` }
+          ]}
+          rating="4.9"
+          reviewCount="8,450"
+        />
+      </div>
     </div>
   )
 }

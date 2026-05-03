@@ -33,7 +33,7 @@ interface MediaItem {
   title: string
 }
 
-export default function BulkDownloader() {
+function BulkDownloaderContent() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const [input, setInput] = React.useState("")
@@ -162,17 +162,17 @@ export default function BulkDownloader() {
                 />
               ))}
             </div>
-            <span className="text-[9px] sm:text-[11px] font-black uppercase tracking-[0.25em] text-pink-600 dark:text-pink-400">
+            <span className="text-[9px] sm:text-[11px] font-black tracking-[0.25em] text-pink-600 dark:text-pink-400">
               Smart Engine v2.0
             </span>
           </motion.div>
           
-          <h1 className="text-4xl sm:text-7xl md:text-9xl font-black tracking-tighter uppercase italic leading-[0.9] sm:leading-[0.85] dark:text-white px-6 sm:px-12">
+          <h1 className="text-4xl sm:text-7xl md:text-9xl font-black tracking-tight uppercase italicer leading-[0.9] sm:leading-[0.85] dark:text-white px-6 sm:px-12">
             <span className="block text-neutral-400/20 dark:text-white/10 absolute -top-2 sm:-top-8 left-1/2 -translate-x-1/2 select-none -z-10">STREAMLINE</span>
             Bulk <span className="text-transparent bg-clip-text bg-linear-to-r from-pink-600 via-rose-500 to-orange-500 drop-shadow-sm pr-2">Downloader</span>
           </h1>
           
-          <p className="text-base sm:text-xl font-bold text-neutral-500 tracking-tight opacity-80 max-w-2xl mx-auto leading-relaxed px-4 hidden sm:block">
+          <p className="text-base sm:text-xl font-bold text-neutral-500 tracking-tight uppercase italic opacity-80 max-w-2xl mx-auto leading-relaxed px-4 hidden sm:block">
             Unleash the power of batch downloading. Paste a profile link or username to grab everything in high definition instantly.
           </p>
         </div>
@@ -192,14 +192,14 @@ export default function BulkDownloader() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Username or link..."
-                className="flex-1 bg-transparent py-2.5 sm:py-4 text-base sm:text-xl font-black outline-none placeholder:text-neutral-300 dark:placeholder:text-neutral-700 tracking-tight"
+                className="flex-1 bg-transparent py-2.5 sm:py-4 text-base sm:text-xl font-black outline-none placeholder:text-neutral-300 dark:placeholder:text-neutral-700 tracking-tight uppercase italic"
               />
             </div>
             <button 
               id="fetch-btn"
               onClick={handleFetch}
               disabled={isFetching || !input.trim()}
-              className="flex h-12 sm:h-16 items-center justify-center gap-2 sm:gap-3 rounded-[18px] sm:rounded-[32px] bg-black dark:bg-white px-8 sm:px-12 text-[10px] sm:text-[12px] font-black uppercase tracking-widest text-white dark:text-black transition-all hover:scale-[1.03] active:scale-95 disabled:opacity-30 relative overflow-hidden group"
+              className="flex h-12 sm:h-16 items-center justify-center gap-2 sm:gap-3 rounded-[18px] sm:rounded-[32px] bg-black dark:bg-white px-8 sm:px-12 text-[10px] sm:text-[12px] font-black tracking-widest uppercase italic text-white dark:text-black transition-all hover:scale-[1.03] active:scale-95 disabled:opacity-30 relative overflow-hidden group"
             >
               <div className="absolute inset-0 bg-linear-to-r from-pink-600 to-rose-600 opacity-0 group-hover:opacity-100 transition-opacity" />
               <span className="relative z-10">{isFetching ? "Analyzing..." : "Batch Fetch"}</span>
@@ -245,7 +245,7 @@ export default function BulkDownloader() {
                  <div className="flex items-center justify-between w-full sm:w-auto gap-6 sm:gap-8">
                     <button 
                       onClick={toggleAll} 
-                      className="group flex items-center gap-2 text-[10px] sm:text-xs font-black uppercase tracking-widest text-pink-600"
+                      className="group flex items-center gap-2 text-[10px] sm:text-xs font-black tracking-widest uppercase italic text-pink-600"
                     >
                       <motion.div 
                         whileTap={{ scale: 0.8 }}
@@ -262,8 +262,8 @@ export default function BulkDownloader() {
                       {items.every(i => i.selected) ? "Deselect All" : "Select All"}
                     </button>
                     <div className="flex flex-col">
-                       <span className="text-[8px] sm:text-[10px] font-black uppercase tracking-[0.3em] text-neutral-400">Scan Results</span>
-                       <span className="text-base sm:text-xl font-black italic tracking-tighter">{items.length} Items Found</span>
+                       <span className="text-[8px] sm:text-[10px] font-black tracking-[0.3em] text-neutral-400">Scan Results</span>
+                       <span className="text-base sm:text-xl font-black tracking-tight uppercase italicer">{items.length} Items Found</span>
                     </div>
                  </div>
                  
@@ -279,7 +279,7 @@ export default function BulkDownloader() {
                     <button 
                       onClick={handleBulkDownload}
                       disabled={selectedCount === 0 || isDownloading}
-                      className="hidden sm:flex h-16 items-center gap-4 rounded-3xl bg-linear-to-r from-pink-600 to-rose-600 px-10 text-[11px] font-black uppercase tracking-widest text-white shadow-2xl shadow-pink-500/40 transition-all hover:scale-[1.05] hover:rotate-1 active:scale-95 disabled:opacity-20"
+                      className="hidden sm:flex h-16 items-center gap-4 rounded-3xl bg-linear-to-r from-pink-600 to-rose-600 px-10 text-[11px] font-black tracking-widest uppercase italic text-white shadow-2xl shadow-pink-500/40 transition-all hover:scale-[1.05] hover:rotate-1 active:scale-95 disabled:opacity-20"
                     >
                       {isDownloading ? (
                         <div className="flex items-center gap-3">
@@ -344,10 +344,10 @@ export default function BulkDownloader() {
                       
                       <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between">
                         <div className="flex flex-col gap-1">
-                          <span className="text-[10px] font-black uppercase tracking-widest text-white/90 drop-shadow-md truncate max-w-[100px]">
+                          <span className="text-[10px] font-black tracking-widest uppercase italic text-white/90 drop-shadow-md truncate max-w-[100px]">
                             {item.title}
                           </span>
-                          <span className="text-[9px] font-black uppercase tracking-[0.2em] bg-pink-600/90 backdrop-blur-md px-2 py-1 rounded-lg text-white w-fit shadow-lg">
+                          <span className="text-[9px] font-black tracking-[0.2em] bg-pink-600/90 backdrop-blur-md px-2 py-1 rounded-lg text-white w-fit shadow-lg">
                             {item.type}
                           </span>
                         </div>
@@ -393,11 +393,11 @@ export default function BulkDownloader() {
                           )}
                         </div>
                         <div className="space-y-1">
-                           <p className="text-base sm:text-lg font-black tracking-tighter uppercase italic hidden sm:block">{item.title}</p>
-                           <p className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.3em] text-neutral-400">Media Hash: {item.id}</p>
+                           <p className="text-base sm:text-lg font-black tracking-tight uppercase italicer hidden sm:block">{item.title}</p>
+                           <p className="text-[9px] sm:text-[10px] font-black tracking-[0.3em] text-neutral-400">Media Hash: {item.id}</p>
                            <div className="flex gap-2">
-                             <span className="text-[8px] font-black uppercase bg-neutral-100 dark:bg-neutral-800 px-2 py-0.5 rounded text-neutral-500">4K ULTRA</span>
-                             <span className="text-[8px] font-black uppercase bg-pink-100 dark:bg-pink-900/30 px-2 py-0.5 rounded text-pink-600">PRO GRADE</span>
+                             <span className="text-[8px] font-black bg-neutral-100 dark:bg-neutral-800 px-2 py-0.5 rounded text-neutral-500">4K ULTRA</span>
+                             <span className="text-[8px] font-black bg-pink-100 dark:bg-pink-900/30 px-2 py-0.5 rounded text-pink-600">PRO GRADE</span>
                            </div>
                         </div>
                       </div>
@@ -439,10 +439,10 @@ export default function BulkDownloader() {
                 </div>
               </div>
               <div className="space-y-3">
-                 <h3 className="text-3xl font-black uppercase italic tracking-tighter">Engine Standby</h3>
+                 <h3 className="text-3xl font-black tracking-tight uppercase italicer">Engine Standby</h3>
                  <p className="text-lg font-bold text-neutral-400 max-w-sm mx-auto">Input a valid Instagram username or reel link to initialize the batch processor.</p>
               </div>
-              <div className="flex items-center justify-center gap-4 text-[10px] font-black uppercase tracking-widest text-neutral-300">
+              <div className="flex items-center justify-center gap-4 text-[10px] font-black tracking-widest uppercase italic text-neutral-300">
                 <span className="flex items-center gap-1"><ShieldCheck className="h-3 w-3" /> Encrypted</span>
                 <span className="w-1.5 h-1.5 rounded-full bg-neutral-200" />
                 <span className="flex items-center gap-1"><Zap className="h-3 w-3" /> Ultra Fast</span>
@@ -482,7 +482,7 @@ export default function BulkDownloader() {
                   <X className="h-6 w-6" />
                 </button>
                 <div className="absolute bottom-10 left-10 right-10">
-                   <p className="text-xl font-black italic uppercase tracking-tighter text-white drop-shadow-lg">{activePreview.title}</p>
+                   <p className="text-xl font-black tracking-tight uppercase italicer text-white drop-shadow-lg">{activePreview.title}</p>
                 </div>
               </motion.div>
             </motion.div>
@@ -505,7 +505,7 @@ export default function BulkDownloader() {
                   {card.icon}
                 </div>
                 <div className="space-y-3">
-                  <h3 className="text-xl font-black uppercase italic tracking-tighter leading-none">{card.title}</h3>
+                  <h3 className="text-xl font-black tracking-tight uppercase italicer leading-none">{card.title}</h3>
                   <p className="text-base font-bold text-neutral-500 dark:text-neutral-400 leading-relaxed opacity-80">{card.desc}</p>
                 </div>
              </motion.div>
@@ -522,13 +522,13 @@ export default function BulkDownloader() {
             >
               <div className="flex items-center justify-between gap-4 bg-black/90 dark:bg-white/95 backdrop-blur-2xl p-3 px-4 rounded-[28px] border border-white/10 dark:border-black/5 shadow-[0_25px_60px_rgba(0,0,0,0.6)]">
                  <div className="flex flex-col pl-1">
-                    <span className="text-[9px] font-black uppercase tracking-[0.1em] text-pink-500 leading-none mb-1">Ready to save</span>
-                    <span className="text-base font-black text-white dark:text-black italic tracking-tighter leading-none">{selectedCount} Clips</span>
+                    <span className="text-[9px] font-black tracking-[0.1em] text-pink-500 leading-none mb-1">Ready to save</span>
+                    <span className="text-base font-black text-white dark:text-black tracking-tight uppercase italicer leading-none">{selectedCount} Clips</span>
                  </div>
                  <button 
                    onClick={handleBulkDownload}
                    disabled={isDownloading}
-                   className="flex h-12 items-center gap-2 rounded-[20px] bg-pink-600 px-6 text-[10px] font-black uppercase tracking-widest text-white shadow-xl shadow-pink-600/30 active:scale-95 transition-all"
+                   className="flex h-12 items-center gap-2 rounded-[20px] bg-pink-600 px-6 text-[10px] font-black tracking-widest uppercase italic text-white shadow-xl shadow-pink-600/30 active:scale-95 transition-all"
                  >
                    {isDownloading ? (
                      <div className="flex items-center gap-2">
@@ -548,5 +548,13 @@ export default function BulkDownloader() {
         </AnimatePresence>
       </div>
     </main>
+  )
+}
+
+export default function BulkDownloader() {
+  return (
+    <React.Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-black"><div className="w-8 h-8 border-4 border-pink-500/30 border-t-pink-500 rounded-full animate-spin" /></div>}>
+      <BulkDownloaderContent />
+    </React.Suspense>
   )
 }
