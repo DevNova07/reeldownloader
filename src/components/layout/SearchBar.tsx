@@ -25,6 +25,7 @@ interface SearchBarProps {
   buttonClass?: string
   iconClass?: string
   initialValue?: string
+  className?: string
 }
 
 function SearchBarInner({ 
@@ -36,7 +37,8 @@ function SearchBarInner({
   errorMsg,
   buttonClass = "bg-linear-to-br from-rose-600 via-pink-600 to-purple-600 text-white shadow-[0_20px_50px_rgba(225,10,94,0.3)] ring-1 ring-inset ring-white/20",
   iconClass = "text-pink-600",
-  initialValue = ""
+  initialValue = "",
+  className
 }: SearchBarProps) {
   const [url, setUrl] = React.useState(initialValue)
   const [error, setError] = React.useState<string | null>(null)
@@ -146,7 +148,7 @@ function SearchBarInner({
   }
 
   return (
-    <div className="mx-auto w-full max-w-4xl px-4 py-2 sm:py-4 relative group">
+    <div className={cn("mx-auto w-full max-w-4xl px-4 py-2 sm:py-4 relative group", className)}>
       {/* Interactive Background Glow matching Platform */}
       <div className={cn("absolute inset-0 -top-4 -bottom-4 sm:-top-10 sm:-bottom-10 blur-2xl sm:blur-3xl rounded-[3rem] transition-all duration-700 opacity-20 group-focus-within:opacity-80 group-focus-within:scale-105", 
         iconClass.includes('pink') ? "bg-pink-500/40 group-focus-within:bg-pink-500/60" :
