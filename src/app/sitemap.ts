@@ -13,7 +13,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // 1. Static Pages (Home, About, etc.)
   const staticRoutes = [
     "", 
-    "/instagram",
+    "/instagram", 
+    "/instagram/reels",
+    "/instagram/video",
+    "/instagram/story",
+    "/instagram/photo",
+    "/instagram/music",
     "/facebook", 
     "/youtube", 
     "/tiktok", 
