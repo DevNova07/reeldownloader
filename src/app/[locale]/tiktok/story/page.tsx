@@ -7,7 +7,6 @@ import { CategoryCards } from "@/components/layout/CategoryCards"
 import { DownloadPreview } from "@/components/layout/DownloadPreview"
 import { StructuredData } from "@/components/shared/StructuredData"
 import { PlatformTabs } from "@/components/shared/PlatformTabs"
-import { SocialPlatformBar } from "@/components/layout/SocialPlatformBar"
 import { VisualGuide } from "@/components/shared/VisualGuide"
 import { usePathname } from "next/navigation"
 import { type Locale } from "@/i18n"
@@ -87,7 +86,6 @@ export default function TikTokStoryPage() {
         <HeroEffect color="bg-pink-400" intensity="high" />
         
         <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-3 sm:gap-6">
-          <SocialPlatformBar   activeId="tiktok" />
           <PlatformTabs   
             activeId="story" 
             activeColor="text-pink-600"

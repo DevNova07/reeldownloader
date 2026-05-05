@@ -1,8 +1,41 @@
 {
   "seo": {
-    "title": "Download Videos from All Platforms Without Watermark (HD) – SavClip",
-    "description": "SavClip is a free online video downloader to download videos, reels, stories, and music from Instagram, Facebook, TikTok, YouTube, Twitter (X), Snapchat, and Telegram in HD without watermark. Fast, secure & unlimited downloads.",
-    "keywords": "instagram downloader, reels download, story downloader, download instagram post, instagram music downloader"
+    "title": "Download Videos, Reels & Shorts Without Watermark (HD) – Free Video Downloader | SavClip",
+    "description": "Download videos, reels and shorts from Instagram, TikTok, YouTube, Facebook and more without watermark in HD. Fast, free and secure video downloader online.",
+    "keywords": "video downloader, reels download, shorts downloader, download video from link, tiktok downloader without watermark"
+  },
+  "home": {
+    "hero": {
+      "title_1": "Download Videos",
+      "title_2": "Reels & Shorts",
+      "title_3": "Without Watermark (HD)",
+      "subtitle": "Download from Instagram, TikTok, YouTube & more — fast, free and secure"
+    },
+    "trust": {
+      "users": "Trusted by 1,200,000+ users",
+      "no_login": "No Login",
+      "free": "100% Free",
+      "unlimited": "Unlimited",
+      "safe": "Safe",
+      "fast": "Fast",
+      "watermark": "No Watermark"
+    },
+    "intro": "SavClip is a free online video downloader that allows users to download videos, reels, and shorts from Instagram, TikTok, YouTube, Facebook and more. You can download content without watermark in HD quality. It is fast, secure and works on all devices without login.",
+    "stats": {
+      "downloads": "1.2M+",
+      "users": "100K+",
+      "uptime": "99.9%"
+    },
+    "ai_tools": {
+      "title": "Fuel Your Viral Growth",
+      "desc": "Our specialized AI tools help you generate viral captions, find trending hashtags, and write high-converting scripts in seconds.",
+      "tools": [
+        { "name": "AI Caption Pro", "href": "/captions" },
+        { "name": "Hashtag AI", "href": "/hashtags" },
+        { "name": "Viral Hook AI", "href": "/viral-hooks" },
+        { "name": "Reel Script AI", "href": "/reel-script" }
+      ]
+    }
   },
   "hashtag_seo": {
     "title": "AI Hashtag Generator - Viral Tags for Reels & TikTok 2024",
@@ -45,7 +78,7 @@
   },
   "search": {
     "placeholder": "Paste link here...",
-    "button": "DOWNLOAD",
+    "button": "Download Now",
     "error_empty": "Please paste a link",
     "error_invalid": "Invalid URL format"
   },
@@ -243,29 +276,52 @@
     "beauty": "Beauty"
   },
   "guide": {
-    "title": "How to Download {platform} Videos?",
-    "subtitle": "Follow these three simple steps to save any {platform} media in HD.",
+    "title": "How to Download Videos?",
+    "subtitle": "Download your favorite videos in simple steps.",
     "steps": [
       {
-        "title": "🔗 Copy Link",
-        "desc": "Open the social app and copy the URL of the video or story you want to save."
+        "title": "Copy video link",
+        "desc": "Open the video you want and copy its URL/link."
       },
       {
-        "title": "📥 Paste & Download",
-        "desc": "Paste the link into the search bar above and click the instant download button."
+        "title": "Paste in input box",
+        "desc": "Paste the copied link into the search bar above."
       },
       {
-        "title": "✅ Save & Enjoy",
-        "desc": "Choose your preferred quality and the file will be saved directly to your device."
+        "title": "Click download",
+        "desc": "Click the Download button to start processing."
+      },
+      {
+        "title": "Save video",
+        "desc": "Choose your quality and save the video to your device."
       }
     ]
   },
   "platforms": {
     "instagram": {
       "title": "Instagram Video Download",
-      "subtitle": "Download Instagram videos, reels, stories without watermark in HD. Fast, free and secure downloader online.",
+      "title_1": "Download Instagram",
+      "title_2": "Videos & Reels",
+      "title_3": "No Watermark (HD)",
+      "subtitle": "Download Instagram videos, reels, stories & photos — fast, free and secure",
+      "video": {
+        "title": "Instagram Video Download",
+        "users": "Trusted by 920,000+ users",
+        "title_1": "Download Instagram",
+        "title_2": "Videos In HD",
+        "title_3": "No Watermark",
+        "subtitle": "Save Instagram videos and IGTV in original HD quality for free.",
+        "seo": {
+          "title": "Instagram Video Downloader – Download Videos in HD | SavClip",
+          "desc": "Download Instagram videos in HD quality. Fast, free and secure Instagram video downloader. No login required."
+        }
+      },
       "reels": {
         "title": "Instagram Reels Download",
+        "users": "Trusted by 850,000+ users",
+        "title_1": "Download Instagram",
+        "title_2": "Reels In HD",
+        "title_3": "No Watermark",
         "subtitle": "Download Instagram Reels in original HD quality without any limits.",
         "howTo": {
           "name": "How to Download Instagram Reels",
@@ -278,12 +334,13 @@
           ]
         },
         "seo": {
-          "title": "Download Instagram Reels Without Watermark (HD) – Free & Fast | SavClip",
-          "desc": "Download Instagram Reels without watermark in HD quality. Fast, free and secure reels downloader. Works on mobile & PC. No login required."
+          "title": "Instagram Reels Downloader – Download Reels Without Watermark (HD) | SavClip",
+          "desc": "Download Instagram reels without watermark in HD quality. Fast, free and secure Instagram reels downloader. No login required."
         }
       },
       "story": {
         "title": "Instagram Story Download",
+        "users": "Trusted by 640,000+ users",
         "subtitle": "Download Instagram Stories and Highlights anonymously in HD.",
         "howTo": {
           "name": "How to Download Instagram Stories",
@@ -300,6 +357,15 @@
           "desc": "View and download Instagram stories without the user knowing. Our tool is completely private and secure."
         }
       },
+      "photo": {
+        "title": "Instagram Photo Download",
+        "users": "Trusted by 480,000+ users",
+        "subtitle": "Download Instagram photos, profiles and posts in original high resolution.",
+        "seo": {
+          "title": "Instagram Photo Download – Save Posts & Profiles | SavClip",
+          "desc": "Download Instagram photos in original HD quality. Fast, free and secure Instagram photo downloader. No login required."
+        }
+      },
       "howTo": {
         "name": "How to Download Instagram Media",
         "description": "Follow these simple steps to save videos, reels and stories from Instagram.",
@@ -311,8 +377,8 @@
         ]
       },
       "seo": {
-        "title": "Instagram Reels Downloader Without Watermark – SavClip",
-        "desc": "Download Instagram Reels without watermark in HD quality. Fast, free and secure reels downloader. Works on mobile & PC. No login required.",
+        "title": "Instagram Reels Downloader – Download Reels Without Watermark (HD) | SavClip",
+        "desc": "Download Instagram reels, videos and stories without watermark in HD quality. Fast, free and secure downloader. No login required.",
         "features": [
           {
             "title": "Fast & Unlimited",
@@ -326,6 +392,9 @@
       },
       "music": {
         "title": "Instagram Music Download",
+        "title_1": "Download Instagram",
+        "title_2": "Music & Audio",
+        "title_3": "High Quality MP3",
         "subtitle": "Download high-quality audio and MP3 from Instagram Reels and Videos.",
         "howTo": {
           "name": "How to Download Instagram Music",
@@ -345,9 +414,11 @@
     },
     "facebook": {
       "title": "Facebook Video Download",
+      "users": "Trusted by 780,000+ users",
       "subtitle": "Download Facebook videos, reels, stories without watermark in HD. Fast, free and secure downloader online.",
       "reels": {
         "title": "Facebook Reels Download",
+        "users": "Trusted by 520,000+ users",
         "subtitle": "Save any Facebook Reel in high resolution directly to your device.",
         "howTo": {
           "name": "How to Download Facebook Reels",
@@ -366,6 +437,7 @@
       },
       "story": {
         "title": "Facebook Story Download",
+        "users": "Trusted by 390,000+ users",
         "subtitle": "Download Facebook stories and highlights anonymously in HD.",
         "howTo": {
           "name": "How to Download Facebook Stories",
@@ -441,9 +513,11 @@
     },
     "tiktok": {
       "title": "TikTok Video Download",
+      "users": "Trusted by 1,100,000+ users",
       "subtitle": "Download TikTok videos, reels, stories without watermark in HD. Fast, free and secure downloader online.",
       "music": {
         "title": "TikTok MP3 Download",
+        "users": "Trusted by 670,000+ users",
         "subtitle": "Extract and download high-quality audio from any TikTok video.",
         "howTo": {
           "name": "How to Download TikTok Audio",
@@ -462,6 +536,7 @@
       },
       "story": {
         "title": "TikTok Story Download",
+        "users": "Trusted by 420,000+ users",
         "subtitle": "Download any TikTok story video without watermarks.",
         "howTo": {
           "name": "How to Download TikTok Stories",
@@ -519,9 +594,11 @@
     },
     "youtube": {
       "title": "YouTube Video Download",
+      "users": "Trusted by 1,500,000+ users",
       "subtitle": "Download YouTube videos, shorts, music without watermark in HD. Fast, free and secure downloader online.",
       "shorts": {
         "title": "YouTube Shorts Download",
+        "users": "Trusted by 890,000+ users",
         "subtitle": "Download YouTube Shorts in high quality safely and quickly.",
         "howTo": {
           "name": "How to Download YouTube Shorts",
@@ -614,9 +691,11 @@
     },
     "twitter": {
       "title": "Twitter Video Download",
+      "users": "Trusted by 460,000+ users",
       "subtitle": "Download Twitter videos, reels, stories without watermark in HD. Fast, free and secure downloader online.",
       "gif": {
         "title": "Twitter GIF Download",
+        "users": "Trusted by 215,000+ users",
         "subtitle": "Convert and save Twitter (X) GIFs as high-quality MP4 files.",
         "howTo": {
           "name": "How to Save Twitter GIFs",
@@ -678,6 +757,7 @@
     },
     "snapchat": {
       "title": "Snapchat Video Download",
+      "users": "Trusted by 340,000+ users",
       "subtitle": "Download Snapchat videos, reels, stories without watermark in HD. Fast, free and secure downloader online.",
       "howTo": {
         "name": "How to Download Snapchat Stories",
@@ -705,6 +785,7 @@
       },
       "story": {
         "title": "Snapchat Story Download",
+        "users": "Trusted by 185,000+ users",
         "subtitle": "Download any public Snapchat story in original HD quality.",
         "howTo": {
           "name": "How to Download Snapchat Stories",
@@ -742,6 +823,7 @@
     },
     "telegram": {
       "title": "Telegram Video Download",
+      "users": "Trusted by 280,000+ users",
       "subtitle": "Download Telegram videos, reels, stories without watermark in HD. Fast, free and secure downloader online.",
       "howTo": {
         "name": "How to Download Telegram Files",
@@ -842,11 +924,11 @@
         "desc": "The premier destination for high-fidelity Facebook media archiving. Our service is optimized for speed and privacy, ensuring large files are processed in second"
       },
       "instagram_reels_download": {
-        "title": "Instagram Reels Download - Professional Video Downloader",
-        "subtitle": "The premier destination for high-fidelity Instagram media archiving. Our service is optimized for speed and privacy, ensuring large files are processed in secon",
+        "title": "Download Instagram Reels Without Watermark (HD)",
+        "subtitle": "Download Instagram videos, reels, stories & photos — fast, free and secure",
         "seo": {
-          "title": "Instagram Reels Download - Professional Video Downloader",
-          "desc": "The premier destination for high-fidelity Instagram media archiving. Our service is optimized for speed and privacy, ensuring large files are processed in secon"
+          "title": "Instagram Reels Downloader – Download Reels Without Watermark (HD) | SavClip",
+          "desc": "Download Instagram reels, videos and stories without watermark in HD quality. Fast, free and secure downloader. No login required."
         },
         "desc": "The premier destination for high-fidelity Instagram media archiving. Our service is optimized for speed and privacy, ensuring large files are processed in secon"
       },
@@ -887,20 +969,20 @@
         "desc": "The premier destination for high-fidelity Snapchat media archiving. Our service is optimized for speed and privacy, ensuring large files are processed in second"
       },
       "instagram_video_download": {
-        "title": "Instagram Video Download - Professional Video Downloader",
-        "subtitle": "The premier destination for high-fidelity Instagram media archiving. Our service is optimized for speed and privacy, ensuring large files are processed in secon",
+        "title": "Download Instagram Reels Without Watermark (HD)",
+        "subtitle": "Download Instagram videos, reels, stories & photos — fast, free and secure",
         "seo": {
-          "title": "Instagram Video Download - Professional Video Downloader",
-          "desc": "The premier destination for high-fidelity Instagram media archiving. Our service is optimized for speed and privacy, ensuring large files are processed in secon"
+          "title": "Instagram Reels Downloader – Download Reels Without Watermark (HD) | SavClip",
+          "desc": "Download Instagram reels, videos and stories without watermark in HD quality. Fast, free and secure downloader. No login required."
         },
         "desc": "The premier destination for high-fidelity Instagram media archiving. Our service is optimized for speed and privacy, ensuring large files are processed in secon"
       },
       "instagram_reels_downloader": {
-        "title": "Instagram Reels Downloader - Professional Video Downloader",
-        "subtitle": "The premier destination for high-fidelity Instagram media archiving. Our service is optimized for speed and privacy, ensuring large files are processed in secon",
+        "title": "Download Instagram Reels Without Watermark (HD)",
+        "subtitle": "Download Instagram videos, reels, stories & photos — fast, free and secure",
         "seo": {
-          "title": "Instagram Reels Downloader - Professional Video Downloader",
-          "desc": "The premier destination for high-fidelity Instagram media archiving. Our service is optimized for speed and privacy, ensuring large files are processed in secon"
+          "title": "Instagram Reels Downloader – Download Reels Without Watermark (HD) | SavClip",
+          "desc": "Download Instagram reels, videos and stories without watermark in HD quality. Fast, free and secure downloader. No login required."
         },
         "desc": "The premier destination for high-fidelity Instagram media archiving. Our service is optimized for speed and privacy, ensuring large files are processed in secon"
       },
@@ -923,11 +1005,11 @@
         "desc": "If you want to 'Download Reels Instagram HD', you need a tool that handles high-bitrate video streams. Our platform is optimized for large files, ensuring that "
       },
       "instagram_video_downloader": {
-        "title": "Instagram Video Downloader - Professional Video Downloader",
-        "subtitle": "The premier destination for high-fidelity Instagram media archiving. Our service is optimized for speed and privacy, ensuring large files are processed in secon",
+        "title": "Download Instagram Reels Without Watermark (HD)",
+        "subtitle": "Download Instagram videos, reels, stories & photos — fast, free and secure",
         "seo": {
-          "title": "Instagram Video Downloader - Professional Video Downloader",
-          "desc": "The premier destination for high-fidelity Instagram media archiving. Our service is optimized for speed and privacy, ensuring large files are processed in secon"
+          "title": "Instagram Reels Downloader – Download Reels Without Watermark (HD) | SavClip",
+          "desc": "Download Instagram reels, videos and stories without watermark in HD quality. Fast, free and secure downloader. No login required."
         },
         "desc": "The premier destination for high-fidelity Instagram media archiving. Our service is optimized for speed and privacy, ensuring large files are processed in secon"
       },

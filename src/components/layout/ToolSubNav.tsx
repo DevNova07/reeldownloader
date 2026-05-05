@@ -7,7 +7,8 @@ import { ChevronRight, Search } from "lucide-react"
 import { cn } from "@/utils/cn"
 
 const SUB_NAV = [
-    { id: "instagram", name: "Instagram", href: "/" },
+    { id: "home",      name: "Home",      href: "/" },
+    { id: "instagram", name: "Instagram", href: "/instagram" },
     { id: "hashtags",  name: "AI Hashtag", href: "/hashtags" },
     { id: "captions",  name: "AI Caption", href: "/captions" },
     { id: "bio",       name: "Bio",        href: "/bio" },
@@ -26,7 +27,7 @@ export function ToolSubNav() {
   return (
     <nav suppressHydrationWarning className="sticky top-14 sm:top-16 z-40 border-b border-white/10 dark:border-black/10 bg-black/95 dark:bg-white/95 backdrop-blur-md md:hidden">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 lg:px-8">
-            <div className="flex items-center gap-4 sm:gap-8 overflow-x-auto no-scrollbar scroll-smooth">
+            <div className="flex items-center gap-4 sm:gap-8 overflow-x-auto no-scrollbar scroll-smooth ps-1">
                 {SUB_NAV.map((item) => {
                     const fullHref = `/${locale}${item.href === '/' ? '' : item.href}`
                     const isActive = pathname === fullHref || (item.href === '/' && pathname === `/${locale}`)
@@ -37,7 +38,7 @@ export function ToolSubNav() {
                             key={item.id}
                             href={fullHref}
                             className={cn(
-                                "group flex shrink-0 items-center gap-2 text-[10px] sm:text-[11px] font-black uppercase tracking-[0.15em] transition-all",
+                                "group flex shrink-0 items-center gap-2 text-[10px] sm:text-[11px] font-black uppercase tracking-[0.15em] transition-all leading-none",
                                 isActive 
                                     ? "text-white dark:text-black scale-105" 
                                     : "text-neutral-400 dark:text-neutral-500 hover:text-white dark:hover:text-black"
@@ -46,7 +47,7 @@ export function ToolSubNav() {
                             {item.name}
                             <ChevronRight className={cn(
                                 "h-3 w-3 transition-opacity",
-                                isActive ? "opacity-100 text-white dark:text-black" : "opacity-30 group-hover:opacity-100 text-neutral-500 dark:text-neutral-400 group-hover:text-white dark:group-hover:text-black"
+                                isActive ? "opacity-100 text-white dark:text-black" : "opacity-60 group-hover:opacity-100 text-neutral-500 dark:text-neutral-400 group-hover:text-white dark:group-hover:text-black"
                             )} />
                         </Link>
                     )

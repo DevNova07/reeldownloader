@@ -33,7 +33,7 @@ export function CategoryCards({
     {
       name: dict.categories?.insta || "Instagram Downloader",
       desc: dict.categories?.insta_desc || "Download Instagram Reels, Stories, and Videos in high resolution.",
-      href: "/",
+      href: "/instagram",
       icon: Camera,
       bg: "bg-linear-to-tr from-pink-600 to-purple-600 shadow-pink-500/20"
     },

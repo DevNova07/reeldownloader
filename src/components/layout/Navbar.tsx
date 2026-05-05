@@ -2,7 +2,8 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { Camera, ChevronDown, Menu, X, Globe, Ghost, Send, Play, Hash, Music, History, Sparkles, Compass, TrendingUp, Layers } from "lucide-react"
+import Image from "next/image"
+import { Camera, ChevronDown, Menu, X, Globe, Ghost, Send, Play, Hash, Music, History, Sparkles, Compass, TrendingUp, Layers, FileText, LayoutGrid, PenTool, Zap, BookOpen, Scale, AlertCircle, ShieldAlert } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/utils/cn"
 import { usePathname, useRouter } from "next/navigation"
@@ -58,20 +59,29 @@ export function Navbar({ dict }: { dict: any }) {
   };
 
   const services = React.useMemo(() => [
-    { name: dict?.categories?.insta || "Instagram", href: "/", icon: <Camera className="h-4 w-4" />, color: "text-pink-600", category: 'insta' },
+    { name: dict?.navbar?.home || "Home", href: "/", icon: <Compass className="h-4 w-4" />, color: "text-indigo-600", category: 'home' },
+    { name: dict?.categories?.insta || "Instagram", href: "/instagram", icon: <Camera className="h-4 w-4" />, color: "text-pink-600", category: 'insta' },
     { name: dict?.categories?.fb || "Facebook", href: "/facebook", icon: <Globe className="h-4 w-4" />, color: "text-blue-600", category: 'fb' },
     { name: dict?.categories?.snap || "Snapchat", href: "/snapchat", icon: <Ghost className="h-4 w-4" />, color: "text-yellow-500", category: 'snap' },
     { name: dict?.categories?.tele || "Telegram", href: "/telegram", icon: <Send className="h-4 w-4" />, color: "text-sky-500", category: 'tele' },
     { name: dict?.categories?.tiktok || "TikTok", href: "/tiktok", icon: <Music className="h-4 w-4" />, color: "text-neutral-900 dark:text-white", category: 'tiktok' },
     { name: dict?.categories?.yt || "YouTube", href: "/youtube", icon: <Play className="h-4 w-4 fill-current" />, color: "text-red-600", category: 'yt' },
     { name: dict?.categories?.tw || "Twitter", href: "/twitter", icon: <Hash className="h-4 w-4" />, color: "text-neutral-800 dark:text-neutral-400", category: 'tw' },
-    { name: dict?.categories?.hashtags || "Hashtags", href: "/hashtags", icon: <Hash className="h-4 w-4" />, color: "text-neutral-900 dark:text-neutral-400", category: 'hashtags' },
+    { name: "AI Hashtag", href: "/hashtags", icon: <Hash className="h-4 w-4" />, color: "text-purple-600", category: 'hashtags' },
+    { name: "AI Caption", href: "/captions", icon: <Sparkles className="h-4 w-4" />, color: "text-pink-600", category: 'captions' },
+    { name: "Bio Generator", href: "/bio", icon: <FileText className="h-4 w-4" />, color: "text-blue-500", category: 'bio' },
+    { name: "Bulk Downloader", href: "/bulk-downloader", icon: <LayoutGrid className="h-4 w-4" />, color: "text-emerald-500", category: 'bulk' },
+    { name: "Reel Script", href: "/reel-script", icon: <PenTool className="h-4 w-4" />, color: "text-amber-500", category: 'script' },
+    { name: "Viral Hook", href: "/viral-hooks", icon: <Zap className="h-4 w-4" />, color: "text-rose-500", category: 'hook' },
+    { name: "Trending", href: "/trending", icon: <TrendingUp className="h-4 w-4" />, color: "text-indigo-500", category: 'trending' },
+    { name: "Blog", href: "/blog", icon: <BookOpen className="h-4 w-4" />, color: "text-neutral-600", category: 'blog' },
   ], [dict])
 
 
   const platform = React.useMemo(() => {
     const pathWithoutLocale = pathname ? pathname.replace(/^\/[a-z]{2}/, '') || '/' : '/';
 
+    if (pathWithoutLocale.startsWith('/instagram')) return { id: dict?.categories?.insta || "Instagram", prefix: 'Sav', suffix: 'Clip', icon: Camera, bg: 'from-pink-500 to-rose-600', text: 'text-pink-600' }
     if (pathWithoutLocale.startsWith('/facebook')) return { id: dict?.categories?.fb || "Facebook", prefix: 'FB', suffix: 'Clip', icon: Globe, bg: 'from-blue-600 to-blue-800', text: 'text-blue-600' }
     if (pathWithoutLocale.startsWith('/youtube')) return { id: dict?.categories?.yt || "YouTube", prefix: 'YT', suffix: 'Clip', icon: Play, bg: 'from-red-600 to-red-800', text: 'text-red-600' }
     if (pathWithoutLocale.startsWith('/tiktok')) return { id: dict?.categories?.tiktok || "TikTok", prefix: 'Tik', suffix: 'Clip', icon: Music, bg: 'from-neutral-800 to-black', text: 'text-pink-600' }
@@ -81,8 +91,8 @@ export function Navbar({ dict }: { dict: any }) {
     if (pathWithoutLocale.startsWith('/telegram')) return { id: dict?.categories?.tele || "Telegram", prefix: 'Tele', suffix: 'Clip', icon: Send, bg: 'from-sky-500 to-blue-600', text: 'text-sky-500' }
     if (pathWithoutLocale.startsWith('/captions')) return { id: 'AI Caption', prefix: 'AI ', suffix: 'Caption', icon: Sparkles, bg: 'from-pink-600 to-rose-600', text: 'text-pink-600' }
 
-    // Default (Instagram)
-    return { id: dict?.categories?.insta || "Instagram", prefix: 'Sav', suffix: 'Clip', icon: Camera, bg: 'from-blue-600 to-indigo-700', text: 'text-blue-600' }
+    // Default (Home / Generic)
+    return { id: "SavClip", prefix: 'Sav', suffix: 'Clip', icon: Sparkles, bg: 'from-indigo-600 to-violet-700', text: 'text-indigo-600' }
   }, [pathname, dict?.categories])
 
   const sortedServices = React.useMemo(() => {
@@ -93,16 +103,21 @@ export function Navbar({ dict }: { dict: any }) {
     })
   }, [platform.id, services])
 
-  const LogoIcon = platform.icon
-
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-white/10 bg-white/80 shadow-xs backdrop-blur-md dark:bg-black/60">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-14 sm:h-16 items-center justify-between">
           <div className="flex items-center gap-4 lg:gap-8">
             <Link prefetch={true} href={getLocalizedHref("/")} className="flex items-center gap-2 group shrink-0">
-              <div className={cn("relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl bg-linear-to-tr shadow-xl group-hover:scale-110 transition-transform", platform.bg)}>
-                <LogoIcon className={cn("h-6 w-6 text-white", (pathname.includes('/youtube')) && "fill-white")} />
+              <div className="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl shadow-xl group-hover:scale-110 transition-transform bg-white dark:bg-white/10 dark:backdrop-blur-md dark:border dark:border-white/20">
+                <div className="absolute inset-0 bg-blue-500/10 blur-xl opacity-0 dark:opacity-100" />
+                <Image 
+                  src="/assets/logo.png" 
+                  alt="SavClip Logo" 
+                  width={40} 
+                  height={40} 
+                  className="object-contain relative z-10 dark:brightness-125 dark:drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]"
+                />
               </div>
               <span className="text-2xl font-black tracking-tighter uppercase italic text-neutral-900 dark:text-white">
                 Sav<span className={platform.text}>Clip</span>
@@ -259,9 +274,12 @@ export function Navbar({ dict }: { dict: any }) {
               </div>
               <div className="mt-4 pt-4 border-t border-neutral-100 dark:border-neutral-800">
                 <div className="flex items-center justify-around">
-                  <Link prefetch={true} href={getLocalizedHref("/about")} onClick={() => setIsOpen(false)} className="text-sm font-bold text-neutral-600 dark:text-neutral-400 hover:text-pink-600">About Us</Link>
-                  <Link prefetch={true} href={getLocalizedHref("/contact")} onClick={() => setIsOpen(false)} className="text-sm font-bold text-neutral-600 dark:text-neutral-400 hover:text-pink-600">Contact</Link>
-                  <Link prefetch={true} href={getLocalizedHref("/privacy-policy")} onClick={() => setIsOpen(false)} className="text-sm font-bold text-neutral-600 dark:text-neutral-400 hover:text-pink-600">Privacy</Link>
+                  <Link prefetch={true} href={getLocalizedHref("/about")} onClick={() => setIsOpen(false)} className="text-[10px] font-bold text-neutral-500 hover:text-pink-600 uppercase tracking-tighter">About</Link>
+                  <Link prefetch={true} href={getLocalizedHref("/contact")} onClick={() => setIsOpen(false)} className="text-[10px] font-bold text-neutral-500 hover:text-pink-600 uppercase tracking-tighter">Contact</Link>
+                  <Link prefetch={true} href={getLocalizedHref("/privacy-policy")} onClick={() => setIsOpen(false)} className="text-[10px] font-bold text-neutral-500 hover:text-pink-600 uppercase tracking-tighter">Privacy</Link>
+                  <Link prefetch={true} href={getLocalizedHref("/terms")} onClick={() => setIsOpen(false)} className="text-[10px] font-bold text-neutral-500 hover:text-pink-600 uppercase tracking-tighter">Terms</Link>
+                  <Link prefetch={true} href={getLocalizedHref("/disclaimer")} onClick={() => setIsOpen(false)} className="text-[10px] font-bold text-neutral-500 hover:text-pink-600 uppercase tracking-tighter">Disclaimer</Link>
+                  <Link prefetch={true} href={getLocalizedHref("/dmca")} onClick={() => setIsOpen(false)} className="text-[10px] font-bold text-neutral-500 hover:text-pink-600 uppercase tracking-tighter">DMCA</Link>
                 </div>
               </div>
             </div>

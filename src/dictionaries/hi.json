@@ -1,8 +1,37 @@
 {
   "seo": {
-    "title": "SavClip - Best Instagram Video & Reels Downloader",
-    "description": "Download Instagram Reels, Stories, Posts, and Music easily with SavClip. Fast, free, and secure.",
-    "keywords": "instagram downloader, reels download, story downloader, download instagram post, instagram music downloader"
+    "title": "Download Videos, Reels & Shorts Without Watermark (HD) – Free Video Downloader | SavClip",
+    "description": "Download videos, reels and shorts from Instagram, TikTok, YouTube, Facebook and more without watermark in HD. Fast, free and secure video downloader online.",
+    "keywords": "video downloader, reels download, shorts downloader, download video from link, tiktok downloader without watermark"
+  },
+  "home": {
+    "hero": {
+      "title_1": "Download Videos,",
+      "title_2": "Reels & Shorts Without Watermark in HD",
+      "subtitle": "Instagram, TikTok, YouTube, Facebook और अन्य से वीडियो, रील और शॉर्ट्स डाउनलोड करें - बिना वॉटरमार्क के HD में। तेज़, मुफ़्त और सुरक्षित।"
+    },
+    "trust": {
+      "users": "100,000+ उपयोगकर्ताओं द्वारा विश्वसनीय",
+      "no_login": "लॉगिन की आवश्यकता नहीं",
+      "free": "100% मुफ़्त",
+      "unlimited": "असीमित डाउनलोड"
+    },
+    "intro": "SavClip एक मुफ़्त ऑनलाइन वीडियो डाउनलोडर है जो उपयोगकर्ताओं को Instagram, TikTok, YouTube, Facebook और अन्य से वीडियो, रील और शॉर्ट्स डाउनलोड करने की अनुमति देता है। आप बिना वॉटरमार्क के HD गुणवत्ता में सामग्री डाउनलोड कर सकते हैं। यह तेज़, सुरक्षित है और बिना लॉगिन के सभी उपकरणों पर काम करता है।",
+    "stats": {
+      "downloads": "1.2M+",
+      "users": "100K+",
+      "uptime": "99.9%"
+    },
+    "ai_tools": {
+      "title": "अपनी वायरल ग्रोथ को बढ़ावा दें",
+      "desc": "हमारे विशेष AI टूल आपको सेकंडों में वायरल कैप्शन जेनरेट करने, ट्रेंडिंग हैशटैग खोजने और उच्च-परिवर्तित स्क्रिप्ट लिखने में मदद करते हैं।",
+      "tools": [
+        { "name": "AI Caption Pro", "href": "/captions" },
+        { "name": "Hashtag AI", "href": "/hashtags" },
+        { "name": "Viral Hook AI", "href": "/viral-hooks" },
+        { "name": "Reel Script AI", "href": "/reel-script" }
+      ]
+    }
   },
   "hashtag_seo": {
     "title": "AI Hashtag Generator - Reels \u0914\u0930 TikTok \u0915\u0947 \u0932\u093f\u090f \u0935\u093e\u092f\u0930\u0932 \u091f\u0948\u0917\u094d\u0938 2024",

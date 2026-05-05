@@ -7,7 +7,6 @@ import { CategoryCards } from "@/components/layout/CategoryCards"
 import { DownloadPreview } from "@/components/layout/DownloadPreview"
 import { StructuredData } from "@/components/shared/StructuredData"
 import { PlatformTabs } from "@/components/shared/PlatformTabs"
-import { SocialPlatformBar } from "@/components/layout/SocialPlatformBar"
 import { VisualGuide } from "@/components/shared/VisualGuide"
 import { usePathname } from "next/navigation"
 import { type Locale } from "@/i18n"
@@ -82,11 +81,10 @@ export default function FacebookMusicPage() {
       />
       
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-linear-to-r from-blue-600 to-cyan-500 px-4 pt-10 pb-6 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-linear-to-r from-blue-600 to-cyan-500 px-4 pt-8 pb-6 sm:px-6 lg:px-8">
         <HeroEffect color="bg-blue-400" intensity="high" />
         
         <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-3 sm:gap-6">
-          <SocialPlatformBar   activeId="facebook" />
           <PlatformTabs   
             activeId="music" 
             activeColor="text-blue-600"

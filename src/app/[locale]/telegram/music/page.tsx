@@ -7,7 +7,6 @@ import { CategoryCards } from "@/components/layout/CategoryCards"
 import { DownloadPreview } from "@/components/layout/DownloadPreview"
 import { StructuredData } from "@/components/shared/StructuredData"
 import { PlatformTabs } from "@/components/shared/PlatformTabs"
-import { SocialPlatformBar } from "@/components/layout/SocialPlatformBar"
 import { VisualGuide } from "@/components/shared/VisualGuide"
 import { usePathname } from "next/navigation"
 import { type Locale } from "@/i18n"
@@ -82,11 +81,10 @@ export default function TelegramMusicPage() {
       />
       
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-linear-to-r from-sky-400 to-blue-600 px-4 pt-10 pb-6 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-linear-to-r from-sky-400 to-blue-600 px-4 pt-8 pb-6 sm:px-6 lg:px-8">
         <HeroEffect color="bg-sky-300" intensity="high" />
         
         <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-3 sm:gap-6">
-          <SocialPlatformBar   activeId="telegram" />
           <PlatformTabs   
             activeId="music" 
             activeColor="text-sky-600"

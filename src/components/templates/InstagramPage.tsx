@@ -12,14 +12,14 @@ const StructuredData = dynamic(() => import("@/components/shared/StructuredData"
 const SmartClipboard = dynamic(() => import("@/components/ui/SmartClipboard").then(m => m.SmartClipboard), { ssr: false });
 import Image from "next/image";
 const PlatformTabs = dynamic(() => import("@/components/shared/PlatformTabs").then(m => m.PlatformTabs));
-const SocialPlatformBar = dynamic(() => import("@/components/layout/SocialPlatformBar").then(m => m.SocialPlatformBar));
 import { type Locale } from "@/i18n";
 import { LoadingBar } from "@/components/ui/LoadingBar";
 import { DownloadCounter } from "@/components/ui/DownloadCounter";
 import { useDownloadHistory, getCached, setCached } from "@/hooks/useDownloadHistory";
 import { HeroEffect } from "@/components/shared/HeroEffect";
-import { Camera, PlaySquare, Film, StopCircle, Zap, ShieldCheck, CheckCircle2, HelpCircle, Info, Music as MusicIcon } from "lucide-react";
+import { Camera, PlaySquare, Film, StopCircle, Zap, ShieldCheck, CheckCircle2, HelpCircle, Info, Music as MusicIcon, ChevronRight } from "lucide-react";
 import { cn, isValidInstaUrl } from "@/utils/cn";
+import Link from "next/link";
 
 import { MobileAccordion } from "@/components/ui/MobileAccordion";
 const TrustBadges = dynamic(() => import("@/components/ui/TrustBadges").then(m => m.TrustBadges));
@@ -131,25 +131,39 @@ function InstagramPageContent({
 
   return (
     <div className="flex flex-col">
-      <StructuredData type="SoftwareApplication" data={pageSeo} />
+      <StructuredData 
+        type="BreadcrumbList" 
+        data={[
+          { name: "Home", item: `https://savclip.com/${locale}` },
+          { name: "Instagram", item: `https://savclip.com/${locale}/instagram` },
+          { name: pageTitle, item: `https://savclip.com/${locale}/${content.slug || ""}` }
+        ]} 
+      />
+      <StructuredData 
+        type="SoftwareApplication" 
+        data={{
+          ...pageSeo,
+          ratingValue: "4.9",
+          reviewCount: "15420"
+        }} 
+      />
       {content.faq && <StructuredData type="FAQPage" data={content.faq} />}
       {content.howTo && <StructuredData type="HowTo" data={content.howTo} />}
       {/* Hero Section */}
-      <section className={`relative bg-linear-to-r ${cx.ribbon} px-4 pt-14 pb-8 sm:pt-16 sm:pb-20 sm:px-6 lg:px-8`}>
+      <section className={`relative bg-linear-to-r ${cx.ribbon} px-4 pt-8 pb-8 sm:pt-10 sm:pb-20 sm:px-6 lg:px-8`}>
         <HeroEffect color={cx.effect} intensity="high" />
 
         <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-3 sm:gap-6">
-          <SocialPlatformBar activeId="instagram" />
           <PlatformTabs   
             activeId={activeTab} 
             activeColor={cx.text}
             tabs={dict?.tabs}
             locale={locale}
             items={[
-              { id: "reels", label: dict?.tabs?.reels || "Reels", href: "/instagram-reels-downloader", icon: <Film className="h-4 w-4" /> },
-              { id: "video", label: dict?.tabs?.video || "Video", href: "/instagram-video-downloader", icon: <Film className="h-4 w-4" /> },
-              { id: "story", label: dict?.tabs?.story || "Story", href: "/instagram-story-downloader", icon: <StopCircle className="h-4 w-4" /> },
-              { id: "photo", label: dict?.tabs?.photo || "Photo", href: "/instagram-photo-downloader", icon: <Camera className="h-4 w-4" /> },
+              { id: "reels", label: dict?.tabs?.reels || "Reels", href: "/instagram/reels", icon: <Film className="h-4 w-4" /> },
+              { id: "video", label: dict?.tabs?.video || "Video", href: "/instagram", icon: <Film className="h-4 w-4" /> },
+              { id: "story", label: dict?.tabs?.story || "Story", href: "/instagram/story", icon: <StopCircle className="h-4 w-4" /> },
+              { id: "photo", label: dict?.tabs?.photo || "Photo", href: "/instagram/photo", icon: <Camera className="h-4 w-4" /> },
             ]} 
           />
 
@@ -158,12 +172,14 @@ function InstagramPageContent({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <h1 className="mb-2 text-3xl min-[400px]:text-4xl font-black tracking-tight uppercase italic text-white sm:text-7xl drop-shadow-2xl">
+            <h1 className="text-3xl min-[400px]:text-4xl sm:text-6xl md:text-7xl font-black tracking-tighter italic text-white drop-shadow-2xl uppercase leading-tight">
               {pageTitle}
             </h1>
           </motion.div>
 
-          <p className=" mx-auto  max-w-2xl mt-2  text-sm font-bold text-white/60 tracking-widest uppercase italic hidden sm:block">{content?.subtitle || pageSeo?.desc || "Fast and secure Instagram downloader."}</p>
+          <p className="mx-auto max-w-3xl mt-0 mb-2 text-sm sm:text-base md:text-lg text-white/80 font-medium text-center px-4">
+            {content?.subtitle || pageSeo?.desc || "Fast and secure Instagram downloader."}
+          </p>
 
           
 

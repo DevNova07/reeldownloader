@@ -28,12 +28,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Limit H1 to 2 lines for cleaner Hero layout and add ellipsis for long text */
-@layer base {
-  h1 {
-    @apply line-clamp-2 overflow-hidden leading-tight;
-  }
-}
+
 
 /* Custom scrollbar for better UX */
 ::-webkit-scrollbar {

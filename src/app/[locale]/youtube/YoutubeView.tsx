@@ -9,7 +9,6 @@ const CategoryCards = dynamic(() => import("@/components/layout/CategoryCards").
 const DownloadPreview = dynamic(() => import("@/components/layout/DownloadPreview").then(mod => mod.DownloadPreview))
 const StructuredData = dynamic(() => import("@/components/shared/StructuredData").then(mod => mod.StructuredData))
 const PlatformTabs = dynamic(() => import("@/components/shared/PlatformTabs").then(mod => mod.PlatformTabs))
-const SocialPlatformBar = dynamic(() => import("@/components/layout/SocialPlatformBar").then(mod => mod.SocialPlatformBar))
 const VisualGuide = dynamic(() => import("@/components/shared/VisualGuide").then(mod => mod.VisualGuide))
 
 import { useRouter } from "next/navigation"
@@ -125,7 +124,6 @@ export function YoutubeView({ locale, dict }: { locale: Locale, dict: any }) {
         
         <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-3 sm:gap-6">
           
-          <SocialPlatformBar   activeId="youtube" />
           <PlatformTabs   
             activeId="video" 
             activeColor="text-red-600"
@@ -142,10 +140,14 @@ export function YoutubeView({ locale, dict }: { locale: Locale, dict: any }) {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
+            className="flex flex-col items-center"
           >
-            <h1 className="mb-2 text-3xl min-[400px]:text-4xl font-black tracking-tight uppercase italic text-white sm:text-7xl drop-shadow-2xl">
+            <h1 className="mb-0 text-3xl min-[400px]:text-4xl font-black tracking-tight uppercase italic text-white sm:text-7xl drop-shadow-2xl">
               {ytDict.title}
             </h1>
+            <p className="text-sm sm:text-base md:text-lg text-white/80 font-medium text-center max-w-3xl px-4 mt-0 mb-2">
+              Download YouTube videos, shorts & audio — fast, free and secure
+            </p>
           </motion.div>
 
           

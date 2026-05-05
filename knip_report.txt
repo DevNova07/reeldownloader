@@ -1,0 +1,60 @@
+Unused files (31)
+extension/background.js                   
+extension/popup.js                        
+extension/scripts/content.js              
+extension/styles/content.css              
+extension/styles/popup.css                
+fix_subtitle.js                           
+fix_subtitle2.js                          
+force-clean-icons.js                      
+public/sw.js                              
+scripts/create-dicts.js                   
+scripts/expand_seo_content.js             
+scripts/fix-seo.js                        
+scripts/fix-syntax.js                     
+scripts/fix-syntax2.js                    
+scripts/fix-syntax3.js                    
+scripts/fix-syntax4.js                    
+scripts/generate_seo_pages.js             
+src/app/[locale]/facebook/FacebookView.tsx
+src/app/[locale]/snapchat/SnapchatView.tsx
+src/app/[locale]/telegram/TelegramView.tsx
+src/app/[locale]/tiktok/TikTokView.tsx    
+src/app/[locale]/twitter/TwitterView.tsx  
+src/app/[locale]/youtube/YoutubeView.tsx  
+src/components/layout/BottomNav.tsx       
+src/components/layout/MegaFooterMap.tsx   
+src/components/layout/PopularTools.tsx    
+src/components/shared/ComparisonTable.tsx 
+src/components/shared/SocialProof.tsx     
+src/components/ui/AdUnit.tsx              
+src/hooks/useFFmpeg.ts                    
+src/utils/cache.ts                        
+Unused dependencies (3)
+@ffmpeg/ffmpeg  package.json:12:6
+@ffmpeg/util    package.json:13:6
+glob            package.json:18:6
+Unlisted dependencies (1)
+postcss  postcss.config.mjs
+Unused exports (4)
+rtlLocales                      src/i18n.ts:126:14                  
+SITE_URL                        src/lib/seo.ts:3:14                 
+getUrlType            function  src/utils/cn.ts:15:17               
+getRouteFromPlatform  function  src/utils/platform-detector.ts:58:17
+Unused exported types (15)
+BioLink         type       src/data/bioProfiles.ts:1:13        
+BioSocials      type       src/data/bioProfiles.ts:9:13        
+BioTheme        type       src/data/bioProfiles.ts:18:13       
+BioProfileData  type       src/data/bioProfiles.ts:28:13       
+BlogPost        interface  src/data/blog.ts:1:18               
+Locale          type       src/dictionaries/client.ts:12:13    
+HistoryEntry    interface  src/hooks/useDownloadHistory.ts:5:18
+SubLink         interface  src/lib/nav-config.ts:2:18          
+NavCategory     interface  src/lib/nav-config.ts:7:18          
+PlatformNav     interface  src/lib/nav-config.ts:12:18         
+KeyStats        interface  src/utils/stats.ts:22:18            
+PlatformStats   interface  src/utils/stats.ts:31:18            
+TopLink         interface  src/utils/stats.ts:38:18            
+GlobalStats     interface  src/utils/stats.ts:46:18            
+AdvancedStats   interface  src/utils/stats.ts:56:18            
+Configuration hints (1)

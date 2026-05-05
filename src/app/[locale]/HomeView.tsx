@@ -4,6 +4,8 @@ import * as React from "react"
 import { useAutoDownload } from "@/hooks/useAutoDownload"
 import { motion, AnimatePresence } from "framer-motion"
 import { SearchBar } from "@/components/layout/SearchBar"
+import { cn } from "@/utils/cn"
+import Link from "next/link"
 import dynamic from "next/dynamic"
 
 const CategoryCards = dynamic(() => import("@/components/layout/CategoryCards").then(mod => mod.CategoryCards))
@@ -39,13 +41,13 @@ import { PurpleStepGuide } from "@/components/shared/PurpleStepGuide"
 
 function HomeViewContent({ locale, dict }: { locale: Locale, dict: any }) {
   const router = useRouter()
-  const [downloadData, setDownloadData] = React.useState<PlatformResult | null>(null)
+  const [downloadData, setDownloadData] = React.useState<any | null>(null)
   const [isLoading, setIsLoading] = React.useState(false)
   const [autoTriggerDownload, setAutoTriggerDownload] = React.useState(false)
   const [searchCounter, setSearchCounter] = React.useState(0)
 
   const searchParams = useSearchParams()
-  const { history: recentDownloads, addToHistory, clearHistory } = useDownloadHistory("instagram")
+  const { addToHistory } = useDownloadHistory("home")
 
   const handleSearch = async (url: string, isAutoTrigger = false) => {
     setSearchCounter(prev => prev + 1)
@@ -59,7 +61,7 @@ function HomeViewContent({ locale, dict }: { locale: Locale, dict: any }) {
     setIsLoading(true)
     setDownloadData(null)
 
-    const searchPromise = async () => {
+    try {
       const response = await fetch("/api/download", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -67,290 +69,251 @@ function HomeViewContent({ locale, dict }: { locale: Locale, dict: any }) {
       })
       const contentType = response.headers.get("content-type")
       if (!contentType || !contentType.includes("application/json")) {
-        const text = await response.text()
-        console.error("Client fetch received non-JSON:", text)
-        throw new Error("Server returned an invalid response. Please try again later.")
+        throw new Error("Server returned an invalid response.")
       }
 
       const result = await response.json()
       if (result.success) {
         setDownloadData(result.data)
-        setCached(url, result.data)
         addToHistory(url, { thumbnail: result.data.thumbnail, title: result.data.title })
-        return result
       } else {
         throw new Error(result.error || "Failed to fetch content")
       }
-    }
-
-    try {
-      await searchPromise()
     } catch (err: any) {
-      toast.error(err?.message || "Failed to process the link. Please try again.");
+      toast.error(err?.message || "Failed to process the link.")
     } finally {
       setIsLoading(false)
     }
   }
 
   const sharedUrl = searchParams.get('url') || ""
+  useAutoDownload(handleSearch, locale, "home")
 
-  // Auto-download logic for PWA Share Target
-  useAutoDownload(handleSearch, locale, "instagram")
-
-  // Defensive fallback to prevent crashes if dictionary is missing
-  const instaDict = dict?.platforms?.instagram || {
-    title: "Instagram Downloader",
-    subtitle: "Fast and secure Instagram media extraction.",
-    howTo: { name: "How to use", description: "Follow these steps", steps: [] },
-    seo: { title: "Instagram Downloader", desc: "Download Instagram videos and photos.", features: [] }
+  const homeDict = dict?.home || {
+    hero: { title_1: "Download Videos,", title_2: "Reels & Shorts Without Watermark in HD", subtitle: "Fast, free and secure video downloader." },
+    trust: { users: "Trusted by 100,000+ users", no_login: "No Login Required", free: "100% Free", unlimited: "Unlimited Downloads" },
+    intro: "SavClip is a free online video downloader...",
+    stats: { downloads: "1.2M+", users: "100K+", uptime: "99.9%" },
+    ai_tools: { title: "Fuel Your Viral Growth", desc: "AI tools for creators.", tools: [] }
   };
 
   return (
     <div className="flex flex-col">
       <StructuredData
+        type="BreadcrumbList"
+        data={[
+          { name: "Home", item: `https://savclip.com/${locale}` }
+        ]}
+      />
+      <StructuredData
         type="HowTo"
         data={{
-          name: instaDict.howTo?.name || "How to use",
-          description: instaDict.howTo?.description || "Follow these steps",
-          steps: instaDict.howTo?.steps || []
+          name: dict?.guide?.title?.replace('{platform}', 'Videos') || "How to download",
+          description: dict?.guide?.subtitle?.replace('{platform}', 'Videos') || "Simple steps to download",
+          steps: dict?.guide?.steps || []
         }}
       />
       <StructuredData
         type="SoftwareApplication"
         data={{
-          title: instaDict.seo?.title || instaDict.title,
-          description: instaDict.seo?.desc || instaDict.subtitle
+          title: dict?.seo?.title,
+          description: dict?.seo?.description,
+          ratingValue: "4.9",
+          reviewCount: "15420"
         }}
       />
       <StructuredData
         type="FAQPage"
-        data={instaDict.faq || dict.faq}
+        data={dict.faq}
       />
 
-      {/* Hero Section */}
-      <section className="relative bg-linear-to-r from-rose-500 to-purple-600 px-4 pt-10 pb-6 sm:pt-20 sm:pb-32 sm:px-6 lg:px-8">
-        <HeroEffect color="bg-pink-400" intensity="high" />
+      <section className="relative overflow-hidden bg-linear-to-br from-indigo-950 via-purple-900 to-rose-900 px-4 pt-8 pb-6 sm:pt-10 sm:pb-12 sm:px-6 lg:px-8">
+        <HeroEffect color="bg-indigo-500" intensity="high" />
+        
+        <div className="absolute inset-0 z-0 opacity-30">
+          <div className="absolute -top-1/4 -left-1/4 h-[800px] w-[800px] animate-pulse rounded-full bg-indigo-500/20 blur-3xl" />
+          <div className="absolute -bottom-1/4 -right-1/4 h-[800px] w-[800px] animate-pulse rounded-full bg-rose-500/20 blur-3xl" />
+        </div>
 
         <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-3 sm:gap-6">
-          
-          
-          <SocialPlatformBar   activeId="instagram" />
-          <PlatformTabs  
-            activeId="video"
-            activeColor="text-pink-600"
-            tabs={dict?.tabs}
-            items={[
-              { id: "video", label: dict?.tabs?.video || "Video", href: "/instagram", icon: <Camera className="h-4 w-4" /> },
-              { id: "reels", label: dict?.tabs?.reels || "Reels", href: "/reels", icon: <PlaySquare className="h-4 w-4" /> },
-              { id: "story", label: dict?.tabs?.story || "Story", href: "/story", icon: <StopCircle className="h-4 w-4" /> },
-              { id: "music", label: dict?.tabs?.music || "Music", href: "/music", icon: <MusicIcon className="h-4 w-4" /> },
-            ]}
+          <SocialPlatformBar 
+            activeId="home" 
+            className="!justify-center gap-2 sm:!gap-3 !py-3 !px-6 sm:!py-4 sm:!px-8 !w-fit rounded-[3rem]" 
           />
-
+          
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
+            className="flex flex-col items-center gap-4"
           >
-            <h1 className="mb-2 text-3xl min-[400px]:text-4xl font-black tracking-tight uppercase italic text-white sm:text-7xl drop-shadow-2xl">
-              {instaDict.title}
+
+
+            <h1 className="max-w-6xl flex flex-col items-center gap-1 sm:gap-2 mb-0 mt-4 sm:mt-6 text-center px-4 tracking-tight italic drop-shadow-2xl leading-[1.1]">
+              <span className="text-4xl sm:text-5xl md:text-6xl font-bold text-white/90">{homeDict.hero.title_1}</span>
+              <span className="text-5xl sm:text-6xl md:text-7xl font-black text-white">{homeDict.hero.title_2}</span>
+              <span className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white/80 mt-1 sm:mt-2">{homeDict.hero.title_3}</span>
             </h1>
-            <h2 className="sr-only">SavClip - Instagram Downloader</h2>
+            <p className="text-sm sm:text-base md:text-lg text-white/80 font-medium text-center max-w-3xl px-4 mt-0 mb-2">
+              {homeDict.hero.subtitle}
+            </p>
           </motion.div>
 
+          <div className="w-full max-w-4xl mt-4">
+            <SearchBar
+              onSearch={handleSearch}
+              isLoading={isLoading}
+              dict={dict}
+              validate={isSmartInput}
+              initialValue={sharedUrl}
+              className="shadow-3xl"
+            />
+          </div>
 
-          
 
-          <SearchBar
-            onSearch={handleSearch}
-            isLoading={isLoading}
-            dict={dict}
-            validate={isSmartInput}
-            initialValue={sharedUrl}
-          />
-
-          <p className="mx-auto mb-4 max-w-2xl mt-8 mb-2 text-sm font-bold text-white/60 tracking-widest uppercase italic hidden sm:block">
-            {instaDict.subtitle}
-          </p>
-
-          <HeroQuickGuide steps={dict?.guide?.steps || []} accentColor="text-pink-400" />
 
           <TrustBadges dict={dict} />
+          <DownloadCounter accentColor="text-indigo-300" />
+          <TrendingBar accentColor="bg-indigo-600" />
 
-          <DownloadCounter accentColor="text-pink-400" />
-          <TrendingBar />
+          <div className="mt-8 flex flex-col items-center gap-8 w-full">
+            <LoadingBar
+              isLoading={isLoading}
+              label={dict?.common?.analyzing || "Analyzing..."}
+              gradient="from-indigo-500 via-purple-500 to-rose-500"
+            />
 
-          <LoadingBar
-            isLoading={isLoading}
-            label={dict?.common?.analyzing || "Analyzing..."}
-            gradient="from-pink-500 via-purple-500 to-blue-500"
-          />
-
-          <DownloadPreview
-            data={downloadData}
-            isLoading={isLoading}
-            autoTriggerDownload={autoTriggerDownload}
-            searchCounter={searchCounter}
-            buttonStyle="bg-linear-to-br from-rose-600 via-pink-600 to-purple-600 text-white shadow-[0_20px_50px_rgba(225,10,94,0.3)] ring-1 ring-inset ring-white/20 hover:brightness-110 active:scale-95"
-            accentText="text-pink-600"
-            accentBg="bg-pink-600/10"
-            accentBorder="border-pink-600"
-          />
-
-          {/* Recent Downloads Section */}
-          <AnimatePresence>
-            {!isLoading && !downloadData && recentDownloads.length > 0 && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mx-auto mt-16 w-full max-w-4xl"
-              >
-                <div className="flex items-center justify-between border-b border-white/20 pb-4 text-white">
-                  <h3 className="text-xl font-black tracking-widest uppercase italic">{dict.common.recent}</h3>
-                  <button
-                    onClick={clearHistory}
-                    className="text-sm font-bold opacity-60 hover:opacity-100 transition-opacity tracking-tight uppercase italicer"
-                  >
-                    {dict.common.clear}
-                  </button>
-                </div>
-                <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-5">
-                  {recentDownloads.map((item) => (
-                    <motion.button
-                      key={item.id}
-                      whileHover={{ y: -5, scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      onClick={() => handleSearch(item.url)}
-                      className="group relative aspect-square overflow-hidden rounded-2xl bg-white/10 p-1 shadow-2xl ring-1 ring-white/20 backdrop-blur-md transition-all hover:ring-pink-500/50"
-                    >
-                      <Image
-                        src={item.thumbnail ? `/api/proxy-download?url=${encodeURIComponent(item.thumbnail)}&type=image&inline=true` : "/window.svg"}
-                        alt={item.title || "Thumbnail"}
-                        fill
-                        loading="lazy"
-                        sizes="(max-width: 640px) 50vw, 15vw"
-                        quality={60}
-                        className="object-cover rounded-xl transition-transform duration-500 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/90 p-3 text-left z-10 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <p className="line-clamp-1 text-[10px] font-black text-white hidden sm:block">{item.title}</p>
-                      </div>
-                    </motion.button>
-                  ))}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+            <DownloadPreview
+              data={downloadData}
+              isLoading={isLoading}
+              autoTriggerDownload={autoTriggerDownload}
+              searchCounter={searchCounter}
+              buttonStyle="bg-linear-to-br from-indigo-600 via-purple-600 to-rose-600 text-white shadow-[0_20px_50px_rgba(79,70,229,0.4)] ring-1 ring-inset ring-white/20"
+              accentText="text-purple-600"
+              accentBg="bg-purple-600/10"
+              accentBorder="border-purple-600"
+            />
+          </div>
         </div>
       </section>
-      
-      <PremiumInfoSection 
-        title="Instagram Video Downloader"
-        description="Download Instagram videos in HD quality for free. No watermark, no login required. Save IG Reels, IGTV & Stories instantly on any device. Fast & secure Instagram video downloader."
-        imageSrc="/images/instagram-3d-logo.png"
-      />
 
-      <PurpleStepGuide 
-        title="How to Download Instagram Videos"
-        steps={[
-          {
-            title: "Copy the URL",
-            description: "Open the Instagram app or website, go to the video, Reel, IGTV, or Story you want to download. Tap the three dots (...) and select 'Copy Link', or copy the URL from your browser address bar."
-          },
-          {
-            title: "Paste the Link",
-            description: "Come back to SavClip, paste the copied link into the input field at the top of the page and click the 'Download' button to start processing."
-          },
-          {
-            title: "Download Your Video",
-            description: "Review the results and find the file you want to save. Click the 'Download' button. Done! The video is saved to your device in its original HD quality."
-          }
-        ]}
-      />
+      <section className="py-20 bg-white dark:bg-black px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl font-black text-neutral-900 dark:text-white uppercase italic tracking-widest mb-8">
+            Free Online Video Downloader
+          </h2>
+          <p className="text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed font-medium">
+            {homeDict.intro}
+          </p>
+        </div>
+      </section>
 
-      <RelatedTools currentPlatform="instagram" />
+      <section className="py-20 bg-neutral-50 dark:bg-neutral-950 px-4">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl font-black text-neutral-900 dark:text-white uppercase italic tracking-widest text-center mb-16">
+            Download Videos from All Platforms
+          </h2>
+          <CategoryCards />
+        </div>
+      </section>
 
-      <PopularTools />
+      <section className="py-20 bg-indigo-600 text-white px-4 overflow-hidden relative">
+        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent" />
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 text-center">
+            <div>
+              <p className="text-5xl font-black italic uppercase tracking-tighter mb-2">{homeDict.stats.downloads}</p>
+              <p className="text-sm font-black uppercase tracking-widest text-indigo-200 italic">Total Downloads</p>
+            </div>
+            <div>
+              <p className="text-5xl font-black italic uppercase tracking-tighter mb-2">{homeDict.stats.users}</p>
+              <p className="text-sm font-black uppercase tracking-widest text-indigo-200 italic">Active Users</p>
+            </div>
+            <div>
+              <p className="text-5xl font-black italic uppercase tracking-tighter mb-2">{homeDict.stats.uptime}</p>
+              <p className="text-sm font-black uppercase tracking-widest text-indigo-200 italic">Platform Uptime</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <CategoryCards />
+      <section className="py-20 bg-white dark:bg-black px-4">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl font-black text-neutral-900 dark:text-white uppercase italic tracking-widest text-center mb-16">
+            {dict?.guide?.title || "How to Download Videos?"}
+          </h2>
+          <PurpleStepGuide
+            title={dict?.guide?.subtitle || "Simple Steps"}
+            steps={dict?.guide?.steps || []}
+          />
+        </div>
+      </section>
 
-      <section className="bg-neutral-50 px-4 py-4 dark:bg-neutral-900/50 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <h2 className="mb-12 text-center text-3xl font-black text-neutral-900 dark:text-white tracking-widest uppercase italic">{dict.features.title}</h2>
-          <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
-            {[
-              { icon: <Zap className="h-8 w-8 text-pink-600" /> },
-              { icon: <ShieldCheck className="h-8 w-8 text-pink-600" /> },
-              { icon: <CheckCircle2 className="h-8 w-8 text-pink-600" /> },
-            ].map((feature, idx) => (
-              <div key={idx} className="flex flex-col items-center text-center">
-                <div className="mb-6 rounded-2xl bg-white p-5 shadow-2xl dark:bg-black transition-all hover:scale-110 hover:-rotate-3 border border-neutral-100 dark:border-neutral-800">
-                  {feature.icon}
+      <section className="py-20 bg-neutral-50 dark:bg-neutral-950 px-4">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl font-black text-neutral-900 dark:text-white uppercase italic tracking-widest text-center mb-16">
+            Why SavClip is Better
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {(dict?.features?.items || []).map((feature: any, i: number) => (
+              <div key={i} className="p-8 bg-white dark:bg-neutral-900 rounded-4xl shadow-xl border border-neutral-100 dark:border-neutral-800 transition-all hover:scale-105">
+                <div className="h-12 w-12 rounded-2xl bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center mb-6">
+                  <CheckCircle2 className="h-6 w-6 text-indigo-600" />
                 </div>
-                <h3 className="text-xl font-black text-neutral-900 dark:text-white">{dict?.features?.items?.[idx]?.title || "Feature"}</h3>
-                <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80">{dict?.features?.items?.[idx]?.desc || "Description"}</p>
+                <h3 className="text-xl font-black text-neutral-900 dark:text-white uppercase italic tracking-tight mb-4">{feature.title}</h3>
+                <p className="text-neutral-500 dark:text-neutral-400 font-bold leading-relaxed">{feature.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <VisualGuide
-        platformName={dict.categories.insta}
-        accentColor="text-pink-600"
-        bgAccentColor="bg-pink-600"
-        Icon={Film}
-        steps={[
-          { title: dict?.guide?.steps?.[0]?.title?.replace('{platform}', dict?.categories?.insta || "Instagram") || "Step 1", desc: instaDict.howTo?.steps?.[0] || "", image: "/images/how-to/step1.webp" },
-          { title: dict?.guide?.steps?.[1]?.title?.replace('{platform}', dict?.categories?.insta || "Instagram") || "Step 2", desc: (instaDict.howTo?.steps?.[1] || "") + " " + (instaDict.howTo?.steps?.[2] || ""), image: "/images/how-to/step2.webp" },
-          { title: dict?.guide?.steps?.[2]?.title?.replace('{platform}', dict?.categories?.insta || "Instagram") || "Step 3", desc: instaDict.howTo?.steps?.[3] || "", image: "/images/how-to/step3.webp" },
-        ]}
-      />
-
-      <SocialProof dict={dict} />
-
-      <ChromeExtensionBanner dict={dict} />
-
-      {/* Info Section (SEO) */}
-      <section className="px-4 py-4 sm:py-20 bg-white dark:bg-black sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-4xl">
-          <div className="mt-10">
-            <h2 className="flex items-center justify-center gap-3 text-3xl font-black text-neutral-900 dark:text-white tracking-widest uppercase italic text-center">
-              <Info className="h-8 w-8 text-pink-600" />
-              {instaDict.seo?.title || "Instagram Downloader"}
+      <section className="py-20 bg-white dark:bg-black px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col items-center text-center mb-16">
+            <h2 className="text-3xl font-black text-neutral-900 dark:text-white uppercase italic tracking-widest">
+              {homeDict.ai_tools.title}
             </h2>
-            <p className="mt-4 text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed text-center max-w-3xl mx-auto font-medium">
-              {instaDict.seo?.desc || "Download Instagram videos and photos easily."}
-            </p>
-
-            <ExpandableSection maxHeight={400} className="mt-12">
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 text-center">
-                {(instaDict.seo?.features || []).map((feature: { title: string; desc: string }, idx: number) => (
-                  <div key={idx} className="rounded-4xl bg-neutral-50 p-8 dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 transition-all hover:scale-105 hover:bg-white dark:hover:bg-neutral-900 shadow-sm hover:shadow-2xl flex flex-col items-center">
-                    <h3 className="font-black text-neutral-900 dark:text-white tracking-tight uppercase italicer text-lg">{feature.title}</h3>
-                    <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 hidden sm:block">{feature.desc}</p>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-6 sm:mt-20">
-                <h2 className="flex items-center justify-center gap-3 text-3xl font-black text-neutral-900 dark:text-white tracking-widest uppercase italic text-center">
-                  <HelpCircle className="h-8 w-8 text-pink-600" />
-                  {dict.faq.title}
-                </h2>
-                <div className="mt-12 space-y-6 text-center">
-                  {(dict?.faq?.items || []).map((faq: { q: string; a: string }, idx: number) => (
-                    <div key={idx} className="group rounded-4xl border border-neutral-200 p-8 dark:border-neutral-800 hover:border-pink-500/50 transition-all bg-white dark:bg-transparent hover:shadow-2xl">
-                      <h3 className="font-black text-neutral-900 dark:text-white group-hover:text-pink-600 transition-colors tracking-tight uppercase italicer text-lg">{faq.q}</h3>
-                      <p className="mt-4 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 group-hover:opacity-100 transition-opacity">{faq.a}</p>
-                    </div>
-                  ))}
+            <p className="mt-4 text-xl text-neutral-500 font-bold max-w-2xl">{homeDict.ai_tools.desc}</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {(homeDict.ai_tools.tools || []).map((tool: any, i: number) => (
+              <Link
+                key={i}
+                href={`/${locale}${tool.href}`}
+                className="group p-8 bg-neutral-50 dark:bg-neutral-900 rounded-4xl border-2 border-transparent hover:border-indigo-600 transition-all text-center"
+              >
+                <div className="h-14 w-14 rounded-2xl bg-white dark:bg-black shadow-lg flex items-center justify-center mx-auto mb-6 group-hover:bg-indigo-600 transition-colors">
+                  <Zap className="h-6 w-6 text-indigo-600 group-hover:text-white" />
                 </div>
-              </div>
-            </ExpandableSection>
+                <h3 className="text-lg font-black text-neutral-900 dark:text-white uppercase italic tracking-tight group-hover:text-indigo-600 transition-colors">
+                  {tool.name}
+                </h3>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
+
+      <section className="py-20 bg-neutral-50 dark:bg-neutral-950 px-4">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-black text-neutral-900 dark:text-white uppercase italic tracking-widest text-center mb-16">
+            FAQs
+          </h2>
+          <div className="space-y-6">
+            {(dict?.faq?.items || []).map((faq: any, i: number) => (
+              <div key={i} className="p-8 bg-white dark:bg-neutral-900 rounded-4xl shadow-md border border-neutral-100 dark:border-neutral-800 transition-all hover:shadow-2xl">
+                <h3 className="text-lg font-black text-neutral-900 dark:text-white uppercase italic tracking-tight mb-4 flex items-center gap-3">
+                  <HelpCircle className="h-5 w-5 text-indigo-600" />
+                  {faq.q}
+                </h3>
+                <p className="text-neutral-500 dark:text-neutral-400 font-bold leading-relaxed ml-8">{faq.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <ChromeExtensionBanner dict={dict} />
     </div>
   )
 }

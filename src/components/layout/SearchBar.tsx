@@ -147,14 +147,14 @@ function SearchBarInner({
 
   return (
     <div className="mx-auto w-full max-w-4xl px-4 py-2 sm:py-4 relative group">
-      {/* Background Glow matching Platform */}
-      <div className={cn("absolute inset-0 -top-10 -bottom-10 opacity-30 blur-3xl rounded-full transition-all duration-700", 
-        iconClass.includes('pink') ? "bg-pink-500/20" :
-        iconClass.includes('red') ? "bg-red-500/20" :
-        iconClass.includes('blue') ? "bg-blue-500/20" :
-        iconClass.includes('yellow') ? "bg-yellow-500/20" :
-        iconClass.includes('slate') ? "bg-slate-500/20" :
-        "bg-white/5"
+      {/* Interactive Background Glow matching Platform */}
+      <div className={cn("absolute inset-0 -top-4 -bottom-4 sm:-top-10 sm:-bottom-10 blur-2xl sm:blur-3xl rounded-[3rem] transition-all duration-700 opacity-20 group-focus-within:opacity-80 group-focus-within:scale-105", 
+        iconClass.includes('pink') ? "bg-pink-500/40 group-focus-within:bg-pink-500/60" :
+        iconClass.includes('red') ? "bg-red-500/40 group-focus-within:bg-red-500/60" :
+        iconClass.includes('blue') ? "bg-blue-500/40 group-focus-within:bg-blue-500/60" :
+        iconClass.includes('yellow') ? "bg-yellow-500/40 group-focus-within:bg-yellow-500/60" :
+        iconClass.includes('slate') ? "bg-slate-500/40 group-focus-within:bg-slate-500/60" :
+        "bg-white/10 group-focus-within:bg-white/30"
       )} />
 
       <motion.div
@@ -165,24 +165,10 @@ function SearchBarInner({
       >
         {/* Badges Row */}
         {/* Animated Hint */}
-        <motion.div 
-          initial={false}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-          className="flex justify-center mb-3"
-        >
-          <motion.div 
-            animate={{ y: [0, -4, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm"
-          >
-            <span className="text-[10px] font-black text-white/80 uppercase tracking-[0.2em]">Paste link here</span>
-            <span className="text-sm">👇</span>
-          </motion.div>
-        </motion.div>
 
-        <form onSubmit={handleSubmit} className="flex w-full flex-col gap-3 sm:flex-row sm:gap-0">
-          <div className="relative flex-1 flex items-center overflow-hidden rounded-2xl bg-white shadow-2xl sm:rounded-r-none border border-neutral-200 dark:border-neutral-800 dark:bg-neutral-900 focus-within:ring-2 focus-within:ring-pink-500/20 transition-all">
+
+        <form onSubmit={handleSubmit} className="flex w-full flex-col gap-3 sm:flex-row sm:gap-0 relative z-10 transition-transform duration-500 group-focus-within:scale-[1.02] group-focus-within:shadow-2xl rounded-2xl">
+          <div className="relative flex-1 flex items-center overflow-hidden rounded-2xl bg-white shadow-xl sm:rounded-r-none border border-neutral-200 dark:border-neutral-800 dark:bg-neutral-900 focus-within:ring-2 focus-within:ring-white/50 transition-all">
             <input
               ref={inputRef}
               type="text"
@@ -212,10 +198,10 @@ function SearchBarInner({
                 type="button"
                 onClick={handlePaste}
                 className="group flex items-center gap-2 rounded-xl bg-linear-to-r from-neutral-50 to-white px-4 py-2.5 text-sm font-black text-neutral-800 shadow-sm transition-all hover:scale-105 active:scale-95 border border-neutral-200 dark:from-neutral-800 dark:to-neutral-900 dark:text-white dark:border-neutral-700"
-                title="Smart Paste"
+                title="Paste Link"
               >
                 <Clipboard className={cn("h-4 w-4 transition-transform group-hover:rotate-12", iconClass)} />
-                <span className="hidden sm:inline font-black tracking-tight">{dict?.search?.placeholder?.split(' ')[0] || 'Paste'}</span>
+                <span className="hidden sm:inline font-black tracking-tight">Paste</span>
               </button>
             </div>
           </div>
@@ -251,16 +237,7 @@ function SearchBarInner({
           )}
         </AnimatePresence>
 
-        {/* Badges Row - Bottom */}
-        <div className="flex items-center justify-between px-1 mt-8 sm:hidden">
-           <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/10 backdrop-blur-md border border-white/10 shadow-sm transition-all hover:bg-white/20">
-              <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-              <span className="text-[10px] font-black text-white uppercase tracking-wider">Ultra HD / 4K</span>
-           </div>
-           <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-black/20 backdrop-blur-md border border-white/5 shadow-sm">
-              <span className="text-[10px] font-black text-white/90 uppercase tracking-wider">⚡ 10K+ Downloads Today</span>
-           </div>
-        </div>
+
       </motion.div>
     </div>
   )

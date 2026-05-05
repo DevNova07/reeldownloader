@@ -10,7 +10,6 @@ import dynamic from "next/dynamic"
 const DownloadPreview = dynamic(() => import("@/components/layout/DownloadPreview").then(m => m.DownloadPreview), { ssr: false })
 const StructuredData = dynamic(() => import("@/components/shared/StructuredData").then(m => m.StructuredData))
 const PlatformTabs = dynamic(() => import("@/components/shared/PlatformTabs").then(m => m.PlatformTabs))
-const SocialPlatformBar = dynamic(() => import("@/components/layout/SocialPlatformBar").then(m => m.SocialPlatformBar))
 import { type Locale } from "@/i18n"
 import { LoadingBar } from "@/components/ui/LoadingBar"
 import { DownloadCounter } from "@/components/ui/DownloadCounter"
@@ -135,7 +134,6 @@ function SnapchatContent({
         <HeroEffect color={cx.effect} intensity="high" />
         
         <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-3 sm:gap-6">
-          <SocialPlatformBar activeId="snapchat" />
           <PlatformTabs   
             activeId={activeTab} 
             activeColor={cx.text}

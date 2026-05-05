@@ -8,7 +8,6 @@ import { DownloadPreview } from "@/components/layout/DownloadPreview"
 import { type PlatformResult } from "@/types/download"
 import { StructuredData } from "@/components/shared/StructuredData"
 import { PlatformTabs } from "@/components/shared/PlatformTabs"
-import { SocialPlatformBar } from "@/components/layout/SocialPlatformBar"
 import { VisualGuide } from "@/components/shared/VisualGuide"
 import { type Locale } from "@/i18n"
 import { TrendingBar } from "@/components/layout/TrendingBar"
@@ -133,7 +132,6 @@ export default function TelegramView({ dict, locale }: { dict: any, locale: stri
         
         <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-3 sm:gap-6">
           
-          <SocialPlatformBar activeId="telegram" />
           <PlatformTabs   
             activeId="media" 
             activeColor="text-sky-600"
@@ -150,10 +148,14 @@ export default function TelegramView({ dict, locale }: { dict: any, locale: stri
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
+            className="flex flex-col items-center"
           >
-            <h1 className="mb-2 text-3xl min-[400px]:text-4xl font-black tracking-tight uppercase italic text-white sm:text-7xl drop-shadow-2xl">
+            <h1 className="mb-0 text-3xl min-[400px]:text-4xl font-black tracking-tight uppercase italic text-white sm:text-7xl drop-shadow-2xl">
               {telegramDict.title}
             </h1>
+            <p className="text-sm sm:text-base md:text-lg text-white/80 font-medium text-center max-w-3xl px-4 mt-0 mb-2">
+              Download Telegram videos & media — fast, free and secure
+            </p>
           </motion.div>
 
           

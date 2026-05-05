@@ -17,6 +17,12 @@ export interface PlatformNav {
 }
 
 export const PLATFORM_NAV_CONFIG: Record<string, PlatformNav> = {
+  home: {
+    id: "home",
+    categories: [],
+    hoverColor: "hover:text-indigo-600 dark:hover:text-indigo-500",
+    borderColor: "border-indigo-500/20"
+  },
   insta: {
     id: "instagram",
     categories: [

@@ -25,6 +25,8 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
     }
   };
   const insta = platforms?.instagram;
+  const videoTool = platforms?.instagram?.video;
+  const contentWithSlug = { ...(videoTool || insta), slug: "instagram" };
 
-  return <InstagramPage content={insta} locale={locale} dict={dict} activeTab="video" />;
+  return <InstagramPage content={contentWithSlug} locale={locale} dict={dict} activeTab="video" />;
 }

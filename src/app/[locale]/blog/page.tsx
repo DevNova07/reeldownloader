@@ -6,7 +6,6 @@ import Image from "next/image";
 import { blogPosts, getAllCategories } from "@/data/blog";
 import { Calendar, Clock, ChevronRight, Hash, Search, X } from "lucide-react";
 import { PlatformTabs } from "@/components/shared/PlatformTabs";
-import { SocialPlatformBar } from "@/components/layout/SocialPlatformBar";
 import { cn } from "@/utils/cn";
 
 export default function BlogPage() {
@@ -26,7 +25,6 @@ export default function BlogPage() {
       <section className="relative overflow-hidden bg-white dark:bg-black px-4 pt-10 pb-8 sm:px-6 lg:px-8 border-b border-neutral-100 dark:border-neutral-800">
         <div className="absolute inset-0 bg-[linear-gradient(to_bottom_right,rgba(236,72,153,0.05),transparent)] pointer-events-none" />
         <div className="relative z-10 mx-auto max-w-7xl text-center mb-10">
-          <SocialPlatformBar activeId="none" />
           <div className="mt-8">
             <h1 className="text-4xl font-black tracking-tight uppercase italicer text-neutral-900 dark:text-white sm:text-7xl">
               INSIDE <span className="text-pink-600">SNAP</span>

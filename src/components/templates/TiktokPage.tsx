@@ -10,7 +10,6 @@ import dynamic from "next/dynamic"
 const DownloadPreview = dynamic(() => import("@/components/layout/DownloadPreview").then(m => m.DownloadPreview), { ssr: false })
 const StructuredData = dynamic(() => import("@/components/shared/StructuredData").then(m => m.StructuredData))
 const PlatformTabs = dynamic(() => import("@/components/shared/PlatformTabs").then(m => m.PlatformTabs))
-const SocialPlatformBar = dynamic(() => import("@/components/layout/SocialPlatformBar").then(m => m.SocialPlatformBar))
 const SmartClipboard = dynamic(() => import("@/components/ui/SmartClipboard").then(m => m.SmartClipboard), { ssr: false });
 import { type Locale } from "@/i18n"
 import { LoadingBar } from "@/components/ui/LoadingBar"
@@ -155,7 +154,6 @@ function TiktokContent({
         <HeroEffect color={cx.effect} intensity="high" />
         
         <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-3 sm:gap-6">
-          <SocialPlatformBar activeId="tiktok" />
           <PlatformTabs   
             activeId={activeTab} 
             activeColor={cx.text}
