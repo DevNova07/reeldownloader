@@ -1,41 +1,43 @@
 import { getSeoAlternates } from "@/lib/seo";
 import * as React from "react"
 import { type Locale, getDictionary } from "@/i18n"
-import YoutubePageTemplate from "@/components/templates/YoutubePage"
+import TiktokPageTemplate from "@/components/templates/TiktokPage"
 import { Metadata } from "next"
 
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await props.params;
   const dict = await getDictionary(locale);
-  const yt = dict.platforms.youtube;
+  const tiktok = dict.platforms.tiktok;
   return {
-    title: yt.shorts.seo?.title || yt.shorts.title,
-    description: yt.shorts.seo?.desc,
-    alternates: getSeoAlternates("youtube-shorts-downloader", locale),
+    title: "TikTok HD Video Downloader - Save in Ultra HD",
+    description: "Download TikTok videos in original high-definition quality. Fast, free, and no watermark.",
+    alternates: getSeoAlternates("tiktok/hd", locale),
   };
 }
 
-export default async function YoutubeShortsPage(props: { params: Promise<{ locale: string }> }) {
+export default async function TikTokHDPage(props: { params: Promise<{ locale: string }> }) {
   const params = await props.params;
   const locale = params.locale as Locale;
   const fullDict = await getDictionary(locale);
   
-  // Filter dictionary to reduce client-side payload
   const { platforms, ...rest } = fullDict;
   const dict = {
     ...rest,
     platforms: {
-      youtube: platforms?.youtube
+      tiktok: platforms?.tiktok
     }
   };
 
   return (
-    <YoutubePageTemplate 
+    <TiktokPageTemplate 
       locale={locale} 
       dict={dict} 
-      content={{ ...platforms?.youtube?.shorts, title: "YouTube Shorts Downloader", subtitle: "Download Shorts Without Watermark (HD)" }}
-      activeTab="shorts"
-      themeColor="red"
+      activeTab="hd"
+      content={{ 
+        ...platforms?.tiktok, 
+        title: "TikTok HD Video Downloader", 
+        subtitle: "Download HD TikTok Videos Online" 
+      }} 
     />
   )
 }

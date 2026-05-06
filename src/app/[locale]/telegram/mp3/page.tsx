@@ -9,11 +9,11 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   return {
     title: "Telegram MP3 Downloader - Extract Audio from Telegram",
     description: "Download high-quality MP3 audio from Telegram videos and voice messages. Fast and free audio extraction.",
-    alternates: getSeoAlternates("telegram/music", locale),
+    alternates: getSeoAlternates("telegram/mp3", locale),
   };
 }
 
-export default async function TelegramMusicPage(props: { params: Promise<{ locale: string }> }) {
+export default async function TelegramMP3Page(props: { params: Promise<{ locale: string }> }) {
   const params = await props.params;
   const locale = params.locale as Locale;
   const fullDict = await getDictionary(locale);

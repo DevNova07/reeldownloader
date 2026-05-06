@@ -27,7 +27,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
   const contentWithSlug = { 
     ...privateTool, 
     title: "facebook private video downloader", 
-    subtitle: "download private videos online", 
+    subtitle: "Download Private Facebook Videos", 
     intro_seo: "You can download Facebook private videos with just one click. The tool is fast, secure, and completely free to use without any registration. Just paste the private video link above to save it directly to your gallery in seconds.",
     article_content: [
       {

@@ -7,13 +7,13 @@ import { Metadata } from "next"
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await props.params;
   return {
-    title: "Twitter GIF Downloader - Save X GIFs in HD",
-    description: "Download Twitter GIFs in high resolution. Save X GIFs directly to your device instantly for free.",
-    alternates: getSeoAlternates("twitter/gif", locale),
+    title: "Twitter Media Downloader - Save X Videos & Images",
+    description: "Download Twitter videos, GIFs, and photos in HD quality. All-in-one Twitter media extraction tool.",
+    alternates: getSeoAlternates("twitter/media", locale),
   };
 }
 
-export default async function TwitterGIFPage(props: { params: Promise<{ locale: string }> }) {
+export default async function TwitterMediaPage(props: { params: Promise<{ locale: string }> }) {
   const params = await props.params;
   const locale = params.locale as Locale;
   const fullDict = await getDictionary(locale);
@@ -30,11 +30,11 @@ export default async function TwitterGIFPage(props: { params: Promise<{ locale: 
     <TwitterPageTemplate 
       locale={locale} 
       dict={dict} 
-      activeTab="gif"
+      activeTab="media"
       content={{ 
         ...platforms?.twitter, 
-        title: "Twitter GIF Downloader", 
-        subtitle: "Download Twitter GIFs Online Free" 
+        title: "Twitter Media Downloader", 
+        subtitle: "Download Twitter Media Fast" 
       }} 
     />
   )

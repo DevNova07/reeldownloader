@@ -46,7 +46,7 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
   return (
     <React.Suspense fallback={null}>
       <FacebookPage 
-        content={platforms?.facebook} 
+        content={{ ...platforms?.facebook, subtitle: "Download Facebook Videos Without Watermark (HD)" }} 
         locale={locale} 
         dict={filteredDict} 
         themeColor="blue"

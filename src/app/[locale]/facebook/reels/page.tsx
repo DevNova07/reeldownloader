@@ -22,7 +22,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
 
   return (
     <FacebookPage 
-      content={dict.platforms.facebook.reels} 
+      content={{ ...dict.platforms.facebook.reels, subtitle: "Download Reels Without Watermark (HD)" }} 
       locale={locale} 
       dict={dict} 
       activeTab="reels"

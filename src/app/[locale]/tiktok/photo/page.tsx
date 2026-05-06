@@ -9,13 +9,13 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const dict = await getDictionary(locale);
   const tiktok = dict.platforms.tiktok;
   return {
-    title: "TikTok Story Downloader - Save TikTok Stories",
-    description: "Download TikTok stories in HD quality. Save temporary TikTok stories before they disappear.",
-    alternates: getSeoAlternates("tiktok/story", locale),
+    title: "TikTok Photo & Carousel Downloader - Save HD Photos",
+    description: "Download TikTok photos and carousels in high resolution. Save TikTok images instantly for free.",
+    alternates: getSeoAlternates("tiktok/photo", locale),
   };
 }
 
-export default async function TikTokStoryPage(props: { params: Promise<{ locale: string }> }) {
+export default async function TikTokPhotoPage(props: { params: Promise<{ locale: string }> }) {
   const params = await props.params;
   const locale = params.locale as Locale;
   const fullDict = await getDictionary(locale);
@@ -32,11 +32,11 @@ export default async function TikTokStoryPage(props: { params: Promise<{ locale:
     <TiktokPageTemplate 
       locale={locale} 
       dict={dict} 
-      activeTab="story"
+      activeTab="photo"
       content={{ 
         ...platforms?.tiktok, 
-        title: "TikTok Story Downloader", 
-        subtitle: "Save TikTok Stories Online Free" 
+        title: "TikTok Photo Downloader", 
+        subtitle: "Download TikTok Photos in HD Quality" 
       }} 
     />
   )

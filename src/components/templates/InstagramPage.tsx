@@ -412,7 +412,7 @@ function InstagramPageContent({
                       {content?.intro_seo && (
                         <div className="mb-12 px-4 max-w-4xl mx-auto">
                           {Array.isArray(content.intro_seo) ? (
-                            content.intro_seo.map((p, i) => (
+                            content.intro_seo.map((p: string, i: number) => (
                               <p key={i} className="text-neutral-500 dark:text-neutral-400 font-bold opacity-80 leading-relaxed text-center mb-4">
                                 {p}
                               </p>
@@ -507,7 +507,7 @@ function InstagramPageContent({
                 {content?.intro_seo && (
                   <div className="mb-4">
                     {Array.isArray(content.intro_seo) ? (
-                      content.intro_seo.map((p, i) => (
+                      content.intro_seo.map((p: string, i: number) => (
                         <p key={i} className="text-xs font-bold text-neutral-500 dark:text-neutral-400 leading-relaxed mb-2">
                           {p}
                         </p>

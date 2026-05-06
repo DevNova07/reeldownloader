@@ -32,7 +32,7 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
     <YoutubePageTemplate 
       locale={locale} 
       dict={dict} 
-      content={platforms?.youtube?.thumbnail} 
+      content={{ ...platforms?.youtube?.thumbnail, title: "YouTube Thumbnail Download", subtitle: "Download HD Video Thumbnails" }}
       activeTab="thumbnail"
       themeColor="red"
     />

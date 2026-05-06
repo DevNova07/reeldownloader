@@ -6,16 +6,14 @@ import { Metadata } from "next"
 
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await props.params;
-  const dict = await getDictionary(locale);
-  const snap = dict.platforms.snapchat;
   return {
-    title: snap.spotlight.seo.title,
-    description: snap.spotlight.seo.desc,
+    title: "Snapchat Spotlight Downloader - Save Spotlight Videos",
+    description: "Download Snapchat Spotlight videos in HD quality. Fast, free, and no watermark.",
     alternates: getSeoAlternates("snapchat/spotlight", locale),
   };
 }
 
-export default async function Page(props: { params: Promise<{ locale: string }> }) {
+export default async function SnapchatSpotlightPage(props: { params: Promise<{ locale: string }> }) {
   const params = await props.params;
   const locale = params.locale as Locale;
   const fullDict = await getDictionary(locale);
@@ -32,9 +30,12 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
     <SnapchatPageTemplate 
       locale={locale} 
       dict={dict} 
-      content={platforms?.snapchat?.spotlight} 
       activeTab="spotlight"
-      themeColor="yellow"
+      content={{ 
+        ...platforms?.snapchat, 
+        title: "Snapchat Spotlight Downloader", 
+        subtitle: "Download Snapchat Spotlight Videos in HD" 
+      }} 
     />
   )
 }

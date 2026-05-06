@@ -1,19 +1,19 @@
 import { getSeoAlternates } from "@/lib/seo";
 import * as React from "react"
 import { type Locale, getDictionary } from "@/i18n"
-import TwitterPageTemplate from "@/components/templates/TwitterPage"
+import SnapchatPageTemplate from "@/components/templates/SnapchatPage"
 import { Metadata } from "next"
 
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await props.params;
   return {
-    title: "Twitter GIF Downloader - Save X GIFs in HD",
-    description: "Download Twitter GIFs in high resolution. Save X GIFs directly to your device instantly for free.",
-    alternates: getSeoAlternates("twitter/gif", locale),
+    title: "Snapchat Photo Downloader - Save Snapchat Images",
+    description: "Save high-resolution Snapchat photos and images directly to your device. Fast and free.",
+    alternates: getSeoAlternates("snapchat/photo", locale),
   };
 }
 
-export default async function TwitterGIFPage(props: { params: Promise<{ locale: string }> }) {
+export default async function SnapchatPhotoPage(props: { params: Promise<{ locale: string }> }) {
   const params = await props.params;
   const locale = params.locale as Locale;
   const fullDict = await getDictionary(locale);
@@ -22,19 +22,19 @@ export default async function TwitterGIFPage(props: { params: Promise<{ locale: 
   const dict = {
     ...rest,
     platforms: {
-      twitter: platforms?.twitter
+      snapchat: platforms?.snapchat
     }
   };
 
   return (
-    <TwitterPageTemplate 
+    <SnapchatPageTemplate 
       locale={locale} 
       dict={dict} 
-      activeTab="gif"
+      activeTab="photo"
       content={{ 
-        ...platforms?.twitter, 
-        title: "Twitter GIF Downloader", 
-        subtitle: "Download Twitter GIFs Online Free" 
+        ...platforms?.snapchat, 
+        title: "Snapchat Photo Downloader", 
+        subtitle: "Save Photos & Gallery Posts" 
       }} 
     />
   )

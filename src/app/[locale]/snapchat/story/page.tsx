@@ -6,16 +6,14 @@ import { Metadata } from "next"
 
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await props.params;
-  const dict = await getDictionary(locale);
-  const snap = dict.platforms.snapchat;
   return {
-    title: snap.story.seo.title,
-    description: snap.story.seo.desc,
+    title: "Snapchat Story Downloader - Save Snapchat Stories",
+    description: "Download and save Snapchat stories in high resolution. Fast and anonymous story saver.",
     alternates: getSeoAlternates("snapchat/story", locale),
   };
 }
 
-export default async function Page(props: { params: Promise<{ locale: string }> }) {
+export default async function SnapchatStoryPage(props: { params: Promise<{ locale: string }> }) {
   const params = await props.params;
   const locale = params.locale as Locale;
   const fullDict = await getDictionary(locale);
@@ -32,9 +30,12 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
     <SnapchatPageTemplate 
       locale={locale} 
       dict={dict} 
-      content={platforms?.snapchat?.story} 
       activeTab="story"
-      themeColor="yellow"
+      content={{ 
+        ...platforms?.snapchat, 
+        title: "Snapchat Story Downloader", 
+        subtitle: "Save Snapchat Stories Online Free" 
+      }} 
     />
   )
 }

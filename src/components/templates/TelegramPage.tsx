@@ -16,7 +16,7 @@ import { DownloadCounter } from "@/components/ui/DownloadCounter"
 import { RelatedTools } from "@/components/shared/RelatedTools"
 import { useDownloadHistory, getCached, setCached } from "@/hooks/useDownloadHistory"
 import { HeroEffect } from "@/components/shared/HeroEffect"
-import { CheckCircle2, FileText, HelpCircle, Info, Megaphone, Music as MusicIcon, Send, ShieldCheck, Users, Zap } from "lucide-react"
+import { Camera, CheckCircle2, FileText, HelpCircle, Info, Megaphone, Music as MusicIcon, Send, ShieldCheck, Users, Zap } from "lucide-react"
 import { toast } from "react-hot-toast"
 import { useRouter, useSearchParams } from "next/navigation"
 import { getPlatformFromUrl, getLocalizedRoute, isAnyPlatformUrl } from "@/utils/platform-detector"
@@ -113,18 +113,17 @@ function TelegramPageContent({ content, locale, dict, activeTab = "media" }: Tel
         />
       )}
       
-      <section className="relative overflow-hidden bg-linear-to-r from-sky-500 to-blue-600 px-4 pt-10 pb-6 sm:pt-16 sm:pb-20 sm:px-6 lg:px-8">
-        <HeroEffect color="bg-sky-400" intensity="high" />
+      <section className="relative overflow-hidden bg-linear-to-r from-indigo-600 to-violet-700 px-4 pt-10 pb-6 sm:pt-16 sm:pb-20 sm:px-6 lg:px-8">
+        <HeroEffect color="bg-indigo-400" intensity="high" />
         <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-3 sm:gap-6">
           <PlatformTabs   
             activeId={activeTab} 
-            activeColor="text-sky-600"
-            tabs={dict.tabs}
+            activeColor="text-indigo-600"
             items={[
-              { id: "media", label: dict.tabs?.video || "Video", href: "/telegram", icon: <Send className="h-4 w-4" /> },
-              { id: "channel", label: "Channels", href: "/telegram/channel", icon: <Megaphone className="h-4 w-4" /> },
-              { id: "group", label: "Groups", href: "/telegram/group", icon: <Users className="h-4 w-4" /> },
-              { id: "music", label: dict.tabs?.music || "Music", href: "/telegram/music", icon: <MusicIcon className="h-4 w-4" /> },
+              { id: "video", label: "Video", href: "/telegram", icon: <Send className="h-4 w-4" /> },
+              { id: "music", label: "MP3", href: "/telegram/mp3", icon: <MusicIcon className="h-4 w-4" /> },
+              { id: "photo", label: "Photo", href: "/telegram/photo", icon: <Camera className="h-4 w-4" /> },
+              { id: "files", label: "Files", href: "/telegram/files", icon: <FileText className="h-4 w-4" /> },
             ]} 
           />
 
@@ -132,10 +131,14 @@ function TelegramPageContent({ content, locale, dict, activeTab = "media" }: Tel
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
+            className="flex flex-col items-center w-full"
           >
-            <h1 className="mb-2 text-3xl min-[400px]:text-4xl font-black tracking-tight uppercase italic text-white sm:text-7xl drop-shadow-2xl">
+            <h1 className="text-[clamp(1.5rem,6.5vw,3.2rem)] min-[400px]:text-[clamp(1.8rem,8.5vw,4.5rem)] sm:text-8xl font-black text-white tracking-tight drop-shadow-2xl mb-4 whitespace-nowrap">
               {content?.title || "Telegram Downloader"}
             </h1>
+            <p className="mx-auto max-w-2xl text-[clamp(0.85rem,3.5vw,1.1rem)] sm:text-xl font-medium text-white/80 tracking-tight italic drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)] px-4 mt-2">
+              {content?.subtitle || "Download Telegram videos and files in HD quality."}
+            </p>
           </motion.div>
           
           <div className="mx-auto max-w-3xl">
@@ -149,9 +152,6 @@ function TelegramPageContent({ content, locale, dict, activeTab = "media" }: Tel
               initialValue={searchParams.get('url') || ""}
             />
 
-            <p className="mx-auto mb-4 max-w-2xl mt-8 mb-2 text-sm font-bold text-white/60 tracking-widest uppercase italic hidden sm:block">
-              {content?.subtitle || content?.seo?.desc || "Fast and secure Telegram downloader."}
-            </p>
 
 
 

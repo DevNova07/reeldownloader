@@ -22,7 +22,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
 
   return (
     <FacebookPage 
-      content={dict.platforms.facebook.story} 
+      content={{ ...dict.platforms.facebook.story, subtitle: "Save Stories Online in HD Quality" }} 
       locale={locale} 
       dict={dict} 
       activeTab="story"

@@ -110,10 +110,10 @@ function TwitterPageContent({ content, locale, dict, activeTab = "video" }: Twit
             activeColor="text-slate-500"
             tabs={dict.tabs}
             items={[
-              { id: "video", label: dict.tabs?.video || "Video", href: "/twitter", icon: <Film className="h-4 w-4" /> },
-              { id: "gif", label: dict.tabs?.gif || "GIF", href: "/twitter/gif", icon: <Hash className="h-4 w-4" /> },
-              { id: "photo", label: dict.tabs?.photo || "Photo", href: "/twitter/photo", icon: <Camera className="h-4 w-4" /> },
-              { id: "music", label: dict.tabs?.music || "Music", href: "/twitter/music", icon: <MusicIcon className="h-4 w-4" /> },
+              { id: "video", label: "Video", href: "/twitter", icon: <Film className="h-4 w-4" /> },
+              { id: "gif", label: "GIFs", href: "/twitter/gif", icon: <Hash className="h-4 w-4" /> },
+              { id: "photo", label: "Photo", href: "/twitter/photo", icon: <Camera className="h-4 w-4" /> },
+              { id: "media", label: "Media", href: "/twitter/media", icon: <Zap className="h-4 w-4" /> },
             ]} 
           />
 
@@ -121,10 +121,14 @@ function TwitterPageContent({ content, locale, dict, activeTab = "video" }: Twit
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
+            className="flex flex-col items-center w-full"
           >
-            <h1 className="mb-2 text-3xl min-[400px]:text-4xl font-black tracking-tight uppercase italic text-white sm:text-7xl drop-shadow-2xl">
+            <h1 className="text-[clamp(1.5rem,6.5vw,3.2rem)] min-[400px]:text-[clamp(1.8rem,8.5vw,4.5rem)] sm:text-8xl font-black text-white tracking-tight drop-shadow-2xl mb-4 whitespace-nowrap">
               {content?.title || "Twitter Downloader"}
             </h1>
+            <p className="mx-auto max-w-2xl text-[clamp(0.85rem,3.5vw,1.1rem)] sm:text-xl font-medium text-white/80 tracking-tight italic drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)] px-4 mt-2">
+              {content?.subtitle || "Download Twitter videos and GIFs in HD quality."}
+            </p>
           </motion.div>
           
           <div className="mx-auto max-w-3xl">
@@ -137,9 +141,6 @@ function TwitterPageContent({ content, locale, dict, activeTab = "video" }: Twit
               iconClass="text-slate-800"
             />
 
-            <p className="mx-auto mb-4 max-w-2xl mt-8 mb-2 text-sm font-bold text-white/60 tracking-widest uppercase italic hidden sm:block">
-              {content?.subtitle || content?.seo?.desc || "Fast and secure Twitter downloader."}
-            </p>
 
 
 

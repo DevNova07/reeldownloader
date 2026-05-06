@@ -167,10 +167,10 @@ function SnapchatContent({
             tabs={dict?.tabs}
             locale={locale}
             items={[
-              { id: "video", label: dict?.tabs?.video || "Video", href: "/snapchat", icon: <Ghost className="h-4 w-4" /> },
-              { id: "spotlight", label: dict?.tabs?.spotlight || "Spotlight", href: "/snapchat-spotlight-downloader", icon: <Play className="h-4 w-4" /> },
-              { id: "story", label: dict?.tabs?.story || "Story", href: "/snapchat-story-downloader", icon: <StopCircle className="h-4 w-4" /> },
-              { id: "photo", label: dict?.tabs?.photo || "Photo", href: "/snapchat-photo-downloader", icon: <Camera className="h-4 w-4" /> },
+              { id: "video", label: "Video", href: "/snapchat", icon: <Ghost className="h-4 w-4" /> },
+              { id: "spotlight", label: "Spotlight", href: "/snapchat/spotlight", icon: <Play className="h-4 w-4" /> },
+              { id: "story", label: "Story", href: "/snapchat/story", icon: <StopCircle className="h-4 w-4" /> },
+              { id: "music", label: "MP3", href: "/snapchat/mp3", icon: <MusicIcon className="h-4 w-4" /> },
             ]} 
           />
 
@@ -179,9 +179,12 @@ function SnapchatContent({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <h1 className="mb-2 text-3xl min-[400px]:text-4xl font-black tracking-tight uppercase italic text-white sm:text-7xl drop-shadow-2xl">
+            <h1 className="text-[clamp(1.4rem,5.5vw,2.8rem)] min-[400px]:text-[clamp(1.6rem,7.5vw,3.5rem)] sm:text-7xl font-black text-white tracking-tight drop-shadow-2xl mb-4 whitespace-nowrap">
               {pageTitle}
             </h1>
+            <p className="mx-auto max-w-2xl text-[clamp(0.85rem,3.5vw,1.1rem)] sm:text-xl font-medium text-white/80 tracking-tight italic drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)] px-4 mt-2">
+              {content?.subtitle || "Download Snapchat videos and spotlights in HD quality."}
+            </p>
           </motion.div>
           
           <div className="mx-auto max-w-3xl">
@@ -195,9 +198,6 @@ function SnapchatContent({
               initialValue={searchParams.get('url') || ""}
             />
 
-            <p className="mx-auto mb-4 max-w-2xl mt-8 mb-2 text-sm font-bold text-black/60 tracking-widest uppercase italic hidden sm:block">
-              {content?.subtitle || pageSeo?.desc || "Fast and secure Snapchat downloader."}
-            </p>
 
             <AnimatePresence>
               {error && (

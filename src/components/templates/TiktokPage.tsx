@@ -181,9 +181,10 @@ function TiktokContent({
             tabs={dict?.tabs}
             locale={locale}
             items={[
-              { id: "video", label: dict?.tabs?.video || "Video", href: "/tiktok", icon: <Film className="h-4 w-4" /> },
-              { id: "story", label: dict?.tabs?.story || "Story", href: "/tiktok-story-downloader", icon: <StopCircle className="h-4 w-4" /> },
-              { id: "music", label: dict?.tabs?.music || "Music", href: "/tiktok-mp3-downloader", icon: <MusicIcon className="h-4 w-4" /> },
+              { id: "video", label: "Video", href: "/tiktok", icon: <Film className="h-4 w-4" /> },
+              { id: "music", label: "MP3", href: "/tiktok/mp3", icon: <MusicIcon className="h-4 w-4" /> },
+              { id: "hd", label: "HD", href: "/tiktok/hd", icon: <Zap className="h-4 w-4" /> },
+              { id: "photo", label: "Photo", href: "/tiktok/photo", icon: <Camera className="h-4 w-4" /> },
             ]} 
           />
 
@@ -191,10 +192,14 @@ function TiktokContent({
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
+            className="flex flex-col items-center w-full"
           >
-            <h1 className="mb-2 text-3xl min-[400px]:text-4xl font-black tracking-tight uppercase italic text-white sm:text-7xl drop-shadow-2xl">
+            <h1 className="text-[clamp(1.4rem,5.5vw,2.8rem)] min-[400px]:text-[clamp(1.6rem,7vw,3.5rem)] sm:text-6xl font-black text-white tracking-tight drop-shadow-2xl mb-4 whitespace-nowrap">
               {pageTitle}
             </h1>
+            <p className="mx-auto max-w-2xl text-[clamp(0.85rem,3.5vw,1.1rem)] sm:text-xl font-medium text-white/80 tracking-tight italic drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)] px-4 mt-2">
+              {content?.subtitle || "Download TikTok videos without watermark in HD quality."}
+            </p>
           </motion.div>
           
           <div className="mx-auto max-w-3xl">
@@ -207,10 +212,6 @@ function TiktokContent({
               iconClass={`text-white`}
               initialValue={sharedUrl}
             />
-
-            <p className="mx-auto mb-4 max-w-2xl mt-8 mb-2 text-sm font-bold text-white/60 tracking-widest uppercase italic hidden sm:block">
-              {content?.subtitle || pageSeo?.desc || "Fast and secure TikTok downloader."}
-            </p>
 
             <AnimatePresence>
             </AnimatePresence>

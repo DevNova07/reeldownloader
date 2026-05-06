@@ -116,7 +116,6 @@ function YoutubeContent({
   useAutoDownload(handleSearch, locale, "youtube")
 
   const colors: Record<string, any> = {
-    red: { text: "text-red-500", bg: "bg-red-600", border: "border-red-600", bgAccent: "bg-red-600/10", ribbon: "from-red-600 to-red-800", gradient: "from-red-600 via-red-500 to-orange-500", effect: "bg-red-500" },
     red: { text: "text-red-500", bg: "bg-red-600", border: "border-red-600", bgAccent: "bg-red-600/10", ribbon: "from-red-600 to-red-800", ribbonAcc: "from-red-600 to-amber-500", gradient: "from-red-600 via-red-500 to-orange-500", effect: "bg-red-500", shadow: "shadow-[0_20px_50px_rgba(220,38,38,0.3)]" },
     orange: { text: "text-orange-500", bg: "bg-orange-600", border: "border-orange-600", bgAccent: "bg-orange-600/10", ribbon: "from-orange-600 to-red-700", ribbonAcc: "from-orange-600 to-red-600", gradient: "from-orange-600 via-orange-500 to-red-500", effect: "bg-orange-500", shadow: "shadow-[0_20px_50px_rgba(249,115,22,0.3)]" },
     amber: { text: "text-amber-500", bg: "bg-amber-600", border: "border-amber-600", bgAccent: "bg-amber-600/10", ribbon: "from-amber-600 to-orange-700", gradient: "from-amber-600 via-amber-500 to-orange-500", effect: "bg-amber-500" },
@@ -150,6 +149,7 @@ function YoutubeContent({
     }
   }, [activeTab]);
 
+
   return (
     <div className="flex flex-col">
       <StructuredData type="SoftwareApplication" data={pageSeo} />
@@ -167,9 +167,9 @@ function YoutubeContent({
             locale={locale}
             items={[
               { id: "video", label: dict?.tabs?.video || "Video", href: "/youtube", icon: <Film className="h-4 w-4" /> },
-              { id: "shorts", label: dict?.tabs?.shorts || "Shorts", href: "/youtube-shorts-downloader", icon: <PlaySquare className="h-4 w-4" /> },
-              { id: "music", label: dict?.tabs?.music || "Music", href: "/youtube-to-mp3", icon: <MusicIcon className="h-4 w-4" /> },
-              { id: "thumbnail", label: "Thumbnail", href: "/youtube-thumbnail-downloader", icon: <Image className="h-4 w-4" /> },
+              { id: "shorts", label: dict?.tabs?.shorts || "Shorts", href: "/youtube/shorts", icon: <PlaySquare className="h-4 w-4" /> },
+              { id: "music", label: dict?.tabs?.music || "Music", href: "/youtube/music", icon: <MusicIcon className="h-4 w-4" /> },
+              { id: "thumbnail", label: "Thumbnail", href: "/youtube/thumbnail", icon: <Image className="h-4 w-4" /> },
             ]} 
           />
 
@@ -177,10 +177,19 @@ function YoutubeContent({
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
+            className="flex flex-col items-center w-full"
           >
-            <h1 className="mb-2 text-3xl min-[400px]:text-4xl font-black tracking-tight uppercase italic text-white sm:text-7xl drop-shadow-2xl">
+            <h1 className={cn(
+              "font-black tracking-tighter text-white leading-tight whitespace-nowrap drop-shadow-[0_8px_20px_rgba(0,0,0,0.4)] px-2",
+              pageTitle.length > 25 
+                ? "text-[clamp(1.5rem,6.5vw,2.6rem)] sm:text-8xl md:text-9xl" 
+                : "text-[1.7rem] min-[400px]:text-[3.2rem] sm:text-9xl md:text-[8rem]"
+            )}>
               {pageTitle}
             </h1>
+            <p className="mx-auto max-w-2xl text-[clamp(0.85rem,3.5vw,1.1rem)] sm:text-lg font-medium text-white/80 tracking-tight italic drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)] px-4 mt-1 whitespace-nowrap overflow-hidden text-ellipsis">
+              {content?.subtitle || "Fast and secure YouTube downloader."}
+            </p>
           </motion.div>
           
           <div className="mx-auto max-w-3xl">
@@ -194,9 +203,6 @@ function YoutubeContent({
               initialValue={sharedUrl}
             />
 
-            <p className="mx-auto mb-4 max-w-2xl mt-8 mb-2 text-sm font-bold text-white/60 tracking-widest uppercase italic hidden sm:block">
-              {content?.subtitle || pageSeo?.desc || "Fast and secure YouTube downloader."}
-            </p>
 
 
 

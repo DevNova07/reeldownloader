@@ -26,7 +26,7 @@ export async function generateStaticParams() {
   const seoPages = dict.platforms?.seo_pages || {};
   
   // Only pre-render the top 30 most popular tools for the main and top local market
-  const slugs = Object.keys(seoPages).slice(0, 100).map(key => key.replace(/_/g, "-"));
+  const slugs = Object.keys(seoPages).slice(0, 200).map(key => key.replace(/_/g, "-"));
   const primaryLocales = ["en", "hi"]; 
 
   const params: { locale: string; slug: string }[] = [];
@@ -247,31 +247,34 @@ export default async function Page(props: PageProps) {
 
     if (s.includes("facebook") || s.includes("fb-")) {
       let activeTab = "video";
-      if (s.includes("reels")) activeTab = "reels";
-      else if (s.includes("story") || s.includes("stories")) activeTab = "story";
+      if (s.match(/reels|short/)) activeTab = "reels";
+      else if (s.match(/story|stories/)) activeTab = "story";
+      else if (s.match(/music|audio|mp3|song/)) activeTab = "music";
       else if (s.includes("private")) activeTab = "private";
       return <FacebookPage {...templateProps} activeTab={activeTab} />;
     }
     if (s.includes("instagram") || s.includes("insta-") || s.includes("reels-")) {
       let activeTab = "video";
-      if (s.includes("reels")) activeTab = "reels";
-      else if (s.includes("story") || s.includes("stories") || s.includes("highlights")) activeTab = "story";
-      else if (s.includes("music") || s.includes("audio") || s.includes("mp3")) activeTab = "music";
-      else if (s.includes("photo") || s.includes("dp") || s.includes("picture") || s.includes("image")) activeTab = "photo";
+      if (s.match(/reels|short/)) activeTab = "reels";
+      else if (s.match(/story|stories|highlights/)) activeTab = "story";
+      else if (s.match(/music|audio|mp3|song/)) activeTab = "music";
+      else if (s.match(/photo|dp|picture|image/)) activeTab = "photo";
       return <InstagramPage {...templateProps} activeTab={activeTab} />;
     }
     if (s.includes("tiktok")) {
       let activeTab = "video";
-      if (s.includes("music") || s.includes("audio") || s.includes("mp3")) activeTab = "music";
-      else if (s.includes("story") || s.includes("stories")) activeTab = "story";
-      else if (s.includes("photo") || s.includes("image")) activeTab = "photo";
+      if (s.match(/music|audio|mp3|song/)) activeTab = "music";
+      else if (s.match(/story|stories/)) activeTab = "story";
+      else if (s.match(/photo|image/)) activeTab = "photo";
+      else if (s.match(/hd|4k/)) activeTab = "hd";
       return <TiktokPage {...templateProps} activeTab={activeTab} />;
     }
     if (s.includes("youtube") || s.includes("yt-")) {
       let activeTab = "video";
-      if (s.includes("shorts")) activeTab = "shorts";
-      else if (s.includes("music") || s.includes("audio") || s.includes("mp3")) activeTab = "music";
-      else if (s.includes("movie")) activeTab = "movies";
+      if (s.match(/shorts|short/)) activeTab = "shorts";
+      else if (s.match(/music|audio|mp3|song/)) activeTab = "music";
+      else if (s.match(/movie|clip/)) activeTab = "movies";
+      else if (s.match(/thumb/)) activeTab = "thumbnail";
       return <YoutubePage {...templateProps} activeTab={activeTab} />;
     }
     if (s.includes("snapchat")) {
@@ -288,10 +291,10 @@ export default async function Page(props: PageProps) {
       return <TwitterPage {...templateProps} activeTab={activeTab} />;
     }
     if (s.includes("telegram")) {
-      let activeTab = "media";
-      if (s.includes("channel")) activeTab = "channel";
-      else if (s.includes("group")) activeTab = "group";
-      else if (s.includes("music") || s.includes("audio")) activeTab = "music";
+      let activeTab = "video";
+      if (s.match(/music|audio|mp3|song/)) activeTab = "music";
+      else if (s.match(/photo|image|picture|dp/)) activeTab = "photo";
+      else if (s.match(/file|doc|pdf|zip/)) activeTab = "files";
       return <TelegramPage {...templateProps} activeTab={activeTab} />;
     }
     

@@ -157,14 +157,10 @@ function FacebookContent({
             tabs={dict?.tabs}
             locale={locale}
             items={[
-              { id: "video", label: dict?.tabs?.video || "Video", href: "/facebook", icon: <Film className="h-4 w-4" /> },
-              { id: "reels", label: dict?.tabs?.reels || "Reels", href: "/facebook/reels", icon: <Film className="h-4 w-4" /> },
-              { id: "story", label: dict?.tabs?.story || "Story", href: "/facebook/story", icon: <StopCircle className="h-4 w-4" /> },
-              (activeTab === 'audio' || activeTab === 'music' || activeTab === 'mp3') ? (
-                { id: "audio", label: dict?.tabs?.audio || "Audio", href: "/facebook/music", icon: <Music className="h-4 w-4" /> }
-              ) : (
-                { id: "private", label: dict?.tabs?.private || "Private", href: "/facebook/private", icon: <ShieldCheck className="h-4 w-4" /> }
-              ),
+              { id: "video", label: "Video", href: "/facebook", icon: <Film className="h-4 w-4" /> },
+              { id: "music", label: "MP3", href: "/facebook/music", icon: <Music className="h-4 w-4" /> },
+              { id: "story", label: "Photo", href: "/facebook/story", icon: <StopCircle className="h-4 w-4" /> },
+              { id: "reels", label: "Shorts", href: "/facebook/reels", icon: <Film className="h-4 w-4" /> },
             ]} 
           />
 
@@ -175,14 +171,14 @@ function FacebookContent({
             className="flex flex-col items-center w-full"
           >
             <h1 className={cn(
-              "font-black tracking-tighter italic text-white leading-tight whitespace-nowrap drop-shadow-[0_8px_20px_rgba(0,0,0,0.4)] px-2 mb-2 lowercase",
+              "font-black tracking-tighter italic text-white leading-tight whitespace-nowrap drop-shadow-[0_8px_20_rgba(0,0,0,0.4)] px-2 mb-2 capitalize",
               pageTitle.length > 25 
-                ? "text-[clamp(1rem,4.5vw,1.8rem)] sm:text-3xl md:text-4xl lg:text-5xl" 
-                : "text-[1.2rem] min-[400px]:text-[1.8rem] sm:text-4xl md:text-5xl lg:text-6xl"
+                ? "text-[clamp(1.4rem,5.5vw,2.4rem)] sm:text-4xl md:text-5xl lg:text-6xl" 
+                : "text-[clamp(1.6rem,7.5vw,3rem)] sm:text-5xl md:text-6xl lg:text-7xl"
             )}>
               {pageTitle}
             </h1>
-            <p className="mx-auto max-w-2xl text-base sm:text-lg font-medium text-white/80 tracking-tight italic drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)] px-4 mt-2 whitespace-nowrap overflow-hidden text-ellipsis">
+            <p className="mx-auto max-w-2xl text-[clamp(0.85rem,3.5vw,1.1rem)] sm:text-lg font-medium text-white/80 tracking-tight italic drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)] px-4 mt-1 whitespace-nowrap overflow-hidden text-ellipsis">
               {content?.subtitle || "Fast and secure Facebook downloader."}
             </p>
           </motion.div>

@@ -29,5 +29,5 @@ export default async function YoutubePage(props: { params: Promise<{ locale: str
     }
   };
 
-  return <YoutubePageTemplate locale={locale} dict={dict} content={platforms?.youtube} />
+  return <YoutubePageTemplate locale={locale} dict={dict} content={{ ...platforms?.youtube, title: "YouTube Downloader", subtitle: "Download YouTube Videos in HD Quality" }} />
 }
