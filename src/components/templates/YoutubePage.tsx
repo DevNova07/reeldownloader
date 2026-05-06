@@ -179,7 +179,7 @@ function YoutubeContent({
             transition={{ duration: 0.4 }}
             className="flex flex-col items-center w-full"
           >
-            <h1 className="font-black tracking-tighter text-white leading-tight whitespace-nowrap drop-shadow-[0_8px_20px_rgba(0,0,0,0.4)] px-2 text-[clamp(1.5rem,7vw,4rem)] sm:text-7xl md:text-8xl text-center">
+            <h1 className="font-black tracking-tighter text-white leading-tight whitespace-nowrap drop-shadow-[0_8px_20px_rgba(0,0,0,0.4)] px-2 text-[clamp(1.3rem,6vw,3.5rem)] sm:text-6xl md:text-7xl text-center">
               {pageTitle}
             </h1>
             <p className="mx-auto max-w-2xl text-[clamp(0.85rem,3.5vw,1.1rem)] sm:text-lg font-medium text-white/80 tracking-tight italic drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)] px-4 mt-4 whitespace-nowrap overflow-hidden text-ellipsis">
