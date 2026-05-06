@@ -205,7 +205,7 @@ function HomeViewContent({ locale, dict }: { locale: Locale, dict: any }) {
             Free Video Downloader Online
           </h2>
           <div className="space-y-6">
-            {homeDict.intro.split('\n\n').map((paragraph, idx) => (
+            {homeDict.intro.split('\n\n').map((paragraph: string, idx: number) => (
               <p key={idx} className="text-lg sm:text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed font-medium">
                 {paragraph}
               </p>
