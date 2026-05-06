@@ -194,10 +194,10 @@ function TiktokContent({
             transition={{ duration: 0.4 }}
             className="flex flex-col items-center w-full"
           >
-            <h1 className="text-[clamp(1.4rem,5.5vw,2.8rem)] min-[400px]:text-[clamp(1.6rem,7vw,3.5rem)] sm:text-6xl font-black text-white tracking-tight drop-shadow-2xl mb-4 whitespace-nowrap">
+            <h1 className="font-black tracking-tighter text-white leading-tight whitespace-nowrap drop-shadow-[0_8px_20px_rgba(0,0,0,0.4)] px-2 text-[clamp(1.5rem,7vw,4rem)] sm:text-7xl md:text-8xl text-center">
               {pageTitle}
             </h1>
-            <p className="mx-auto max-w-2xl text-[clamp(0.85rem,3.5vw,1.1rem)] sm:text-xl font-medium text-white/80 tracking-tight italic drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)] px-4 mt-2">
+            <p className="mx-auto max-w-2xl text-[clamp(0.85rem,3.5vw,1.1rem)] sm:text-xl font-medium text-white/80 tracking-tight italic drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)] px-4 mt-4">
               {content?.subtitle || "Download TikTok videos without watermark in HD quality."}
             </p>
           </motion.div>
@@ -327,7 +327,7 @@ function TiktokContent({
                 <Info className={`h-8 w-8 ${cx.text}`} />
                 {content.seo.title}
               </h2>
-              <p className={cn("mt-6 text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed font-medium text-center max-w-3xl mx-auto opacity-90")}>
+              <p className={cn("mt-4 text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed font-medium text-center max-w-3xl mx-auto opacity-90")}>
                 {content?.seo?.desc || pageSeo?.desc}
               </p>
               
@@ -365,7 +365,7 @@ function TiktokContent({
                   </div>
                 )}
 
-                <div className="mt-6 sm:mt-20">
+                <div className="mt-4 sm:mt-20">
                   <h2 className="flex items-center justify-center gap-3 text-3xl font-black text-neutral-900 dark:text-white tracking-widest uppercase italic text-center">
                     <HelpCircle className={`h-8 w-8 ${cx.text}`} />
                     {content.faq?.title || dict.faq?.title || "FAQ"}

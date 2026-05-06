@@ -39,7 +39,7 @@ export function Footer({ locale, dict }: { locale: string, dict: any }) {
               <div className="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl bg-slate-900 shadow-xl group-hover:scale-110 transition-transform">
                 <Image 
                   src="/icon.png" 
-                  alt="SavClip Logo" 
+                  alt="SavClip - Best Multi-Platform Video Downloader Logo" 
                   width={32} 
                   height={32} 
                   className="object-contain"
@@ -187,7 +187,6 @@ export function Footer({ locale, dict }: { locale: string, dict: any }) {
                        { name: "Video Converter", href: "/instagram-video-converter" },
                        { name: "MP3 Converter", href: "/instagram-mp3-converter-downloader" },
                        { name: "MP4 Converter", href: "/instagram-mp4-converter-downloader" },
-                       { name: "4K Downloader", href: "/instagram-4k-video-downloader" },
                        { name: "HD Video Download", href: "/instagram-video-download-hd" },
                        { name: "HD Photo Download", href: "/instagram-photo-download-hd" },
                        { name: "HD Story Download", href: "/instagram-story-download-hd" },
@@ -304,7 +303,6 @@ export function Footer({ locale, dict }: { locale: string, dict: any }) {
                        { name: "Link Downloader", href: "/facebook-link-video-downloader" },
                        { name: "MP3 Converter Pro", href: "/facebook-mp3-converter-downloader" },
                        { name: "MP4 Converter Pro", href: "/facebook-mp4-converter-downloader" },
-                       { name: "No Ads Downloader", href: "/facebook-no-ads-downloader" },
                        { name: "Photo Download", href: "/facebook-photo-download" },
                        { name: "Private Story", href: "/facebook-private-story-download" },
                        { name: "Private Video HD", href: "/facebook-private-video-downloader-hd" },

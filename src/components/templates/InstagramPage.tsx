@@ -203,12 +203,7 @@ function InstagramPageContent({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <h1 className={cn(
-              "font-black tracking-tighter text-white leading-tight whitespace-nowrap drop-shadow-[0_8px_20px_rgba(0,0,0,0.4)] px-2",
-              pageTitle.length > 25 
-                ? "text-[clamp(1.5rem,6.5vw,2.6rem)] sm:text-8xl md:text-9xl" 
-                : "text-[1.7rem] min-[400px]:text-[3.2rem] sm:text-9xl md:text-[8rem]"
-            )}>
+            <h1 className="font-black tracking-tighter text-white leading-tight whitespace-nowrap drop-shadow-[0_4px_12px_rgba(0,0,0,0.4)] px-2 text-[clamp(1.3rem,6vw,3.5rem)] sm:text-6xl md:text-7xl text-center">
               {pageTitle}
             </h1>
           </motion.div>

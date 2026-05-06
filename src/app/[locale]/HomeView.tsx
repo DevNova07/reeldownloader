@@ -153,7 +153,7 @@ function HomeViewContent({ locale, dict }: { locale: Locale, dict: any }) {
           >
 
 
-            <h1 className="text-[27px] sm:text-5xl md:text-[5.5rem] font-black mb-1 italic drop-shadow-2xl tracking-tighter leading-tight bg-linear-to-b from-white to-white/60 bg-clip-text text-transparent pr-4">
+            <h1 className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-black text-white text-center whitespace-nowrap">
               {homeDict.hero.title_1}
             </h1>
             <p className="text-[10px] sm:text-sm md:text-lg font-medium text-white/90 text-center px-4 mb-1 whitespace-nowrap">

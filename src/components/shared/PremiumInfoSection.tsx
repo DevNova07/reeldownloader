@@ -59,9 +59,9 @@ export function PremiumInfoSection({
                {/* Decorative background effects */}
                <div className="absolute inset-0 bg-linear-to-tr from-pink-500/20 to-purple-500/20 blur-3xl rounded-full animate-pulse" />
                
-               <Image
-                 src={imageSrc}
-                 alt={title}
+                <Image
+                  src={imageSrc}
+                  alt={`${title} Premium 3D Logo - High Quality Social Media Downloader Asset`}
                  fill
                  className="object-contain drop-shadow-[0_35px_35px_rgba(255,0,128,0.3)] hover:scale-105 transition-transform duration-500"
                  sizes="(max-width: 768px) 256px, 384px"

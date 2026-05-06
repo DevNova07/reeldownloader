@@ -179,15 +179,10 @@ function YoutubeContent({
             transition={{ duration: 0.4 }}
             className="flex flex-col items-center w-full"
           >
-            <h1 className={cn(
-              "font-black tracking-tighter text-white leading-tight whitespace-nowrap drop-shadow-[0_8px_20px_rgba(0,0,0,0.4)] px-2",
-              pageTitle.length > 25 
-                ? "text-[clamp(1.5rem,6.5vw,2.6rem)] sm:text-8xl md:text-9xl" 
-                : "text-[1.7rem] min-[400px]:text-[3.2rem] sm:text-9xl md:text-[8rem]"
-            )}>
+            <h1 className="font-black tracking-tighter text-white leading-tight whitespace-nowrap drop-shadow-[0_8px_20px_rgba(0,0,0,0.4)] px-2 text-[clamp(1.5rem,7vw,4rem)] sm:text-7xl md:text-8xl text-center">
               {pageTitle}
             </h1>
-            <p className="mx-auto max-w-2xl text-[clamp(0.85rem,3.5vw,1.1rem)] sm:text-lg font-medium text-white/80 tracking-tight italic drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)] px-4 mt-1 whitespace-nowrap overflow-hidden text-ellipsis">
+            <p className="mx-auto max-w-2xl text-[clamp(0.85rem,3.5vw,1.1rem)] sm:text-lg font-medium text-white/80 tracking-tight italic drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)] px-4 mt-4 whitespace-nowrap overflow-hidden text-ellipsis">
               {content?.subtitle || "Fast and secure YouTube downloader."}
             </p>
           </motion.div>
@@ -308,7 +303,7 @@ function YoutubeContent({
                 <Info className={`h-8 w-8 ${cx.text}`} />
                 {content.seo.title}
               </h2>
-              <p className={cn("mt-6 text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed font-medium text-center max-w-3xl mx-auto opacity-90")}>
+              <p className={cn("mt-4 text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed font-medium text-center max-w-3xl mx-auto opacity-90")}>
                 {content?.seo?.desc || pageSeo?.desc}
               </p>
               
@@ -345,7 +340,7 @@ function YoutubeContent({
                 </div>
               )}
 
-            <div className="mt-6 sm:mt-20">
+            <div className="mt-4 sm:mt-20">
               <h2 className="flex items-center justify-center gap-3 text-3xl font-black text-neutral-900 dark:text-white tracking-widest uppercase italic text-center">
                 <HelpCircle className={`h-8 w-8 ${cx.text}`} />
                 {content.faq?.title || dict.faq?.title || "FAQ"}

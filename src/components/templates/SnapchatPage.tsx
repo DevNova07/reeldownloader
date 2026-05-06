@@ -179,7 +179,7 @@ function SnapchatContent({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <h1 className="text-[clamp(1.4rem,5.5vw,2.8rem)] min-[400px]:text-[clamp(1.6rem,7.5vw,3.5rem)] sm:text-7xl font-black text-white tracking-tight drop-shadow-2xl mb-4 whitespace-nowrap">
+            <h1 className="font-black tracking-tighter text-white leading-tight whitespace-nowrap drop-shadow-[0_8px_20px_rgba(0,0,0,0.4)] px-2 text-[clamp(1.5rem,7vw,4.5rem)] sm:text-7xl md:text-8xl lg:text-9xl text-center">
               {pageTitle}
             </h1>
             <p className="mx-auto max-w-2xl text-[clamp(0.85rem,3.5vw,1.1rem)] sm:text-xl font-medium text-white/80 tracking-tight italic drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)] px-4 mt-2">
