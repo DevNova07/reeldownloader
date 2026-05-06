@@ -63,8 +63,9 @@ function TiktokContent({
   const [autoTriggerDownload, setAutoTriggerDownload] = React.useState(false)
   const [searchCounter, setSearchCounter] = React.useState(0)
   
-  const { addToHistory } = useDownloadHistory("tiktok");
+  const { history: recentDownloads, addToHistory, clearHistory } = useDownloadHistory("tiktok");
   const searchParams = useSearchParams()
+  const sharedUrl = searchParams.get('url') || "";
 
   const handleSearch = async (url: string, isAutoTrigger = false) => {
     setSearchCounter(prev => prev + 1);
@@ -131,7 +132,6 @@ function TiktokContent({
     }
   }
 
-  const sharedUrl = searchParams.get('url') || ""
 
   // Auto-download logic for PWA Share Target
   useAutoDownload(handleSearch, locale, "tiktok")
@@ -143,6 +143,27 @@ function TiktokContent({
     blue: { text: "text-blue-400", bg: "bg-cyan-500", border: "border-blue-600", bgAccent: "bg-blue-500/10", ribbon: "from-black via-slate-900 to-blue-900", gradient: "from-blue-600 via-blue-500 to-cyan-500", ribbonAcc: "from-blue-600 via-cyan-600 to-blue-700", shadow: "shadow-[0_20px_50px_rgba(37,99,235,0.3)]", effect: "bg-blue-500", mainText: "text-blue-300" },
   };
   const cx = colors[themeColor] || colors.pink;
+
+  const infoData = React.useMemo(() => {
+    switch (activeTab) {
+      case "story":
+        return {
+          title: "TikTok Story Downloader Online",
+          desc: "Download TikTok stories in original HD quality without any watermark using SavClip. Our specialized story saver allows you to preserve temporary stories from your favorite creators before they disappear.\n\nThe tool is completely free, anonymous, and requires no login. Simply paste the TikTok story link above and save the video instantly to your gallery."
+        };
+      case "music":
+        return {
+          title: "TikTok MP3 & Audio Downloader",
+          desc: "Extract high-quality audio and MP3 from any TikTok video with SavClip. Our TikTok to MP3 converter is perfect for saving viral sounds, background music, or trending songs in crystal clear bitrates.\n\nEnjoy fast and unlimited audio extractions for free. No installation or registration is needed. Just paste the TikTok URL above and choose the MP3 format to start your download."
+        };
+      case "video":
+      default:
+        return {
+          title: "TikTok Video Downloader No Watermark",
+          desc: "SavClip is the best TikTok video downloader that lets you download TikTok videos without watermark in original HD quality. Get clean videos without logos or usernames for a professional viewing experience.\n\nOur service is ultra-fast, secure, and works seamlessly on mobile and desktop. Simply paste the TikTok link above and click download to save your favorite videos instantly for free."
+        };
+    }
+  }, [activeTab]);
 
   return (
     <div className="flex flex-col">
@@ -157,13 +178,12 @@ function TiktokContent({
           <PlatformTabs   
             activeId={activeTab} 
             activeColor={cx.text}
-            tabs={dict.tabs}
+            tabs={dict?.tabs}
             locale={locale}
             items={[
-              { id: "video", label: dict.tabs?.video || "Video", href: "/tiktok", icon: <Film className="h-4 w-4" /> },
-              { id: "story", label: dict.tabs?.story || "Story", href: "/tiktok/story", icon: <StopCircle className="h-4 w-4" /> },
-              { id: "music", label: dict.tabs?.music || "Music", href: "/tiktok/music", icon: <MusicIcon className="h-4 w-4" /> },
-              { id: "photo", label: dict.tabs?.photo || "Photo", href: "/tiktok/photo", icon: <Camera className="h-4 w-4" /> },
+              { id: "video", label: dict?.tabs?.video || "Video", href: "/tiktok", icon: <Film className="h-4 w-4" /> },
+              { id: "story", label: dict?.tabs?.story || "Story", href: "/tiktok-story-downloader", icon: <StopCircle className="h-4 w-4" /> },
+              { id: "music", label: dict?.tabs?.music || "Music", href: "/tiktok-mp3-downloader", icon: <MusicIcon className="h-4 w-4" /> },
             ]} 
           />
 
@@ -184,15 +204,16 @@ function TiktokContent({
               dict={dict}
               validate={isAnyPlatformUrl}
               buttonClass={`bg-linear-to-br ${cx.ribbonAcc} text-white ${cx.shadow} ring-1 ring-inset ring-white/20`}
-              iconClass={cx.text}
-              initialValue={searchParams.get('url') || ""}
+              iconClass={`text-white`}
+              initialValue={sharedUrl}
             />
 
             <p className="mx-auto mb-4 max-w-2xl mt-8 mb-2 text-sm font-bold text-white/60 tracking-widest uppercase italic hidden sm:block">
               {content?.subtitle || pageSeo?.desc || "Fast and secure TikTok downloader."}
             </p>
 
-
+            <AnimatePresence>
+            </AnimatePresence>
 
             {error && (
               <motion.div
@@ -213,7 +234,7 @@ function TiktokContent({
 
             <TrustBadges dict={dict} />
             <TrendingBar accentColor={cx.bg} />
-            <DownloadCounter accentColor={cx.mainText} />
+            <DownloadCounter accentColor={cx.text} />
             
             <LoadingBar isLoading={isLoading} gradient={cx.gradient} />
           </div>
@@ -231,8 +252,8 @@ function TiktokContent({
       </section>
 
       <PremiumInfoSection 
-        title={pageTitle}
-        description={content?.seo?.desc || pageSeo?.desc}
+        title={infoData.title}
+        description={infoData.desc}
         imageSrc="/images/tiktok-3d-logo.png"
       />
 

@@ -15,7 +15,7 @@ import { LoadingBar } from "@/components/ui/LoadingBar"
 import { DownloadCounter } from "@/components/ui/DownloadCounter"
 import { useDownloadHistory, getCached, setCached } from "@/hooks/useDownloadHistory"
 import { HeroEffect } from "@/components/shared/HeroEffect"
-import { CheckCircle2, Film, HelpCircle, Info, Music as MusicIcon, PlaySquare, ShieldCheck, Youtube, Zap } from "lucide-react"
+import { CheckCircle2, Film, HelpCircle, Image, Info, Music as MusicIcon, PlaySquare, ShieldCheck, Youtube, Zap } from "lucide-react"
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs"
 import { cn } from "@/utils/cn"
 import { toast } from "react-hot-toast"
@@ -64,6 +64,7 @@ function YoutubeContent({
   
   const { addToHistory } = useDownloadHistory("youtube");
   const searchParams = useSearchParams()
+  const sharedUrl = searchParams.get('url') || "";
 
   const handleSearch = async (url: string, isAutoTrigger = false) => {
     setSearchCounter(prev => prev + 1)
@@ -116,11 +117,38 @@ function YoutubeContent({
 
   const colors: Record<string, any> = {
     red: { text: "text-red-500", bg: "bg-red-600", border: "border-red-600", bgAccent: "bg-red-600/10", ribbon: "from-red-600 to-red-800", gradient: "from-red-600 via-red-500 to-orange-500", effect: "bg-red-500" },
-    orange: { text: "text-orange-500", bg: "bg-orange-600", border: "border-orange-600", bgAccent: "bg-orange-600/10", ribbon: "from-orange-600 to-red-700", gradient: "from-orange-600 via-orange-500 to-red-500", effect: "bg-orange-500" },
+    red: { text: "text-red-500", bg: "bg-red-600", border: "border-red-600", bgAccent: "bg-red-600/10", ribbon: "from-red-600 to-red-800", ribbonAcc: "from-red-600 to-amber-500", gradient: "from-red-600 via-red-500 to-orange-500", effect: "bg-red-500", shadow: "shadow-[0_20px_50px_rgba(220,38,38,0.3)]" },
+    orange: { text: "text-orange-500", bg: "bg-orange-600", border: "border-orange-600", bgAccent: "bg-orange-600/10", ribbon: "from-orange-600 to-red-700", ribbonAcc: "from-orange-600 to-red-600", gradient: "from-orange-600 via-orange-500 to-red-500", effect: "bg-orange-500", shadow: "shadow-[0_20px_50px_rgba(249,115,22,0.3)]" },
     amber: { text: "text-amber-500", bg: "bg-amber-600", border: "border-amber-600", bgAccent: "bg-amber-600/10", ribbon: "from-amber-600 to-orange-700", gradient: "from-amber-600 via-amber-500 to-orange-500", effect: "bg-amber-500" },
     rose: { text: "text-rose-500", bg: "bg-rose-600", border: "border-rose-600", bgAccent: "bg-rose-600/10", ribbon: "from-rose-600 to-red-800", gradient: "from-rose-600 via-rose-500 to-red-500", effect: "bg-rose-500" },
   };
   const cx = colors[themeColor] || colors.red;
+
+  const infoData = React.useMemo(() => {
+    switch (activeTab) {
+      case "thumbnail":
+        return {
+          title: "Download YouTube Thumbnails in HD & 4K",
+          desc: "Save high-quality YouTube thumbnails and video covers directly to your device with SavClip. Our tool extracts the original image file in the highest resolution available, including HD, 4K, and MQ formats.\n\nPerfect for creators, researchers, and designers. Simply paste the YouTube video link above and get the thumbnail image instantly for free. No registration or software installation required."
+        };
+      case "shorts":
+        return {
+          title: "YouTube Shorts Downloader Online",
+          desc: "Download YouTube Shorts in high resolution instantly with SavClip. Our specialized shorts downloader allows you to save viral vertical videos directly to your device for offline viewing.\n\nThe tool is completely free, secure, and works on all devices without requiring any software installation. Simply paste the YouTube Shorts link above and get your video in seconds."
+        };
+      case "music":
+        return {
+          title: "YouTube to MP3 Converter Pro",
+          desc: "Extract high-quality audio and MP3 from any YouTube video with SavClip. Our professional YouTube to MP3 converter is perfect for saving music, podcasts, or lectures in crystal clear bitrates up to 320kbps.\n\nEnjoy fast and unlimited audio extractions for free. No registration or login is required. Just paste the YouTube URL above and choose the MP3 format to start your download."
+        };
+      case "video":
+      default:
+        return {
+          title: "YouTube Video Downloader Online",
+          desc: "Download YouTube videos in 4K, 1080p, and HD quality quickly and securely with SavClip. Our YouTube video downloader is the most reliable tool for saving videos for offline viewing without any hassle.\n\nEnjoy unlimited downloads with no login required. Simply paste the video URL above and click the download button to get high-quality MP4 files in seconds. SavClip works perfectly on mobile, tablet, and desktop."
+        };
+    }
+  }, [activeTab]);
 
   return (
     <div className="flex flex-col">
@@ -134,14 +162,14 @@ function YoutubeContent({
         <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-3 sm:gap-6">
           <PlatformTabs   
             activeId={activeTab} 
-            activeColor="text-red-600"
-            tabs={dict.tabs}
+            activeColor={cx.text}
+            tabs={dict?.tabs}
             locale={locale}
             items={[
-              { id: "video", label: dict.tabs?.video || "Video", href: "/youtube", icon: <Film className="h-4 w-4" /> },
-              { id: "shorts", label: dict.tabs?.shorts || "Shorts", href: "/youtube/shorts", icon: <PlaySquare className="h-4 w-4" /> },
-              { id: "movies", label: dict.tabs?.movies || "Movies", href: "/youtube/movies", icon: <Film className="h-4 w-4" /> },
-              { id: "music", label: dict.tabs?.music || "Music", href: "/youtube/music", icon: <MusicIcon className="h-4 w-4" /> },
+              { id: "video", label: dict?.tabs?.video || "Video", href: "/youtube", icon: <Film className="h-4 w-4" /> },
+              { id: "shorts", label: dict?.tabs?.shorts || "Shorts", href: "/youtube-shorts-downloader", icon: <PlaySquare className="h-4 w-4" /> },
+              { id: "music", label: dict?.tabs?.music || "Music", href: "/youtube-to-mp3", icon: <MusicIcon className="h-4 w-4" /> },
+              { id: "thumbnail", label: "Thumbnail", href: "/youtube-thumbnail-downloader", icon: <Image className="h-4 w-4" /> },
             ]} 
           />
 
@@ -161,9 +189,9 @@ function YoutubeContent({
               isLoading={isLoading} 
               dict={dict}
               validate={isAnyPlatformUrl}
-              initialValue={searchParams.get('url') || ""}
-              buttonClass={`bg-white text-red-600 hover:bg-neutral-100 shadow-2xl`}
-              iconClass="text-red-600"
+              buttonClass={`bg-linear-to-br ${cx.ribbonAcc} text-white ${cx.shadow} ring-1 ring-inset ring-white/20`}
+              iconClass={`text-white`}
+              initialValue={sharedUrl}
             />
 
             <p className="mx-auto mb-4 max-w-2xl mt-8 mb-2 text-sm font-bold text-white/60 tracking-widest uppercase italic hidden sm:block">
@@ -173,28 +201,13 @@ function YoutubeContent({
 
 
             <AnimatePresence>
-              {error && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  className="mx-auto max-w-3xl mt-4 p-4 rounded-2xl bg-red-500/20 border-2 border-red-500/50 text-white font-black tracking-wider shadow-2xl backdrop-blur-md"
-                >
-                  <div className="flex items-center gap-3 text-left">
-                    <div className="bg-red-500 p-1.5 rounded-lg shrink-0">
-                      <Info className="h-5 w-5 text-white" />
-                    </div>
-                    {error}
-                  </div>
-                </motion.div>
-              )}
             </AnimatePresence>
 
-            <HeroQuickGuide steps={dict?.guide?.steps || []} accentColor="text-white" />
+            <HeroQuickGuide steps={dict?.guide?.steps || []} accentColor={cx.text} />
 
             <TrustBadges dict={dict} />
             <TrendingBar accentColor={cx.bg} />
-            <DownloadCounter accentColor="text-white/80" />
+            <DownloadCounter accentColor={cx.text} />
             
             <LoadingBar isLoading={isLoading} gradient={cx.gradient} />
           </div>
@@ -204,7 +217,8 @@ function YoutubeContent({
             isLoading={isLoading}
             autoTriggerDownload={autoTriggerDownload}
             searchCounter={searchCounter}
-            buttonStyle="bg-linear-to-r from-red-600 to-amber-500 text-white shadow-[0_20px_50px_rgba(220,38,38,0.3)] ring-1 ring-inset ring-white/20 hover:brightness-110 active:scale-95"
+            buttonStyle={`bg-linear-to-br ${cx.ribbonAcc} text-white ${cx.shadow} hover:brightness-110 active:scale-95`}
+            accentText={cx.text}
             accentBg={cx.bgAccent}
             accentBorder={cx.border}
           />
@@ -214,8 +228,8 @@ function YoutubeContent({
 
 
       <PremiumInfoSection 
-        title={pageTitle}
-        description={content?.seo?.desc || pageSeo?.desc}
+        title={infoData.title}
+        description={infoData.desc}
         imageSrc="/images/youtube-3d-logo.png"
       />
 

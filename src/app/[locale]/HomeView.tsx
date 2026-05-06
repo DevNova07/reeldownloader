@@ -90,7 +90,12 @@ function HomeViewContent({ locale, dict }: { locale: Locale, dict: any }) {
   useAutoDownload(handleSearch, locale, "home")
 
   const homeDict = dict?.home || {
-    hero: { title_1: "Download Videos,", title_2: "Reels & Shorts Without Watermark in HD", subtitle: "Fast, free and secure video downloader." },
+    hero: { 
+      title_1: "Video Downloader Online", 
+      title_2: "Download Videos, Reels & Shorts", 
+      title_3: "Without Watermark (HD)",
+      subtitle: "Fast, free and secure video downloader." 
+    },
     trust: { users: "Trusted by 100,000+ users", no_login: "No Login Required", free: "100% Free", unlimited: "Unlimited Downloads" },
     intro: "SavClip is a free online video downloader...",
     stats: { downloads: "1.2M+", users: "100K+", uptime: "99.9%" },
@@ -127,38 +132,35 @@ function HomeViewContent({ locale, dict }: { locale: Locale, dict: any }) {
         data={dict.faq}
       />
 
-      <section className="relative overflow-hidden bg-linear-to-br from-indigo-950 via-purple-900 to-rose-900 px-4 pt-8 pb-6 sm:pt-10 sm:pb-12 sm:px-6 lg:px-8">
-        <HeroEffect color="bg-indigo-500" intensity="high" />
+      <section className="relative overflow-hidden bg-linear-to-r from-blue-700 to-indigo-900 px-4 pt-8 pb-0 sm:pt-10 sm:pb-0 sm:px-6 lg:px-8">
+        <HeroEffect color="bg-blue-400" intensity="high" />
         
         <div className="absolute inset-0 z-0 opacity-30">
-          <div className="absolute -top-1/4 -left-1/4 h-[800px] w-[800px] animate-pulse rounded-full bg-indigo-500/20 blur-3xl" />
-          <div className="absolute -bottom-1/4 -right-1/4 h-[800px] w-[800px] animate-pulse rounded-full bg-rose-500/20 blur-3xl" />
+          <div className="absolute -top-1/4 -left-1/4 h-[800px] w-[800px] animate-pulse rounded-full bg-blue-500/20 blur-3xl" />
+          <div className="absolute -bottom-1/4 -right-1/4 h-[800px] w-[800px] animate-pulse rounded-full bg-indigo-500/20 blur-3xl" />
         </div>
 
         <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-3 sm:gap-6">
           <SocialPlatformBar 
             activeId="home" 
-            className="!justify-center gap-2 sm:!gap-3 !py-3 !px-6 sm:!py-4 sm:!px-8 !w-fit rounded-[3rem]" 
+            className="!justify-center gap-2 sm:!gap-3 !py-3 !px-6 sm:!py-4 sm:!px-8 !w-fit rounded-2xl mt-4 sm:mt-8 border border-white/10 bg-white/5 backdrop-blur-2xl shadow-2xl" 
           />
           
           <motion.div
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
-            className="flex flex-col items-center gap-4"
+            className="flex flex-col items-center gap-4 mt-6 sm:mt-14"
           >
 
 
-            <h1 className="max-w-6xl flex flex-col items-center gap-1 sm:gap-2 mb-0 mt-4 sm:mt-6 text-center px-4 tracking-tight italic drop-shadow-2xl leading-[1.1]">
-              <span className="text-4xl sm:text-5xl md:text-6xl font-bold text-white/90">{homeDict.hero.title_1}</span>
-              <span className="text-5xl sm:text-6xl md:text-7xl font-black text-white">{homeDict.hero.title_2}</span>
-              <span className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white/80 mt-1 sm:mt-2">{homeDict.hero.title_3}</span>
+            <h1 className="text-[27px] sm:text-5xl md:text-[5.5rem] font-black mb-1 italic drop-shadow-2xl tracking-tighter leading-tight bg-linear-to-b from-white to-white/60 bg-clip-text text-transparent pr-4">
+              {homeDict.hero.title_1}
             </h1>
-            <p className="text-sm sm:text-base md:text-lg text-white/80 font-medium text-center max-w-3xl px-4 mt-0 mb-2">
-              {homeDict.hero.subtitle}
-            </p>
-          </motion.div>
+            <p className="text-[10px] sm:text-sm md:text-lg font-medium text-white/90 text-center px-4 mb-1 whitespace-nowrap">
+              {homeDict.hero.title_2} {homeDict.hero.title_3}
+            </p>          </motion.div>
 
-          <div className="w-full max-w-4xl mt-4">
+          <div className="w-full max-w-4xl mt-0">
             <SearchBar
               onSearch={handleSearch}
               isLoading={isLoading}
@@ -166,14 +168,15 @@ function HomeViewContent({ locale, dict }: { locale: Locale, dict: any }) {
               validate={isSmartInput}
               initialValue={sharedUrl}
               className="shadow-3xl"
+              buttonClass="bg-linear-to-br from-blue-600 via-blue-700 to-indigo-800 text-white shadow-[0_20px_50px_rgba(37,99,235,0.3)] ring-1 ring-inset ring-white/20"
+              iconClass="text-white"
             />
           </div>
 
 
 
-          <TrustBadges dict={dict} />
-          <DownloadCounter accentColor="text-indigo-300" />
-          <TrendingBar accentColor="bg-indigo-600" />
+          <DownloadCounter accentColor="text-blue-200" />
+          <TrendingBar accentColor="bg-blue-600" />
 
           <div className="mt-8 flex flex-col items-center gap-8 w-full">
             <LoadingBar
@@ -196,14 +199,18 @@ function HomeViewContent({ locale, dict }: { locale: Locale, dict: any }) {
         </div>
       </section>
 
-      <section className="py-20 bg-white dark:bg-black px-4">
+      <section className="pt-12 pb-20 bg-white dark:bg-black px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-black text-neutral-900 dark:text-white uppercase italic tracking-widest mb-8">
-            Free Online Video Downloader
+          <h2 className="text-2xl font-black text-neutral-900 dark:text-white italic tracking-tight mb-8">
+            Free Video Downloader Online
           </h2>
-          <p className="text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed font-medium">
-            {homeDict.intro}
-          </p>
+          <div className="space-y-6">
+            {homeDict.intro.split('\n\n').map((paragraph, idx) => (
+              <p key={idx} className="text-lg sm:text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed font-medium">
+                {paragraph}
+              </p>
+            ))}
+          </div>
         </div>
       </section>
 

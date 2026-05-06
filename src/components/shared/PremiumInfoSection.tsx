@@ -29,12 +29,12 @@ export function PremiumInfoSection({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="flex flex-col items-center"
+            className="flex flex-col items-center w-full"
           >
-            <h2 className="text-3xl font-black tracking-tight text-neutral-900 dark:text-white sm:text-5xl lg:text-7xl uppercase italic leading-[1.1]">
+            <h2 className="text-2xl font-black tracking-tight text-neutral-900 dark:text-white sm:text-4xl lg:text-5xl leading-[1.1] text-center">
               {title}
             </h2>
-            <p className="mt-8 text-lg sm:text-2xl text-neutral-600 dark:text-neutral-400 leading-relaxed font-medium max-w-3xl">
+            <p className="mt-8 text-lg sm:text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed font-medium max-w-4xl whitespace-pre-line text-center">
               {description}
             </p>
             <div className="mt-10 flex flex-wrap justify-center items-center gap-4">

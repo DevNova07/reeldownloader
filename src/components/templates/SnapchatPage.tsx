@@ -15,7 +15,7 @@ import { LoadingBar } from "@/components/ui/LoadingBar"
 import { DownloadCounter } from "@/components/ui/DownloadCounter"
 import { useDownloadHistory, getCached, setCached } from "@/hooks/useDownloadHistory"
 import { HeroEffect } from "@/components/shared/HeroEffect"
-import { Camera, CheckCircle2, Ghost, HelpCircle, Info, Play, ShieldCheck, StopCircle, Zap } from "lucide-react"
+import { Camera, CheckCircle2, Ghost, HelpCircle, Info, Music as MusicIcon, Play, ShieldCheck, StopCircle, Zap } from "lucide-react"
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs"
 import { toast } from "react-hot-toast"
 const TrustBadges = dynamic(() => import("@/components/ui/TrustBadges").then(m => m.TrustBadges))
@@ -62,8 +62,9 @@ function SnapchatContent({
   const [autoTriggerDownload, setAutoTriggerDownload] = React.useState(false)
   const [searchCounter, setSearchCounter] = React.useState(0)
   
-  const { addToHistory } = useDownloadHistory("snapchat");
+  const { history: recentDownloads, addToHistory, clearHistory } = useDownloadHistory("snapchat");
   const searchParams = useSearchParams()
+  const sharedUrl = searchParams.get('url') || "";
 
 
 
@@ -124,6 +125,32 @@ function SnapchatContent({
   };
   const cx = colors[themeColor] || colors.yellow;
 
+  const infoData = React.useMemo(() => {
+    switch (activeTab) {
+      case "spotlight":
+        return {
+          title: "Snapchat Spotlight Downloader Online",
+          desc: "SavClip is the premier tool for downloading Snapchat Spotlight videos in original HD quality without any watermark. Save viral Spotlight content directly to your phone or computer instantly.\n\nOur service is fast, 100% free, and requires no login or extra software. Simply paste the Snapchat Spotlight link above to enjoy high-speed downloads for offline viewing and sharing."
+        };
+      case "story":
+        return {
+          title: "Snapchat Story Saver & Anonymous Viewer",
+          desc: "Download and view Snapchat stories anonymously with SavClip. Our specialized story saver allows you to preserve public snaps in high resolution before they expire.\n\nEnjoy a secure and private downloading experience with no account needed. Just enter the Snapchat story or profile link above to start saving stories and highlights for free."
+        };
+      case "photo":
+        return {
+          title: "Snapchat Photo & Media Downloader",
+          desc: "Save Snapchat photos and high-quality images directly to your device gallery with SavClip. Our tool ensures you get the highest resolution available for any public Snapchat media.\n\nFast, reliable, and completely free to use. Paste the Snapchat image URL above and download your content in seconds without any registration."
+        };
+      case "video":
+      default:
+        return {
+          title: "Snapchat Video Downloader Online",
+          desc: "Download Snapchat videos, spotlights, and stories in original HD quality quickly and securely with SavClip. Our Snapchat downloader is the most reliable tool for saving public media without any hassle.\n\nEnjoy unlimited downloads with no login required. Simply paste the Snapchat URL above and click the download button to get high-quality videos in seconds. SavClip works perfectly on all mobile and desktop devices."
+        };
+    }
+  }, [activeTab]);
+
   return (
     <div className="flex flex-col">
       <StructuredData type="SoftwareApplication" data={pageSeo} />
@@ -137,13 +164,13 @@ function SnapchatContent({
           <PlatformTabs   
             activeId={activeTab} 
             activeColor={cx.text}
-            tabs={dict.tabs}
+            tabs={dict?.tabs}
             locale={locale}
             items={[
-              { id: "video", label: dict.tabs?.video || "Video", href: "/snapchat", icon: <Ghost className="h-4 w-4" /> },
-              { id: "spotlight", label: dict.tabs?.spotlight || "Spotlight", href: "/snapchat/spotlight", icon: <Play className="h-4 w-4" /> },
-              { id: "story", label: dict.tabs?.story || "Story", href: "/snapchat/story", icon: <StopCircle className="h-4 w-4" /> },
-              { id: "photo", label: dict.tabs?.photo || "Photo", href: "/snapchat/photo", icon: <Camera className="h-4 w-4" /> },
+              { id: "video", label: dict?.tabs?.video || "Video", href: "/snapchat", icon: <Ghost className="h-4 w-4" /> },
+              { id: "spotlight", label: dict?.tabs?.spotlight || "Spotlight", href: "/snapchat-spotlight-downloader", icon: <Play className="h-4 w-4" /> },
+              { id: "story", label: dict?.tabs?.story || "Story", href: "/snapchat-story-downloader", icon: <StopCircle className="h-4 w-4" /> },
+              { id: "photo", label: dict?.tabs?.photo || "Photo", href: "/snapchat-photo-downloader", icon: <Camera className="h-4 w-4" /> },
             ]} 
           />
 
@@ -212,8 +239,8 @@ function SnapchatContent({
       </section>
 
       <PremiumInfoSection 
-        title={pageTitle}
-        description={content?.seo?.desc || pageSeo?.desc}
+        title={infoData.title}
+        description={infoData.desc}
         imageSrc="/images/snapchat-3d-logo.png"
       />
 

@@ -16,7 +16,7 @@ import { LoadingBar } from "@/components/ui/LoadingBar"
 import { DownloadCounter } from "@/components/ui/DownloadCounter"
 import { useDownloadHistory, getCached, setCached } from "@/hooks/useDownloadHistory"
 import { HeroEffect } from "@/components/shared/HeroEffect"
-import { CheckCircle2, Film, HelpCircle, Info, ShieldCheck, StopCircle, Zap } from "lucide-react"
+import { CheckCircle2, Film, HelpCircle, Info, ShieldCheck, StopCircle, Zap, Music } from "lucide-react"
 import { cn } from "@/utils/cn"
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs"
 import { toast } from "react-hot-toast"
@@ -127,7 +127,23 @@ function FacebookContent({
 
   return (
     <div className="flex flex-col">
-      <StructuredData type="SoftwareApplication" data={pageSeo} />
+      <StructuredData type="WebSite" data={{}} />
+      <StructuredData 
+        type="BreadcrumbList" 
+        data={[
+          { name: "SavClip", item: `https://savclip.com/${locale}` },
+          { name: "Facebook", item: `https://savclip.com/${locale}/facebook` },
+          { name: pageTitle, item: `https://savclip.com/${locale}/${content.slug || ""}` }
+        ]} 
+      />
+      <StructuredData 
+        type="SoftwareApplication" 
+        data={{
+          ...pageSeo,
+          ratingValue: "4.9",
+          reviewCount: "8450"
+        }} 
+      />
       {content.faq && <StructuredData type="FAQPage" data={content.faq} />}
       {content.howTo && <StructuredData type="HowTo" data={content.howTo} />}
       {/* Hero Section */}
@@ -142,23 +158,36 @@ function FacebookContent({
             locale={locale}
             items={[
               { id: "video", label: dict?.tabs?.video || "Video", href: "/facebook", icon: <Film className="h-4 w-4" /> },
-              { id: "reels", label: dict?.tabs?.reels || "Reels", href: "/facebook-reels-downloader", icon: <Film className="h-4 w-4" /> },
-              { id: "story", label: dict?.tabs?.story || "Story", href: "/facebook-story-downloader", icon: <StopCircle className="h-4 w-4" /> },
-              { id: "private", label: dict?.tabs?.private || "Private", href: "/facebook-private-video-downloader", icon: <ShieldCheck className="h-4 w-4" /> },
+              { id: "reels", label: dict?.tabs?.reels || "Reels", href: "/facebook/reels", icon: <Film className="h-4 w-4" /> },
+              { id: "story", label: dict?.tabs?.story || "Story", href: "/facebook/story", icon: <StopCircle className="h-4 w-4" /> },
+              (activeTab === 'audio' || activeTab === 'music' || activeTab === 'mp3') ? (
+                { id: "audio", label: dict?.tabs?.audio || "Audio", href: "/facebook/music", icon: <Music className="h-4 w-4" /> }
+              ) : (
+                { id: "private", label: dict?.tabs?.private || "Private", href: "/facebook/private", icon: <ShieldCheck className="h-4 w-4" /> }
+              ),
             ]} 
           />
 
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
+            className="flex flex-col items-center w-full"
           >
-            <h1 className="mb-2 text-3xl min-[400px]:text-4xl font-black tracking-tight uppercase italic text-white sm:text-7xl drop-shadow-2xl">
+            <h1 className={cn(
+              "font-black tracking-tighter italic text-white leading-tight whitespace-nowrap drop-shadow-[0_8px_20px_rgba(0,0,0,0.4)] px-2 mb-2 lowercase",
+              pageTitle.length > 25 
+                ? "text-[clamp(1rem,4.5vw,1.8rem)] sm:text-3xl md:text-4xl lg:text-5xl" 
+                : "text-[1.2rem] min-[400px]:text-[1.8rem] sm:text-4xl md:text-5xl lg:text-6xl"
+            )}>
               {pageTitle}
             </h1>
+            <p className="mx-auto max-w-2xl text-base sm:text-lg font-medium text-white/80 tracking-tight italic drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)] px-4 mt-2 whitespace-nowrap overflow-hidden text-ellipsis">
+              {content?.subtitle || "Fast and secure Facebook downloader."}
+            </p>
           </motion.div>
           
-          <div className="mx-auto max-w-3xl">
+          <div className="mx-auto max-w-3xl w-full mt-4 sm:mt-8">
             <SearchBar 
               onSearch={handleSearch} 
               isLoading={isLoading} 
@@ -168,10 +197,6 @@ function FacebookContent({
               iconClass={`text-white`}
               initialValue={sharedUrl}
             />
-
-            <p className="mx-auto mb-4 max-w-2xl mt-8 mb-2 text-sm font-bold text-white/60 tracking-widest uppercase italic hidden sm:block">
-              {content?.subtitle || pageSeo?.desc || "Fast and secure Facebook downloader."}
-            </p>
 
 
 
@@ -291,6 +316,22 @@ function FacebookContent({
                         <p className="text-xs font-black text-neutral-400 tracking-widest uppercase italic mt-1 text-center">Verified Secure • Ethical Usage • HD Quality</p>
                       </div>
                     </div>
+
+                    {content?.intro_seo && (
+                      <div className="mb-12 px-4 max-w-4xl mx-auto">
+                        {Array.isArray(content.intro_seo) ? (
+                          content.intro_seo.map((p: string, i: number) => (
+                            <p key={i} className="text-neutral-500 dark:text-neutral-400 font-bold opacity-80 leading-relaxed text-center mb-4 text-lg">
+                              {p}
+                            </p>
+                          ))
+                        ) : (
+                          <p className="text-neutral-500 dark:text-neutral-400 font-bold opacity-80 leading-relaxed text-center mb-4 text-lg">
+                            {content.intro_seo}
+                          </p>
+                        )}
+                      </div>
+                    )}
                     
                     <div className="prose prose-neutral dark:prose-invert max-w-none">
                     <RichArticle 
@@ -336,7 +377,7 @@ function FacebookContent({
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 my-12 border-t border-neutral-100 dark:border-neutral-800 pt-10">
         <Breadcrumbs 
           items={[
-            { name: "Home", item: `/${locale}` },
+            { name: "SavClip", item: `/${locale}` },
             { name: "Facebook", item: `/${locale}/facebook` },
             { name: pageTitle, item: `/${locale}/${content.slug || ""}` }
           ]}

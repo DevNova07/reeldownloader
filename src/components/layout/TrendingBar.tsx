@@ -58,7 +58,7 @@ export function TrendingBar({ accentColor = "bg-pink-600" }: TrendingBarProps) {
   if (items.length === 0) return null
 
   return (
-    <div className="hidden md:block mx-auto mt-6 w-full max-w-4xl overflow-hidden rounded-full border border-white/10 bg-black/20 px-4 py-2 backdrop-blur-md will-change-contents">
+    <div className="hidden md:block mx-auto mt-3 w-full max-w-4xl overflow-hidden rounded-full border border-white/10 bg-black/20 px-4 py-2 backdrop-blur-md will-change-contents">
       <div className="flex items-center gap-4">
         <div className="flex shrink-0 items-center gap-2">
           <span className="relative flex h-2 w-2">

@@ -149,7 +149,7 @@ export default function FacebookView({ dict, locale }: { dict: any, locale: stri
             transition={{ duration: 0.4 }}
             className="flex flex-col items-center"
           >
-            <h1 className="mb-0 text-3xl min-[400px]:text-4xl font-black tracking-tight uppercase italic text-white sm:text-7xl drop-shadow-2xl">
+            <h1 className="mb-0 text-xl min-[400px]:text-2xl font-black tracking-tight lowercase italic text-white sm:text-5xl drop-shadow-[0_8px_20px_rgba(0,0,0,0.4)] whitespace-nowrap">
               {fbDict.title}
             </h1>
             <p className="text-sm sm:text-base md:text-lg text-white/80 font-medium text-center max-w-3xl px-4 mt-0 mb-2">

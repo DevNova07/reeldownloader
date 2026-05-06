@@ -9,9 +9,9 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const dict = await getDictionary(locale);
   const snap = dict.platforms.snapchat;
   return {
-    title: snap.story.seo.title,
-    description: snap.story.seo.desc,
-    alternates: getSeoAlternates("snapchat/story", locale),
+    title: snap.spotlight.seo.title,
+    description: snap.spotlight.seo.desc,
+    alternates: getSeoAlternates("snapchat/spotlight", locale),
   };
 }
 
@@ -32,8 +32,8 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
     <SnapchatPageTemplate 
       locale={locale} 
       dict={dict} 
-      content={platforms?.snapchat?.story} 
-      activeTab="story"
+      content={platforms?.snapchat?.spotlight} 
+      activeTab="spotlight"
       themeColor="yellow"
     />
   )

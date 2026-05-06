@@ -70,6 +70,7 @@ function InstagramPageContent({
 
   const { history: recentDownloads, addToHistory, clearHistory } = useDownloadHistory("instagram");
   const searchParams = useSearchParams()
+  const sharedUrl = searchParams.get('url') || "";
 
   const handleSearch = async (url: string, isAutoTrigger = false) => {
     setSearchCounter(prev => prev + 1);
@@ -117,7 +118,6 @@ function InstagramPageContent({
     }
   };
 
-  const sharedUrl = searchParams.get('url') || ""
 
   // Auto-download logic for PWA Share Target
   useAutoDownload(handleSearch, locale, "instagram")
@@ -129,12 +129,39 @@ function InstagramPageContent({
   };
   const cx = colors[themeColor] || colors.pink;
 
+  const infoData = React.useMemo(() => {
+    switch (activeTab) {
+      case "reels":
+        return {
+          title: "Instagram Reels Downloader Online",
+          desc: "SavClip is the ultimate Instagram Reels downloader that lets you save your favorite reels in original HD quality without any watermark. Whether it's trending music, viral challenges, or creative clips, you can download Instagram reels instantly on any device including iPhone, Android, and PC.\n\nOur tool is 100% free, fast, and requires no login or installation. Simply paste the reel link above to enjoy high-speed downloads with no limits. Perfect for creators who want to archive inspiration or share reels offline in crystal clear resolution."
+        };
+      case "story":
+        return {
+          title: "Instagram Story Downloader & Saver",
+          desc: "Save and watch Instagram stories and highlights anonymously with our professional Instagram story downloader. SavClip allows you to download stories in high resolution without the uploader ever knowing you've viewed or saved them.\n\nWhether you want to preserve a memory or save a tutorial, our anonymous story saver works seamlessly on all browsers. No login is required, ensuring your privacy and security at all times. Simply enter the username or story link to start downloading unlimited Instagram stories and highlights for free."
+        };
+      case "photo":
+        return {
+          title: "Instagram Photo & DP Downloader",
+          desc: "Download Instagram photos, profile pictures, and carousels in their original high resolution with SavClip. Our Instagram photo downloader ensures you get the maximum quality available, perfect for saving high-res photography, design inspiration, or wallpapers.\n\nYou can download single images or entire carousel posts with just one click. The tool is fast, secure, and completely free to use without any registration. Just paste the image URL above to save Instagram photos directly to your gallery in seconds."
+        };
+      case "video":
+      default:
+        return {
+          title: "Instagram Video Download Online",
+          desc: "Download Instagram videos, reels, stories and IGTV in HD quality without watermark using SavClip. Our Instagram video downloader is fast, free and secure, allowing you to save videos instantly without login.\n\nWith this tool, you can easily download Instagram videos on mobile, desktop, or tablet. Simply paste your Instagram link above and click the download button to get high-quality videos in seconds. SavClip makes it easy to download Instagram content for offline viewing, content creation, or sharing."
+        };
+    }
+  }, [activeTab]);
+
   return (
     <div className="flex flex-col">
+      <StructuredData type="WebSite" data={{}} />
       <StructuredData 
         type="BreadcrumbList" 
         data={[
-          { name: "Home", item: `https://savclip.com/${locale}` },
+          { name: "SavClip", item: `https://savclip.com/${locale}` },
           { name: "Instagram", item: `https://savclip.com/${locale}/instagram` },
           { name: pageTitle, item: `https://savclip.com/${locale}/${content.slug || ""}` }
         ]} 
@@ -144,7 +171,7 @@ function InstagramPageContent({
         data={{
           ...pageSeo,
           ratingValue: "4.9",
-          reviewCount: "15420"
+          reviewCount: "12840"
         }} 
       />
       {content.faq && <StructuredData type="FAQPage" data={content.faq} />}
@@ -163,7 +190,11 @@ function InstagramPageContent({
               { id: "reels", label: dict?.tabs?.reels || "Reels", href: "/instagram/reels", icon: <Film className="h-4 w-4" /> },
               { id: "video", label: dict?.tabs?.video || "Video", href: "/instagram", icon: <Film className="h-4 w-4" /> },
               { id: "story", label: dict?.tabs?.story || "Story", href: "/instagram/story", icon: <StopCircle className="h-4 w-4" /> },
-              { id: "photo", label: dict?.tabs?.photo || "Photo", href: "/instagram/photo", icon: <Camera className="h-4 w-4" /> },
+              (activeTab === 'audio' || activeTab === 'music' || activeTab === 'mp3') ? (
+                { id: "audio", label: dict?.tabs?.audio || "Audio", href: "/instagram/music", icon: <MusicIcon className="h-4 w-4" /> }
+              ) : (
+                { id: "photo", label: dict?.tabs?.photo || "Photo", href: "/instagram/photo", icon: <Camera className="h-4 w-4" /> }
+              ),
             ]} 
           />
 
@@ -172,16 +203,19 @@ function InstagramPageContent({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <h1 className="text-3xl min-[400px]:text-4xl sm:text-6xl md:text-7xl font-black tracking-tighter italic text-white drop-shadow-2xl uppercase leading-tight">
+            <h1 className={cn(
+              "font-black tracking-tighter text-white leading-tight whitespace-nowrap drop-shadow-[0_8px_20px_rgba(0,0,0,0.4)] px-2",
+              pageTitle.length > 25 
+                ? "text-[clamp(1.5rem,6.5vw,2.6rem)] sm:text-8xl md:text-9xl" 
+                : "text-[1.7rem] min-[400px]:text-[3.2rem] sm:text-9xl md:text-[8rem]"
+            )}>
               {pageTitle}
             </h1>
           </motion.div>
 
-          <p className="mx-auto max-w-3xl mt-0 mb-2 text-sm sm:text-base md:text-lg text-white/80 font-medium text-center px-4">
+          <p className="mx-auto max-w-2xl text-base sm:text-lg font-medium text-white/80 tracking-tight italic drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)] px-4 mt-2 whitespace-nowrap overflow-hidden text-ellipsis">
             {content?.subtitle || pageSeo?.desc || "Fast and secure Instagram downloader."}
           </p>
-
-          
 
           <SearchBar
             onSearch={handleSearch}
@@ -211,7 +245,7 @@ function InstagramPageContent({
             )}
           </AnimatePresence>
 
-          <TrustBadges dict={dict} />
+
           <DownloadCounter accentColor={cx.text} />
           <TrendingBar />
 
@@ -285,8 +319,8 @@ function InstagramPageContent({
       </section>
 
       <PremiumInfoSection 
-        title="Instagram Video Downloader"
-        description="Download Instagram videos in HD quality for free. No watermark, no login required. Save IG Reels, IGTV & Stories instantly on any device. Fast & secure Instagram video downloader."
+        title={infoData.title}
+        description={infoData.desc}
         imageSrc="/images/instagram-3d-logo.png"
       />
 
@@ -374,6 +408,22 @@ function InstagramPageContent({
                           <p className="text-xs font-black text-neutral-400 tracking-widest uppercase italic mt-1 text-center">Verified Secure • Ethical Usage • HD Quality</p>
                         </div>
                       </div>
+
+                      {content?.intro_seo && (
+                        <div className="mb-12 px-4 max-w-4xl mx-auto">
+                          {Array.isArray(content.intro_seo) ? (
+                            content.intro_seo.map((p, i) => (
+                              <p key={i} className="text-neutral-500 dark:text-neutral-400 font-bold opacity-80 leading-relaxed text-center mb-4">
+                                {p}
+                              </p>
+                            ))
+                          ) : (
+                            <p className="text-neutral-500 dark:text-neutral-400 font-bold opacity-80 leading-relaxed text-center">
+                              {content.intro_seo}
+                            </p>
+                          )}
+                        </div>
+                      )}
                       
                       <div className="prose prose-neutral dark:prose-invert max-w-none">
                         <RichArticle 
@@ -454,6 +504,21 @@ function InstagramPageContent({
             children: (
               <div className="space-y-4">
                 <p className="text-sm font-black text-neutral-500 dark:text-neutral-400 mb-4 sm:hidden">{content?.subtitle}</p>
+                {content?.intro_seo && (
+                  <div className="mb-4">
+                    {Array.isArray(content.intro_seo) ? (
+                      content.intro_seo.map((p, i) => (
+                        <p key={i} className="text-xs font-bold text-neutral-500 dark:text-neutral-400 leading-relaxed mb-2">
+                          {p}
+                        </p>
+                      ))
+                    ) : (
+                      <p className="text-xs font-bold text-neutral-500 dark:text-neutral-400 leading-relaxed">
+                        {content.intro_seo}
+                      </p>
+                    )}
+                  </div>
+                )}
                 <p className="text-xs font-bold text-neutral-500 dark:text-neutral-400 leading-relaxed mb-4">
                   {content?.seo?.desc || pageSeo?.desc}
                 </p>
@@ -519,7 +584,7 @@ function InstagramPageContent({
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 my-12 border-t border-neutral-100 dark:border-neutral-800 pt-10">
         <Breadcrumbs 
           items={[
-            { name: "Home", item: `/${locale}` },
+            { name: "SavClip", item: `/${locale}` },
             { name: "Instagram", item: `/${locale}/instagram` },
             { name: pageTitle, item: `/${locale}/${content.slug || ""}` }
           ]}

@@ -1,17 +1,17 @@
 import { getSeoAlternates } from "@/lib/seo";
 import * as React from "react"
 import { type Locale, getDictionary } from "@/i18n"
-import SnapchatPageTemplate from "@/components/templates/SnapchatPage"
+import YoutubePageTemplate from "@/components/templates/YoutubePage"
 import { Metadata } from "next"
 
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await props.params;
   const dict = await getDictionary(locale);
-  const snap = dict.platforms.snapchat;
+  const youtube = dict.platforms.youtube;
   return {
-    title: snap.story.seo.title,
-    description: snap.story.seo.desc,
-    alternates: getSeoAlternates("snapchat/story", locale),
+    title: youtube.thumbnail.seo.title,
+    description: youtube.thumbnail.seo.desc,
+    alternates: getSeoAlternates("youtube/thumbnail", locale),
   };
 }
 
@@ -24,17 +24,17 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
   const dict = {
     ...rest,
     platforms: {
-      snapchat: platforms?.snapchat
+      youtube: platforms?.youtube
     }
   };
 
   return (
-    <SnapchatPageTemplate 
+    <YoutubePageTemplate 
       locale={locale} 
       dict={dict} 
-      content={platforms?.snapchat?.story} 
-      activeTab="story"
-      themeColor="yellow"
+      content={platforms?.youtube?.thumbnail} 
+      activeTab="thumbnail"
+      themeColor="red"
     />
   )
 }

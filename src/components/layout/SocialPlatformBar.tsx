@@ -59,7 +59,7 @@ const PLATFORMS = [
     name: "Snapchat",
     href: "/snapchat",
     icon: (
-      <svg viewBox="0 0 24 24" className="h-10 w-10 fill-current translate-y-2 translate-x-1">
+      <svg viewBox="0 0 24 24" className="h-6 w-6 fill-current">
         <path d="M12.015 1.5c-3.13 0-5.69 2.115-5.69 4.71 0 .235.02.46.06.678C6.31 7.02 6.13 7.15 5.92 7.15c-.4 0-.82-.285-1.12-.51-.155-.12-.305-.235-.43-.3-.135-.075-.24-.105-.33-.105-.26 0-.44.24-.44.605 0 .39.195.83.565 1.275.25.3.56.55.88.745.2.11.41.19.62.24-.03.11-.05.18-.08.28-.15.54-.425 1.05-.725 1.505-.18.275-.37.535-.555.77-.04.05-.07.1-.11.16-.27.35-.38.64-.38.93 0 .265.08.435.24.52.12.06.27.1.47.1.75 0 1.94-.48 2.76-.84.22-.095.4-.18.53-.25.105-.05.16-.08.175-.085.12.04.14.05.16.06l.03.01c.21.09.43.155.65.205.42.09.84.14 1.28.14.44 0 .86-.05 1.28-.14.22-.05.44-.115.65-.205l.03-.01c.02-.01.04-.02.16-.06l.175.085c.13.07.31.155.53.25.825.36 2.015.84 2.765.84.2 0 .35-.04.47-.1.16-.085.24-.255.24-.52 0-.29-.11-.58-.38-.93-.04-.06-.07-.11-.11-.16-.185-.235-.375-.495-.555-.77-.3-.455-.575-.965-.725-1.505-.03-.1-.05-.17-.08-.28.21-.05.42-.13.62-.24.32-.195.63-.445.88-.745.37-.445.565-.885.565-1.275 0-.365-.18-.605-.44-.605-.09 0-.195.03-.33.105-.125.065-.275.18-.43.3-.3.225-.72.51-1.12.51-.21 0-.39-.13-.465-.262.04-.218.06-.443.06-.678 0-2.595-2.56-4.71-5.69-4.71z" />
       </svg>
     ),
@@ -100,7 +100,7 @@ export function SocialPlatformBar({ activeId, className }: { activeId: string, c
   return (
     <div 
       suppressHydrationWarning={true}
-      className={cn("flex items-center justify-between sm:justify-center sm:gap-6 px-2.5 sm:px-4 py-1.5 sm:py-2.5 rounded-[2rem] bg-black/10 dark:bg-white/5 backdrop-blur-xl border border-white/10 w-full sm:w-fit max-w-[calc(100vw-1rem)] md:max-w-none mx-auto", className)}
+      className={cn("flex items-center justify-center gap-3.5 sm:gap-7 px-4 sm:px-8 py-2 sm:py-3 rounded-2xl bg-black/10 dark:bg-white/5 backdrop-blur-xl border border-white/10 w-full sm:w-fit max-w-[calc(100vw-1.5rem)] md:max-w-none mx-auto", className)}
     >
       {PLATFORMS.map((platform) => {
         const isActive = platform.id === activeId
@@ -114,18 +114,18 @@ export function SocialPlatformBar({ activeId, className }: { activeId: string, c
               className={cn(
                 "flex h-9 w-9 sm:h-12 sm:w-12 items-center justify-center rounded-full transition-all duration-300",
                 isActive 
-                  ? cn("bg-white shadow-xl shadow-white/20 scale-110", platform.color) 
-                  : "text-white/70 hover:text-white hover:bg-white/10"
+                  ? cn("bg-white shadow-xl shadow-white/20 scale-105", platform.color) 
+                  : "text-white/60 hover:text-white hover:bg-white/10"
               )}
             >
-              <div className={cn("transition-transform duration-300 group-hover:scale-110", isActive && "scale-90")}>
+              <div className={cn("transition-transform duration-300 group-hover:scale-110 flex items-center justify-center", isActive && "scale-90")}>
                 {platform.icon}
               </div>
             </motion.div>
             {isActive && (
               <motion.div
                 layoutId="activeDot"
-                className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-white shadow-lg"
+                className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)]"
               />
             )}
           </Link>
