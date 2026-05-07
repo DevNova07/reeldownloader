@@ -15,7 +15,6 @@ import type { Viewport } from "next";
 
 import { ScrollToTop } from "@/components/shared/ScrollToTop";
 import { Analytics } from "@/components/shared/Analytics";
-import { ToolSubNav } from "@/components/layout/ToolSubNav";
 import { GlobalPlatformNav } from "@/components/layout/GlobalPlatformNav";
 import { getSeoAlternates } from "@/lib/seo";
 
@@ -267,7 +266,6 @@ export default async function RootLayout(props: {
          <InstallPWA />
           <div className="flex min-h-screen flex-col overflow-x-hidden">
             <Navbar dict={layoutDict} />
-            <ToolSubNav />
             <main className="flex-1 min-h-[80vh]">
               {props.children}
             </main>

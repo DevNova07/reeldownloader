@@ -103,7 +103,7 @@ function HomeViewContent({ locale, dict }: { locale: Locale, dict: any }) {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col bg-linear-to-r from-fuchsia-600 via-purple-600 to-sky-500">
       <StructuredData
         type="BreadcrumbList"
         data={[
@@ -132,12 +132,12 @@ function HomeViewContent({ locale, dict }: { locale: Locale, dict: any }) {
         data={dict.faq}
       />
 
-      <section className="relative overflow-hidden bg-linear-to-r from-blue-700 to-indigo-900 px-4 pt-8 pb-0 sm:pt-10 sm:pb-0 sm:px-6 lg:px-8">
-        <HeroEffect color="bg-blue-400" intensity="high" />
+      <section className="relative overflow-hidden bg-transparent px-4 pt-8 pb-2 sm:pt-10 sm:pb-4 sm:px-6 lg:px-8">
+        <HeroEffect color="bg-fuchsia-400" intensity="high" />
         
-        <div className="absolute inset-0 z-0 opacity-30">
-          <div className="absolute -top-1/4 -left-1/4 h-[800px] w-[800px] animate-pulse rounded-full bg-blue-500/20 blur-3xl" />
-          <div className="absolute -bottom-1/4 -right-1/4 h-[800px] w-[800px] animate-pulse rounded-full bg-indigo-500/20 blur-3xl" />
+        <div className="absolute inset-0 z-0 opacity-40">
+          <div className="absolute -top-1/4 -left-1/4 h-[800px] w-[800px] animate-pulse rounded-full bg-fuchsia-500/30 blur-3xl" />
+          <div className="absolute -bottom-1/4 -right-1/4 h-[800px] w-[800px] animate-pulse rounded-full bg-sky-500/30 blur-3xl" />
         </div>
 
         <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-3 sm:gap-6">
@@ -167,16 +167,16 @@ function HomeViewContent({ locale, dict }: { locale: Locale, dict: any }) {
               dict={dict}
               validate={isSmartInput}
               initialValue={sharedUrl}
-              className="shadow-3xl"
-              buttonClass="bg-linear-to-br from-blue-600 via-blue-700 to-indigo-800 text-white shadow-[0_20px_50px_rgba(37,99,235,0.3)] ring-1 ring-inset ring-white/20"
+              className="shadow-4xl"
+              buttonClass="bg-linear-to-br from-pink-600 via-rose-600 to-pink-700 text-white font-black uppercase tracking-widest shadow-[0_25px_60px_rgba(0,0,0,0.5)] transition-all active:translate-y-[2px] active:shadow-none"
               iconClass="text-white"
             />
           </div>
 
 
 
-          <DownloadCounter accentColor="text-blue-200" />
-          <TrendingBar accentColor="bg-blue-600" />
+          <DownloadCounter accentColor="text-fuchsia-200" />
+          <TrendingBar accentColor="bg-fuchsia-600" />
 
           <div className="mt-8 flex flex-col items-center gap-8 w-full">
             <LoadingBar
@@ -190,16 +190,16 @@ function HomeViewContent({ locale, dict }: { locale: Locale, dict: any }) {
               isLoading={isLoading}
               autoTriggerDownload={autoTriggerDownload}
               searchCounter={searchCounter}
-              buttonStyle="bg-linear-to-br from-indigo-600 via-purple-600 to-rose-600 text-white shadow-[0_20px_50px_rgba(79,70,229,0.4)] ring-1 ring-inset ring-white/20"
-              accentText="text-purple-600"
-              accentBg="bg-purple-600/10"
-              accentBorder="border-purple-600"
+              buttonStyle="bg-linear-to-br from-pink-600 via-rose-600 to-pink-700 text-white font-black uppercase tracking-widest shadow-[0_25px_60px_rgba(0,0,0,0.5)] transition-all active:translate-y-[2px] active:shadow-none"
+              accentText="text-cyan-400"
+              accentBg="bg-cyan-500/10"
+              accentBorder="border-pink-600"
             />
           </div>
         </div>
       </section>
 
-      <section className="pt-12 pb-20 bg-white dark:bg-black px-4">
+      <section className="pt-16 pb-20 bg-white dark:bg-neutral-950 px-4 shadow-[0_-20px_60px_rgba(0,0,0,0.1)] relative z-20">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-2xl font-black text-neutral-900 dark:text-white italic tracking-tight mb-8">
             Free Video Downloader Online
@@ -223,7 +223,7 @@ function HomeViewContent({ locale, dict }: { locale: Locale, dict: any }) {
         </div>
       </section>
 
-      <section className="py-20 bg-indigo-600 text-white px-4 overflow-hidden relative">
+      <section className="py-20 bg-linear-to-r from-fuchsia-600 to-sky-600 text-white px-4 overflow-hidden relative">
         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent" />
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 text-center">

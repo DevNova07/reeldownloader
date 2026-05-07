@@ -113,12 +113,12 @@ function TelegramPageContent({ content, locale, dict, activeTab = "media" }: Tel
         />
       )}
       
-      <section className="relative overflow-hidden bg-linear-to-r from-indigo-600 to-violet-700 px-4 pt-10 pb-6 sm:pt-16 sm:pb-20 sm:px-6 lg:px-8">
+      <section className={`relative overflow-hidden bg-linear-to-br from-fuchsia-600 via-purple-600 to-sky-500 px-4 pt-10 pb-10 sm:pt-16 sm:pb-24 sm:px-6 lg:px-8 shadow-[inset_0_-20px_60px_rgba(0,0,0,0.1)]`}>
         <HeroEffect color="bg-indigo-400" intensity="high" />
         <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-3 sm:gap-6">
           <PlatformTabs   
             activeId={activeTab} 
-            activeColor="text-indigo-600"
+            activeColor="text-pink-600"
             items={[
               { id: "video", label: "Video", href: "/telegram", icon: <Send className="h-4 w-4" /> },
               { id: "music", label: "MP3", href: "/telegram/mp3", icon: <MusicIcon className="h-4 w-4" /> },
@@ -147,7 +147,7 @@ function TelegramPageContent({ content, locale, dict, activeTab = "media" }: Tel
               isLoading={isLoading} 
               dict={dict}
               validate={isAnyPlatformUrl}
-              buttonClass={`bg-sky-500 text-white shadow-2xl`}
+              buttonClass="bg-linear-to-br from-pink-600 via-rose-600 to-pink-700 text-white font-black uppercase tracking-widest shadow-[0_25px_60px_rgba(0,0,0,0.5)] transition-all active:translate-y-[2px] active:shadow-none"
               iconClass="text-sky-500"
               initialValue={searchParams.get('url') || ""}
             />
@@ -173,19 +173,19 @@ function TelegramPageContent({ content, locale, dict, activeTab = "media" }: Tel
               )}
             </AnimatePresence>
             <TrustBadges dict={dict} />
-            <TrendingBar accentColor="bg-sky-400" />
-            <DownloadCounter accentColor="text-sky-200" />
-            <LoadingBar isLoading={isLoading} gradient="from-sky-500 via-sky-400 to-blue-400" />
+            <TrendingBar accentColor="bg-fuchsia-600" />
+            <DownloadCounter accentColor="text-fuchsia-200" />
+            <LoadingBar isLoading={isLoading} gradient="from-indigo-500 via-purple-500 to-rose-500" />
           </div>
           <DownloadPreview 
             data={downloadData} 
             isLoading={isLoading} 
             autoTriggerDownload={autoTriggerDownload}
             searchCounter={searchCounter}
-            buttonStyle="bg-white text-sky-600 hover:bg-neutral-100"
-            accentText="text-sky-600"
-            accentBg="bg-sky-600/10"
-            accentBorder="border-sky-600"
+            buttonStyle="bg-linear-to-br from-pink-600 via-rose-600 to-pink-700 text-white font-black uppercase tracking-widest shadow-[0_25px_60px_rgba(0,0,0,0.5)] transition-all active:translate-y-[2px] active:shadow-none"
+            accentText="text-cyan-400"
+            accentBg="bg-cyan-500/10"
+            accentBorder="border-pink-600"
           />
         </div>
       </section>
@@ -218,7 +218,7 @@ function TelegramPageContent({ content, locale, dict, activeTab = "media" }: Tel
       <CategoryCards />
       <InternalToolLinks currentPlatform="telegram" dict={dict} accentColor="text-sky-500" />
 
-      <section className="bg-neutral-50 px-4 py-4 dark:bg-neutral-900/50 sm:px-6 lg:px-8">
+      <section className="bg-neutral-50 px-4 py-12 dark:bg-neutral-950 sm:px-6 lg:px-8 relative z-20 shadow-[0_-20px_60px_rgba(0,0,0,0.1)]">
         <div className="mx-auto max-w-7xl">
           <h2 className="mb-12 text-center text-3xl font-bold text-neutral-900 dark:text-white tracking-widest uppercase italic">{dict.features.title}</h2>
           <div className="grid grid-cols-1 gap-12 md:grid-cols-3">

@@ -170,7 +170,7 @@ function SearchBarInner({
 
 
         <form onSubmit={handleSubmit} className="flex w-full flex-col gap-3 sm:flex-row sm:gap-0 relative z-10 transition-transform duration-500 group-focus-within:scale-[1.02] group-focus-within:shadow-2xl rounded-2xl">
-          <div className="relative flex-1 flex items-center overflow-hidden rounded-2xl bg-white shadow-xl sm:rounded-r-none border border-neutral-200 dark:border-neutral-800 dark:bg-neutral-900 focus-within:ring-2 focus-within:ring-white/50 transition-all">
+          <div className="relative flex-1 flex items-center overflow-hidden rounded-2xl bg-white shadow-xl sm:rounded-r-none border border-[#e9114b] dark:border-[#e9114b] dark:bg-neutral-900 transition-all">
             <input
               ref={inputRef}
               type="text"
@@ -181,8 +181,8 @@ function SearchBarInner({
               }}
               placeholder={displayPlaceholder}
               className={cn(
-                "w-full bg-transparent py-5 pl-6 pr-32 text-neutral-900 outline-none placeholder:text-neutral-500 dark:text-white dark:placeholder:text-neutral-400 sm:text-lg",
-                error && "ring-2 ring-inset ring-red-500"
+                "w-full bg-transparent py-5 pl-6 pr-32 text-neutral-900 outline-none placeholder:text-neutral-500 dark:text-white dark:placeholder:text-neutral-400 sm:text-lg font-bold",
+                error && "bg-red-50"
               )}
             />
             <div className="absolute right-2 flex items-center gap-2">
@@ -190,7 +190,7 @@ function SearchBarInner({
                 <button
                   type="button"
                   onClick={handleClear}
-                  className="p-1.5 bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 rounded-full text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200 transition-all flex items-center justify-center shadow-sm"
+                  className="p-1.5 bg-neutral-100 hover:bg-neutral-200 rounded-full text-neutral-500 transition-all flex items-center justify-center shadow-sm"
                   title="Clear"
                 >
                   <X className="h-4 w-4" />
@@ -199,11 +199,11 @@ function SearchBarInner({
               <button
                 type="button"
                 onClick={handlePaste}
-                className="group flex items-center gap-2 rounded-xl bg-linear-to-r from-neutral-50 to-white px-4 py-2.5 text-sm font-black text-neutral-800 shadow-sm transition-all hover:scale-105 active:scale-95 border border-neutral-200 dark:from-neutral-800 dark:to-neutral-900 dark:text-white dark:border-neutral-700"
+                className="group flex items-center gap-2 rounded-lg bg-neutral-50 border border-neutral-300 px-3 py-1.5 text-sm font-bold text-neutral-700 shadow-sm transition-all hover:bg-neutral-100 active:scale-95 dark:bg-neutral-800 dark:border-neutral-700 dark:text-white"
                 title="Paste Link"
               >
-                <Clipboard className={cn("h-4 w-4 transition-transform group-hover:rotate-12", iconClass)} />
-                <span className="hidden sm:inline font-black tracking-tight">Paste</span>
+                <Clipboard className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
+                <span className="font-bold">Paste</span>
               </button>
             </div>
           </div>
@@ -216,12 +216,10 @@ function SearchBarInner({
             {isLoading ? (
               <Loader2 className="h-7 w-7 animate-spin" />
             ) : (
-              <span className="relative z-10 flex items-center gap-2 uppercase">
+              <span className="relative z-10 flex items-center gap-2 uppercase font-black text-xl italic">
                 {dict?.search?.button || "Download"}
               </span>
             )}
-            {/* Glossy Effect */}
-            <div className="absolute inset-0 bg-linear-to-tr from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
           </button>
         </form>
         

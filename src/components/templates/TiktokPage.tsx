@@ -16,7 +16,7 @@ import { LoadingBar } from "@/components/ui/LoadingBar"
 import { DownloadCounter } from "@/components/ui/DownloadCounter"
 import { useDownloadHistory, getCached, setCached } from "@/hooks/useDownloadHistory"
 import { HeroEffect } from "@/components/shared/HeroEffect"
-import { Camera, CheckCircle2, Film, HelpCircle, Info, Music as MusicIcon, ShieldCheck, StopCircle, Zap } from "lucide-react"
+import { Camera, CheckCircle2, Film, HelpCircle, Info, Music as MusicIcon, ShieldCheck, StopCircle, Zap, Layers, Music } from "lucide-react"
 import { cn } from "@/utils/cn"
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs"
 import { toast } from "react-hot-toast"
@@ -171,19 +171,19 @@ function TiktokContent({
       {content.faq && <StructuredData type="FAQPage" data={content.faq} />}
       {content.howTo && <StructuredData type="HowTo" data={content.howTo} />}
       {/* Hero Section */}
-      <section className={`relative bg-linear-to-r ${cx.ribbon} px-4 pt-10 pb-6 sm:pt-16 sm:pb-20 sm:px-6 lg:px-8`}>
+      <section className={`relative overflow-hidden bg-linear-to-br from-fuchsia-600 via-purple-600 to-sky-500 px-4 pt-10 pb-10 sm:pt-16 sm:pb-24 sm:px-6 lg:px-8 shadow-[inset_0_-20px_60px_rgba(0,0,0,0.1)]`}>
         <HeroEffect color={cx.effect} intensity="high" />
         
         <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-3 sm:gap-6">
           <PlatformTabs   
             activeId={activeTab} 
-            activeColor={cx.text}
+            activeColor="text-pink-600"
             tabs={dict?.tabs}
             locale={locale}
             items={[
-              { id: "video", label: "Video", href: "/tiktok", icon: <Film className="h-4 w-4" /> },
-              { id: "music", label: "MP3", href: "/tiktok/mp3", icon: <MusicIcon className="h-4 w-4" /> },
-              { id: "hd", label: "HD", href: "/tiktok/hd", icon: <Zap className="h-4 w-4" /> },
+              { id: "video", label: "Video", href: "/tiktok", icon: <Music className="h-4 w-4" /> },
+              { id: "mp3", label: "MP3", href: "/tiktok/mp3", icon: <Music className="h-4 w-4" /> },
+              { id: "slideshow", label: "Slideshow", href: "/tiktok/slideshow", icon: <Layers className="h-4 w-4" /> },
               { id: "photo", label: "Photo", href: "/tiktok/photo", icon: <Camera className="h-4 w-4" /> },
             ]} 
           />
@@ -208,7 +208,7 @@ function TiktokContent({
               isLoading={isLoading} 
               dict={dict}
               validate={isAnyPlatformUrl}
-              buttonClass={`bg-linear-to-br ${cx.ribbonAcc} text-white ${cx.shadow} ring-1 ring-inset ring-white/20`}
+              buttonClass="bg-linear-to-br from-pink-600 via-rose-600 to-pink-700 text-white font-black uppercase tracking-widest shadow-[0_25px_60px_rgba(0,0,0,0.5)] transition-all active:translate-y-[2px] active:shadow-none"
               iconClass={`text-white`}
               initialValue={sharedUrl}
             />
@@ -234,20 +234,20 @@ function TiktokContent({
             <HeroQuickGuide steps={dict?.guide?.steps || []} accentColor={cx.text} />
 
             <TrustBadges dict={dict} />
-            <TrendingBar accentColor={cx.bg} />
-            <DownloadCounter accentColor={cx.text} />
+            <TrendingBar accentColor="bg-fuchsia-600" />
+            <DownloadCounter accentColor="text-fuchsia-200" />
             
-            <LoadingBar isLoading={isLoading} gradient={cx.gradient} />
+            <LoadingBar isLoading={isLoading} gradient="from-indigo-500 via-purple-500 to-rose-500" />
           </div>
           <DownloadPreview 
             data={downloadData} 
             isLoading={isLoading} 
             autoTriggerDownload={autoTriggerDownload}
             searchCounter={searchCounter}
-            buttonStyle={`bg-linear-to-br ${cx.ribbonAcc} text-white ${cx.shadow} hover:brightness-110 active:scale-95`}
-            accentText={cx.text}
-            accentBg={cx.bgAccent}
-            accentBorder={cx.border}
+            buttonStyle="bg-linear-to-br from-pink-600 via-rose-600 to-pink-700 text-white font-black uppercase tracking-widest shadow-[0_25px_60px_rgba(0,0,0,0.5)] transition-all active:translate-y-[2px] active:shadow-none"
+            accentText="text-cyan-400"
+            accentBg="bg-cyan-500/10"
+            accentBorder="border-pink-600"
           />
         </div>
       </section>
@@ -281,7 +281,7 @@ function TiktokContent({
 
       <InternalToolLinks currentPlatform="tiktok" dict={dict} accentColor={cx.text} />
 
-      <section className="bg-neutral-50 px-4 py-4 dark:bg-neutral-900/50 sm:px-6 lg:px-8">
+      <section className="bg-neutral-50 px-4 py-12 dark:bg-neutral-950 sm:px-6 lg:px-8 relative z-20 shadow-[0_-20px_60px_rgba(0,0,0,0.1)]">
         <div className="mx-auto max-w-7xl">
           <h2 className="mb-12 text-center text-3xl font-black text-neutral-900 dark:text-white tracking-widest uppercase italic">{dict.features?.title || "Features"}</h2>
           <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
