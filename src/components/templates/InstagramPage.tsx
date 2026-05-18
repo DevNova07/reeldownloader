@@ -198,7 +198,7 @@ function InstagramPageContent({
             items={[
               { id: "video", label: "Video", href: "/instagram-video-downloader", icon: <Camera className="h-4 w-4" /> },
               { id: "reels", label: "Reels", href: "/instagram-reels-downloader", icon: <Layers className="h-4 w-4" /> },
-              { id: "story", label: "Story", href: "/instagram-story-downloader", icon: <Compass className="h-4 w-4" /> },
+              { id: "story", label: "Story", href: "/instagram-story-viewer", icon: <Compass className="h-4 w-4" /> },
               (activeTab === 'audio' || activeTab === 'music' || activeTab === 'mp3') ? (
                 { id: "audio", label: dict?.tabs?.audio || "Audio", href: "/instagram-audio-downloader", icon: <MusicIcon className="h-4 w-4" /> }
               ) : (

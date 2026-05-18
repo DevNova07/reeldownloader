@@ -66,33 +66,9 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
 
       <div className="bg-white dark:bg-black pt-8 pb-16 px-4">
         <div className="max-w-5xl mx-auto">
-          {/* Visual Tool Representation */}
-          <div className="mb-20 rounded-4xl overflow-hidden shadow-2xl border border-neutral-100 dark:border-neutral-800 bg-linear-to-br from-sky-50 to-white dark:from-neutral-900 dark:to-neutral-950 p-8 md:p-16 flex flex-col items-center text-center">
-            <div className="w-24 h-24 bg-sky-600 rounded-3xl flex items-center justify-center shadow-2xl mb-8 animate-pulse">
-                <Camera className="h-12 w-12 text-white" />
-            </div>
-            <h2 className="text-2xl md:text-3xl md:text-5xl font-black text-neutral-900 dark:text-white uppercase italic tracking-tighter mb-4 leading-tight">
-                HD TikTok Image Saver
-            </h2>
-            <p className="text-lg text-neutral-500 dark:text-neutral-400 font-bold max-w-2xl mb-12">
-                Save TikTok photos and slideshows in original high resolution. Professional, fast, and 100% secure.
-            </p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full">
-                {[
-                    { label: "Full HD", icon: <Zap className="h-5 w-5" /> },
-                    { label: "Slideshow", icon: <Layers className="h-5 w-5" /> },
-                    { label: "Secure", icon: <Shield className="h-5 w-5" /> },
-                    { label: "High Speed", icon: <Download className="h-5 w-5" /> }
-                ].map((item, i) => (
-                    <div key={i} className="p-6 bg-white dark:bg-neutral-800 rounded-3xl shadow-lg border border-neutral-100 dark:border-neutral-700 flex flex-col items-center gap-2">
-                        <div className="text-sky-600">{item.icon}</div>
-                        <span className="text-xs font-black uppercase italic text-neutral-900 dark:text-white">{item.label}</span>
-                    </div>
-                ))}
-            </div>
-          </div>
-
           <RichArticle sections={articleSections} />
+          
+
         </div>
       </div>
 

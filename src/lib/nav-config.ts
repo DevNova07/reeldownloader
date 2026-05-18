@@ -32,7 +32,7 @@ export const PLATFORM_NAV_CONFIG: Record<string, PlatformNav> = {
           { href: "/instagram-video-downloader", label: "Instagram Video Downloader" },
           { href: "/instagram-reels-downloader", label: "Instagram Reels Downloader" },
           { href: "/instagram-photo-downloader", label: "Instagram Photo Downloader" },
-          { href: "/instagram-story-downloader", label: "Instagram Story Downloader" },
+          { href: "/instagram-story-viewer", label: "Instagram Story Downloader" },
           { href: "/instagram-highlights-downloader", label: "Instagram Highlights Downloader" },
           { href: "/instagram-audio-downloader", label: "Instagram Audio Downloader" }
         ]
@@ -92,7 +92,7 @@ export const PLATFORM_NAV_CONFIG: Record<string, PlatformNav> = {
         titleKey: "Main Tools",
         links: [
           { href: "/tiktok-video-downloader", label: "TikTok Video Downloader" },
-          { href: "/tiktok-downloader-without-watermark", label: "TikTok Downloader Without Watermark" },
+          { href: "/tiktok-video-downloader", label: "TikTok Downloader Without Watermark" },
           { href: "/tiktok-shorts-downloader", label: "TikTok Shorts Downloader" },
           { href: "/tiktok-mp3-downloader", label: "TikTok MP3 Downloader" },
           { href: "/tiktok-story-saver", label: "TikTok Story Saver" },
@@ -110,7 +110,7 @@ export const PLATFORM_NAV_CONFIG: Record<string, PlatformNav> = {
           { href: "/tiktok-video-to-mp4-converter", label: "TikTok Video to MP4 Converter" },
           { href: "/tiktok-video-compressor", label: "TikTok Video Compressor" },
           { href: "/tiktok-song-finder", label: "TikTok Song Finder" },
-          { href: "/download-tiktok-without-watermark", label: "Download TikTok Without Watermark" }
+          { href: "/tiktok-video-downloader", label: "Download TikTok Without Watermark" }
         ]
       }
     ],

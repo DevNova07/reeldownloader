@@ -97,8 +97,9 @@ export const faqs = [
 
 
 export const meta = {
-  title: "TikTok Video Downloader HD – Download TT Videos No Watermark",
-  description: "Save your favorite TikTok videos instantly without any logos. Our free online tool gives you crisp quality directly to your device."
+  title: "TikTok Video Downloader Without Watermark HD – Save TT Videos",
+  description: "Download TikTok videos without watermark in original HD quality for free. SavClip is the fastest online tool to download TikTok without watermark directly to your device.",
+  keywords: ["tiktok video downloader", "tiktok downloader without watermark", "download tiktok without watermark", "tiktok saver", "no watermark tiktok"]
 };
 
 export const header = {

@@ -19,21 +19,28 @@ self.addEventListener('install', (event) => {
   self.skipWaiting();
 });
 
-// 2. Activate - Clean up old caches
+// 2. Activate - Clean up old caches & enable Navigation Preload
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames
-          .filter((name) => name !== CACHE_NAME)
-          .map((name) => caches.delete(name))
-      );
-    })
+    Promise.all([
+      self.clients.claim(),
+      caches.keys().then((cacheNames) => {
+        return Promise.all(
+          cacheNames
+            .filter((name) => name !== CACHE_NAME)
+            .map((name) => caches.delete(name))
+        );
+      })
+    ])
   );
-  self.clients.claim();
+  
+  // Enable navigation preload if supported for faster page loads
+  if (self.registration.navigationPreload) {
+    event.waitUntil(self.registration.navigationPreload.enable());
+  }
 });
 
-// 3. Fetch - Stale-while-revalidate for assets, Network-first for pages
+// 3. Fetch - Optimized Strategies based on asset type
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
 
@@ -44,13 +51,39 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Handle Navigation requests (HTML pages)
+  // Handle Navigation requests (HTML pages) - Network first with Preload support
   if (event.request.mode === 'navigate') {
     event.respondWith(
-      fetch(event.request)
-        .catch(() => {
+      (async () => {
+        try {
+          const preloadResponse = await event.preloadResponse;
+          if (preloadResponse) return preloadResponse;
+          
+          return await fetch(event.request);
+        } catch (error) {
+          const cachedPage = await caches.match(event.request);
+          if (cachedPage) return cachedPage;
           return caches.match(OFFLINE_URL) || caches.match('/');
-        })
+        }
+      })()
+    );
+    return;
+  }
+
+  // Cache-First strategy for Next.js static assets and immutable files (SUPER FAST)
+  if (url.pathname.startsWith('/_next/static/') || url.pathname.startsWith('/images/') || url.pathname.endsWith('.png') || url.pathname.endsWith('.svg')) {
+    event.respondWith(
+      caches.match(event.request).then((cachedResponse) => {
+        if (cachedResponse) return cachedResponse; // Instant load from cache
+        
+        return fetch(event.request).then((networkResponse) => {
+          if (networkResponse && networkResponse.status === 200) {
+            const responseClone = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseClone));
+          }
+          return networkResponse;
+        });
+      })
     );
     return;
   }
@@ -61,9 +94,7 @@ self.addEventListener('fetch', (event) => {
       const fetchPromise = fetch(event.request).then((networkResponse) => {
         if (networkResponse && networkResponse.status === 200) {
           const responseClone = networkResponse.clone();
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, responseClone);
-          });
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseClone));
         }
         return networkResponse;
       });

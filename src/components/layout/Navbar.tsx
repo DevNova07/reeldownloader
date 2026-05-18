@@ -201,7 +201,7 @@ export function Navbar({ dict }: { dict: any }) {
                                </p>
                                <ul className="flex flex-col gap-2.5">
                                  {cat.links.map((link) => (
-                                   <li key={link.href}>
+                                   <li key={link.label}>
                                      <Link
                                        prefetch={true}
                                        href={getLocalizedHref(link.href)}

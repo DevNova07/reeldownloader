@@ -160,7 +160,7 @@ export function getPreciseRouteFromUrl(url: string): string | null {
       return '/instagram-reels-downloader';
     }
     if (/\/stories\//.test(lowercaseUrl) || /\/story\//.test(lowercaseUrl) || lowercaseUrl.includes('story')) {
-      return '/instagram-story-downloader';
+      return '/instagram-story-viewer';
     }
     if (/\/p\//.test(lowercaseUrl)) {
       return '/instagram-photo-downloader';
@@ -208,7 +208,7 @@ export function getPreciseRouteFromUrl(url: string): string | null {
     if (lowercaseUrl.includes('/photo/') || lowercaseUrl.includes('photo')) {
       return '/tiktok-photo-downloader';
     }
-    return '/tiktok-downloader-without-watermark';
+    return '/tiktok-video-downloader';
   }
 
   // --- SNAPCHAT ---

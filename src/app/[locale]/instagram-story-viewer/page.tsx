@@ -14,10 +14,10 @@ import { getToolSeoData } from "@/lib/getSeoData"
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const params = await props.params;
   return { 
-  title: "Instagram Story Viewer: View IG Stories Privately",
-  description: "Looking to keep Instagram stories permanently? Use our intuitive online utility to get original files in seconds.",
+    title: "Instagram Story Viewer & Downloader: Save IG Stories Privately",
+    description: "View and download Instagram stories anonymously in HD. Our free online IG story viewer and downloader works without login or installation to save original files in seconds.",
+    keywords: ["instagram story viewer", "instagram story downloader", "download instagram stories", "view ig stories anonymously", "ig story saver"],
     alternates: getSeoAlternates("instagram-story-viewer", params.locale),
-   
   }
 }
 

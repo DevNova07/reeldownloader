@@ -19,8 +19,24 @@ export function useAutoDownload(
 
   React.useEffect(() => {
     let isMounted = true
-    const sharedUrl = searchParams.get('url')
-    if (!sharedUrl || sharedUrl === hasTriggered.current) return
+    
+    // Some apps share the link in the 'text' parameter instead of 'url'
+    const rawUrl = searchParams.get('url')
+    const rawText = searchParams.get('text')
+    
+    let extractedUrl = rawUrl
+    if (!extractedUrl && rawText) {
+      // Try to extract a URL from the text (e.g. "Check out this video! https://...")
+      const urlRegex = /(https?:\/\/[^\s]+)/g
+      const matches = rawText.match(urlRegex)
+      if (matches && matches.length > 0) {
+        extractedUrl = matches[0]
+      }
+    }
+
+    if (!extractedUrl || extractedUrl === hasTriggered.current) return
+
+    const sharedUrl = extractedUrl;
 
     const targetPath = getPreciseRouteFromUrl(sharedUrl)
     if (!targetPath) return

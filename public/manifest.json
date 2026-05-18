@@ -3,9 +3,15 @@
   "short_name": "SavClip",
   "description": "Download videos, reels, stories, and photos from Instagram, TikTok, YouTube, Facebook, and more in HD quality without watermark.",
   "start_url": "/",
+  "id": "/?source=pwa",
   "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "orientation": "portrait-primary",
   "background_color": "#ffffff",
   "theme_color": "#db2777",
+  "categories": ["utilities", "productivity", "social"],
+  "dir": "ltr",
+  "lang": "en",
   "icons": [
     {
       "src": "/icon.png",
@@ -30,5 +36,14 @@
       "url": "/tiktok-video-downloader",
       "icons": [{ "src": "/icon.png", "sizes": "192x192" }]
     }
-  ]
+  ],
+  "share_target": {
+    "action": "/",
+    "method": "GET",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  }
 }

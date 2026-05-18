@@ -25,7 +25,7 @@ function getPlatformTabs(title: string, pathname: string) {
     return [
       { id: 'reels', label: 'Reels', icon: <PlaySquare className="w-4 h-4" />, href: '/instagram-reels-downloader' },
       { id: 'video', label: 'Videos', icon: <Film className="w-4 h-4" />, href: '/instagram-video-downloader' },
-      { id: 'story', label: 'Stories', icon: <Camera className="w-4 h-4" />, href: '/instagram-story-downloader' },
+      { id: 'story', label: 'Stories', icon: <Camera className="w-4 h-4" />, href: '/instagram-story-viewer' },
       { id: 'photo', label: 'Photos', icon: <ImageIcon className="w-4 h-4" />, href: '/instagram-photo-downloader' },
       { id: 'audio', label: 'MP3', icon: <Music className="w-4 h-4" />, href: '/instagram-audio-downloader' },
       { id: 'carousel', label: 'Carousel', icon: <Layers className="w-4 h-4" />, href: '/instagram-carousel-downloader' },
@@ -46,7 +46,7 @@ function getPlatformTabs(title: string, pathname: string) {
   if (t.includes('tiktok') || p.includes('tiktok')) {
     return [
       { id: 'video', label: 'Videos', icon: <Film className="w-4 h-4" />, href: '/tiktok-video-downloader' },
-      { id: 'nowatermark', label: 'No Watermark', icon: <Video className="w-4 h-4" />, href: '/tiktok-downloader-without-watermark' },
+      { id: 'story', label: 'Stories', icon: <Camera className="w-4 h-4" />, href: '/tiktok-story-saver' },
       { id: 'photo', label: 'Photos', icon: <ImageIcon className="w-4 h-4" />, href: '/tiktok-photo-downloader' },
       { id: 'audio', label: 'MP3', icon: <Music className="w-4 h-4" />, href: '/tiktok-mp3-downloader' },
       { id: 'dp', label: 'Profile Viewer', icon: <UserCircle className="w-4 h-4" />, href: '/tiktok-dp-downloader' },

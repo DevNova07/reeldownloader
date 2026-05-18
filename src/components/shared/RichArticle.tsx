@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Check, Info, Shield, Zap } from "lucide-react"
 import { cn } from "@/utils/cn"
+import { ToolVisualBanner } from "./ToolVisualBanner"
 
 export interface ArticleSection {
   type: "paragraph" | "heading" | "list" | "callout" | "table"
@@ -31,6 +32,9 @@ export function RichArticle({ sections, accentColor = "text-pink-600", boilerpla
                <div dangerouslySetInnerHTML={{ __html: boilerplate.replace(/\n\n/g, '<br/><br/>') }} />
             </div>
           )}
+        </div>
+        <div className="not-prose mt-12 w-full">
+          <ToolVisualBanner platform={sections?.substring(0, 50) || "instagram"} />
         </div>
       </div>
     )
@@ -154,6 +158,10 @@ export function RichArticle({ sections, accentColor = "text-pink-600", boilerpla
             return null
         }
       })}
+      
+      <div className="mt-8">
+        <ToolVisualBanner platform={sections[0]?.content || "instagram"} />
+      </div>
     </div>
   )
 }

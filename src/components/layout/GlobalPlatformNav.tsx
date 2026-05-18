@@ -37,7 +37,7 @@ export function GlobalPlatformNav({ dict, locale }: GlobalPlatformNavProps) {
       case "tiktok":
         return [
           { id: "video", label: dict?.tabs?.video || "Video", href: "/tiktok-video-downloader", icon: <Film className="h-4 w-4" /> },
-          { id: "no-watermark", label: "No Watermark", href: "/tiktok-downloader-without-watermark", icon: <ShieldCheck className="h-4 w-4" /> },
+          { id: "story", label: dict?.tabs?.story || "Story", href: "/tiktok-story-saver", icon: <StopCircle className="h-4 w-4" /> },
           { id: "music", label: dict?.tabs?.music || "Music", href: "/tiktok-mp3-downloader", icon: <MusicIcon className="h-4 w-4" /> },
           { id: "photo", label: dict?.tabs?.photo || "Photo", href: "/tiktok-photo-downloader", icon: <Camera className="h-4 w-4" /> },
         ]
@@ -67,7 +67,7 @@ export function GlobalPlatformNav({ dict, locale }: GlobalPlatformNavProps) {
         return [
           { id: "video", label: dict?.tabs?.video || "Video", href: "/instagram-video-downloader", icon: <Camera className="h-4 w-4" /> },
           { id: "reels", label: dict?.tabs?.reels || "Reels", href: "/instagram-reels-downloader", icon: <PlaySquare className="h-4 w-4" /> },
-          { id: "story", label: dict?.tabs?.story || "Story", href: "/instagram-story-downloader", icon: <StopCircle className="h-4 w-4" /> },
+          { id: "story", label: dict?.tabs?.story || "Story", href: "/instagram-story-viewer", icon: <StopCircle className="h-4 w-4" /> },
           { id: "photo", label: dict?.tabs?.photo || "Photo", href: "/instagram-photo-downloader", icon: <Camera className="h-4 w-4" /> },
         ]
     }
