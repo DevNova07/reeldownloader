@@ -55,10 +55,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
 
   locales.forEach((locale) => {
+    const localePath = locale === 'en' ? '' : `/${locale}`
+
     // Add Static Routes
     staticRoutes.forEach((route) => {
       sitemapEntries.push({
-        url: `${SITE_URL}/${locale}${route}`,
+        url: `${SITE_URL}${localePath}${route}`,
         lastModified: new Date(),
         changeFrequency: "weekly",
         priority: route === "" ? 1.0 : 0.8,
@@ -68,7 +70,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Add Dynamic Tool Routes
     dynamicTools.forEach((route) => {
       sitemapEntries.push({
-        url: `${SITE_URL}/${locale}${route}`,
+        url: `${SITE_URL}${localePath}${route}`,
         lastModified: new Date(),
         changeFrequency: "daily",
         priority: 0.9,
@@ -78,7 +80,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // 3. Add Blog Posts
     BLOG_POSTS.forEach((post) => {
       sitemapEntries.push({
-        url: `${SITE_URL}/${locale}/blog/${post.slug}`,
+        url: `${SITE_URL}${localePath}/blog/${post.slug}`,
         lastModified: new Date(post.date),
         changeFrequency: "monthly",
         priority: 0.7,
