@@ -1,0 +1,11 @@
+.savclip-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 9999;
+}
+
+.savclip-btn svg {
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}

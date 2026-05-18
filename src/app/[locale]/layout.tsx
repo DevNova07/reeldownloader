@@ -1,0 +1,263 @@
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "../globals.css";
+import { ThemeProvider } from "@/components/shared/ThemeProvider";
+import { Toaster } from "react-hot-toast";
+import { getDictionary, isRTL, locales } from "@/i18n";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
+import { TrackVisit } from "@/components/shared/TrackVisit";
+import { ProgressBar } from "@/components/shared/ProgressBar";
+import { InstallPWA } from "@/components/ui/InstallPWA";
+import { HistoryDrawer } from "@/components/layout/HistoryDrawer";
+import { Suspense } from "react";
+import Script from "next/script";
+import type { Viewport } from "next";
+
+import { ScrollToTop } from "@/components/shared/ScrollToTop";
+import { Analytics } from "@/components/shared/Analytics";
+import { GlobalPlatformNav } from "@/components/layout/GlobalPlatformNav";
+import { getSeoAlternates } from "@/lib/seo";
+
+const inter = Inter({ 
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter" 
+});
+
+const SITE_URL = "https://savclip.com";
+
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const params = await props.params;
+  const locale = params.locale;
+  const dict = await getDictionary(locale);
+  
+  const title = dict.seo?.title || "SavClip - Best Instagram Downloader";
+  const description = dict.seo?.description || "Download Instagram Reels, Stories, Posts, and Music easily with SavClip.";
+  
+  return {
+    title: {
+      default: title,
+      template: `%s | SavClip`
+    },
+    description: description,
+    keywords: dict.seo?.keywords || "instagram downloader, reels download, story downloader",
+    metadataBase: new URL(SITE_URL),
+    alternates: getSeoAlternates("", locale),
+    openGraph: {
+      title: title,
+      description: description,
+      url: SITE_URL,
+      siteName: "SavClip",
+      locale: locale,
+      type: "website",
+      images: [
+        {
+          url: "/icon-512x512.png",
+          width: 512,
+          height: 512,
+          alt: "SavClip Logo",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: title,
+      description: description,
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+    manifest: "/manifest.json?v=2",
+    icons: {
+      icon: [
+        { url: "/icon.png", type: "image/png", sizes: "512x512" },
+        { url: "/icon-192x192.png", type: "image/png", sizes: "192x192" },
+        { url: "/icon.svg", type: "image/svg+xml" },
+      ],
+      shortcut: "/icon.png",
+      apple: "/apple-touch-icon.png",
+    },
+    appleWebApp: {
+      capable: true,
+      statusBarStyle: "default",
+      title: "SavClip",
+    },
+    applicationName: "SavClip",
+    other: {
+      "apple-mobile-web-app-title": "SavClip",
+      "google-site-verification": "google-site-verification-id-here", // User should replace this
+    }
+  };
+}
+
+export const viewport: Viewport = {
+  themeColor: "#ec4899",
+  width: "device-width",
+  initialScale: 1,
+};
+
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
+
+export default async function RootLayout(props: {
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+}) {
+  const params = await props.params;
+  const locale = params.locale;
+  const direction = isRTL(locale) ? "rtl" : "ltr";
+  const fullDict = await getDictionary(locale);
+  
+  // Create a truly minimal dictionary for the layout (Navbar/Footer)
+  // This avoids serializing the massive seo_pages object
+  const layoutDict = {
+    categories: fullDict?.categories,
+    navbar: fullDict?.navbar,
+    footer_branding: fullDict?.footer_branding,
+    common: {
+      analyzing: fullDict?.common?.analyzing
+    },
+    tabs: fullDict?.tabs,
+    trust: fullDict?.trust,
+    faq: {
+      title: fullDict?.faq?.title,
+      items: (fullDict?.faq?.items || []).slice(0, 3)
+    },
+    // Only include necessary platform titles and sub-tool titles for Navbar dropdowns
+    platforms: Object.keys(fullDict?.platforms || {}).reduce((acc: any, key) => {
+      if (key !== 'seo_pages') {
+        const platform = fullDict.platforms[key];
+        acc[key] = {
+          title: platform?.title,
+          // Map sub-tools (like reels, story, music) to include their titles for Navbar
+          ...Object.keys(platform || {}).reduce((pAcc: any, pKey) => {
+            if (platform[pKey] && typeof platform[pKey] === 'object' && platform[pKey].title) {
+              pAcc[pKey] = { title: platform[pKey].title };
+            }
+            return pAcc;
+          }, {})
+        };
+      }
+      return acc;
+    }, {})
+  };
+
+  return (
+    <html lang={locale} dir={direction} suppressHydrationWarning className="scroll-smooth" data-scroll-behavior="smooth">
+      <head>
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="512x512" href="/icon.png" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/manifest.json" />
+        
+        
+        
+        
+        
+        
+        
+        
+        <Script
+          id="service-worker-registration"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                  if (window.location.hostname === 'localhost') {
+                    navigator.serviceWorker.getRegistrations().then(function(registrations) {
+                      for(let registration of registrations) {
+                        registration.unregister();
+                      }
+                    });
+                  } else {
+                    navigator.serviceWorker.register('/sw.js').then(function(registration) {
+                      console.log('ServiceWorker registration successful');
+                    }, function(err) {
+                      console.log('ServiceWorker registration failed: ', err);
+                    });
+                  }
+                });
+              }
+            `,
+          }}
+        />
+      </head>
+      <body suppressHydrationWarning className={`${inter.variable} font-sans bg-white text-neutral-900 antialiased dark:bg-black dark:text-neutral-100`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Analytics />
+          <Suspense fallback={null}>
+            <ProgressBar />
+          </Suspense>
+          <ScrollToTop />
+          <Toaster 
+            position="top-center" 
+            reverseOrder={false}
+            toastOptions={{
+              className: 'font-sans font-bold rounded-[1.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.15)] ring-1 ring-black/5 bg-white text-neutral-900 dark:bg-neutral-900 dark:text-white p-6 min-w-[320px]',
+              duration: 5000,
+              style: {
+                zIndex: 999999,
+                marginTop: '40px',
+              },
+              error: {
+                iconTheme: {
+                  primary: '#ef4444',
+                  secondary: '#fff',
+                },
+              },
+            }}
+            containerStyle={{
+              zIndex: 999999,
+            }}
+          />
+
+        
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([
+              {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                "@id": "https://savclip.com/#website",
+                "url": "https://savclip.com",
+                "name": "SavClip",
+                "alternateName": ["SavClip Downloader", "SavClip"],
+                "publisher": {
+                  "@type": "Organization",
+                  "@id": "https://savclip.com/#organization",
+                  "name": "SavClip",
+                  "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://savclip.com/icon.png",
+                    "width": 512,
+                    "height": 512
+                  }
+                }
+              }
+            ])
+          }}
+        />
+         <InstallPWA />
+         <HistoryDrawer />
+          <div className="flex min-h-screen flex-col overflow-x-hidden">
+            <Navbar dict={layoutDict} />
+            <main className="flex-1 min-h-[80vh]">
+              {props.children}
+            </main>
+            <Footer locale={locale} dict={layoutDict} />
+          </div>
+        </ThemeProvider>
+      </body>
+    </html>
+  );
+}

@@ -1,0 +1,147 @@
+{
+  "totalRequests": 268,
+  "successfulRequests": 176,
+  "failedRequests": 92,
+  "savedRequests": 0,
+  "totalVisits": 0,
+  "platforms": {
+    "facebook": {
+      "total": 38,
+      "success": 28,
+      "fail": 10,
+      "keys": {
+        "9ac29222efmsh81d43b990a8ce7dp17df2jsn6f83cbfb17b7": {
+          "name": "API 1",
+          "status": "active",
+          "remaining": "280",
+          "limit": "unkn",
+          "used": 24,
+          "lastCheck": "2026-04-30T10:13:01.369Z"
+        },
+        "9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7": {
+          "name": "API 1",
+          "status": "active",
+          "remaining": "261",
+          "limit": "unkn",
+          "used": 4,
+          "lastCheck": "2026-05-17T21:06:24.159Z"
+        }
+      }
+    },
+    "tiktok": {
+      "total": 25,
+      "success": 15,
+      "fail": 10,
+      "keys": {
+        "9ac29222efmsh81d43b990a8ce7dp17df2jsn6f83cbfb17b7": {
+          "name": "API 1",
+          "status": "active",
+          "remaining": "7688",
+          "limit": "unkn",
+          "used": 12,
+          "lastCheck": "2026-04-28T09:53:32.321Z"
+        },
+        "9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7": {
+          "name": "API 1",
+          "status": "active",
+          "remaining": "488",
+          "limit": "unkn",
+          "used": 3,
+          "lastCheck": "2026-05-17T20:39:22.988Z"
+        }
+      }
+    },
+    "youtube": {
+      "total": 133,
+      "success": 64,
+      "fail": 69,
+      "keys": {
+        "9ac29222efmsh81d43b990a8ce7dp17df2jsn6f83cbfb17b7": {
+          "name": "API 1",
+          "status": "active",
+          "remaining": "58",
+          "limit": "unkn",
+          "used": 29,
+          "lastCheck": "2026-04-30T17:09:59.147Z"
+        },
+        "9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7": {
+          "name": "API 1",
+          "status": "active",
+          "remaining": "23",
+          "limit": "unkn",
+          "used": 44,
+          "lastCheck": "2026-05-17T20:45:17.688Z"
+        }
+      }
+    },
+    "instagram": {
+      "total": 54,
+      "success": 51,
+      "fail": 3,
+      "keys": {
+        "9ac29222efmsh81d43b990a8ce7dp17df2jsn6f83cbfb17b7": {
+          "name": "API 1",
+          "status": "active",
+          "remaining": "2957",
+          "limit": "unkn",
+          "used": 28,
+          "lastCheck": "2026-04-30T16:46:21.106Z"
+        },
+        "9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7": {
+          "name": "API 1",
+          "status": "active",
+          "remaining": "2869",
+          "limit": "unkn",
+          "used": 23,
+          "lastCheck": "2026-05-17T21:03:48.616Z"
+        }
+      }
+    },
+    "telegram": {
+      "total": 1,
+      "success": 1,
+      "fail": 0,
+      "keys": {
+        "9ac29222efmsh81d43b990a8ce7dp17df2jsn6f83cbfb17b7": {
+          "name": "API 1",
+          "status": "active",
+          "remaining": "690",
+          "limit": "unkn",
+          "used": 1,
+          "lastCheck": "2026-04-29T06:03:59.181Z"
+        }
+      }
+    },
+    "snapchat": {
+      "total": 15,
+      "success": 15,
+      "fail": 0,
+      "keys": {
+        "9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7": {
+          "name": "API 1",
+          "status": "active",
+          "remaining": "80",
+          "limit": "unkn",
+          "used": 15,
+          "lastCheck": "2026-05-01T07:54:28.403Z"
+        }
+      }
+    },
+    "twitter": {
+      "total": 2,
+      "success": 2,
+      "fail": 0,
+      "keys": {
+        "9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7": {
+          "name": "API 1",
+          "status": "active",
+          "remaining": "20",
+          "limit": "unkn",
+          "used": 2,
+          "lastCheck": "2026-05-18T17:13:28.714Z"
+        }
+      }
+    }
+  },
+  "topLinks": []
+}

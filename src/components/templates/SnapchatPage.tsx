@@ -1,0 +1,392 @@
+"use client"
+
+import * as React from "react"
+import { useAutoDownload } from "@/hooks/useAutoDownload"
+import { SearchBar } from "@/components/layout/SearchBar"
+import { type PlatformResult } from "@/types/download"
+import dynamic from "next/dynamic"
+
+const DownloadPreview = dynamic(() => import("@/components/layout/DownloadPreview").then(m => m.DownloadPreview), { ssr: false })
+const StructuredData = dynamic(() => import("@/components/shared/StructuredData").then(m => m.StructuredData))
+const PlatformTabs = dynamic(() => import("@/components/shared/PlatformTabs").then(m => m.PlatformTabs))
+import { type Locale } from "@/i18n"
+import { LoadingBar } from "@/components/ui/LoadingBar"
+import { DownloadCounter } from "@/components/ui/DownloadCounter"
+import { useDownloadHistory, getCached, setCached } from "@/hooks/useDownloadHistory"
+import { HeroEffect } from "@/components/shared/HeroEffect"
+import { Camera, CheckCircle2, Ghost, HelpCircle, Info, Music as MusicIcon, Play, ShieldCheck, StopCircle, Zap, Layers, Compass, Monitor, Video, Download } from "lucide-react"
+import { Breadcrumbs } from "@/components/shared/Breadcrumbs"
+import { toast } from "react-hot-toast"
+const TrustBadges = dynamic(() => import("@/components/ui/TrustBadges").then(m => m.TrustBadges))
+const RichArticle = dynamic(() => import("../shared/RichArticle").then(m => m.RichArticle))
+const InternalToolLinks = dynamic(() => import("../shared/InternalToolLinks").then(m => m.InternalToolLinks))
+import { ExpandableSection } from "@/components/ui/ExpandableSection"
+import { HeroQuickGuide } from "../shared/HeroQuickGuide"
+import { useSearchParams, useRouter } from "next/navigation"
+import { getPlatformFromUrl, getLocalizedRoute, isAnyPlatformUrl } from "@/utils/platform-detector"
+import { PremiumInfoSection } from "../shared/PremiumInfoSection"
+import { PurpleStepGuide } from "../shared/PurpleStepGuide"
+import { cn } from "@/utils/cn"
+
+// Dynamic imports for improved performance (below-the-fold content)
+const CategoryCards = dynamic(() => import("@/components/layout/CategoryCards").then(m => m.CategoryCards));
+const TrendingBar = dynamic(() => import("@/components/layout/TrendingBar").then(m => m.TrendingBar));
+const RelatedTools = dynamic(() => import("@/components/shared/RelatedTools").then(m => m.RelatedTools));
+const VisualGuide = dynamic(() => import("@/components/shared/VisualGuide").then(m => m.VisualGuide));
+const ChromeExtensionBanner = dynamic(() => import("@/components/layout/ChromeExtensionBanner").then(m => m.ChromeExtensionBanner));
+
+interface SnapchatPageProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  content: any;
+  locale: string;
+  themeColor?: string;
+  dict: any;
+  activeTab?: string;
+}
+
+function SnapchatContent({
+  content = {},
+  locale,
+  themeColor = "yellow",
+  dict,
+  activeTab = "video",
+}: SnapchatPageProps) {
+  const router = useRouter()
+  // Defensive check to prevent crashes if dictionary is missing for a slug
+  const pageTitle = content?.title || "Snapchat Downloader";
+  const pageSeo = content?.seo || { title: pageTitle, desc: "Fast and secure media extraction tool." };
+  const [downloadData, setDownloadData] = React.useState<PlatformResult | null>(null)
+  const [isLoading, setIsLoading] = React.useState(false)
+  const [error, setError] = React.useState<string | null>(null)
+  const [autoTriggerDownload, setAutoTriggerDownload] = React.useState(false)
+  const [searchCounter, setSearchCounter] = React.useState(0)
+  
+  const { history: recentDownloads, addToHistory, clearHistory } = useDownloadHistory("snapchat");
+  const searchParams = useSearchParams()
+  const sharedUrl = searchParams.get('url') || "";
+
+
+
+  const handleSearch = async (url: string, isAutoTrigger = false) => {
+    setSearchCounter(prev => prev + 1);
+    setAutoTriggerDownload(isAutoTrigger)
+    const cached = getCached(url)
+    if (cached) {
+      setDownloadData(cached)
+      return
+    }
+
+    setIsLoading(true)
+    setDownloadData(null)
+    setError(null)
+
+    const searchPromise = async () => {
+      const response = await fetch("/api/download", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url, platform: "snapchat" }),
+      })
+      const contentType = response.headers.get("content-type")
+      if (!contentType || !contentType.includes("application/json")) {
+        throw new Error("Server returned an invalid response. Please try again later.")
+      }
+      
+      const result = await response.json()
+      if (result.success) {
+        setDownloadData(result.data)
+        setCached(url, result.data)
+        addToHistory(url, { thumbnail: result.data.thumbnail, title: result.data.title })
+        return result
+      } else {
+        throw new Error(result.error || "Failed to fetch content")
+      }
+    }
+
+    try {
+      await searchPromise()
+    } catch (err: any) {
+      const msg = err?.message || "Failed to process the link. Please try again.";
+      setError(msg);
+      toast.error(msg);
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  // Auto-download logic for PWA Share Target
+  useAutoDownload(handleSearch, locale, "snapchat")
+
+  const colors: Record<string, any> = {
+    yellow: { text: "text-black", bg: "bg-yellow-400", border: "border-black", bgAccent: "bg-yellow-500/10", ribbon: "from-yellow-400 to-yellow-500", gradient: "from-yellow-400 via-yellow-300 to-amber-300", effect: "bg-yellow-300", shadow: "shadow-2xl" },
+    amber: { text: "text-black", bg: "bg-amber-400", border: "border-black", bgAccent: "bg-amber-500/10", ribbon: "from-amber-400 to-orange-500", gradient: "from-amber-400 via-yellow-400 to-orange-400", effect: "bg-amber-300", shadow: "shadow-2xl" },
+    black: { text: "text-yellow-400", bg: "bg-black", border: "border-yellow-500", bgAccent: "bg-yellow-500/5", ribbon: "from-neutral-900 to-black", gradient: "from-neutral-800 via-neutral-900 to-black", effect: "bg-yellow-500", shadow: "shadow-[0_20px_50px_rgba(0,0,0,0.5)]" },
+    cyan: { text: "text-black", bg: "bg-cyan-400", border: "border-black", bgAccent: "bg-cyan-500/10", ribbon: "from-cyan-400 to-blue-500", gradient: "from-cyan-400 via-sky-400 to-blue-400", effect: "bg-cyan-200", shadow: "shadow-2xl" },
+  };
+  const cx = colors[themeColor] || colors.yellow;
+
+  const infoData = React.useMemo(() => {
+    switch (activeTab) {
+      case "spotlight":
+        return {
+          title: "Snapchat Spotlight Downloader Online",
+          desc: "SavClip is the premier tool for downloading Snapchat Spotlight videos in original HD quality without any watermark. Save viral Spotlight content directly to your phone or computer instantly.\n\nOur service is fast, 100% free, and requires no login or extra software. Simply paste the Snapchat Spotlight link above to enjoy high-speed downloads for offline viewing and sharing."
+        };
+      case "story":
+        return {
+          title: "Snapchat Story Saver & Anonymous Viewer",
+          desc: "Download and view Snapchat stories anonymously with SavClip. Our specialized story saver allows you to preserve public snaps in high resolution before they expire.\n\nEnjoy a secure and private downloading experience with no account needed. Just enter the Snapchat story or profile link above to start saving stories and highlights for free."
+        };
+      case "photo":
+        return {
+          title: "Snapchat Photo & Media Downloader",
+          desc: "Save Snapchat photos and high-quality images directly to your device gallery with SavClip. Our tool ensures you get the highest resolution available for any public Snapchat media.\n\nFast, reliable, and completely free to use. Paste the Snapchat image URL above and download your content in seconds without any registration."
+        };
+      case "video":
+      default:
+        return {
+          title: "Snapchat Video Downloader Online",
+          desc: "Download Snapchat videos, spotlights, and stories in original HD quality quickly and securely with SavClip. Our Snapchat downloader is the most reliable tool for saving public media without any hassle.\n\nEnjoy unlimited downloads with no login required. Simply paste the Snapchat URL above and click the download button to get high-quality videos in seconds. SavClip works perfectly on all mobile and desktop devices."
+        };
+    }
+  }, [activeTab]);
+
+  return (
+    <div className="flex flex-col">
+      <StructuredData type="SoftwareApplication" data={pageSeo} />
+      {content.faq && <StructuredData type="FAQPage" data={content.faq} />}
+      {content.howTo && <StructuredData type="HowTo" data={content.howTo} />}
+      {/* Hero Section */}
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-4 pb-2 w-full">
+        <Breadcrumbs 
+          items={[
+            { name: "Home", item: `/${locale}` },
+            { name: "Snapchat", item: `/${locale}/snapchat-video-downloader` },
+            { name: pageTitle, item: `/${locale}/${content.slug || ""}` }
+          ]}
+          rating="4.9"
+          reviewCount="2,100"
+        />
+      </div>
+      <section className={`relative overflow-hidden bg-linear-to-br from-fuchsia-600 via-purple-600 to-sky-500 px-4 pt-10 pb-10 sm:pt-16 sm:pb-24 sm:px-6 lg:px-8 shadow-[inset_0_-20px_60px_rgba(0,0,0,0.1)]`}>
+                
+        <div className="relative z-10 mx-auto max-w-7xl text-center flex flex-col items-center gap-3 sm:gap-6">
+          <PlatformTabs   
+            activeId={activeTab} 
+            activeColor="text-pink-600"
+            tabs={dict?.tabs}
+            locale={locale}
+            items={[
+              { id: "video", label: "Video", href: "/snapchat-video-downloader", icon: <Ghost className="h-4 w-4" /> },
+              { id: "spotlight", label: "Spotlight", href: "/snapchat-spotlight-downloader", icon: <Play className="h-4 w-4" /> },
+              { id: "story", label: "Story", href: "/snapchat-stories-downloader", icon: <StopCircle className="h-4 w-4" /> },
+              { id: "music", label: "MP3", href: "/snapchat-audio-downloader", icon: <MusicIcon className="h-4 w-4" /> },
+            ]} 
+          />
+
+          <div
+          >
+            <h1 className="font-black tracking-tighter text-white leading-tight whitespace-nowrap drop-shadow-[0_8px_20px_rgba(0,0,0,0.4)] px-2 text-[clamp(1.5rem,7vw,4.5rem)] sm:text-7xl md:text-8xl lg:text-9xl text-center">
+              {pageTitle}
+            </h1>
+            <p className="mx-auto max-w-2xl text-[clamp(0.85rem,3.5vw,1.1rem)] sm:text-xl font-medium text-white/80 tracking-tight italic drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)] px-4 mt-2">
+              {content?.subtitle || "Download Snapchat videos and spotlights in HD quality."}
+            </p>
+          </div>
+          
+          <div className="mx-auto max-w-3xl">
+            <SearchBar
+              onSearch={handleSearch}
+              isLoading={isLoading}
+              dict={dict}
+              validate={isAnyPlatformUrl}
+              buttonClass="bg-linear-to-br from-pink-600 via-rose-600 to-pink-700 text-white font-black uppercase tracking-widest shadow-[0_25px_60px_rgba(0,0,0,0.5)] transition-all active:translate-y-[2px] active:shadow-none"
+              iconClass={cx.text}
+              initialValue={searchParams.get('url') || ""}
+            />
+
+
+            
+              {error && (
+                <div
+                  className="mx-auto max-w-3xl mt-4 p-4 rounded-2xl bg-red-500/20 border-2 border-red-500/50 text-white font-black tracking-wider shadow-2xl backdrop-blur-md"
+                >
+                  <div className="flex items-center gap-3 text-left">
+                    <div className="bg-red-500 p-1.5 rounded-lg shrink-0">
+                      <Info className="h-5 w-5 text-white" />
+                    </div>
+                    {error}
+                  </div>
+                </div>
+              )}
+            
+
+            <HeroQuickGuide steps={dict?.guide?.steps || []} accentColor={cx.text} />
+
+            <TrustBadges dict={dict} />
+            <TrendingBar accentColor="bg-fuchsia-600" />
+            <DownloadCounter accentColor="text-fuchsia-200" />
+            <LoadingBar isLoading={isLoading} gradient="from-indigo-500 via-purple-500 to-rose-500" />
+          </div>
+          <DownloadPreview 
+            data={downloadData} 
+            isLoading={isLoading} 
+            autoTriggerDownload={autoTriggerDownload}
+            searchCounter={searchCounter}
+            buttonStyle="bg-linear-to-br from-pink-600 via-rose-600 to-pink-700 text-white font-black uppercase tracking-widest shadow-[0_25px_60px_rgba(0,0,0,0.5)] transition-all active:translate-y-[2px] active:shadow-none"
+            accentText="text-cyan-400"
+            accentBg="bg-cyan-500/10"
+            accentBorder="border-pink-600"
+          />
+        </div>
+      </section>
+
+      <section className="bg-white px-4 py-16 dark:bg-black sm:px-6 lg:px-8 relative z-20 border-b border-neutral-100 dark:border-neutral-900">
+        <div className="mx-auto max-w-7xl">
+          <h2 className="mb-12 text-center text-2xl md:text-3xl font-black text-neutral-900 dark:text-white tracking-wider md:tracking-widest uppercase italic leading-tight">{dict?.features?.title || "Why Choose SavClip?"}</h2>
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {[
+              { title: "HD Quality", desc: "Download videos in stunning HD resolution without any quality loss.", icon: <Monitor className="h-6 w-6" /> },
+              { title: "No Watermark", desc: "Get clean, watermark-free videos perfectly ready for reposting.", icon: <Video className="h-6 w-6" /> },
+              { title: "Lightning Fast", desc: "Our advanced servers ensure the fastest download speeds available.", icon: <Zap className="h-6 w-6" /> },
+              { title: "100% Secure", desc: "No login required. Your privacy and security are fully protected.", icon: <ShieldCheck className="h-6 w-6" /> },
+              { title: "Unlimited Downloads", desc: "Save as many videos as you want without any restrictions.", icon: <Download className="h-6 w-6" /> },
+              { title: "Completely Free", desc: "Enjoy all premium features without paying a single cent.", icon: <CheckCircle2 className="h-6 w-6" /> },
+            ].map((feature, idx) => (
+              <div key={idx} className="flex flex-col p-6 rounded-3xl bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 transition-all hover:scale-[1.02] hover:shadow-xl">
+                <div className={cn("mb-4 inline-flex p-3 rounded-xl bg-white dark:bg-black shadow-md", cx?.text || "text-pink-600")}>
+                  {feature.icon}
+                </div>
+                <h3 className="text-lg font-black text-neutral-900 dark:text-white uppercase italic tracking-tight">{feature.title}</h3>
+                <p className="mt-2 text-sm text-neutral-500 dark:text-neutral-400 font-bold leading-relaxed">{feature.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <PremiumInfoSection 
+        title={infoData.title}
+        description={infoData.desc}
+        imageSrc="/images/snapchat-3d-logo.png"
+      />
+
+      <PurpleStepGuide 
+        title={`How to Download ${dict.categories?.snapchat || "Snapchat"} Videos`}
+        steps={[
+          {
+            title: dict.guide?.steps?.[0]?.title?.replace('{platform}', 'Snapchat') || "Copy the URL",
+            description: dict.guide?.steps?.[0]?.desc?.replace('{platform}', 'Snapchat') || "Open the Snapchat app or website, go to the video, Spotlight or Story you want to download. Tap the 'Share' button and select 'Copy Link'."
+          },
+          {
+            title: dict.guide?.steps?.[1]?.title?.replace('{platform}', 'Snapchat') || "Paste the Link",
+            description: dict.guide?.steps?.[1]?.desc?.replace('{platform}', 'Snapchat') || "Come back to SavClip, paste the copied link into the input field at the top of the page and click the 'Download' button."
+          },
+          {
+            title: dict.guide?.steps?.[2]?.title?.replace('{platform}', 'Snapchat') || "Download Your Video",
+            description: dict.guide?.steps?.[2]?.desc?.replace('{platform}', 'Snapchat') || "Review the results and find the file you want to save. Click the 'Download' button. Done!"
+          }
+        ]}
+      />{content?.howTo?.steps && content.howTo.steps.length >= 3 && (
+        <VisualGuide 
+          platformName={dict.categories?.snapchat || "Snapchat"}
+          accentColor={cx.text}
+          bgAccentColor={cx.bg}
+          Icon={Ghost}
+          steps={[
+            { title: dict.guide?.steps?.[0]?.title?.replace('{platform}', 'Snapchat') || "Step 1", desc: dict.guide?.steps?.[0]?.desc?.replace('{platform}', 'Snapchat') || "Open app and copy link.", image: "/images/how-to/step1.webp" },
+            { title: dict.guide?.steps?.[1]?.title?.replace('{platform}', 'Snapchat') || "Step 2", desc: dict.guide?.steps?.[1]?.desc?.replace('{platform}', 'Snapchat') || "Paste the link here.", image: "/images/how-to/step2.webp" },
+            { title: dict.guide?.steps?.[2]?.title?.replace('{platform}', 'Snapchat') || "Step 3", desc: dict.guide?.steps?.[2]?.desc?.replace('{platform}', 'Snapchat') || "Download the media.", image: "/images/how-to/step3.webp" },
+          ]}
+        />
+      )}
+
+      <ChromeExtensionBanner dict={dict} />
+
+      {/* Info Section (SEO) */}
+      {content.seo && (
+        <section className="px-4 py-4 sm:py-12 bg-white dark:bg-black sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-4xl">
+            <div className="mt-10">
+              <h2 className="flex items-center justify-center gap-3 text-2xl md:text-3xl font-black text-neutral-900 dark:text-white tracking-wider md:tracking-widest uppercase italic text-center leading-tight">
+                <Info className={`h-8 w-8 ${cx.text}`} />
+                {content.seo.title}
+              </h2>
+              <p className={cn("mt-6 text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed font-medium text-center max-w-3xl mx-auto opacity-90")}>
+                {content?.seo?.desc || pageSeo?.desc}
+              </p>
+              
+              
+                {content?.article_content && (
+                  <div>
+                    <div className="flex flex-col items-center mb-8">
+                      <div className={`p-3 rounded-2xl bg-white dark:bg-neutral-900 shadow-xl border border-neutral-100 dark:border-neutral-800 ${cx.text} mb-4`}>
+                        <ShieldCheck className="h-6 w-6" />
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-black text-neutral-900 dark:text-white tracking-widest uppercase italic text-center">Expert Guide & Safety</h3>
+                        <p className="text-xs font-black text-neutral-400 tracking-widest uppercase italic mt-1 text-center">Verified Secure • Ethical Usage • HD Quality</p>
+                      </div>
+                    </div>
+                    
+                    <div className="prose prose-neutral dark:prose-invert max-w-none">
+                    <RichArticle 
+                      sections={content.article_content}
+                      accentColor={cx.text}
+                      boilerplate={dict.common?.boilerplates?.snapchat}
+                    />
+                    </div>
+                  </div>
+                )}
+      
+                {content.seo?.features && (
+                  <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 text-center">
+                    {content.seo.features.map((feature: any, idx: number) => (
+                      <div key={idx} className="rounded-4xl bg-neutral-50 p-8 dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 transition-all hover:scale-105 hover:bg-white dark:hover:bg-neutral-900 shadow-sm hover:shadow-2xl flex flex-col items-center">
+                        <h3 className="font-black text-neutral-900 dark:text-white tracking-tight uppercase italicer text-lg">{feature.title}</h3>
+                        <p className="mt-3 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 ">{feature.desc}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                <div className="mt-6 sm:mt-20">
+                  <h2 className="flex items-center justify-center gap-3 text-2xl md:text-3xl font-black text-neutral-900 dark:text-white tracking-wider md:tracking-widest uppercase italic text-center leading-tight">
+                    <HelpCircle className={`h-8 w-8 ${cx.text}`} />
+                    {content.faq?.title || dict.faq?.title || "FAQ"}
+                  </h2>
+                  <div className="mt-12 space-y-6 text-center">
+                    {(content.faq?.items || dict.faq?.items || []).map((faq: any, idx: number) => (
+                      <div key={idx} className={`group rounded-[2rem] border border-neutral-200 p-8 dark:border-neutral-800 hover:${cx.border}/50 transition-all bg-white dark:bg-transparent hover:shadow-2xl`}>
+                        <h3 className="text-lg font-black text-neutral-900 dark:text-white tracking-tight uppercase italicer">{faq.title}</h3>
+                        <p className="mt-4 text-neutral-500 dark:text-neutral-400 font-bold opacity-80 leading-relaxed ">{faq.desc}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+          
+          </div>
+        </div>
+      </section>
+      )}
+
+      
+    </div>
+  )
+}
+
+function SnapchatPageInner(props: SnapchatPageProps) {
+  return (
+    <React.Suspense fallback={null}>
+      <SnapchatContent {...props} />
+    </React.Suspense>
+  )
+}
+
+
+export default function SnapchatPage(props: SnapchatPageProps) {
+  return (
+    <React.Suspense fallback={null}>
+      <SnapchatPageInner {...props} />
+    </React.Suspense>
+  )
+}
