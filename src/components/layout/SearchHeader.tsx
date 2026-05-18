@@ -183,7 +183,7 @@ function SearchHeaderContent({
   }
 
   return (
-    <section className="pt-10 pb-8 sm:pt-20 sm:pb-12 px-4 text-center bg-linear-to-r from-fuchsia-600 via-purple-600 to-sky-500 relative overflow-hidden">
+    <section className="pt-10 pb-6 sm:pt-20 sm:pb-8 px-4 text-center bg-linear-to-r from-fuchsia-600 via-purple-600 to-sky-500 relative overflow-hidden">
       <div className="absolute inset-0 z-0 opacity-40">
         <div className="absolute -top-1/4 -left-1/4 h-[800px] w-[800px] animate-pulse rounded-full bg-fuchsia-500/30 blur-3xl" />
         <div className="absolute -bottom-1/4 -right-1/4 h-[800px] w-[800px] animate-pulse rounded-full bg-sky-500/30 blur-3xl" />
@@ -262,7 +262,7 @@ function SearchHeaderContent({
 export function SearchHeader(props: SearchHeaderProps) {
   return (
     <Suspense fallback={
-      <section className="pt-10 pb-8 sm:pt-20 sm:pb-12 px-4 text-center bg-linear-to-r from-fuchsia-600 via-purple-600 to-sky-500 relative overflow-hidden">
+      <section className="pt-10 pb-6 sm:pt-20 sm:pb-8 px-4 text-center bg-linear-to-r from-fuchsia-600 via-purple-600 to-sky-500 relative overflow-hidden">
         <div className="relative z-10 max-w-5xl mx-auto flex flex-col items-center">
           <div className="w-full flex justify-center">
             <h1 className="font-bold text-white mb-3 drop-shadow-md text-center tracking-tight leading-none whitespace-nowrap inline-block text-2xl sm:text-4xl md:text-5xl lg:text-6xl">
