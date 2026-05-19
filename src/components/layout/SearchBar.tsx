@@ -7,6 +7,7 @@ import { cn } from "@/utils/cn"
 import { useRouter, usePathname, useSearchParams } from "next/navigation"
 import { getPlatformFromUrl, getLocalizedRoute, getPlatformFromPath, isAnyPlatformUrl, getPreciseRouteFromUrl } from "@/utils/platform-detector"
 import { toast } from "react-hot-toast"
+import { locales } from "@/i18n"
 
 interface SearchBarProps {
   onSearch: (url: string) => void
@@ -69,8 +70,11 @@ function SearchBarInner({
     const targetPath = getPreciseRouteFromUrl(inputUrl)
     if (!targetPath) return false
 
-    const locale = (pathname || "").split('/')[1] || 'en'
-    const relativePath = (pathname || "").replace(`/${locale}`, "") || "/"
+    const segment = (pathname || "").split('/')[1];
+    const isKnownLocale = segment && (locales as readonly string[]).includes(segment);
+    const locale = isKnownLocale ? segment : 'en';
+    
+    const relativePath = isKnownLocale ? ((pathname || "").replace(`/${locale}`, "") || "/") : (pathname || "/");
 
     if (relativePath !== targetPath) {
       const displayLabel = targetPath.replace('/', '').replace(/-/g, ' ').replace('downloader', '').trim()
@@ -90,7 +94,7 @@ function SearchBarInner({
         }
       })
       
-      const targetUrl = `/${locale}${targetPath === '/' ? '' : targetPath}`
+      const targetUrl = locale === 'en' ? (targetPath === '/' ? '/' : targetPath) : `/${locale}${targetPath === '/' ? '' : targetPath}`
       router.push(`${targetUrl}?url=${encodeURIComponent(inputUrl)}`)
       return true
     }
