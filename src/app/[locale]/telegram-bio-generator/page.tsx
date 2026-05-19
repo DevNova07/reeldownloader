@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "Telegram Bio Generator – AI Powered TG Bio Creator",
-  description: "Save your favorite Telegram media instantly without any logos. Our free online tool gives you crisp quality directly to your device.",
+  description: "Create clean, professional, or stylish bios using SavClip's free AI Telegram Bio Generator. Stand out on TG channels instantly.",
     alternates: getSeoAlternates("telegram-bio-generator", params.locale),
    
   }

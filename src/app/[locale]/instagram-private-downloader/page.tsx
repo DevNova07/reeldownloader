@@ -16,7 +16,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "Download Private Instagram Videos & Photos HD – SavClip",
-  description: "Looking to keep Instagram media permanently? Use our intuitive online utility to get original files in seconds.",
+  description: "Download private Instagram videos, reels, and photos securely. Save content from private accounts you follow using our online script tool.",
     alternates: getSeoAlternates("instagram-private-downloader", params.locale),
    
   }

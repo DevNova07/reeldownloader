@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "Telegram GIF Downloader – Save TG GIFs in High Quality",
-  description: "Download Telegram GIFs effortlessly. We preserve the original source quality so you never miss a single detail.",
+  description: "Save animated Telegram GIFs directly to your device as MP4 files. Build your offline GIF collection with SavClip.",
     alternates: getSeoAlternates("telegram-gif-downloader", params.locale),
    
   }

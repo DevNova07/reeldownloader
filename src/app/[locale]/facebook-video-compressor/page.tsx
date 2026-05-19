@@ -14,8 +14,8 @@ import { getToolSeoData } from "@/lib/getSeoData"
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const params = await props.params;
   return { 
-  title: "Facebook Video Compressor",
-  description: "A streamlined, 100% free solution for archiving Facebook videos. Experience lightning-fast speeds and pristine clarity.",
+  title: "Facebook Video Compressor – Reduce FB Video Size Free | SavClip",
+  description: "Reduce Facebook video file sizes online without losing original clarity. Compress large clips easily for seamless uploading to FB.",
     alternates: getSeoAlternates("facebook-video-compressor", params.locale),
    
   }

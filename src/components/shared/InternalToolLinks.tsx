@@ -60,11 +60,14 @@ export function InternalToolLinks({ currentPlatform, dict, accentColor = "text-p
         
         return platform === currentPlatform && key !== currentToolKey
       })
-      .map(key => ({
-        key,
-        title: seoPages?.[key]?.title || "Tool",
-        href: `/${locale}/${key.replaceAll('_', '-')}`
-      }))
+      .map(key => {
+        const cleanPath = `/${key.replaceAll('_', '-')}`
+        return {
+          key,
+          title: seoPages?.[key]?.title || "Tool",
+          href: locale === 'en' ? cleanPath : `/${locale}${cleanPath}`
+        }
+      })
       .slice(0, 24) // Show more tools for better SEO internal linking
   }, [dict, currentPlatform, currentToolKey, locale])
 

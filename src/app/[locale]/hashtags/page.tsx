@@ -11,7 +11,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "AI Hashtag Generator | Viral Social Media Tags | SavClip",
-  description: "A streamlined, 100% free solution for archiving Hashtags media. Experience lightning-fast speeds and pristine clarity.",
+  description: "Discover trending and viral tags with SavClip's free AI Hashtag Generator. Boost your impressions and likes across all major social media networks.",
     alternates: getSeoAlternates("hashtags", params.locale),
    
   }

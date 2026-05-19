@@ -16,7 +16,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "YouTube Video Downloader HD – Save YT Videos 4K & MP4",
-  description: "A streamlined, 100% free solution for archiving YouTube videos. Experience lightning-fast speeds and pristine clarity.",
+  description: "Download YouTube videos in 4K, 1080p, or MP4 formats. The fastest free utility to save public YT clips to your local drives.",
     alternates: getSeoAlternates("youtube-video-downloader", params.locale),
    
   }

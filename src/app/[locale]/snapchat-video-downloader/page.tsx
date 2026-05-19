@@ -15,8 +15,8 @@ import { getToolSeoData } from "@/lib/getSeoData"
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const params = await props.params;
   return { 
-  title: "Snapchat Video Downloader",
-  description: "Save your favorite Snapchat videos instantly without any logos. Our free online tool gives you crisp quality directly to your device.",
+  title: "Snapchat Video Downloader – Save Snaps & Spotlight Videos | SavClip",
+  description: "Download Snapchat videos to MP4 files. The ultimate free tool to extract public videos from Snapchat links safely.",
     alternates: getSeoAlternates("snapchat-video-downloader", params.locale),
    
   }

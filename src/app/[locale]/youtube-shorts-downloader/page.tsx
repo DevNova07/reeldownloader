@@ -16,7 +16,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "YouTube Shorts Downloader – Save YT Shorts No Watermark HD",
-  description: "Download YouTube Shorts effortlessly. We preserve the original source quality so you never miss a single detail.",
+  description: "Download YouTube Shorts in high definition without watermark. Save viral short clips directly to your storage layout.",
     alternates: getSeoAlternates("youtube-shorts-downloader", params.locale),
    
   }

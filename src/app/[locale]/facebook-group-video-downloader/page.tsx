@@ -14,8 +14,8 @@ import { getToolSeoData } from "@/lib/getSeoData"
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const params = await props.params;
   return { 
-  title: "Facebook Group Video Downloader",
-  description: "Looking to keep Facebook videos permanently? Use our intuitive online utility to get original files in seconds.",
+  title: "Facebook Group Video Downloader – Save Group Videos Online | SavClip",
+  description: "Easily save videos from public Facebook groups. Use SavClip to backup group video content directly to your phone or PC in HD.",
     alternates: getSeoAlternates("facebook-group-video-downloader", params.locale),
    
   }

@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "Facebook Live Video Downloader – Save FB Live Streams in HD",
-  description: "Save your favorite Facebook videos instantly without any logos. Our free online tool gives you crisp quality directly to your device.",
+  description: "Download recorded Facebook Live stream videos in high definition. Save full FB streams for offline watching with SavClip.",
     alternates: getSeoAlternates("facebook-live-video-downloader", params.locale),
    
   }

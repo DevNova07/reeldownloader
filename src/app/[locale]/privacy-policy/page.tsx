@@ -8,7 +8,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return {
     title: "Privacy Policy – How SavClip Protects Your Data",
-    description: "Learn how SavClip collects, handles, and protects your personal information and browser data securely when using our free media tools.",
+    description: "Review the SavClip Privacy Policy. Learn how we handle, process, and safeguard your data securely when using our free web applications.",
     alternates: getSeoAlternates("privacy-policy", params.locale),
   }
 }

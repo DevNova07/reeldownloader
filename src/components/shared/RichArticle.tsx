@@ -18,9 +18,53 @@ interface RichArticleProps {
   accentColor?: string
   boilerplate?: string
   mockup?: React.ReactNode
+  h2SizeClass?: string
 }
 
-export function RichArticle({ sections, accentColor = "text-pink-600", boilerplate, mockup }: RichArticleProps) {
+function splitHeading(content: string) {
+  const splitPhrases = [
+    "is the Best",
+    "to Download",
+    "Without Watermark",
+    "in Full Resolution",
+    "Downloader Online",
+    "on Any Device",
+    "from Social Media",
+  ];
+  
+  for (const phrase of splitPhrases) {
+    const idx = content.toLowerCase().indexOf(phrase.toLowerCase());
+    if (idx !== -1) {
+      let splitPoint = idx + phrase.length;
+      if (
+        phrase === "Without Watermark" ||
+        phrase === "in Full Resolution" ||
+        phrase === "Downloader Online" ||
+        phrase === "on Any Device"
+      ) {
+        splitPoint = idx;
+      }
+      const part1 = content.substring(0, splitPoint).trim();
+      const part2 = content.substring(splitPoint).trim();
+      if (part1 && part2) {
+        return [part1, part2];
+      }
+    }
+  }
+  
+  const words = content.split(" ");
+  if (words.length > 3) {
+    const mid = Math.ceil(words.length / 2);
+    return [
+      words.slice(0, mid).join(" "),
+      words.slice(mid).join(" ")
+    ];
+  }
+  
+  return [content, ""];
+}
+
+export function RichArticle({ sections, accentColor = "text-pink-600", boilerplate, mockup, h2SizeClass }: RichArticleProps) {
   // Backward compatibility for old string content
   if (typeof sections === "string") {
     return (
@@ -49,6 +93,7 @@ export function RichArticle({ sections, accentColor = "text-pink-600", boilerpla
           case "heading":
             const HeadingTag = `h${section.level || 3}` as React.ElementType
             const isHowToDownload = section.content?.toLowerCase().includes("how to download")
+            const [line1, line2] = section.level === 2 ? splitHeading(section.content || "") : [section.content || "", ""];
             
             return (
               <React.Fragment key={idx}>
@@ -57,15 +102,32 @@ export function RichArticle({ sections, accentColor = "text-pink-600", boilerpla
                     {mockup}
                   </div>
                 )}
-                <HeadingTag
-                  className={`font-bold tracking-normal text-neutral-900 dark:text-white text-center md:text-left ${
-                    idx === 0 ? "md:pt-8" : ""
-                  } ${
-                    section.level === 2 ? "text-xl sm:text-2xl md:text-3xl lg:text-4xl leading-snug md:leading-tight" : "text-lg md:text-xl mt-4"
-                  }`}
-                >
-                  {section.content}
-                </HeadingTag>
+                {section.level === 2 && line2 ? (
+                   <HeadingTag
+                     className={`font-bold text-neutral-900 dark:text-white text-center leading-tight ${
+                       idx === 0 ? "md:pt-8" : ""
+                     } mb-1`}
+                   >
+                     <span className={`block ${h2SizeClass || "text-xl sm:text-3xl md:text-4xl"} uppercase tracking-tight mb-1`}>
+                       {line1}
+                     </span>
+                     <span className={`block ${h2SizeClass || "text-xl sm:text-3xl md:text-4xl"} uppercase tracking-tight`}>
+                       {line2}
+                     </span>
+                   </HeadingTag>
+                ) : (
+                  <HeadingTag
+                    className={`font-bold text-neutral-900 dark:text-white text-center leading-tight ${
+                      idx === 0 ? "md:pt-8" : ""
+                    } ${
+                      section.level === 2
+                        ? `${h2SizeClass || "text-2xl sm:text-3xl md:text-4xl"} uppercase tracking-tight mb-1`
+                        : "text-lg md:text-xl tracking-normal mt-4"
+                    }`}
+                  >
+                    {section.content}
+                  </HeadingTag>
+                )}
               </React.Fragment>
             )
 

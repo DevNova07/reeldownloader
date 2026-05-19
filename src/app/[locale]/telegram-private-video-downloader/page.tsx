@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "Telegram Private Video Downloader – Save Locked TG Videos",
-  description: "Save your favorite Telegram videos instantly without any logos. Our free online tool gives you crisp quality directly to your device.",
+  description: "Download private videos from restrictive Telegram channels securely. Bypass local streaming delays and save content offline.",
     alternates: getSeoAlternates("telegram-private-video-downloader", params.locale),
    
   }

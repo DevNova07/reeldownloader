@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "YouTube Subtitle Downloader – Download CC/Subtitles SRT, TXT",
-  description: "Download YouTube media effortlessly. We preserve the original source quality so you never miss a single detail.",
+  description: "Extract closed captions effortlessly. Download YouTube subtitles in clean SRT or TXT formats across multiple languages.",
     alternates: getSeoAlternates("youtube-subtitle-downloader", params.locale),
    
   }

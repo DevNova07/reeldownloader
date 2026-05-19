@@ -8,7 +8,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return {
     title: "DMCA Copyright Policy & Take-Down Requests – SavClip",
-    description: "A streamlined, 100% free solution for archiving Dmca media. Experience lightning-fast speeds and pristine clarity.",
+    description: "SavClip respects intellectual property rights. Review our DMCA copyright policy or submit content take-down requests through our official guidelines.",
     alternates: getSeoAlternates("dmca", params.locale),
   }
 }

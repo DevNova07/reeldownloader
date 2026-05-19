@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "Instagram Video Compressor: Resize IG Videos",
-  description: "Looking to keep Instagram videos permanently? Use our intuitive online utility to get original files in seconds.",
+  description: "Compress Instagram videos to fit upload limits perfectly. Resize and optimize clips for IG stories, reels, and posts online free.",
     alternates: getSeoAlternates("instagram-video-compressor", params.locale),
    
   }

@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "TikTok Trending Hashtag Generator – AI Hashtags Finder",
-  description: "Save your favorite TikTok media instantly without any logos. Our free online tool gives you crisp quality directly to your device.",
+  description: "Find the hottest tags with our AI TikTok Trending Hashtag Generator. Maximize your For You Page (FYP) visibility.",
     alternates: getSeoAlternates("tiktok-trending-hashtag-generator", params.locale),
    
   }

@@ -16,7 +16,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "Download Instagram Videos Without Watermark in HD – SavClip",
-  description: "Easily grab Instagram videos in high resolution. No account required, just paste the link and enjoy fast, secure offline access.",
+  description: "Download Instagram videos to MP4 format in full resolution. Free online utility to save public IG videos instantly with no watermark.",
     alternates: getSeoAlternates("instagram-video-downloader", params.locale),
    
   }

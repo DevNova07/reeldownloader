@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "TikTok Video Compressor – Reduce File Size Free",
-  description: "Save your favorite TikTok videos instantly without any logos. Our free online tool gives you crisp quality directly to your device.",
+  description: "Shrink TikTok video sizes online. Pass formatting limits easily by compressing video bitrates without causing pixelation.",
     alternates: getSeoAlternates("tiktok-video-compressor", params.locale),
    
   }

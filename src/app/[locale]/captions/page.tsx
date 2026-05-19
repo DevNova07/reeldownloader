@@ -11,7 +11,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "AI Caption Generator | Write Engaging Captions | SavClip",
-  description: "Save your favorite Captions media instantly without any logos. Our free online tool gives you crisp quality directly to your device.",
+  description: "Generate highly engaging, viral captions for your videos using SavClip's free AI tool. Perfect for increasing retention on Reels, Shorts, and TikTok.",
     alternates: getSeoAlternates("captions", params.locale),
    
   }

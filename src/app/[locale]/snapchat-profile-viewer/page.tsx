@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "Snapchat Profile Viewer – View Snap Profiles Online",
-  description: "Looking to keep Snapchat profile pictures permanently? Use our intuitive online utility to get original files in seconds.",
+  description: "View public Snapchat profiles and look up usernames online. Explore snap account details privately without the official app.",
     alternates: getSeoAlternates("snapchat-profile-viewer", params.locale),
    
   }

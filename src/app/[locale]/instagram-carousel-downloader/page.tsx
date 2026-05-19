@@ -14,8 +14,8 @@ import { getToolSeoData } from "@/lib/getSeoData"
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const params = await props.params;
   return { 
-  title: "Instagram Carousel Downloader",
-  description: "A streamlined, 100% free solution for archiving Instagram media. Experience lightning-fast speeds and pristine clarity.",
+  title: "Instagram Carousel Downloader – Save Multiple Photos & Videos | SavClip",
+  description: "Download multiple photos and videos from Instagram carousel posts. Save entire IG slide posts in original quality at once.",
     alternates: getSeoAlternates("instagram-carousel-downloader", params.locale),
    
   }

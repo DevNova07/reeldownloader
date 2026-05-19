@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "YouTube Tag Generator – AI SEO Keywords for YT Videos",
-  description: "Save your favorite YouTube media instantly without any logos. Our free online tool gives you crisp quality directly to your device.",
+  description: "Find high-volume keywords with our AI YouTube Tag Generator. Improve video indexing and click visibility on search logs.",
     alternates: getSeoAlternates("youtube-tag-generator", params.locale),
    
   }

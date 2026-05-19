@@ -16,7 +16,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "Snapchat Story Downloader – Download Snap Stories in HD",
-  description: "Download Snapchat stories effortlessly. We preserve the original source quality so you never miss a single detail.",
+  description: "Download public Snapchat stories before they expire. Save snap status videos in full definition with one click.",
     alternates: getSeoAlternates("snapchat-stories-downloader", params.locale),
    
   }

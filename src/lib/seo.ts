@@ -15,15 +15,17 @@ export function getSeoAlternates(path: string, currentLocale: string) {
   
   // Generate hreflang for all supported locales
   locales.forEach((l) => {
-    // Set x-default to English
+    const localePath = l === 'en' ? '' : `/${l}`;
+    // Set x-default to English (root)
     if (l === 'en') {
-      languages['x-default'] = cleanPath ? `/${l}/${cleanPath}` : `/${l}`;
+      languages['x-default'] = cleanPath ? `/${cleanPath}` : `/`;
     }
-    languages[l] = cleanPath ? `/${l}/${cleanPath}` : `/${l}`;
+    languages[l] = cleanPath ? `${localePath}/${cleanPath}` : `${localePath || '/'}`;
   });
 
+  const currentLocalePath = currentLocale === 'en' ? '' : `/${currentLocale}`;
   return {
-    canonical: cleanPath ? `/${currentLocale}/${cleanPath}` : `/${currentLocale}`,
+    canonical: cleanPath ? `${currentLocalePath}/${cleanPath}` : `${currentLocalePath || '/'}`,
     languages,
   };
 }

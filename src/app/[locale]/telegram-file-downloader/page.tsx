@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "Telegram File Downloader – Download Any TG Documents",
-  description: "Download Telegram media effortlessly. We preserve the original source quality so you never miss a single detail.",
+  description: "Download large document files, PDFs, and data archives from public Telegram links with maximum downloading speeds.",
     alternates: getSeoAlternates("telegram-file-downloader", params.locale),
    
   }

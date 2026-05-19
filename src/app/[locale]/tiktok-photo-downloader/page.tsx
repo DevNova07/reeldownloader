@@ -16,7 +16,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "TikTok Photo Downloader HD – Save TT Slideshows & Photos",
-  description: "A streamlined, 100% free solution for archiving TikTok photos. Experience lightning-fast speeds and pristine clarity.",
+  description: "Download TikTok slideshows and photo posts as individual high-resolution images or combined video layouts.",
     alternates: getSeoAlternates("tiktok-photo-downloader", params.locale),
    
   }

@@ -15,8 +15,8 @@ import { getToolSeoData } from "@/lib/getSeoData"
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const params = await props.params;
   return { 
-  title: "Facebook Private Video Downloader",
-  description: "Download Facebook videos effortlessly. We preserve the original source quality so you never miss a single detail.",
+  title: "Facebook Private Video Downloader – Secure & Fast Saver | SavClip",
+  description: "Download Facebook private videos securely. Copy and paste the page source code to extract hidden FB videos in high definition.",
     alternates: getSeoAlternates("facebook-private-video-downloader", params.locale),
    
   }

@@ -21,7 +21,7 @@ export function Footer({ locale, dict }: { locale: string, dict: any }) {
 
   const getLocalizedHref = (path: string) => {
     const cleanPath = path.startsWith('/') ? path : `/${path}`
-    if (normalizedLocale === 'en' && cleanPath === '/') return '/'
+    if (normalizedLocale === 'en') return cleanPath
     return `/${normalizedLocale}${cleanPath === '/' ? '' : cleanPath}`
   }
 

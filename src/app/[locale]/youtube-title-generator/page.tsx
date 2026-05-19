@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "YouTube Title Generator – AI Catchy & Clickable Titles",
-  description: "A streamlined, 100% free solution for archiving YouTube media. Experience lightning-fast speeds and pristine clarity.",
+  description: "Create clickable, SEO-friendly headlines using SavClip's free AI YouTube Title Generator. Improve video CTR instantly.",
     alternates: getSeoAlternates("youtube-title-generator", params.locale),
    
   }

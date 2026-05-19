@@ -14,8 +14,8 @@ import { getToolSeoData } from "@/lib/getSeoData"
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const params = await props.params;
   return { 
-  title: "X Video Compressor – Reduce Twitter Video File Size",
-  description: "A streamlined, 100% free solution for archiving X (Twitter) videos. Experience lightning-fast speeds and pristine clarity.",
+  title: "X Video Compressor – Reduce Twitter Video File Size Free | SavClip",
+  description: "Reduce video file sizes for seamless sharing on X (Twitter). Compress file assets to meet platform upload rules for free.",
     alternates: getSeoAlternates("x-video-compressor", params.locale),
    
   }

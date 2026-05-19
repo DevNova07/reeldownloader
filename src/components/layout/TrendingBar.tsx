@@ -4,7 +4,6 @@ import * as React from "react"
 import { motion } from "framer-motion"
 import { usePathname } from "next/navigation"
 import { getDictionary } from "@/dictionaries/client"
-import { type Locale } from "@/i18n"
 
 interface TrendingBarProps {
   accentColor?: string
@@ -18,10 +17,16 @@ const MEDIA_TYPES = [
   "Reel", "Video", "Story", "Audio", "Photo", "Viral Clip", "Short", "TikTok", "FB Reel"
 ]
 
+import { locales, type Locale } from "@/i18n"
+
 export function TrendingBar({ accentColor = "bg-pink-600" }: TrendingBarProps) {
   const pathname = usePathname() || ""
-  const locale = (pathname.split('/')[1] || 'en') as Locale
-    const dict = getDictionary(locale)
+  const locale = React.useMemo(() => {
+    if (!pathname) return 'en';
+    const segment = pathname.split('/')[1];
+    return locales.includes(segment as Locale) ? (segment as Locale) : 'en';
+  }, [pathname]);
+  const dict = getDictionary(locale)
   
   const [items, setItems] = React.useState<string[]>([])
   

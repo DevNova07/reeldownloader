@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "X Thread Downloader – Save Twitter Threads as PDF",
-  description: "A streamlined, 100% free solution for archiving X (Twitter) media. Experience lightning-fast speeds and pristine clarity.",
+  description: "Convert long X (Twitter) tweet threads into clean, readable PDF documents. Save complete written discussions instantly.",
     alternates: getSeoAlternates("x-thread-downloader", params.locale),
    
   }

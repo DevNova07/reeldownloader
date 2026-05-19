@@ -14,8 +14,8 @@ import { getToolSeoData } from "@/lib/getSeoData"
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const params = await props.params;
   return { 
-  title: "Instagram Profile Viewer",
-  description: "A streamlined, 100% free solution for archiving Instagram profile pictures. Experience lightning-fast speeds and pristine clarity.",
+  title: "Instagram Profile Viewer – View IG Profiles Anonymously | SavClip",
+  description: "View Instagram profiles anonymously without logging in. Explore bios, public posts, and grid layouts privately with SavClip.",
     alternates: getSeoAlternates("instagram-profile-viewer", params.locale),
    
   }

@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "X Media Downloader – Download Twitter Photos & Videos",
-  description: "Download X (Twitter) media effortlessly. We preserve the original source quality so you never miss a single detail.",
+  description: "Download photos, videos, and multi-image attachments from X (Twitter) posts in high resolution using a single URL.",
     alternates: getSeoAlternates("x-media-downloader", params.locale),
    
   }

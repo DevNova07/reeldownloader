@@ -16,7 +16,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "Download Instagram Photos HD & Full Res – SavClip",
-  description: "Save your favorite Instagram photos instantly without any logos. Our free online tool gives you crisp quality directly to your device.",
+  description: "Download Instagram photos and images in full HD resolution. Save original high-resolution pictures from any IG post for free.",
     alternates: getSeoAlternates("instagram-photo-downloader", params.locale),
    
   }

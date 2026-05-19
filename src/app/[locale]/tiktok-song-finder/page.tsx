@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "TikTok Song Finder – Identify Trending Audio",
-  description: "Save your favorite TikTok media instantly without any logos. Our free online tool gives you crisp quality directly to your device.",
+  description: "Identify trending music tracks and sounds on TikTok. Find viral audio details to use in your next short video project.",
     alternates: getSeoAlternates("tiktok-song-finder", params.locale),
    
   }

@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "Snapchat Video Compressor – Reduce Video Size Online",
-  description: "Looking to keep Snapchat videos permanently? Use our intuitive online utility to get original files in seconds.",
+  description: "Reduce Snapchat video file sizes for easier sharing. Compress video assets to fit snap limits without degrading overall clarity.",
     alternates: getSeoAlternates("snapchat-video-compressor", params.locale),
    
   }

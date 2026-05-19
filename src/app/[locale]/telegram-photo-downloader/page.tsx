@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "Telegram Photo Downloader – Save TG Photos in HD",
-  description: "Looking to keep Telegram photos permanently? Use our intuitive online utility to get original files in seconds.",
+  description: "Download images and photos shared on public Telegram channels or groups in full original HD quality.",
     alternates: getSeoAlternates("telegram-photo-downloader", params.locale),
    
   }

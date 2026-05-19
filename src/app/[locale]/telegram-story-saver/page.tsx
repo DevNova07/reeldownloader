@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "Telegram Story Saver – Download TG Stories Anonymously",
-  description: "Looking to keep Telegram stories permanently? Use our intuitive online utility to get original files in seconds.",
+  description: "Download Telegram stories anonymously in high resolution. Keep temporary TG video status clips before they disappear.",
     alternates: getSeoAlternates("telegram-story-saver", params.locale),
    
   }

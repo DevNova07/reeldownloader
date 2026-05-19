@@ -5,7 +5,6 @@ import { motion } from "framer-motion"
 import { LucideIcon } from "lucide-react"
 import { usePathname } from "next/navigation"
 import Image from "next/image"
-import { type Locale } from "@/i18n"
 import { getDictionary, type Dictionary } from "@/dictionaries/client"
 
 
@@ -23,6 +22,8 @@ interface VisualGuideProps {
   steps?: VisualStep[]
 }
 
+import { locales, type Locale } from "@/i18n"
+
 export function VisualGuide({ platformName, accentColor, bgAccentColor, Icon, steps: customSteps }: VisualGuideProps) {
   const [mounted, setMounted] = React.useState(false)
   const pathname = usePathname() || ""
@@ -31,7 +32,11 @@ export function VisualGuide({ platformName, accentColor, bgAccentColor, Icon, st
     setMounted(true)
   }, [])
 
-  const locale = (pathname.split('/')[1] || 'en') as Locale
+  const locale = React.useMemo(() => {
+    if (!pathname) return 'en';
+    const segment = pathname.split('/')[1];
+    return locales.includes(segment as Locale) ? (segment as Locale) : 'en';
+  }, [pathname]);
   const dict: Dictionary = getDictionary(locale)
 
   if (!mounted) return null

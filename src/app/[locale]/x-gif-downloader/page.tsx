@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "X GIF Downloader – Save Twitter GIFs as MP4",
-  description: "A streamlined, 100% free solution for archiving X (Twitter) GIFs. Experience lightning-fast speeds and pristine clarity.",
+  description: "Save animations from X (Twitter) as standard loopable MP4 files. Download public X GIFs directly to your device gallery.",
     alternates: getSeoAlternates("x-gif-downloader", params.locale),
    
   }

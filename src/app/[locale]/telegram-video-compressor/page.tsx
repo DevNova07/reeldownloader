@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "Telegram Video Compressor – Reduce TG Video File Size",
-  description: "A streamlined, 100% free solution for archiving Telegram videos. Experience lightning-fast speeds and pristine clarity.",
+  description: "Compress large Telegram videos online. Reduce file size to pass TG upload restrictions while maintaining maximum audio/video fidelity.",
     alternates: getSeoAlternates("telegram-video-compressor", params.locale),
    
   }

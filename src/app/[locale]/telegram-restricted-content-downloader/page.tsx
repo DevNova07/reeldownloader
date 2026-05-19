@@ -7,8 +7,8 @@ import { FAQSection } from "@/components/layout/FAQSection"
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const params = await props.params;
   return { 
-  title: "Telegram Restricted Content Downloader | SavClip",
-  description: "Download Telegram media effortlessly. We preserve the original source quality so you never miss a single detail.",
+  title: "Telegram Restricted Content Downloader – Save Locked Media | SavClip",
+  description: "Save media from Telegram channels that have content saving restrictions enabled. Extract videos and photos safely.",
     alternates: getSeoAlternates("telegram-restricted-content-downloader", params.locale),
    
   }

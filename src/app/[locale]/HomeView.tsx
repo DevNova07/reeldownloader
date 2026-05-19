@@ -200,9 +200,9 @@ function HomeViewContent({ locale, dict }: { locale: Locale, dict: any }) {
       </section>
 
       {/* INTRO ARTICLE SECTION (SEO H2s & Semantic Text) */}
-      <section className="pt-12 pb-16 bg-white dark:bg-neutral-950 px-4 relative z-20">
+      <section className="pt-6 pb-8 bg-white dark:bg-neutral-950 px-4 relative z-20">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl md:text-3xl sm:text-4xl font-bold text-neutral-900 dark:text-white uppercase tracking-tight mb-10 text-center leading-tight">
+          <h2 className="text-2xl md:text-3xl sm:text-4xl font-bold text-neutral-900 dark:text-white uppercase tracking-tight mb-3 text-center leading-tight">
             Download Videos from Social Media
           </h2>
           <RichArticle sections={introArticle} />

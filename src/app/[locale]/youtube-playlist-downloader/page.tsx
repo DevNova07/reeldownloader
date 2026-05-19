@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "YouTube Playlist Downloader – Download Full YT Playlists HD",
-  description: "Save your favorite YouTube media instantly without any logos. Our free online tool gives you crisp quality directly to your device.",
+  description: "Download complete YouTube playlists in one sequence. Batch save multiple videos in 1080p HD quality for free.",
     alternates: getSeoAlternates("youtube-playlist-downloader", params.locale),
    
   }

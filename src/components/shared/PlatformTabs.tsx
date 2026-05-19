@@ -25,6 +25,7 @@ interface PlatformTabsProps {
 export function PlatformTabs({ items, activeId, activeColor = "text-pink-600", tabs, className, locale = "en", indicatorColor = "bg-white" }: PlatformTabsProps) {
   const getLocalizedHref = (path: string) => {
     const cleanPath = path.startsWith('/') ? path : `/${path}`
+    if (locale === 'en') return cleanPath
     return `/${locale}${cleanPath === '/' ? '' : cleanPath}`
   }
   return (

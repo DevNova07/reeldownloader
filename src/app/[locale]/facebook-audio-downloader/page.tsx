@@ -16,7 +16,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "Facebook Audio Downloader – Convert FB Video to MP3 HD",
-  description: "Easily grab Facebook audio tracks in high resolution. No account required, just paste the link and enjoy fast, secure offline access.",
+  description: "Convert Facebook videos to MP3 audio files instantly. Extract high-quality sound tracks from FB posts safely with SavClip.",
     alternates: getSeoAlternates("facebook-audio-downloader", params.locale),
    
   }

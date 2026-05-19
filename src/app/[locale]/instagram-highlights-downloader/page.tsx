@@ -16,7 +16,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "Download Instagram Highlights HD & Original Quality",
-  description: "A streamlined, 100% free solution for archiving Instagram media. Experience lightning-fast speeds and pristine clarity.",
+  description: "Download Instagram highlights directly to your device. Save active or archived IG highlight stories in pristine original quality.",
     alternates: getSeoAlternates("instagram-highlights-downloader", params.locale),
    
   }

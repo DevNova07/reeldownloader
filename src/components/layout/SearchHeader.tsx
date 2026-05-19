@@ -11,6 +11,7 @@ import { isSmartInput } from "@/utils/platform-detector";
 import { useAutoDownload } from "@/hooks/useAutoDownload";
 import { useDownloadHistory } from "@/hooks/useDownloadHistory";
 import { LoadingBar } from "@/components/ui/LoadingBar";
+import { locales, type Locale } from "@/i18n";
 
 const DownloadPreview = dynamic(
   () => import("@/components/layout/DownloadPreview").then((mod) => mod.DownloadPreview),
@@ -105,16 +106,22 @@ interface SearchHeaderProps {
   title2?: string;
   title3?: string;
   hideSearchBar?: boolean;
+  h1Class?: string;
 }
 
 function SearchHeaderContent({
   title,
   subtitle,
-  hideSearchBar = false
+  hideSearchBar = false,
+  h1Class
 }: SearchHeaderProps) {
   const pathname = usePathname() || "";
+  const locale = React.useMemo(() => {
+    if (!pathname) return 'en';
+    const segment = pathname.split('/')[1];
+    return locales.includes(segment as Locale) ? (segment as Locale) : 'en';
+  }, [pathname]);
   const tabs = getPlatformTabs(title, pathname);
-  const locale = pathname.split('/')[1] || "en";
 
   const [downloadData, setDownloadData] = React.useState<any | null>(null);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -162,7 +169,8 @@ function SearchHeaderContent({
   // Find active tab ID by checking the current pathname against hrefs
   let activeId = "";
   for (const tab of tabs) {
-    if (pathname === `/${locale}${tab.href}` || (pathname === `/${locale}` && tab.href === '/')) {
+    const tabLocalizedHref = locale === 'en' ? tab.href : `/${locale}${tab.href === '/' ? '' : tab.href}`;
+    if (pathname === tabLocalizedHref) {
       activeId = tab.id;
       break;
     }
@@ -203,7 +211,7 @@ function SearchHeaderContent({
         <div className="w-full max-w-4xl md:max-w-3xl mx-auto px-4 md:px-0 flex flex-col items-center [container-type:inline-size]">
           <div className="w-full flex justify-center">
             <h1 
-              className="font-bold text-white mb-3 drop-shadow-md text-center tracking-tight leading-none whitespace-nowrap inline-block text-2xl sm:text-4xl md:text-5xl lg:text-6xl"
+              className={h1Class || "font-bold text-white mb-3 drop-shadow-md text-center tracking-tight leading-none whitespace-nowrap inline-block text-2xl sm:text-4xl md:text-5xl lg:text-6xl"}
             >
               {title}
             </h1>
@@ -265,7 +273,7 @@ export function SearchHeader(props: SearchHeaderProps) {
       <section className="pt-10 pb-6 sm:pt-20 sm:pb-8 px-4 text-center bg-linear-to-r from-fuchsia-600 via-purple-600 to-sky-500 relative overflow-hidden">
         <div className="relative z-10 max-w-5xl mx-auto flex flex-col items-center">
           <div className="w-full flex justify-center">
-            <h1 className="font-bold text-white mb-3 drop-shadow-md text-center tracking-tight leading-none whitespace-nowrap inline-block text-2xl sm:text-4xl md:text-5xl lg:text-6xl">
+            <h1 className={props.h1Class || "font-bold text-white mb-3 drop-shadow-md text-center tracking-tight leading-none whitespace-nowrap inline-block text-2xl sm:text-4xl md:text-5xl lg:text-6xl"}>
               {props.title}
             </h1>
           </div>

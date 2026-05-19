@@ -14,8 +14,8 @@ import { getToolSeoData } from "@/lib/getSeoData"
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const params = await props.params;
   return { 
-  title: "Facebook Profile Viewer",
-  description: "A streamlined, 100% free solution for archiving Facebook profile pictures. Experience lightning-fast speeds and pristine clarity.",
+  title: "Anonymous Facebook Profile Viewer – View FB Profiles | SavClip",
+  description: "View Facebook profiles securely and anonymously. Explore profile structures and layouts without an active account log in.",
     alternates: getSeoAlternates("facebook-profile-viewer", params.locale),
    
   }

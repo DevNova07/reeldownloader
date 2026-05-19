@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "X Video Downloader – Download Twitter Videos to MP4 in HD",
-  description: "Save your favorite X (Twitter) videos instantly without any logos. Our free online tool gives you crisp quality directly to your device.",
+  description: "Download X (Twitter) videos to MP4 format in full HD. Paste the tweet link to convert and save videos instantly.",
     alternates: getSeoAlternates("x-video-downloader", params.locale),
    
   }

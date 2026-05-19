@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "TikTok Caption Generator – AI Video Captions",
-  description: "Download TikTok media effortlessly. We preserve the original source quality so you never miss a single detail.",
+  description: "Craft high-engagement text scripts using SavClip's AI TikTok Caption Generator. Make your short videos go viral today.",
     alternates: getSeoAlternates("tiktok-caption-generator", params.locale),
    
   }

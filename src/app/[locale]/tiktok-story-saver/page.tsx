@@ -16,7 +16,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "TikTok Story Downloader – View TT Stories Anonymously HD",
-  description: "Looking to keep TikTok stories permanently? Use our intuitive online utility to get original files in seconds.",
+  description: "Download TikTok stories anonymously in high definition. Save disappearing status videos before the 24-hour limit ends.",
     alternates: getSeoAlternates("tiktok-story-saver", params.locale),
    
   }

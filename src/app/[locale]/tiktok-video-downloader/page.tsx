@@ -16,7 +16,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "TikTok Video Downloader HD – Download TT Videos No Watermark",
-  description: "Save your favorite TikTok videos instantly without any logos. Our free online tool gives you crisp quality directly to your device.",
+  description: "Download TikTok videos without watermark in HD quality. Free online utility to save public TikTok clips to MP4 format instantly.",
     alternates: getSeoAlternates("tiktok-video-downloader", params.locale),
    
   }

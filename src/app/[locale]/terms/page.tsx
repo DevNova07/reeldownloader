@@ -8,7 +8,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return {
     title: "Terms of Service & Conditions of Use – SavClip",
-    description: "Looking to keep Terms media permanently? Use our intuitive online utility to get original files in seconds.",
+    description: "Read our official Terms of Service. Understand the rules, guidelines, and user agreements governing the use of SavClip utilities.",
     alternates: getSeoAlternates("terms", params.locale),
   }
 }

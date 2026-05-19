@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "YouTube Channel Audit Tool – Analyze YT Channels SEO & Stats",
-  description: "Looking to keep YouTube media permanently? Use our intuitive online utility to get original files in seconds.",
+  description: "Audit any YouTube channel's SEO structure. Check keyword distribution, meta profiles, and performance data easily.",
     alternates: getSeoAlternates("youtube-channel-audit-tool", params.locale),
    
   }

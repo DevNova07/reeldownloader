@@ -73,6 +73,8 @@ const ALL_TOOLS = [
   },
 ]
 
+import { locales, type Locale } from "@/i18n"
+
 interface RelatedToolsProps {
   /** The current platform id to exclude from suggestions */
   currentPlatform?: string
@@ -82,11 +84,16 @@ interface RelatedToolsProps {
 
 export function RelatedTools({ currentPlatform, max = 4 }: RelatedToolsProps) {
   const pathname = usePathname()
-  const locale = pathname.split("/")[1]
+  const currentLocale = React.useMemo(() => {
+    if (!pathname) return 'en';
+    const segment = pathname.split('/')[1];
+    return locales.includes(segment as Locale) ? (segment as Locale) : 'en';
+  }, [pathname]);
 
   const getLocalizedHref = (href: string) => {
-    const cleanHref = href === "/" ? "" : href
-    return `/${locale}${cleanHref}`
+    const cleanHref = href.startsWith('/') ? href : `/${href}`
+    if (currentLocale === 'en') return cleanHref
+    return `/${currentLocale}${cleanHref === '/' ? '' : cleanHref}`
   }
 
   const tools = ALL_TOOLS.filter((t) => t.id !== currentPlatform).slice(0, max)

@@ -14,8 +14,8 @@ import { getToolSeoData } from "@/lib/getSeoData"
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const params = await props.params;
   return { 
-  title: "X Private Video Downloader – Save Private Twitter Videos",
-  description: "Easily grab X (Twitter) videos in high resolution. No account required, just paste the link and enjoy fast, secure offline access.",
+  title: "X Private Video Downloader – Save Locked Twitter Videos | SavClip",
+  description: "Extract private videos from X (Twitter) accounts securely. Save exclusive visual assets for secure offline backups.",
     alternates: getSeoAlternates("x-private-video-downloader", params.locale),
    
   }

@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "YouTube Region Restriction Checker – Check Blocked Countries",
-  description: "Looking to keep YouTube media permanently? Use our intuitive online utility to get original files in seconds.",
+  description: "Check video block list policies with our YouTube Region Restriction Checker. Verify country availability via link.",
     alternates: getSeoAlternates("youtube-region-restriction-checker", params.locale),
    
   }

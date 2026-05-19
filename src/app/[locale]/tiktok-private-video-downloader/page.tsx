@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "TikTok Private Video Downloader – Save Private TT Videos",
-  description: "A streamlined, 100% free solution for archiving TikTok videos. Experience lightning-fast speeds and pristine clarity.",
+  description: "Save private TikTok videos securely from accounts you follow. Extract your favorite protected content hassle-free.",
     alternates: getSeoAlternates("tiktok-private-video-downloader", params.locale),
    
   }

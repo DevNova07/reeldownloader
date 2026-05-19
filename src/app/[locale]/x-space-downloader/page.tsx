@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "X Space Downloader – Record & Save Twitter Spaces as MP3",
-  description: "Download X (Twitter) media effortlessly. We preserve the original source quality so you never miss a single detail.",
+  description: "Record and download full audio sessions from completed X (Twitter) Spaces. Save long conversations as manageable MP3 tracks.",
     alternates: getSeoAlternates("x-space-downloader", params.locale),
    
   }

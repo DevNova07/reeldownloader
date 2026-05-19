@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "Snapchat Lens Saver – Download & Share AR Lenses",
-  description: "Save your favorite Snapchat media instantly without any logos. Our free online tool gives you crisp quality directly to your device.",
+  description: "Save and archive popular Snapchat AR lenses and filters. Discover and keep unique Snapchat filter links online for free.",
     alternates: getSeoAlternates("snapchat-lens-saver", params.locale),
    
   }

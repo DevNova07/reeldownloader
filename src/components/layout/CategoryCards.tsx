@@ -8,6 +8,8 @@ import { cn } from "@/utils/cn"
 import { Film, PlaySquare, StopCircle, Music as MusicIcon, Camera, ImageIcon, Send, Ghost, Hash, ShieldCheck, Compass, Zap, TrendingUp, Layers } from "lucide-react"
 import { getDictionary } from "@/dictionaries/client"
 
+import { locales, type Locale } from "@/i18n"
+
 interface CategoryCardsProps {
   hoverShadow?: string
   hoverText?: string
@@ -21,12 +23,17 @@ export function CategoryCards({
 }: CategoryCardsProps = {}) {
   const pathname = usePathname() || ""
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const locale = (pathname.split('/')[1] || 'en') as any
-  const dict = getDictionary(locale)
+  const currentLocale = React.useMemo(() => {
+    if (!pathname) return 'en';
+    const segment = pathname.split('/')[1];
+    return locales.includes(segment as Locale) ? (segment as Locale) : 'en';
+  }, [pathname]);
+  const dict = getDictionary(currentLocale)
 
   const getLocalizedHref = (path: string) => {
     const cleanPath = path.startsWith('/') ? path : `/${path}`
-    return `/${locale}${cleanPath === '/' ? '' : cleanPath}`
+    if (currentLocale === 'en') return cleanPath
+    return `/${currentLocale}${cleanPath === '/' ? '' : cleanPath}`
   }
 
   const categories = React.useMemo(() => [

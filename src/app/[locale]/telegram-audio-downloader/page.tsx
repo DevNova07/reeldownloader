@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "Telegram Audio Downloader – Extract & Save TG MP3 Music",
-  description: "Looking to keep Telegram audio tracks permanently? Use our intuitive online utility to get original files in seconds.",
+  description: "Extract and download voice notes, music tracks, and MP3 files directly from Telegram channels and chat links.",
     alternates: getSeoAlternates("telegram-audio-downloader", params.locale),
    
   }

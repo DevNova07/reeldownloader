@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "Snapchat Map Downloader – Save Snap Map Videos HD",
-  description: "Easily grab Snapchat media in high resolution. No account required, just paste the link and enjoy fast, secure offline access.",
+  description: "Download public videos and stories from the Snapchat Map. Save geo-tagged public Snaps in high definition instantly.",
     alternates: getSeoAlternates("snapchat-map-downloader", params.locale),
    
   }

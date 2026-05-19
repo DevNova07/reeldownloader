@@ -15,8 +15,8 @@ import { getToolSeoData } from "@/lib/getSeoData"
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const params = await props.params;
   return { 
-  title: "Facebook Reels Downloader: Save Reels in HD",
-  description: "Download Facebook Reels effortlessly. We preserve the original source quality so you never miss a single detail.",
+  title: "Facebook Reels Downloader: Save Reels in HD | SavClip",
+  description: "Download Facebook Reels in HD quality without watermark. Save viral FB short videos directly to your device gallery for free.",
     alternates: getSeoAlternates("facebook-reels-downloader", params.locale),
    
   }

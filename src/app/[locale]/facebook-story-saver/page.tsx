@@ -16,7 +16,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "Facebook Story Downloader – View FB Stories Anonymously HD",
-  description: "Easily grab Facebook stories in high resolution. No account required, just paste the link and enjoy fast, secure offline access.",
+  description: "Download and view Facebook stories anonymously in HD quality. Save FB status updates and stories before they disappear in 24 hours.",
     alternates: getSeoAlternates("facebook-story-saver", params.locale),
    
   }

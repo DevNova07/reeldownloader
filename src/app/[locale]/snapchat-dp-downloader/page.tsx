@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "Snapchat DP Downloader – Save Snap Profile Pictures HD",
-  description: "Looking to keep Snapchat profile pictures permanently? Use our intuitive online utility to get original files in seconds.",
+  description: "Download Snapchat profile pictures in crisp HD resolution. Save any public Snap profile avatar directly to your local device.",
     alternates: getSeoAlternates("snapchat-dp-downloader", params.locale),
    
   }

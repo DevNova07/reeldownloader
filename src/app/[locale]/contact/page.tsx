@@ -6,7 +6,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return {
     title: "Contact Us – Get in Touch with SavClip Team",
-    description: "Download Contact media effortlessly. We preserve the original source quality so you never miss a single detail.",
+    description: "Have questions or feedback? Get in touch with the SavClip team. We are here to help you with any technical issues or feature inquiries.",
     alternates: getSeoAlternates("contact", params.locale),
   }
 }

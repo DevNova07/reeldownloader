@@ -89,12 +89,20 @@ const PLATFORMS = [
   },
 ]
 
+import { locales, type Locale } from "@/i18n"
+
 export function SocialPlatformBar({ activeId, className }: { activeId: string, className?: string }) {
   const pathname = usePathname() || ""
-  const locale = pathname.split('/')[1] || "en"
+  const currentLocale = React.useMemo(() => {
+    if (!pathname) return 'en';
+    const segment = pathname.split('/')[1];
+    return locales.includes(segment as Locale) ? (segment as Locale) : 'en';
+  }, [pathname]);
+
   const getLocalizedHref = (path: string) => {
     const cleanPath = path.startsWith('/') ? path : `/${path}`
-    return `/${locale}${cleanPath === '/' ? '' : cleanPath}`
+    if (currentLocale === 'en') return cleanPath
+    return `/${currentLocale}${cleanPath === '/' ? '' : cleanPath}`
   }
 
   return (

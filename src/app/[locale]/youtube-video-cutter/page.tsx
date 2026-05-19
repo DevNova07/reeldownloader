@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "YouTube Video Cutter – Trim & Cut YT Videos Online",
-  description: "Easily grab YouTube videos in high resolution. No account required, just paste the link and enjoy fast, secure offline access.",
+  description: "Trim, split, and crop YouTube videos online. Download specific segments of long files directly without massive bandwidth usage.",
     alternates: getSeoAlternates("youtube-video-cutter", params.locale),
    
   }

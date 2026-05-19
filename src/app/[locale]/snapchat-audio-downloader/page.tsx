@@ -16,7 +16,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "Snapchat MP3 Downloader – Convert Snapchat Video to Audio",
-  description: "A streamlined, 100% free solution for archiving Snapchat audio tracks. Experience lightning-fast speeds and pristine clarity.",
+  description: "Convert Snapchat videos to MP3 audio files. Extract high-quality voice clips and sounds from Snaps effortlessly with SavClip.",
     alternates: getSeoAlternates("snapchat-audio-downloader", params.locale),
    
   }

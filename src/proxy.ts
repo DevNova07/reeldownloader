@@ -14,8 +14,18 @@ function getLocale(request: NextRequest): string {
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
   
-  if (pathname.includes('.')) return
+  if (pathname.includes('.') || pathname === '/offline.html') return
 
+  // 1. Redirect /en or /en/... requests to their clean (non-prefixed) paths
+  if (pathname === '/en') {
+    return NextResponse.redirect(new URL('/', request.url), 307);
+  }
+  if (pathname.startsWith('/en/')) {
+    const cleanPath = pathname.substring(3); // Remove '/en'
+    return NextResponse.redirect(new URL(cleanPath || '/', request.url), 307);
+  }
+
+  // 2. Rewrite clean paths to /en/... under the hood
   const pathnameIsMissingLocale = locales.every(
     (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
   )

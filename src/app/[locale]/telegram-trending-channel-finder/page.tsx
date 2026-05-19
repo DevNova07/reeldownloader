@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "Telegram Trending Channel Finder – Discover Viral TG Groups",
-  description: "Download Telegram media effortlessly. We preserve the original source quality so you never miss a single detail.",
+  description: "Discover viral, trending, and top-rated Telegram groups and channels across multiple niches using our interactive finder.",
     alternates: getSeoAlternates("telegram-trending-channel-finder", params.locale),
    
   }

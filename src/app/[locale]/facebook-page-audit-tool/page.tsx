@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "Facebook Page Audit: Analyze FB Pages Online",
-  description: "A streamlined, 100% free solution for archiving Facebook media. Experience lightning-fast speeds and pristine clarity.",
+  description: "Analyze any Facebook Page instantly. Check performance metrics, engagement rates, and optimize your FB strategy using our audit tool.",
     alternates: getSeoAlternates("facebook-page-audit-tool", params.locale),
    
   }

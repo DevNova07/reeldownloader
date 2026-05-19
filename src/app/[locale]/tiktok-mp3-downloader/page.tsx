@@ -16,7 +16,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "TikTok MP3 Downloader – Convert TT Video to MP3 HD",
-  description: "Save your favorite TikTok audio tracks instantly without any logos. Our free online tool gives you crisp quality directly to your device.",
+  description: "Extract audio tracks from TikTok videos. Convert viral TT sounds to high-quality 320kbps MP3 files for free.",
     alternates: getSeoAlternates("tiktok-mp3-downloader", params.locale),
    
   }

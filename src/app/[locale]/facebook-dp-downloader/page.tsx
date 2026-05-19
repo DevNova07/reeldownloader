@@ -14,8 +14,8 @@ import { getToolSeoData } from "@/lib/getSeoData"
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const params = await props.params;
   return { 
-  title: "Facebook DP Downloader",
-  description: "A streamlined, 100% free solution for archiving Facebook profile pictures. Experience lightning-fast speeds and pristine clarity.",
+  title: "Facebook DP Downloader – Save Profile Pictures HD | SavClip",
+  description: "Download Facebook profile pictures (DP) in full resolution and high quality. Save any FB profile photo anonymously without logging in.",
     alternates: getSeoAlternates("facebook-dp-downloader", params.locale),
    
   }

@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "Snapchat Private Story Downloader – Save Private Snaps",
-  description: "Save your favorite Snapchat stories instantly without any logos. Our free online tool gives you crisp quality directly to your device.",
+  description: "Save private Snapchat stories securely. Download custom-shared group snaps or personal stories safely in high resolution.",
     alternates: getSeoAlternates("snapchat-private-story-downloader", params.locale),
    
   }

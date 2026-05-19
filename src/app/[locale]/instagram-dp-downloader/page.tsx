@@ -14,8 +14,8 @@ import { getToolSeoData } from "@/lib/getSeoData"
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const params = await props.params;
   return { 
-  title: "Instagram DP Downloader",
-  description: "Save your favorite Instagram profile pictures instantly without any logos. Our free online tool gives you crisp quality directly to your device.",
+  title: "Instagram DP Downloader – Download Profile Picture Full HD | SavClip",
+  description: "Save Instagram profile pictures in full resolution. Download any IG DP in high quality anonymously without logging into an account.",
     alternates: getSeoAlternates("instagram-dp-downloader", params.locale),
    
   }

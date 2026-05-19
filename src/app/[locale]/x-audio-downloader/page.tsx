@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "X (Twitter) to MP3 Converter: Extract High Quality Audio",
-  description: "Easily grab X (Twitter) audio tracks in high resolution. No account required, just paste the link and enjoy fast, secure offline access.",
+  description: "Convert Twitter videos to high-quality audio formats. Extract and download pristine MP3 tracks from any X post link.",
     alternates: getSeoAlternates("x-audio-downloader", params.locale),
    
   }

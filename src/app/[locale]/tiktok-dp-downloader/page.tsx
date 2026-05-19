@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "TikTok DP Downloader – Save TikTok Profile Pictures in HD",
-  description: "Looking to keep TikTok profile pictures permanently? Use our intuitive online utility to get original files in seconds.",
+  description: "Download TikTok profile pictures in full resolution. Save any creator's avatar in HD quality anonymously without login.",
     alternates: getSeoAlternates("tiktok-dp-downloader", params.locale),
    
   }

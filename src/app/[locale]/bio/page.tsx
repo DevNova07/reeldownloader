@@ -10,7 +10,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "AI Social Bio Generator | Smart Link-in-Bio | SavClip",
-  description: "A streamlined, 100% free solution for archiving Bio media. Experience lightning-fast speeds and pristine clarity.",
+  description: "Create stunning and highly optimized link-in-bio profiles with SavClip's free AI Social Bio Generator. Maximize your digital brand reach instantly.",
     alternates: getSeoAlternates("bio", params.locale),
    
   }

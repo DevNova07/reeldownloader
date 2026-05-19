@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "YouTube Comment Picker – Random Giveaway Winner Generator",
-  description: "Save your favorite YouTube media instantly without any logos. Our free online tool gives you crisp quality directly to your device.",
+  description: "Conduct smooth social giveaways with our free YouTube Comment Picker. Filter spam and select random winners fairly.",
     alternates: getSeoAlternates("youtube-comment-picker", params.locale),
    
   }

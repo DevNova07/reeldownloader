@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "Anonymous TikTok Viewer – View TikTok Secretly",
-  description: "Easily grab Anonymous media in high resolution. No account required, just paste the link and enjoy fast, secure offline access.",
+  description: "View and explore TikTok videos secretly. SavClip lets you watch trending TikTok content anonymously without an account or login.",
     alternates: getSeoAlternates("anonymous-tiktok-viewer", params.locale),
    
   }

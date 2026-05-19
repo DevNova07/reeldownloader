@@ -14,8 +14,8 @@ import { getToolSeoData } from "@/lib/getSeoData"
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const params = await props.params;
   return { 
-  title: "X Banner Downloader – Save Twitter Header Images HD",
-  description: "Looking to keep X (Twitter) media permanently? Use our intuitive online utility to get original files in seconds.",
+  title: "X Banner Downloader – Save Twitter Header Images HD | SavClip",
+  description: "Save X (Twitter) header images and profile banners in original aspect ratios and crisp high-definition formats.",
     alternates: getSeoAlternates("x-banner-downloader", params.locale),
    
   }

@@ -16,7 +16,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "YouTube Thumbnail Downloader HD – Save YT Thumbnails 4K",
-  description: "Easily grab YouTube thumbnails in high resolution. No account required, just paste the link and enjoy fast, secure offline access.",
+  description: "Save YouTube video thumbnails in maximum 4K or Full HD resolutions. Download cover graphics instantly via links.",
     alternates: getSeoAlternates("youtube-thumbnail-downloader", params.locale),
    
   }
@@ -62,13 +62,17 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
         ]} 
       />
       
-      <SearchHeader {...header} />
+      <SearchHeader 
+        {...header} 
+        h1Class="font-bold text-white mb-3 drop-shadow-md text-center tracking-tight leading-none whitespace-nowrap inline-block text-[21px] sm:text-4xl md:text-5xl lg:text-6xl"
+      />
 
       <div className="bg-white dark:bg-black pt-8 pb-16 px-4">
         <div className="max-w-5xl mx-auto">
           <RichArticle 
             sections={articleSections} 
-            />
+            h2SizeClass="text-[17px] sm:text-3xl md:text-4xl"
+          />
         </div>
       </div>
 

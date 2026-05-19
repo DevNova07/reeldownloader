@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "X Profile Picture Downloader – Save Twitter DP in Full HD",
-  description: "A streamlined, 100% free solution for archiving X (Twitter) profile pictures. Experience lightning-fast speeds and pristine clarity.",
+  description: "Download X (Twitter) profile photos in original full resolution. Save public avatars safely without logging in.",
     alternates: getSeoAlternates("x-profile-picture-downloader", params.locale),
    
   }

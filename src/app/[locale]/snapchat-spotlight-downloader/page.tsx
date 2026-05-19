@@ -16,7 +16,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "Snapchat Spotlight Downloader: Save Snaps HD",
-  description: "Looking to keep Snapchat media permanently? Use our intuitive online utility to get original files in seconds.",
+  description: "Download Snapchat Spotlight videos in HD without any watermark. Save viral public short clips from Snap creators instantly.",
     alternates: getSeoAlternates("snapchat-spotlight-downloader", params.locale),
    
   }

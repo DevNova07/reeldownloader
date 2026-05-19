@@ -15,8 +15,8 @@ import { getToolSeoData } from "@/lib/getSeoData"
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const params = await props.params;
   return { 
-  title: "TikTok Shorts & Reels Downloader",
-  description: "Looking to keep TikTok Shorts permanently? Use our intuitive online utility to get original files in seconds.",
+  title: "TikTok Shorts & Reels Downloader – Save Videos No Watermark | SavClip",
+  description: "Save TikTok short videos and interactive clips without any watermark. Experience crisp HD processing instantly.",
     alternates: getSeoAlternates("tiktok-shorts-downloader", params.locale),
    
   }

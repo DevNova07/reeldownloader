@@ -15,8 +15,8 @@ import { getToolSeoData } from "@/lib/getSeoData"
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const params = await props.params;
   return { 
-  title: "Facebook Photo Downloader: Save FB Photos HD",
-  description: "Looking to keep Facebook photos permanently? Use our intuitive online utility to get original files in seconds.",
+  title: "Facebook Photo Downloader: Save FB Photos HD | SavClip",
+  description: "Save Facebook images and photos in full original resolution. Download any picture from FB posts, timelines, or groups effortlessly.",
     alternates: getSeoAlternates("facebook-photo-downloader", params.locale),
    
   }

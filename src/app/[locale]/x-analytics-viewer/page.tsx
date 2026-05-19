@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "X Analytics Viewer – Check Twitter Profile Stats Free",
-  description: "Save your favorite X (Twitter) media instantly without any logos. Our free online tool gives you crisp quality directly to your device.",
+  description: "Check public metrics, profile health, and analytics charts for any X (Twitter) handle absolutely free without tracking tags.",
     alternates: getSeoAlternates("x-analytics-viewer", params.locale),
    
   }

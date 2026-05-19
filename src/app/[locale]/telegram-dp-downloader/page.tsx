@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "Telegram DP Downloader – Save TG Profile Pictures HD",
-  description: "Easily grab Telegram profile pictures in high resolution. No account required, just paste the link and enjoy fast, secure offline access.",
+  description: "Download Telegram profile pictures and group avatars in full resolution. Save TG display photos anonymously via links.",
     alternates: getSeoAlternates("telegram-dp-downloader", params.locale),
    
   }

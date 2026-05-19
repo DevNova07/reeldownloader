@@ -15,26 +15,35 @@ export function InstallPWA() {
     if (isStandalone) return;
 
     const handleSuccessEvent = () => {
-      // Only show if not already dismissed or if we want to remind them
+      // Show on download success as fallback/reminder
       setShowInstallPrompt(true);
-      // Auto-hide after 3 seconds
-      setTimeout(() => {
-        setShowInstallPrompt(false);
-      }, 3000);
     };
 
     const handleBeforeInstallPrompt = (e: Event) => {
       e.preventDefault();
       setDeferredPrompt(e);
-      // We don't show it immediately here anymore
+      
+      // Show immediately on page open if not dismissed in current session and not installed
+      const dismissed = sessionStorage.getItem('savclip_pwa_dismissed') === 'true';
+      const installed = localStorage.getItem('savclip_pwa_installed') === 'true';
+      if (!dismissed && !installed) {
+        setShowInstallPrompt(true);
+      }
+    };
+
+    const handleAppInstalled = () => {
+      localStorage.setItem('savclip_pwa_installed', 'true');
+      setShowInstallPrompt(false);
     };
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
     window.addEventListener('savclip_download_success', handleSuccessEvent);
+    window.addEventListener('appinstalled', handleAppInstalled);
     
     return () => {
       window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
       window.removeEventListener('savclip_download_success', handleSuccessEvent);
+      window.removeEventListener('appinstalled', handleAppInstalled);
     };
   }, []);
 
@@ -51,7 +60,7 @@ export function InstallPWA() {
 
   const handleDismiss = () => {
     setShowInstallPrompt(false);
-    localStorage.setItem('savclip_pwa_dismissed', 'true');
+    sessionStorage.setItem('savclip_pwa_dismissed', 'true');
   };
 
   return (

@@ -43,7 +43,7 @@ export function Navbar({ dict }: { dict: any }) {
 
   const getLocalizedHref = (path: string) => {
     const cleanPath = path.startsWith('/') ? path : `/${path}`
-    if (currentLocale === 'en' && cleanPath === '/') return '/'
+    if (currentLocale === 'en') return cleanPath
     return `/${currentLocale}${cleanPath === '/' ? '' : cleanPath}`
   }
 

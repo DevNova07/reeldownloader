@@ -9,7 +9,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return {
     title: "SavClip Blog – Latest Tech Guides, Tips & Tutorials",
-    description: "Read practical guides, downloading tips, and social media growth tutorials to make the most out of your online video and audio saving experience.",
+    description: "Explore the SavClip Blog for expert tips, tech tutorials, download guides, and the latest strategies to supercharge your social media growth.",
     alternates: getSeoAlternates("blog", params.locale),
   }
 }

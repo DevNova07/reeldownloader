@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "YouTube Description Generator – AI SEO Video Descriptions",
-  description: "Save your favorite YouTube media instantly without any logos. Our free online tool gives you crisp quality directly to your device.",
+  description: "Write search-optimized video text using our AI YouTube Description Generator. Boost your organic SEO rankings instantly.",
     alternates: getSeoAlternates("youtube-description-generator", params.locale),
    
   }

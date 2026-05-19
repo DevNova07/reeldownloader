@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   const params = await props.params;
   return { 
   title: "X Bio Generator – AI Powered Twitter Bio Creator",
-  description: "A streamlined, 100% free solution for archiving X (Twitter) media. Experience lightning-fast speeds and pristine clarity.",
+  description: "Generate professional, catchy, or witty profile descriptions using SavClip's free AI X (Twitter) Bio Generator online.",
     alternates: getSeoAlternates("x-bio-generator", params.locale),
    
   }
