@@ -93,5 +93,5 @@ export const header = {
   title1: "Download",
   title2: "FB Profile Pictures",
   title3: "Full HD Quality",
-  subtitle: "Instantly save Facebook profile pictures directly to your device."
+  subtitle: "Download Facebook profile pictures in full resolution and original quality."
 };

@@ -93,5 +93,5 @@ export const header = {
   title1: "Compress",
   title2: "Reduce Size",
   title3: "Keep Quality",
-  subtitle: "The premium online tool to capture Snapchat videos without any hassle."
+  subtitle: "Compress Snapchat videos to stay under the chat file size limit easily."
 };

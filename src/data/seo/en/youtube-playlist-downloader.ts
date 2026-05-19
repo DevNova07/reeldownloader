@@ -93,5 +93,5 @@ export const header = {
   title1: "Download",
   title2: "YT Playlists",
   title3: "MP4 & MP3 Audio",
-  subtitle: "The premium online tool to capture YouTube media without any hassle."
+  subtitle: "Download complete YouTube playlists in high quality video or audio files."
 };

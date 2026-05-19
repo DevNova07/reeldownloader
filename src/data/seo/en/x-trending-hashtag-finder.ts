@@ -93,5 +93,5 @@ export const header = {
   title1: "Find",
   title2: "Viral Hashtags",
   title3: "AI Powered",
-  subtitle: "Effortlessly grab high-quality X (Twitter) media in seconds."
+  subtitle: "Find real-time trending hashtags and topics on X (Twitter) tailored to your region."
 };

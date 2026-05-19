@@ -93,5 +93,5 @@ export const header = {
   title1: "Pick",
   title2: "Random Winner",
   title3: "100% Fair",
-  subtitle: "Effortlessly grab high-quality YouTube media in seconds."
+  subtitle: "Randomly pick winners for giveaways from YouTube comments fairly and transparently."
 };

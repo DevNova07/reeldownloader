@@ -93,5 +93,5 @@ export const header = {
   title1: "Extract",
   title2: "AR Lenses",
   title3: "Save Filters",
-  subtitle: "Your reliable companion for fetching Snapchat media in original quality."
+  subtitle: "Save and backup Snapchat Lens links and creative filters instantly."
 };

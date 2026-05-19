@@ -115,5 +115,5 @@ export const header = {
   title1: "Download",
   title2: "Instagram Reels",
   title3: "HD & No Watermark",
-  subtitle: "A fast, clean experience for archiving Instagram Reels."
+  subtitle: "Download Instagram Reels in full HD quality online with just one click."
 };

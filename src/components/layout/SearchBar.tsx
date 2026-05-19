@@ -77,23 +77,6 @@ function SearchBarInner({
     const relativePath = isKnownLocale ? ((pathname || "").replace(`/${locale}`, "") || "/") : (pathname || "/");
 
     if (relativePath !== targetPath) {
-      const displayLabel = targetPath.replace('/', '').replace(/-/g, ' ').replace('downloader', '').trim()
-      
-      toast(`Redirecting to ${displayLabel.toUpperCase()}...`, {
-        icon: '🚀',
-        duration: 2500,
-        style: {
-          borderRadius: '16px',
-          background: '#e9114b',
-          color: '#fff',
-          fontWeight: '900',
-          border: '1px solid rgba(255,255,255,0.2)',
-          textTransform: 'uppercase',
-          fontSize: '12px',
-          letterSpacing: '0.05em'
-        }
-      })
-      
       const targetUrl = locale === 'en' ? (targetPath === '/' ? '/' : targetPath) : `/${locale}${targetPath === '/' ? '' : targetPath}`
       router.push(`${targetUrl}?url=${encodeURIComponent(inputUrl)}`)
       return true

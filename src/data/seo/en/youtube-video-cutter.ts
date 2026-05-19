@@ -93,5 +93,5 @@ export const header = {
   title1: "Trim",
   title2: "YT Videos",
   title3: "Exact Segments",
-  subtitle: "Instantly save YouTube videos directly to your device."
+  subtitle: "Crop, trim, and cut YouTube videos online directly in your browser without losing quality."
 };

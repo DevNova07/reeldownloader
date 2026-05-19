@@ -102,5 +102,5 @@ export const header = {
   title1: "Download",
   title2: "YouTube Thumbnails",
   title3: "4K & HD Images",
-  subtitle: "Effortlessly grab high-quality YouTube thumbnails in seconds."
+  subtitle: "Download YouTube video thumbnails in ultra-high definition (4K/1080p)."
 };

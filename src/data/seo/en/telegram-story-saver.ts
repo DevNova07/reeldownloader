@@ -93,5 +93,5 @@ export const header = {
   title1: "Download",
   title2: "TG Stories",
   title3: "Anonymously",
-  subtitle: "Effortlessly grab high-quality Telegram stories in seconds."
+  subtitle: "Save Telegram stories from friends and public channels to your device."
 };

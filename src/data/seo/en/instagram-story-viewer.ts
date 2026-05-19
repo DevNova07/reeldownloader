@@ -94,5 +94,5 @@ export const header = {
   title1: "Watch",
   title2: "Stories",
   title3: "Anonymously",
-  subtitle: "Instantly save Instagram stories directly to your device."
+  subtitle: "Watch and save Instagram stories privately without letting them know."
 };

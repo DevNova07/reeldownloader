@@ -111,5 +111,5 @@ export const header = {
   title1: "Download",
   title2: "Instagram Highlights",
   title3: "Original HD Quality",
-  subtitle: "Effortlessly grab high-quality Instagram media in seconds."
+  subtitle: "Save Instagram story highlights permanently to your device in high resolution."
 };

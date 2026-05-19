@@ -111,5 +111,5 @@ export const header = {
   title1: "Download",
   title2: "YouTube Shorts",
   title3: "HD & No Watermark",
-  subtitle: "A fast, clean experience for archiving YouTube Shorts."
+  subtitle: "Download YouTube Shorts in high-definition (HD) quality without watermarks."
 };

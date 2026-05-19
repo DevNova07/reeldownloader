@@ -93,5 +93,5 @@ export const header = {
   title1: "Download",
   title2: "FB Live Streams",
   title3: "HD Quality",
-  subtitle: "Instantly save Facebook videos directly to your device."
+  subtitle: "Download recorded Facebook Live streams and broadcast videos in HD quality."
 };

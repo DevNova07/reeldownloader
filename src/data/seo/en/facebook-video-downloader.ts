@@ -106,5 +106,5 @@ export const header = {
   title1: "Download",
   title2: "Facebook Videos",
   title3: "HD & No Watermark",
-  subtitle: "Instantly save Facebook videos directly to your device."
+  subtitle: "Download public Facebook videos in HD or SD quality online instantly."
 };

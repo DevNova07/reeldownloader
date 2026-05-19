@@ -93,5 +93,5 @@ export const header = {
   title1: "Download",
   title2: "TG Photos",
   title3: "Original HD",
-  subtitle: "Effortlessly grab high-quality Telegram photos in seconds."
+  subtitle: "Download high-quality photos and media attachments from Telegram."
 };

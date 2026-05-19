@@ -102,5 +102,5 @@ export const header = {
   title1: "Download",
   title2: "TikTok Photos",
   title3: "HD & Slideshow",
-  subtitle: "Effortlessly grab high-quality TikTok photos in seconds."
+  subtitle: "Save TikTok slideshows and photos in ultra-high resolution instantly."
 };

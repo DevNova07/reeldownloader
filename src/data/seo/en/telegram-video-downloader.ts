@@ -97,5 +97,5 @@ export const header = {
   title1: "Download",
   title2: "TG Videos",
   title3: "Original HD",
-  subtitle: "The premium online tool to capture Telegram videos without any hassle."
+  subtitle: "Download public Telegram videos in full original resolution and high-quality."
 };

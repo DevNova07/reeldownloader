@@ -93,5 +93,5 @@ export const header = {
   title1: "View",
   title2: "TikTok Secretly",
   title3: "No Account",
-  subtitle: "The fastest way to view TikTok profiles and download videos without them knowing."
+  subtitle: "Watch TikTok videos and explore profiles anonymously without login or a trace."
 };

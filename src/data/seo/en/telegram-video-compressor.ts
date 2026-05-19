@@ -93,5 +93,5 @@ export const header = {
   title1: "Compress",
   title2: "Reduce Size",
   title3: "Keep Quality",
-  subtitle: "The premium online tool to capture Telegram videos without any hassle."
+  subtitle: "Compress Telegram videos online to fit within the platform sending limits."
 };

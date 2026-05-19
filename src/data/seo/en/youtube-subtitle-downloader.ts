@@ -93,5 +93,5 @@ export const header = {
   title1: "Extract",
   title2: "YT Subtitles",
   title3: "SRT & TXT Format",
-  subtitle: "Instantly save YouTube media directly to your device."
+  subtitle: "Extract and download multi-language subtitles or closed captions from YouTube videos."
 };

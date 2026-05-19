@@ -93,5 +93,5 @@ export const header = {
   title1: "Download",
   title2: "Twitter Spaces",
   title3: "As MP3",
-  subtitle: "Effortlessly grab high-quality X (Twitter) media in seconds."
+  subtitle: "Download and record public X (Twitter) Spaces audio recordings online."
 };

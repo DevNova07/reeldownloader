@@ -93,5 +93,5 @@ export const header = {
   title1: "Download",
   title2: "Snap Map",
   title3: "Public Videos",
-  subtitle: "Your reliable companion for fetching Snapchat media in original quality."
+  subtitle: "Download public Snapchat Spotlight map posts and location snaps easily."
 };

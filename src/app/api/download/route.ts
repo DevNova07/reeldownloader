@@ -3,7 +3,6 @@ import { statsManager } from "@/utils/stats";
 import { facebookHandler } from "@/lib/handlers/facebook";
 import { tiktokHandler } from "@/lib/handlers/tiktok";
 import { youtubeHandler } from "@/lib/handlers/youtube";
-import { twitterHandler } from "@/lib/handlers/twitter";
 import { telegramHandler } from "@/lib/handlers/telegram";
 
 /**
@@ -65,8 +64,6 @@ export async function POST(request: Request) {
       result = await tiktokHandler(url);
     } else if (platform === "youtube" || lowerUrl.includes("youtube.com") || lowerUrl.includes("youtu.be")) {
       result = await youtubeHandler(url);
-    } else if (platform === "twitter" || lowerUrl.includes("twitter.com") || lowerUrl.includes("x.com")) {
-      result = await twitterHandler(url);
     } else if (platform === "instagram" || lowerUrl.includes("instagram.com") || lowerUrl.includes("ig.me")) {
       const { instagramHandler } = await import("@/lib/handlers/instagram");
       result = await instagramHandler(url);
@@ -75,9 +72,12 @@ export async function POST(request: Request) {
     } else if (platform === "snapchat" || lowerUrl.includes("snapchat.com")) {
       const { snapchatHandler } = await import("@/lib/handlers/snapchat");
       result = await snapchatHandler(url);
+    } else if (platform === "twitter" || platform === "x" || lowerUrl.includes("twitter.com") || lowerUrl.includes("x.com")) {
+      const { twitterHandler } = await import("@/lib/handlers/twitter");
+      result = await twitterHandler(url);
     } else {
       return NextResponse.json({ 
-        error: "Currently only Instagram, Facebook, TikTok, YouTube, Twitter, Snapchat, and Telegram are supported." 
+        error: "Currently only Instagram, Facebook, TikTok, YouTube, Snapchat, Telegram, and X (Twitter) are supported." 
       }, { status: 400 });
     }
 

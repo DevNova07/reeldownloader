@@ -93,5 +93,5 @@ export const header = {
   title1: "Analyze",
   title2: "Twitter Stats",
   title3: "Instantly",
-  subtitle: "Instantly save X (Twitter) media directly to your device."
+  subtitle: "Analyze X (Twitter) profile metrics, engagement rates, and follower growth trends privately."
 };

@@ -7,14 +7,38 @@ import path from 'path';
 const ALL_KEYS: string[] = [];
 
 export const PLATFORM_KEYS: Record<string, string[]> = {
-  instagram: ["9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7"],
-  facebook: ["9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7"],
-  tiktok: ["9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7"],
-  youtube: ["9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7"],
-  twitter: ["9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7"],
-  telegram: ["9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7"],
-  snapchat: ["9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7"],
-  global: ["9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7"]
+  instagram: [
+    "758fcf1cc5msh22d82fc41a79267p198a7cjsn191acdd3b16d",
+    "9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7"
+  ],
+  facebook: [
+    "758fcf1cc5msh22d82fc41a79267p198a7cjsn191acdd3b16d",
+    "9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7"
+  ],
+  tiktok: [
+    "758fcf1cc5msh22d82fc41a79267p198a7cjsn191acdd3b16d",
+    "9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7"
+  ],
+  youtube: [
+    "758fcf1cc5msh22d82fc41a79267p198a7cjsn191acdd3b16d",
+    "9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7"
+  ],
+  twitter: [
+    "758fcf1cc5msh22d82fc41a79267p198a7cjsn191acdd3b16d",
+    "9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7"
+  ],
+  telegram: [
+    "758fcf1cc5msh22d82fc41a79267p198a7cjsn191acdd3b16d",
+    "9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7"
+  ],
+  snapchat: [
+    "758fcf1cc5msh22d82fc41a79267p198a7cjsn191acdd3b16d",
+    "9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7"
+  ],
+  global: [
+    "758fcf1cc5msh22d82fc41a79267p198a7cjsn191acdd3b16d",
+    "9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7"
+  ]
 };
 
 

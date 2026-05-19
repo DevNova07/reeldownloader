@@ -102,5 +102,5 @@ export const header = {
   title1: "Download",
   title2: "YouTube Videos",
   title3: "4K & HD Quality",
-  subtitle: "Your reliable companion for fetching YouTube videos in original quality."
+  subtitle: "Download public YouTube videos in high-definition (1080p/720p) quality easily."
 };

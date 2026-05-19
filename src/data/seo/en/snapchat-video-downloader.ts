@@ -115,5 +115,5 @@ export const header = {
   title1: "Download",
   title2: "Snapchat Videos",
   title3: "Online in HD",
-  subtitle: "The premium online tool to capture Snapchat videos without any hassle."
+  subtitle: "Download public Snapchat videos and snaps in high-definition (HD)."
 };

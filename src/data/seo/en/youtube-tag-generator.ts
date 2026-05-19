@@ -93,5 +93,5 @@ export const header = {
   title1: "Generate",
   title2: "SEO Tags",
   title3: "High Ranking",
-  subtitle: "A fast, clean experience for archiving YouTube media."
+  subtitle: "Find and generate high-ranking SEO tags and keywords for your YouTube videos."
 };

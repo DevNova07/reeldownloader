@@ -93,5 +93,5 @@ export const header = {
   title1: "Convert",
   title2: "YouTube to MP3",
   title3: "320kbps High Fidelity",
-  subtitle: "Instantly save YouTube audio tracks directly to your device."
+  subtitle: "Convert YouTube videos to high-quality 320kbps MP3 audio files instantly."
 };

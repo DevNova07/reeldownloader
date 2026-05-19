@@ -97,5 +97,5 @@ export const header = {
   title1: "Download",
   title2: "X Videos",
   title3: "To MP4",
-  subtitle: "The premium online tool to capture X (Twitter) videos without any hassle."
+  subtitle: "Download X (Twitter) videos in high-definition (HD) directly to your device."
 };

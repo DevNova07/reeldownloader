@@ -93,5 +93,5 @@ export const header = {
   title1: "Download",
   title2: "Private TG Videos",
   title3: "Securely",
-  subtitle: "Your reliable companion for fetching Telegram videos in original quality."
+  subtitle: "Download private or restricted Telegram videos securely from channels you join."
 };

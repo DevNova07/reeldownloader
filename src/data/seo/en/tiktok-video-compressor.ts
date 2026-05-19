@@ -93,5 +93,5 @@ export const header = {
   title1: "Compress",
   title2: "Reduce Size",
   title3: "Keep Quality",
-  subtitle: "Your reliable companion for fetching TikTok videos in original quality."
+  subtitle: "Reduce TikTok video file size online while preserving maximum visual clarity."
 };

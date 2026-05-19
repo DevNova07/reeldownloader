@@ -152,16 +152,26 @@ export async function snapchatHandler(url: string): Promise<PlatformResult> {
       const storiesResult = await storiesResponse.value.json();
       if (storiesResult && storiesResult.status === "ok" && storiesResult.data && storiesResult.data.stories) {
         const stories = storiesResult.data.stories;
+        
+        // Dynamically capture active story titles for premium metadata presentation
+        const storyTitles = stories
+          .map((s: any) => s.storyTitle?.value)
+          .filter(Boolean);
+        if (storyTitles.length > 0) {
+          caption = storyTitles.join(" | ");
+        }
+
         stories.forEach((story: any, storyIdx: number) => {
           if (story.snapList && Array.isArray(story.snapList)) {
             story.snapList.forEach((snap: any, snapIdx: number) => {
               if (snap.snapUrls && snap.snapUrls.mediaUrl) {
+                const isVideo = snap.snapMediaType !== 0; // 0 is photo, 1+ is video
                 medias.push({
                   id: `snapchat-story-${storyIdx}-${snapIdx}`,
                   url: snap.snapUrls.mediaUrl,
-                  quality: "Story Video",
-                  type: "video",
-                  extension: "mp4"
+                  quality: isVideo ? "Story Video" : "Story Photo",
+                  type: isVideo ? "video" : "image",
+                  extension: isVideo ? "mp4" : "jpg"
                 });
               }
             });

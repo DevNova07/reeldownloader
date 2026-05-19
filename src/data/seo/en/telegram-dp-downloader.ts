@@ -93,5 +93,5 @@ export const header = {
   title1: "Download",
   title2: "TG DP",
   title3: "Original HD",
-  subtitle: "Instantly save Telegram profile pictures directly to your device."
+  subtitle: "Save Telegram profile pictures and avatar photos in original full-size quality."
 };

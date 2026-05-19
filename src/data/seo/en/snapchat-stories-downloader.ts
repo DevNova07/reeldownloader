@@ -115,5 +115,5 @@ export const header = {
   title1: "Download",
   title2: "Snapchat Stories",
   title3: "View Anonymously",
-  subtitle: "Instantly save Snapchat stories directly to your device."
+  subtitle: "Save public Snapchat stories of creators and friends before they expire."
 };

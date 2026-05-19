@@ -93,5 +93,5 @@ export const header = {
   title1: "Generate",
   title2: "Viral Tags",
   title3: "AI Powered",
-  subtitle: "Boost your views and hit the FYP instantly with our AI trending hashtag finder."
+  subtitle: "Boost your views and hit the FYP instantly with our AI trending TikTok hashtag finder."
 };

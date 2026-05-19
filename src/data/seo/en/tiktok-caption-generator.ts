@@ -93,5 +93,5 @@ export const header = {
   title1: "Write",
   title2: "Viral Captions",
   title3: "Instantly",
-  subtitle: "Boost engagement and drive comments with our free AI caption generator."
+  subtitle: "Boost engagement and drive comments with our free AI TikTok caption generator."
 };

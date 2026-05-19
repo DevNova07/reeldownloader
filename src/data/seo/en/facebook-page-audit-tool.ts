@@ -93,5 +93,5 @@ export const header = {
   title1: "Audit",
   title2: "FB Pages",
   title3: "100% Anonymous",
-  subtitle: "A fast, clean experience for archiving Facebook media."
+  subtitle: "Perform a comprehensive health and SEO audit on any Facebook Page instantly."
 };

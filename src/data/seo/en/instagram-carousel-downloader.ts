@@ -93,5 +93,5 @@ export const header = {
   title1: "Download",
   title2: "Multi-Posts",
   title3: "Photos & Videos",
-  subtitle: "A fast, clean experience for archiving Instagram media."
+  subtitle: "Download multiple photos and videos from Instagram carousel posts easily."
 };

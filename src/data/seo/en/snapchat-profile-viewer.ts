@@ -93,5 +93,5 @@ export const header = {
   title1: "View",
   title2: "Public Profiles",
   title3: "Anonymously",
-  subtitle: "The premium online tool to capture Snapchat profile pictures without any hassle."
+  subtitle: "View Snapchat public profiles and download bitmojis and profile images easily."
 };

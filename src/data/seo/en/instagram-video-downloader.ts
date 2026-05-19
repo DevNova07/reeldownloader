@@ -106,5 +106,5 @@ export const header = {
   title1: "Download",
   title2: "Instagram Videos",
   title3: "High Quality HD",
-  subtitle: "The premium online tool to capture Instagram videos without any hassle."
+  subtitle: "Download Instagram videos and IGTV posts in original high-definition quality."
 };

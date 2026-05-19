@@ -93,5 +93,5 @@ export const header = {
   title1: "Write",
   title2: "Viral Bios",
   title3: "AI Powered",
-  subtitle: "A fast, clean experience for archiving X (Twitter) media."
+  subtitle: "Create professional, catchy, and optimized bios for your X (Twitter) profile instantly."
 };

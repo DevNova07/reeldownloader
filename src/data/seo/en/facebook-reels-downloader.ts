@@ -102,5 +102,5 @@ export const header = {
   title1: "Download",
   title2: "Facebook Reels",
   title3: "HD & No Watermark",
-  subtitle: "A fast, clean experience for archiving Facebook Reels."
+  subtitle: "Download Facebook Reels in high-definition (HD) quality to your device."
 };

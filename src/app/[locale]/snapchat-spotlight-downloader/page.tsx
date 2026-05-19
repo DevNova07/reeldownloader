@@ -62,7 +62,7 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
         ]} 
       />
       
-      <SearchHeader {...header} />
+      <SearchHeader {...header} h1Class="font-bold text-white mb-3 drop-shadow-md text-center tracking-tight leading-none whitespace-nowrap inline-block text-[22px] sm:text-[34px] md:text-[44px] lg:text-[54px]" />
 
       <div className="bg-white dark:bg-black pt-8 pb-16 px-4">
         <div className="max-w-5xl mx-auto">

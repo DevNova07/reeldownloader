@@ -66,48 +66,15 @@ export async function facebookHandler(url: string): Promise<PlatformResult> {
     });
   }
 
-  let comments: Array<{ username: string; text: string; mention?: string }> = [];
-
-  try {
-    if (result.id) {
-       console.log(`[API] Fetching Facebook comments for post ID: ${result.id}`);
-       const commentsUrl = `https://facebook-data-api2.p.rapidapi.com/graph/${result.id}/comments?limit=5&fields=created_time,from,message,can_remove,like_count`;
-       
-       const controller = new AbortController();
-       const timeoutId = setTimeout(() => controller.abort(), 2000); // 2 second strict timeout
-
-       const commentsResponse = await fetchWithRotation(commentsUrl, {
-         method: 'GET',
-         headers: {
-           'x-rapidapi-host': 'facebook-data-api2.p.rapidapi.com'
-         },
-         signal: controller.signal
-       }, "facebook");
-       
-       clearTimeout(timeoutId);
-
-       const commentsJson = await commentsResponse.json();
-       if (commentsJson.success && commentsJson.data?.data) {
-          comments = commentsJson.data.data
-            .filter((c: any) => c.message && c.from?.name)
-            .map((c: any) => ({
-              username: `@${c.from.name.replace(/\s+/g, '').toLowerCase()}`,
-              text: c.message
-            }));
-       }
-    }
-  } catch (e) {
-    console.error("[API] Failed to fetch Facebook comments (Timeout or Error):", e);
-    // Ignore error, return video anyway
-  }
-
+  // Optimized: Removed the slow comments fetching to provide near-instant response times.
+  // The frontend automatically falls back to beautiful MOCK_COMMENTS if real comments are not provided.
   return {
     title: result.title || "Facebook Video",
     thumbnail: "https://www.facebook.com/images/fb_icon_325x325.png",
     medias,
-    caption: `Facebook Video - ${result.id}`,
+    caption: `Facebook Video - ${result.id || 'Post'}`,
     likes: 0,
-    commentCount: comments.length > 0 ? comments.length * 100 : 0, // Fake a realistic number or use length
-    comments: comments.length > 0 ? comments : undefined
+    commentCount: 0,
+    comments: undefined
   };
 }

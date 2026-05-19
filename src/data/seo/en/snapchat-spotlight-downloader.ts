@@ -2,7 +2,7 @@ export const articleSections = [
     {
       type: "heading",
       level: 2,
-      content: "Why SavClip is the Best Snapchat Spotlight Downloader"
+      content: "Why SavClip is the Best Spotlight Downloader"
     },
     {
       type: "paragraph",
@@ -59,7 +59,7 @@ export const articleSections = [
     {
       type: "heading",
       level: 2,
-      content: "Why SavClip is the Best Spotlight Video Downloader"
+      content: "Why SavClip is the Best Spotlight Downloader"
     },
     {
       type: "paragraph",
@@ -111,5 +111,5 @@ export const header = {
   title1: "Download",
   title2: "Spotlight Videos",
   title3: "Viral Clips in HD",
-  subtitle: "A fast, clean experience for archiving Snapchat media."
+  subtitle: "Download Snapchat Spotlight videos in full high-definition quality online."
 };

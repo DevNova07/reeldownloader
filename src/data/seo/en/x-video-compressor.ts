@@ -93,5 +93,5 @@ export const header = {
   title1: "Compress",
   title2: "Reduce Size",
   title3: "Keep Quality",
-  subtitle: "The premium online tool to capture X (Twitter) videos without any hassle."
+  subtitle: "Reduce Twitter video file sizes online quickly while preserving maximum video clarity."
 };

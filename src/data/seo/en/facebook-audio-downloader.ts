@@ -102,5 +102,5 @@ export const header = {
   title1: "Download",
   title2: "Facebook Audio",
   title3: "MP3 & HD Quality",
-  subtitle: "A fast, clean experience for archiving Facebook audio tracks."
+  subtitle: "Extract and save high-quality audio tracks from Facebook videos."
 };

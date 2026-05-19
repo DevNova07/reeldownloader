@@ -93,5 +93,5 @@ export const header = {
   title1: "Download",
   title2: "Snapchat DP",
   title3: "Full HD Bitmojis",
-  subtitle: "Instantly save Snapchat profile pictures directly to your device."
+  subtitle: "Download Snapchat profile pictures in original full size and high resolution."
 };

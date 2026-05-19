@@ -93,5 +93,5 @@ export const header = {
   title1: "Download",
   title2: "TG Audio",
   title3: "As MP3",
-  subtitle: "A fast, clean experience for archiving Telegram audio tracks."
+  subtitle: "Download and save audio files, voice notes, and songs from Telegram channels."
 };

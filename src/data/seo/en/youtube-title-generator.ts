@@ -93,5 +93,5 @@ export const header = {
   title1: "Generate",
   title2: "Catchy Titles",
   title3: "AI Powered",
-  subtitle: "The premium online tool to capture YouTube media without any hassle."
+  subtitle: "Generate catchy, click-worthy, and optimized titles for your YouTube videos."
 };

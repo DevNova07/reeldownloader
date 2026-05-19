@@ -93,5 +93,5 @@ export const header = {
   title1: "Download",
   title2: "TG GIFs",
   title3: "Original HD",
-  subtitle: "Instantly save Telegram GIFs directly to your device."
+  subtitle: "Save and download Telegram animated GIFs directly to your device."
 };

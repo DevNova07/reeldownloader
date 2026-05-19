@@ -93,5 +93,5 @@ export const header = {
   title1: "Identify",
   title2: "TikTok Music",
   title3: "Instantly",
-  subtitle: "Find the name of any trending song and download the MP3 directly from the video."
+  subtitle: "Find the name of any trending song and download the MP3 directly from the TikTok video."
 };

@@ -111,5 +111,5 @@ export const header = {
   title1: "Convert",
   title2: "Snapchat to MP3",
   title3: "High Quality Audio",
-  subtitle: "Effortlessly grab high-quality Snapchat audio tracks in seconds."
+  subtitle: "Extract and save Snapchat sound effects and audio tracks in high-quality MP3."
 };

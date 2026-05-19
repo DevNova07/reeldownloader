@@ -102,5 +102,5 @@ export const header = {
   title1: "Download",
   title2: "Private FB Videos",
   title3: "100% Secure & HD",
-  subtitle: "Effortlessly grab high-quality Facebook videos in seconds."
+  subtitle: "Download private or restricted Facebook videos using source code extraction securely."
 };

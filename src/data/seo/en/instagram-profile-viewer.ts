@@ -93,5 +93,5 @@ export const header = {
   title1: "View",
   title2: "Profiles",
   title3: "Anonymously",
-  subtitle: "Effortlessly grab high-quality Instagram profile pictures in seconds."
+  subtitle: "View Instagram profile pictures in high-definition anonymously without login."
 };

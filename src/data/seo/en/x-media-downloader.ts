@@ -93,5 +93,5 @@ export const header = {
   title1: "Download",
   title2: "Twitter Media",
   title3: "Original HD",
-  subtitle: "A fast, clean experience for archiving X (Twitter) media."
+  subtitle: "Download all photos and videos from any X (Twitter) post in one place."
 };

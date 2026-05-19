@@ -102,5 +102,5 @@ export const header = {
   title1: "Download",
   title2: "Private Media",
   title3: "100% Secure & HD",
-  subtitle: "A fast, clean experience for archiving Instagram media."
+  subtitle: "Download private Instagram photos, videos, and Reels that you have access to."
 };

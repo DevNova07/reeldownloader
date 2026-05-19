@@ -93,5 +93,5 @@ export const header = {
   title1: "Download",
   title2: "Twitter DP",
   title3: "Original HD",
-  subtitle: "Instantly save X (Twitter) profile pictures directly to your device."
+  subtitle: "Download X (Twitter) profile pictures in full high-resolution resolution."
 };

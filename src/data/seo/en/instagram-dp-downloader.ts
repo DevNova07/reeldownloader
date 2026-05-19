@@ -93,5 +93,5 @@ export const header = {
   title1: "Download",
   title2: "Profile Pictures",
   title3: "Full HD Size",
-  subtitle: "Your reliable companion for fetching Instagram profile pictures in original quality."
+  subtitle: "Download Instagram profile pictures in full size and high definition anonymously."
 };

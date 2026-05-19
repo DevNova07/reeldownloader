@@ -1,6 +1,13 @@
 import { statsManager, PLATFORM_KEYS } from "@/utils/stats";
 
 /**
+ * In-Memory tracker for key exhaustion by API host.
+ * This prevents a 429 on one API host (e.g. youtube-media-downloader)
+ * from blocking a working fallback API host (e.g. snap-video3) on the same key.
+ */
+const exhaustedKeysByHost = new Set<string>();
+
+/**
  * Fetch with API key rotation for RapidAPI.
  */
 export async function fetchWithRotation(
@@ -20,9 +27,11 @@ export async function fetchWithRotation(
   statsManager.stats.platforms[platKey].total++;
 
   let lastError: string | null = null;
+  const host = (baseOptions.headers as any)?.["x-rapidapi-host"] || "unknown-host";
 
   for (let i = 0; i < activeKeys.length; i++) {
     const key = activeKeys[i];
+    const cacheKey = `${key}_${host}`;
 
     if (!platStats.keys[key]) {
       platStats.keys[key] = {
@@ -36,7 +45,12 @@ export async function fetchWithRotation(
     }
 
     const keyData = platStats.keys[key];
-    if (keyData.status === "exhausted") continue;
+    
+    // Skip if the key is globally exhausted OR specifically exhausted for this host
+    if (keyData.status === "exhausted" || exhaustedKeysByHost.has(cacheKey)) {
+      console.log(`[API] Skipping key ${key.substring(0, 8)} for host ${host} (exhausted)`);
+      continue;
+    }
 
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
@@ -46,14 +60,14 @@ export async function fetchWithRotation(
       headers: {
         ...baseOptions.headers,
         "x-rapidapi-key": key,
-        "x-rapidapi-host": (baseOptions.headers as any)?.["x-rapidapi-host"] || "",
+        "x-rapidapi-host": host,
         "Accept": "application/json",
       },
       signal: controller.signal
     };
 
     try {
-      console.log(`[API] Attempting ${platKey} with key ${key.substring(0, 8)}...`);
+      console.log(`[API] Attempting ${platKey} with key ${key.substring(0, 8)} on host ${host}...`);
       console.log(`[API] URL: ${url}`);
       
       const response = await fetch(url, optionsWithKey);
@@ -65,8 +79,8 @@ export async function fetchWithRotation(
       keyData.lastCheck = new Date().toISOString();
 
       if (response.status === 429) {
-        console.log(`[API] 429 Rate Limit hit for key ${key.substring(0, 8)}`);
-        keyData.status = "exhausted";
+        console.log(`[API] 429 Rate Limit hit for key ${key.substring(0, 8)} on host ${host}`);
+        exhaustedKeysByHost.add(cacheKey);
         continue;
       }
 

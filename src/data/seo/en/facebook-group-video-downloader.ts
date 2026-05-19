@@ -93,5 +93,5 @@ export const header = {
   title1: "Download",
   title2: "FB Group Videos",
   title3: "Public & Private",
-  subtitle: "A fast, clean experience for archiving Facebook videos."
+  subtitle: "A fast, clean online tool to download public and private Facebook group videos."
 };

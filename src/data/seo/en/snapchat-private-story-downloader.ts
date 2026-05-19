@@ -93,5 +93,5 @@ export const header = {
   title1: "Download",
   title2: "Private Stories",
   title3: "No Notifications",
-  subtitle: "The premium online tool to capture Snapchat stories without any hassle."
+  subtitle: "Save snaps from private Snapchat stories of friends safely."
 };

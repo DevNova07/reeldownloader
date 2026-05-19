@@ -93,5 +93,5 @@ export const header = {
   title1: "Compress",
   title2: "FB Videos",
   title3: "Save Space HD",
-  subtitle: "The premium online tool to capture Facebook videos without any hassle."
+  subtitle: "Compress Facebook videos online to smaller sizes for easier sharing."
 };

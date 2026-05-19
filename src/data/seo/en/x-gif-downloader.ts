@@ -93,5 +93,5 @@ export const header = {
   title1: "Download",
   title2: "Twitter GIFs",
   title3: "Instantly",
-  subtitle: "Effortlessly grab high-quality X (Twitter) GIFs in seconds."
+  subtitle: "Convert and save X (Twitter) animated GIFs as high-quality MP4 files."
 };

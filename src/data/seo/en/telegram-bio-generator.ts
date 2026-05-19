@@ -93,5 +93,5 @@ export const header = {
   title1: "Write",
   title2: "Viral Bios",
   title3: "AI Powered",
-  subtitle: "A fast, clean experience for archiving Telegram media."
+  subtitle: "Smart AI tool to generate creative, catchy, and high-converting Telegram bios instantly."
 };

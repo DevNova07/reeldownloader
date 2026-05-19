@@ -8,8 +8,8 @@ export function getPlatformFromUrl(url: string): string | null {
   if (/(facebook\.com|fb\.watch|fb\.com|facebook\.(\w+))/.test(lowercaseUrl)) return 'facebook';
   if (/snapchat\.com/.test(lowercaseUrl)) return 'snapchat';
   if (/(youtube\.com|youtu\.be)/.test(lowercaseUrl)) return 'youtube';
-  if (/(twitter\.com|x\.com)/.test(lowercaseUrl)) return 'twitter';
   if (/(t\.me|telegram)/.test(lowercaseUrl) || lowercaseUrl.startsWith('@')) return 'telegram';
+  if (/(twitter\.com|x\.com)/.test(lowercaseUrl)) return 'twitter';
   
   return null;
 }

@@ -93,5 +93,5 @@ export const header = {
   title1: "Download",
   title2: "Private TikToks",
   title3: "No Watermark",
-  subtitle: "Effortlessly grab high-quality TikTok videos in seconds."
+  subtitle: "Save videos from private TikTok accounts that you legitimately follow."
 };

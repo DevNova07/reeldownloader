@@ -102,5 +102,5 @@ export const header = {
   title1: "Download",
   title2: "Instagram Music",
   title3: "High Quality MP3",
-  subtitle: "Effortlessly grab high-quality Instagram audio tracks in seconds."
+  subtitle: "Download and save original audio tracks from Instagram Reels and videos."
 };

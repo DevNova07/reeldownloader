@@ -93,5 +93,5 @@ export const header = {
   title1: "Backup",
   title2: "Personal Memories",
   title3: "Securely",
-  subtitle: "A fast, clean experience for archiving Snapchat media."
+  subtitle: "Export and save your personal Snapchat Memories directly to your camera roll."
 };

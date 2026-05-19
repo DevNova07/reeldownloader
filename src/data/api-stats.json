@@ -1,13 +1,13 @@
 {
-  "totalRequests": 275,
-  "successfulRequests": 183,
-  "failedRequests": 92,
+  "totalRequests": 322,
+  "successfulRequests": 218,
+  "failedRequests": 104,
   "savedRequests": 0,
   "totalVisits": 0,
   "platforms": {
     "facebook": {
-      "total": 38,
-      "success": 28,
+      "total": 41,
+      "success": 31,
       "fail": 10,
       "keys": {
         "9ac29222efmsh81d43b990a8ce7dp17df2jsn6f83cbfb17b7": {
@@ -21,10 +21,10 @@
         "9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7": {
           "name": "API 1",
           "status": "active",
-          "remaining": "261",
+          "remaining": "4940",
           "limit": "unkn",
-          "used": 4,
-          "lastCheck": "2026-05-17T21:06:24.159Z"
+          "used": 7,
+          "lastCheck": "2026-05-19T18:11:39.816Z"
         }
       }
     },
@@ -52,9 +52,9 @@
       }
     },
     "youtube": {
-      "total": 133,
-      "success": 64,
-      "fail": 69,
+      "total": 163,
+      "success": 84,
+      "fail": 79,
       "keys": {
         "9ac29222efmsh81d43b990a8ce7dp17df2jsn6f83cbfb17b7": {
           "name": "API 1",
@@ -67,17 +67,25 @@
         "9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7": {
           "name": "API 1",
           "status": "active",
-          "remaining": "23",
+          "remaining": "9",
           "limit": "unkn",
-          "used": 44,
-          "lastCheck": "2026-05-17T20:45:17.688Z"
+          "used": 69,
+          "lastCheck": "2026-05-19T20:51:57.969Z"
+        },
+        "758fcf1cc5msh22d82fc41a79267p198a7cjsn191acdd3b16d": {
+          "name": "API 1",
+          "status": "active",
+          "remaining": "499993",
+          "limit": "unkn",
+          "used": 9,
+          "lastCheck": "2026-05-19T20:51:54.897Z"
         }
       }
     },
     "instagram": {
-      "total": 61,
-      "success": 58,
-      "fail": 3,
+      "total": 66,
+      "success": 62,
+      "fail": 4,
       "keys": {
         "9ac29222efmsh81d43b990a8ce7dp17df2jsn6f83cbfb17b7": {
           "name": "API 1",
@@ -90,10 +98,10 @@
         "9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7": {
           "name": "API 1",
           "status": "active",
-          "remaining": "2846",
+          "remaining": "2842",
           "limit": "unkn",
-          "used": 30,
-          "lastCheck": "2026-05-19T11:37:32.213Z"
+          "used": 34,
+          "lastCheck": "2026-05-19T19:08:19.724Z"
         }
       }
     },
@@ -113,17 +121,25 @@
       }
     },
     "snapchat": {
-      "total": 15,
-      "success": 15,
-      "fail": 0,
+      "total": 24,
+      "success": 23,
+      "fail": 1,
       "keys": {
         "9ac29222efmsh81d43b990a8ce7dp17df2fjsn6f83cbfb17b7": {
           "name": "API 1",
           "status": "active",
-          "remaining": "80",
+          "remaining": "0",
           "limit": "unkn",
-          "used": 15,
-          "lastCheck": "2026-05-01T07:54:28.403Z"
+          "used": 16,
+          "lastCheck": "2026-05-19T19:16:27.567Z"
+        },
+        "758fcf1cc5msh22d82fc41a79267p198a7cjsn191acdd3b16d": {
+          "name": "API 1",
+          "status": "active",
+          "remaining": "91",
+          "limit": "unkn",
+          "used": 8,
+          "lastCheck": "2026-05-19T20:36:41.115Z"
         }
       }
     },

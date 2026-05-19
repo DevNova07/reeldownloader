@@ -107,5 +107,5 @@ export const header = {
   title1: "Download",
   title2: "TikTok Videos",
   title3: "HD & No Watermark",
-  subtitle: "Instantly save TikTok videos directly to your device."
+  subtitle: "Download TikTok videos in high definition (HD) without watermark."
 };

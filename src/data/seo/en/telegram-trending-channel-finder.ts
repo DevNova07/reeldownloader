@@ -93,5 +93,5 @@ export const header = {
   title1: "Discover",
   title2: "Viral Channels",
   title3: "AI Powered",
-  subtitle: "Your reliable companion for fetching Telegram media in original quality."
+  subtitle: "Find and explore trending public Telegram channels based on category and popularity."
 };

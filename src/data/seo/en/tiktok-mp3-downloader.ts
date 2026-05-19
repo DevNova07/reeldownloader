@@ -102,5 +102,5 @@ export const header = {
   title1: "Download",
   title2: "TikTok MP3",
   title3: "HD Audio & Fast",
-  subtitle: "Your reliable companion for fetching TikTok audio tracks in original quality."
+  subtitle: "Extract and save high-quality MP3 audio tracks directly from TikTok videos."
 };

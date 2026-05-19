@@ -93,5 +93,5 @@ export const header = {
   title1: "Download",
   title2: "TikTok DP",
   title3: "Full HD Res",
-  subtitle: "A fast, clean experience for archiving TikTok profile pictures."
+  subtitle: "Download TikTok profile pictures in full resolution and original quality."
 };

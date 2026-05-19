@@ -102,5 +102,5 @@ export const header = {
   title1: "Download",
   title2: "Facebook Photos",
   title3: "HD & Full Res",
-  subtitle: "A fast, clean experience for archiving Facebook photos."
+  subtitle: "Download Facebook photos in original, high-definition quality easily."
 };

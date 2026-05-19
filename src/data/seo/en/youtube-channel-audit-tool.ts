@@ -93,5 +93,5 @@ export const header = {
   title1: "Analyze",
   title2: "YT Channels",
   title3: "SEO & Stats",
-  subtitle: "The premium online tool to capture YouTube media without any hassle."
+  subtitle: "Analyze YouTube channel SEO metrics, performance, tags, and keywords for free."
 };

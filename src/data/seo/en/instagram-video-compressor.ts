@@ -93,5 +93,5 @@ export const header = {
   title1: "Compress",
   title2: "IG Videos",
   title3: "No Quality Loss",
-  subtitle: "Instantly save Instagram videos directly to your device."
+  subtitle: "Reduce Instagram video file size for faster uploads and direct sharing."
 };

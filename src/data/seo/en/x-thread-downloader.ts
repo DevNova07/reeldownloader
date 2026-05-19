@@ -93,5 +93,5 @@ export const header = {
   title1: "Unroll",
   title2: "Twitter Threads",
   title3: "Instantly",
-  subtitle: "Your reliable companion for fetching X (Twitter) media in original quality."
+  subtitle: "Download and archive complete X (Twitter) threads and post series easily."
 };

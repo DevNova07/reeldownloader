@@ -115,5 +115,5 @@ export const header = {
   title1: "Download",
   title2: "Facebook Stories",
   title3: "Anonymous & HD",
-  subtitle: "The premium online tool to capture Facebook stories without any hassle."
+  subtitle: "Save Facebook stories privately before they expire in 24 hours."
 };

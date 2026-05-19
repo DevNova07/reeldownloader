@@ -111,5 +111,5 @@ export const header = {
   title1: "Download",
   title2: "TikTok Stories",
   title3: "Anonymous & HD",
-  subtitle: "The premium online tool to capture TikTok stories without any hassle."
+  subtitle: "Download and save TikTok stories before they disappear after 24 hours."
 };

@@ -93,5 +93,5 @@ export const header = {
   title1: "View",
   title2: "FB Profiles",
   title3: "100% Anonymous",
-  subtitle: "Instantly save Facebook profile pictures directly to your device."
+  subtitle: "View and save Facebook profile pictures in full high-resolution size privately."
 };

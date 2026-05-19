@@ -93,5 +93,5 @@ export const header = {
   title1: "Check",
   title2: "Global Restrictions",
   title3: "Country Blocks",
-  subtitle: "The premium online tool to capture YouTube media without any hassle."
+  subtitle: "Check if a YouTube video is blocked or restricted in specific countries worldwide."
 };
