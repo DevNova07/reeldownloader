@@ -28,6 +28,7 @@ export function StructuredData({ type, data }: StructuredDataProps) {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
       "name": data.title,
+      "image": "https://savclip.com/icon.png",
       "operatingSystem": "iOS, Android, Windows, macOS, Linux",
       "applicationCategory": "SocialNetworkingApplication",
       "aggregateRating": {
@@ -97,6 +98,7 @@ export function StructuredData({ type, data }: StructuredDataProps) {
       "step": Array.isArray(data.steps) ? data.steps.map((step: any, index: number) => ({
         "@type": "HowToStep",
         "position": index + 1,
+        "name": (typeof step === 'object' && (step.name || step.title)) ? (step.name || step.title) : `Step ${index + 1}`,
         "text": typeof step === 'string' ? step : (step.desc || step.title || step.text)
       })) : []
     }
