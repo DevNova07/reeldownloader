@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { History, Heart, X, Trash2, Download, PlayCircle, ExternalLink, Instagram, Facebook, Youtube, Twitter } from "lucide-react"
 import { useDownloadHistory } from "@/hooks/useDownloadHistory"
 import { cn } from "@/utils/cn"
+import Image from "next/image"
 
 function HistoryImage({ src, platform }: { src: string; platform?: string }) {
   const [error, setError] = React.useState(false)
@@ -47,9 +48,12 @@ function HistoryImage({ src, platform }: { src: string; platform?: string }) {
   }
 
   return (
-    <img 
+    <Image 
       src={src} 
       alt="" 
+      fill
+      sizes="80px"
+      unoptimized
       referrerPolicy="no-referrer"
       onError={() => setError(true)}
       className="object-cover w-full h-full transition-transform group-hover:scale-105" 

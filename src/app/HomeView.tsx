@@ -6,6 +6,7 @@ import { motion } from "framer-motion"
 import { SearchBar } from "@/components/layout/SearchBar"
 import Link from "next/link"
 import dynamic from "next/dynamic"
+import Image from "next/image"
 
 const CategoryCards = dynamic(() => import("@/components/layout/CategoryCards").then(mod => mod.CategoryCards))
 const DownloadPreview = dynamic(() => import("@/components/layout/DownloadPreview").then(mod => mod.DownloadPreview), { ssr: false })
@@ -182,7 +183,14 @@ function HomeViewContent({ locale, dict }: { locale: Locale, dict: any }) {
             <div className="mt-3 sm:mt-6 flex flex-col items-center">
               <div className="flex -space-x-4 mb-4">
                 {[1,2,3,4,5].map((i) => (
-                  <img key={i} src={`https://i.pravatar.cc/100?img=${i+10}`} alt="User" className="w-12 h-12 rounded-full border-2 border-fuchsia-600 shadow-lg object-cover" />
+                  <Image 
+                    key={i} 
+                    src={`https://i.pravatar.cc/100?img=${i+10}`} 
+                    alt="User" 
+                    width={48} 
+                    height={48} 
+                    className="w-12 h-12 rounded-full border-2 border-fuchsia-600 shadow-lg object-cover" 
+                  />
                 ))}
               </div>
               <p className="text-white font-bold tracking-widest uppercase text-sm drop-shadow-md">
@@ -349,7 +357,13 @@ function HomeViewContent({ locale, dict }: { locale: Locale, dict: any }) {
               <Link key={i} href={locale === 'en' ? blog.href : `/${locale}${blog.href}`} className="flex flex-col bg-white dark:bg-black rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all border border-neutral-100 dark:border-neutral-800 group">
                 <div className="h-48 bg-neutral-200 dark:bg-neutral-800 w-full relative overflow-hidden">
                   {blog.image ? (
-                    <img src={blog.image} alt={blog.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                    <Image 
+                      src={blog.image} 
+                      alt={blog.title} 
+                      fill 
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 350px" 
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                    />
                   ) : (
                     <>
                       <div className="absolute inset-0 bg-linear-to-br from-neutral-200 to-neutral-300 dark:from-neutral-800 dark:to-neutral-900" />
