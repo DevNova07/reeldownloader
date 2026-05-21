@@ -2,6 +2,7 @@ import { BLOG_POSTS } from "@/lib/blog-data";
 import { notFound } from "next/navigation";
 import { Calendar, User, ChevronLeft } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { type Locale } from "@/i18n";
 import dynamic from "next/dynamic";
 import { getSeoAlternates } from "@/lib/seo";
@@ -54,7 +55,16 @@ export default async function BlogPostPage(props: { params: Promise<{ locale: Lo
           </h1>
         </header>
 
-        <div className="aspect-video bg-neutral-100 dark:bg-neutral-900 rounded-4xl mb-16 overflow-hidden border border-neutral-100 dark:border-neutral-800" />
+        <div className="relative aspect-video bg-neutral-100 dark:bg-neutral-900 rounded-4xl mb-16 overflow-hidden border border-neutral-100 dark:border-neutral-800">
+          <Image
+            src={post.image}
+            alt={post.title}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 896px"
+            className="object-cover"
+            priority
+          />
+        </div>
 
         <div className="prose prose-neutral dark:prose-invert max-w-none">
           <RichArticle 

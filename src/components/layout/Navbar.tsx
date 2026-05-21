@@ -3,40 +3,40 @@
 import * as React from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { Camera, ChevronDown, ChevronRight, Menu, X, Globe, Ghost, Send, Play, Hash, Music, History, Sparkles, Compass, TrendingUp, Layers, FileText, LayoutGrid, PenTool, Zap, BookOpen, Scale, AlertCircle, ShieldAlert, Settings, Info, Type, Link2 } from "lucide-react"
+import { Camera, ChevronDown, ChevronRight, Menu, X, Globe, Ghost, Send, Play, Hash, Music, History, Sparkles, Compass, BookOpen, Type, Link2 } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/utils/cn"
 import { usePathname, useRouter } from "next/navigation"
 
 import { PLATFORM_NAV_CONFIG } from "@/lib/nav-config"
 
+// Inline custom SVGs to optimize bundle size and reduce TBT/LCP
+const SettingsIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.1a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
+    <circle cx="12" cy="12" r="3" />
+  </svg>
+)
+
+const LayoutGridIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <rect width="7" height="7" x="3" y="3" rx="1" />
+    <rect width="7" height="7" x="14" y="3" rx="1" />
+    <rect width="7" height="7" x="14" y="14" rx="1" />
+    <rect width="7" height="7" x="3" y="14" rx="1" />
+  </svg>
+)
+
 export function Navbar({ dict }: { dict: any }) {
   const [isOpen, setIsOpen] = React.useState(false)
   const [isSettingsExpanded, setIsSettingsExpanded] = React.useState(false)
   const [isAIToolsExpanded, setIsAIToolsExpanded] = React.useState(false)
   const [isMounted, setIsMounted] = React.useState(false)
-  const [isLangOpen, setIsLangOpen] = React.useState(false)
-  const langRefDesktop = React.useRef<HTMLDivElement>(null)
-  const langRefMobile = React.useRef<HTMLDivElement>(null)
   const pathname = usePathname()
   const router = useRouter()
 
   React.useEffect(() => {
     setIsMounted(true)
-  }, [])
-
-  React.useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      const clickedOutsideDesktop = !langRefDesktop.current || !langRefDesktop.current.contains(event.target as Node)
-      const clickedOutsideMobile = !langRefMobile.current || !langRefMobile.current.contains(event.target as Node)
-      if (clickedOutsideDesktop && clickedOutsideMobile) {
-        setIsLangOpen(false)
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside)
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside)
-    }
   }, [])
 
   const currentLocale = 'en';
@@ -104,40 +104,8 @@ export function Navbar({ dict }: { dict: any }) {
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         <div className="flex h-14 sm:h-16 items-center justify-between">
           <div className="flex items-center gap-4 lg:gap-8">
-            {/* Language Selector Dropdown (Mobile-only, left-aligned) */}
-            <div className="sm:hidden relative" ref={langRefMobile}>
-              <button
-                onClick={() => setIsLangOpen(!isLangOpen)}
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-50/40 dark:bg-neutral-900/40 border border-neutral-200/30 dark:border-neutral-800/30 hover:bg-neutral-100/60 dark:hover:bg-neutral-800/60 transition-all active:scale-95 text-neutral-600 dark:text-neutral-400 shadow-xs"
-                title="Select Language"
-              >
-                <Globe className="h-[18px] w-[18px]" />
-              </button>
-              
-              <AnimatePresence>
-                {isLangOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                    className="absolute left-0 mt-2 w-40 bg-white/95 dark:bg-neutral-900/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-neutral-100 dark:border-neutral-800 p-2 z-50"
-                  >
-                    <button
-                      onClick={() => {
-                        setIsLangOpen(false);
-                      }}
-                      className="flex w-full items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-neutral-900 dark:text-white bg-neutral-50 dark:bg-neutral-800/50"
-                    >
-                      <span className="text-sm">🇺🇸</span>
-                      <span>English</span>
-                    </button>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-
-            <Link prefetch={true} href={getLocalizedHref("/")} className="flex items-center gap-2 group shrink-0 sm:static absolute left-1/2 -translate-x-1/2 sm:left-auto sm:translate-x-0">
-              <div className="hidden sm:flex relative h-10 w-10 items-center justify-center overflow-hidden rounded-xl shadow-xl group-hover:scale-110 transition-transform bg-white dark:bg-white/10 dark:backdrop-blur-md dark:border dark:border-white/20">
+            <Link prefetch={true} href={getLocalizedHref("/")} className="flex items-center gap-2 group shrink-0">
+              <div className="relative h-8 w-8 sm:h-10 sm:w-10 flex items-center justify-center overflow-hidden rounded-xl shadow-xl group-hover:scale-110 transition-transform bg-white dark:bg-white/10 dark:backdrop-blur-md dark:border dark:border-white/20">
                 <div className="absolute inset-0 bg-blue-500/10 blur-xl opacity-0 dark:opacity-100" />
                 <Image 
                   src="/assets/logo.png" 
@@ -185,25 +153,25 @@ export function Navbar({ dict }: { dict: any }) {
                         <div className={cn("w-[600px] grid grid-cols-2 gap-8 bg-white/95 dark:bg-neutral-900/95 backdrop-blur-xl p-8 rounded-3xl shadow-2xl border border-neutral-100 dark:border-neutral-800", navData.borderColor)}>
                            {navData.categories.map((cat) => (
                              <div key={cat.titleKey} className="flex flex-col gap-4">
-                               <p className="text-[10px] font-black tracking-widest text-neutral-400">
-                                 {dict.navbar?.[cat.titleKey as keyof typeof dict.navbar] || cat.titleKey}
-                               </p>
-                               <ul className="flex flex-col gap-2.5">
-                                 {cat.links.map((link) => (
-                                   <li key={link.label}>
-                                     <Link
-                                       prefetch={true}
-                                       href={getLocalizedHref(link.href)}
-                                       className={cn("text-xs font-bold text-neutral-600 dark:text-neutral-400 hover:translate-x-1 transition-all inline-block", navData.hoverColor)}
-                                     >
-                                       {isMounted ? getLabel(link.href, link.label) : link.label}
-                                     </Link>
-                                   </li>
-                                 ))}
-                               </ul>
-                             </div>
-                           ))}
-                         </div>
+                                <p className="text-[10px] font-black tracking-widest text-neutral-400">
+                                  {dict.navbar?.[cat.titleKey as keyof typeof dict.navbar] || cat.titleKey}
+                                </p>
+                                <ul className="flex flex-col gap-2.5">
+                                  {cat.links.map((link) => (
+                                    <li key={link.label}>
+                                      <Link
+                                        prefetch={true}
+                                        href={getLocalizedHref(link.href)}
+                                        className={cn("text-xs font-bold text-neutral-600 dark:text-neutral-400 hover:translate-x-1 transition-all inline-block", navData.hoverColor)}
+                                      >
+                                        {isMounted ? getLabel(link.href, link.label) : link.label}
+                                      </Link>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            ))}
+                          </div>
                       </div>
                     )}
                   </div>
@@ -213,38 +181,6 @@ export function Navbar({ dict }: { dict: any }) {
           </div>
 
           <div className="flex items-center gap-2 sm:gap-4">
-            {/* Language Selector Dropdown (Desktop/Tablet, right-aligned) */}
-            <div className="hidden sm:block relative" ref={langRefDesktop}>
-              <button
-                onClick={() => setIsLangOpen(!isLangOpen)}
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-50/40 dark:bg-neutral-900/40 border border-neutral-200/30 dark:border-neutral-800/30 hover:bg-neutral-100/60 dark:hover:bg-neutral-800/60 transition-all active:scale-95 text-neutral-600 dark:text-neutral-400 shadow-xs"
-                title="Select Language"
-              >
-                <Globe className="h-[18px] w-[18px]" />
-              </button>
-              
-              <AnimatePresence>
-                {isLangOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                    className="absolute right-0 mt-2 w-40 bg-white/95 dark:bg-neutral-900/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-neutral-100 dark:border-neutral-800 p-2 z-50"
-                  >
-                    <button
-                      onClick={() => {
-                        setIsLangOpen(false);
-                      }}
-                      className="flex w-full items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-neutral-900 dark:text-white bg-neutral-50 dark:bg-neutral-800/50"
-                    >
-                      <span className="text-sm">🇺🇸</span>
-                      <span>English</span>
-                    </button>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-
             <button
               onClick={openHistory}
               className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-50/40 dark:bg-neutral-900/40 border border-neutral-200/30 dark:border-neutral-800/30 hover:bg-neutral-100/60 dark:hover:bg-neutral-800/60 transition-all active:scale-95 text-neutral-600 dark:text-neutral-400 shadow-xs"
@@ -359,7 +295,7 @@ export function Navbar({ dict }: { dict: any }) {
                         ? "bg-pink-600 text-white shadow-pink-500/30 scale-110" 
                         : "bg-white dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 ring-1 ring-neutral-200/50 dark:ring-neutral-700/50"
                     )}>
-                      <Settings className="h-5 w-5" />
+                      <SettingsIcon className="h-5 w-5" />
                     </div>
                     <div className="flex flex-col items-start gap-0.5">
                       <span className="text-sm font-bold text-neutral-900 dark:text-white uppercase tracking-tight">SETTINGS & INFO</span>
@@ -388,7 +324,7 @@ export function Navbar({ dict }: { dict: any }) {
                           <div className="flex items-center justify-between p-1">
                             <div className="flex items-center gap-4">
                               <div className="h-10 w-10 flex items-center justify-center rounded-xl bg-blue-50 dark:bg-blue-900/20 text-blue-600">
-                                <LayoutGrid className="h-5 w-5" />
+                                <LayoutGridIcon className="h-5 w-5" />
                               </div>
                               <div className="flex flex-col">
                                 <span className="text-sm font-bold text-neutral-800 dark:text-neutral-200 uppercase tracking-tight">Media Previews</span>
@@ -407,12 +343,12 @@ export function Navbar({ dict }: { dict: any }) {
                           <p className="text-[10px] font-black uppercase tracking-[0.2em] text-neutral-400 mb-4 px-1 text-center">Company Info</p>
                           <div className="grid grid-cols-2 gap-3">
                             {[
-                              { name: "About Us", href: "/about", icon: <Info className="h-3 w-3" /> },
-                              { name: "Contact", href: "/contact", icon: <Hash className="h-3 w-3" /> },
-                              { name: "Privacy", href: "/privacy-policy", icon: <ShieldAlert className="h-3 w-3" /> },
-                              { name: "Terms", href: "/terms", icon: <Scale className="h-3 w-3" /> },
-                              { name: "Disclaimer", href: "/disclaimer", icon: <AlertCircle className="h-3 w-3" /> },
-                              { name: "DMCA", href: "/dmca", icon: <AlertCircle className="h-3 w-3" /> }
+                              { name: "About Us", href: "/about" },
+                              { name: "Contact", href: "/contact" },
+                              { name: "Privacy", href: "/privacy-policy" },
+                              { name: "Terms", href: "/terms" },
+                              { name: "Disclaimer", href: "/disclaimer" },
+                              { name: "DMCA", href: "/dmca" }
                             ].map((link) => (
                               <button
                                 key={link.name}
@@ -420,10 +356,9 @@ export function Navbar({ dict }: { dict: any }) {
                                   setIsOpen(false);
                                   router.push(getLocalizedHref(link.href));
                                 }}
-                                className="flex items-center gap-2.5 rounded-xl px-4 py-3 bg-neutral-50 dark:bg-neutral-800/50 hover:bg-pink-50 dark:hover:bg-pink-900/20 hover:text-pink-600 transition-all text-neutral-500 dark:text-neutral-400"
+                                className="flex items-center justify-center text-center rounded-xl px-4 py-3 bg-neutral-50 dark:bg-neutral-800/50 hover:bg-pink-50 dark:hover:bg-pink-900/20 hover:text-pink-600 transition-all text-neutral-500 dark:text-neutral-400"
                               >
-                                {link.icon}
-                                <span className="text-[11px] font-black uppercase tracking-tighter">{link.name}</span>
+                                <span className="text-[11px] font-black uppercase tracking-wider">{link.name}</span>
                               </button>
                             ))}
                           </div>
