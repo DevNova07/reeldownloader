@@ -23,11 +23,6 @@ interface PlatformTabsProps {
 }
 
 export function PlatformTabs({ items, activeId, activeColor = "text-pink-600", tabs, className, locale = "en", indicatorColor = "bg-white" }: PlatformTabsProps) {
-  const getLocalizedHref = (path: string) => {
-    const cleanPath = path.startsWith('/') ? path : `/${path}`
-    if (locale === 'en') return cleanPath
-    return `/${locale}${cleanPath === '/' ? '' : cleanPath}`
-  }
   return (
     <div className={cn("mt-1 sm:mt-3 mb-6 sm:mb-10 flex justify-center w-full px-2 sm:px-0", className)}>
       <div className="grid grid-cols-5 items-center gap-0.5 rounded-2xl bg-black/20 p-1 backdrop-blur-xl border border-white/10 shadow-2xl outline-hidden ring-1 ring-white/5 w-full max-w-4xl mx-auto">
@@ -37,7 +32,7 @@ export function PlatformTabs({ items, activeId, activeColor = "text-pink-600", t
           return (
             <Link
               key={item.id}
-              href={getLocalizedHref(item.href)}
+              href={item.href}
               prefetch={true}
               className={cn(
                 "group relative flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-1.5 rounded-xl py-2 sm:py-2.5 text-[9px] sm:text-[13px] font-black tracking-tight transition-all duration-300 w-full",

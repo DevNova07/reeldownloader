@@ -23,7 +23,7 @@ interface InternalToolLinksProps {
 export function InternalToolLinks({ currentPlatform, dict, accentColor = "text-pink-600" }: InternalToolLinksProps) {
   const pathname = usePathname() || ""
   const params = useParams()
-  const locale = params?.locale as string || "en"
+  // locale param removed (single-language flat routing)
 
   // Detect current ToolKey from URL (e.g., /en/instagram-reels-download -> instagram_reels_download)
   const currentToolKey = React.useMemo(() => {
@@ -65,11 +65,11 @@ export function InternalToolLinks({ currentPlatform, dict, accentColor = "text-p
         return {
           key,
           title: seoPages?.[key]?.title || "Tool",
-          href: locale === 'en' ? cleanPath : `/${locale}${cleanPath}`
+          href: cleanPath
         }
       })
       .slice(0, 24) // Show more tools for better SEO internal linking
-  }, [dict, currentPlatform, currentToolKey, locale])
+  }, [dict, currentPlatform, currentToolKey])
 
   if (relatedTools.length === 0) return null
 

@@ -50,9 +50,8 @@ export function getLocalizedRoute(platform: string, locale: string): string | nu
   const baseRoute = routes[platform];
   if (!baseRoute) return null;
 
-  // No prefix for default 'en' locale usually, but project uses /[locale]/ structure consistently.
-  // We should respect the provided locale.
-  return locale === 'en' ? baseRoute : `/${locale}${baseRoute === '/' ? '' : baseRoute}`;
+  // Flat routing: always return the base route directly (no locale prefix)
+  return baseRoute;
 }
 
 export function getRouteFromPlatform(platform: string): string | null {
@@ -123,9 +122,7 @@ export function handleSmartRedirect(input: string, locale: string, router: any):
   }
 
   if (usernameToFetch) {
-    const targetPath = locale === 'en' 
-      ? `/bulk-downloader?username=${encodeURIComponent(usernameToFetch)}`
-      : `/${locale}/bulk-downloader?username=${encodeURIComponent(usernameToFetch)}`;
+    const targetPath = `/bulk-downloader?username=${encodeURIComponent(usernameToFetch)}`;
     router.push(targetPath);
     return true;
   }

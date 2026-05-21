@@ -95,7 +95,7 @@ export function PlatformCards({ locale }: { locale: string }) {
             return (
               <Link
                 key={idx}
-                href={locale === 'en' ? category.href : `/${locale}${category.href}`}
+                href={category.href}
                 className="group flex flex-col items-center text-center h-full rounded-4xl p-6 sm:p-10 transition-all border border-neutral-100 dark:border-neutral-800/50 hover:border-pink-500/20 bg-white dark:bg-neutral-900/40 backdrop-blur-xl hover:shadow-2xl overflow-hidden relative hover:-translate-y-2"
               >
                 <div className={cn("inline-flex p-5 rounded-2xl mb-8 shadow-2xl transition-all group-hover:scale-110 group-hover:-rotate-3", category.bg)}>

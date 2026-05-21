@@ -73,7 +73,6 @@ const ALL_TOOLS = [
   },
 ]
 
-import { locales, type Locale } from "@/i18n"
 
 interface RelatedToolsProps {
   /** The current platform id to exclude from suggestions */
@@ -84,18 +83,6 @@ interface RelatedToolsProps {
 
 export function RelatedTools({ currentPlatform, max = 4 }: RelatedToolsProps) {
   const pathname = usePathname()
-  const currentLocale = React.useMemo(() => {
-    if (!pathname) return 'en';
-    const segment = pathname.split('/')[1];
-    return locales.includes(segment as Locale) ? (segment as Locale) : 'en';
-  }, [pathname]);
-
-  const getLocalizedHref = (href: string) => {
-    const cleanHref = href.startsWith('/') ? href : `/${href}`
-    if (currentLocale === 'en') return cleanHref
-    return `/${currentLocale}${cleanHref === '/' ? '' : cleanHref}`
-  }
-
   const tools = ALL_TOOLS.filter((t) => t.id !== currentPlatform).slice(0, max)
 
   return (
@@ -126,7 +113,7 @@ export function RelatedTools({ currentPlatform, max = 4 }: RelatedToolsProps) {
             >
               <Link
                 prefetch={true}
-                href={getLocalizedHref(tool.href)}
+                href={tool.href}
                 className="group flex flex-col items-center text-center gap-5 rounded-3xl p-6 shadow-sm transition-all hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] hover:-translate-y-2 dark:backdrop-blur-sm"
               >
                 {/* Icon / Gradient Badge */}

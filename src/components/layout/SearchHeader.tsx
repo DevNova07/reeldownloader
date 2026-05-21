@@ -169,8 +169,7 @@ function SearchHeaderContent({
   // Find active tab ID by checking the current pathname against hrefs
   let activeId = "";
   for (const tab of tabs) {
-    const tabLocalizedHref = locale === 'en' ? tab.href : `/${locale}${tab.href === '/' ? '' : tab.href}`;
-    if (pathname === tabLocalizedHref) {
+    if (pathname === tab.href) {
       activeId = tab.id;
       break;
     }

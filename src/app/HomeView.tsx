@@ -125,7 +125,7 @@ function HomeViewContent({ locale, dict }: { locale: Locale, dict: any }) {
 
   return (
     <div className="flex flex-col bg-linear-to-r from-fuchsia-600 via-purple-600 to-sky-500 font-sans">
-      <StructuredData type="BreadcrumbList" data={[{ name: "Home", item: locale === 'en' ? "https://savclip.com" : `https://savclip.com/${locale}` }]} />
+      <StructuredData type="BreadcrumbList" data={[{ name: "Home", item: "https://savclip.com" }]} />
       <StructuredData type="SoftwareApplication" data={{ title: "SavClip Universal Social Media Downloader", description: "Free HD video downloader online without watermark for Instagram, TikTok, YouTube, and Facebook.", ratingValue: "4.9", reviewCount: "25420" }} />
       <StructuredData type="FAQPage" data={{ items: faqList }} />
 
@@ -236,7 +236,7 @@ function HomeViewContent({ locale, dict }: { locale: Locale, dict: any }) {
               { label: 'Facebook HD Saver', href: '/facebook-video-downloader' },
               { label: 'Snapchat Spotlight Saver', href: '/snapchat-spotlight-downloader' }
             ].map((tool, i) => (
-              <Link key={i} href={locale === 'en' ? tool.href : `/${locale}${tool.href}`} className="px-6 py-4 rounded-full bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 font-bold text-neutral-700 dark:text-neutral-300 hover:bg-fuchsia-600 hover:text-white hover:border-fuchsia-600 transition-colors uppercase tracking-wider text-sm shadow-sm">
+              <Link key={i} href={tool.href} className="px-6 py-4 rounded-full bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 font-bold text-neutral-700 dark:text-neutral-300 hover:bg-fuchsia-600 hover:text-white hover:border-fuchsia-600 transition-colors uppercase tracking-wider text-sm shadow-sm">
                 {tool.label}
               </Link>
             ))}
@@ -275,7 +275,7 @@ function HomeViewContent({ locale, dict }: { locale: Locale, dict: any }) {
               { id: 'snapchat', name: 'Snapchat', desc: 'Stories & Spotlight Saver', icon: '👻', color: 'bg-yellow-400 text-black', href: '/snapchat-story-downloader' },
               { id: 'ai', name: 'AI Tools', desc: 'Captions, Hashtags & Bio', icon: '🤖', color: 'bg-indigo-600', href: '/tiktok-caption-generator' },
             ].map((p) => (
-              <Link key={p.id} href={locale === 'en' ? p.href : `/${locale}${p.href}`} className="flex flex-col p-8 rounded-3xl bg-white dark:bg-black shadow-sm border border-neutral-100 dark:border-neutral-800 hover:shadow-2xl hover:scale-[1.02] transition-all group">
+              <Link key={p.id} href={p.href} className="flex flex-col p-8 rounded-3xl bg-white dark:bg-black shadow-sm border border-neutral-100 dark:border-neutral-800 hover:shadow-2xl hover:scale-[1.02] transition-all group">
                 <div className={`w-16 h-16 ${p.color} rounded-2xl flex items-center justify-center text-3xl shadow-lg mb-6 group-hover:rotate-6 transition-transform text-white`}>
                   {p.icon}
                 </div>
@@ -354,7 +354,7 @@ function HomeViewContent({ locale, dict }: { locale: Locale, dict: any }) {
               { title: "How to Download TikTok Videos Without Watermark Natively", cat: "TikTok Hacks", color: "text-indigo-500", href: "/blog", image: "/blog/tiktok_hacks.png" },
               { title: "The Ultimate Guide to YouTube Shorts Algorithm", cat: "YouTube Growth", color: "text-red-500", href: "/blog", image: "/blog/youtube_shorts.png" }
             ].map((blog, i) => (
-              <Link key={i} href={locale === 'en' ? blog.href : `/${locale}${blog.href}`} className="flex flex-col bg-white dark:bg-black rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all border border-neutral-100 dark:border-neutral-800 group">
+              <Link key={i} href={blog.href} className="flex flex-col bg-white dark:bg-black rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all border border-neutral-100 dark:border-neutral-800 group">
                 <div className="h-48 bg-neutral-200 dark:bg-neutral-800 w-full relative overflow-hidden">
                   {blog.image ? (
                     <Image 

@@ -89,21 +89,9 @@ const PLATFORMS = [
   },
 ]
 
-import { locales, type Locale } from "@/i18n"
 
 export function SocialPlatformBar({ activeId, className }: { activeId: string, className?: string }) {
   const pathname = usePathname() || ""
-  const currentLocale = React.useMemo(() => {
-    if (!pathname) return 'en';
-    const segment = pathname.split('/')[1];
-    return locales.includes(segment as Locale) ? (segment as Locale) : 'en';
-  }, [pathname]);
-
-  const getLocalizedHref = (path: string) => {
-    const cleanPath = path.startsWith('/') ? path : `/${path}`
-    if (currentLocale === 'en') return cleanPath
-    return `/${currentLocale}${cleanPath === '/' ? '' : cleanPath}`
-  }
 
   return (
     <div 
@@ -115,7 +103,7 @@ export function SocialPlatformBar({ activeId, className }: { activeId: string, c
         return (
           <Link
             key={platform.id}
-            href={getLocalizedHref(platform.href)}
+            href={platform.href}
             className="relative group shrink-0"
           >
             <motion.div

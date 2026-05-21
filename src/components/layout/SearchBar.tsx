@@ -77,8 +77,7 @@ function SearchBarInner({
     const relativePath = isKnownLocale ? ((pathname || "").replace(`/${locale}`, "") || "/") : (pathname || "/");
 
     if (relativePath !== targetPath) {
-      const targetUrl = locale === 'en' ? (targetPath === '/' ? '/' : targetPath) : `/${locale}${targetPath === '/' ? '' : targetPath}`
-      router.push(`${targetUrl}?url=${encodeURIComponent(inputUrl)}`)
+      router.push(`${targetPath}?url=${encodeURIComponent(inputUrl)}`)
       return true
     }
     return false

@@ -57,8 +57,7 @@ export function useAutoDownload(
           border: '1px solid rgba(255,255,255,0.1)'
         }
       })
-      const targetRoute = locale === 'en' ? targetPath : `/${locale}${targetPath === '/' ? '' : targetPath}`
-      router.replace(`${targetRoute}?url=${encodeURIComponent(sharedUrl)}`)
+      router.replace(`${targetPath}?url=${encodeURIComponent(sharedUrl)}`)
     } else {
       // Correct platform or root page - trigger search directly with a slight delay for reliability
       const autoDownload = searchParams.get('autodownload') === 'true'
