@@ -213,6 +213,8 @@ export default async function RootLayout(props: { children: React.ReactNode; }) 
                 "url": "https://savclip.com",
                 "name": "SavClip",
                 "alternateName": ["SavClip Downloader", "SavClip"],
+                "datePublished": "2024-01-10T08:00:00+00:00",
+                "dateModified": new Date().toISOString(),
                 "publisher": {
                   "@type": "Organization",
                   "@id": "https://savclip.com/#organization",

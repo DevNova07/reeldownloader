@@ -38,6 +38,9 @@ export function StructuredData({ type, data }: StructuredDataProps) {
       "image": "https://savclip.com/icon.png",
       "operatingSystem": "iOS, Android, Windows, macOS, Linux",
       "applicationCategory": "SocialNetworkingApplication",
+      "datePublished": "2024-01-10T08:00:00+00:00",
+      "dateModified": new Date().toISOString(),
+      "softwareVersion": "1.5.2",
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": data.ratingValue || "4.9",
@@ -118,6 +121,8 @@ export function StructuredData({ type, data }: StructuredDataProps) {
       "name": "SavClip",
       "alternateName": ["SavClip Downloader", "SavClip"],
       "url": "https://savclip.com",
+      "datePublished": "2024-01-10T08:00:00+00:00",
+      "dateModified": new Date().toISOString(),
       "potentialAction": {
         "@type": "SearchAction",
         "target": "https://savclip.com?url={search_term_string}",
