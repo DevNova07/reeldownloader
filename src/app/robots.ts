@@ -5,7 +5,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/admin/", "/api/", "/_next/"],
+      // Remove '/_next/' so that Googlebot can load CSS, JS, and image assets for correct rendering
+      disallow: ["/api/"],
     },
     sitemap: "https://savclip.com/sitemap.xml",
   }
