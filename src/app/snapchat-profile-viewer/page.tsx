@@ -46,9 +46,9 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
       <StructuredData
         type="BreadcrumbList"
         data={[
-          { name: "Home", item: `${locale === 'en' ? '/' : '/' + locale}` },
-          { name: "Snapchat", item: `${locale === 'en' ? '' : '/' + locale}/snapchat-video-downloader` },
-          { name: "Profile Viewer", item: `${locale === 'en' ? '' : '/' + locale}/snapchat-profile-viewer` }
+          { name: "Home", item: `/` },
+          { name: "Snapchat", item: `/snapchat-video-downloader` },
+          { name: "Profile Viewer", item: `/snapchat-profile-viewer` }
         ]}
       />
 
@@ -88,7 +88,7 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
             ].map((tool, i) => (
               <Link 
                 key={i}
-                href={`${locale === 'en' ? '' : '/' + locale}${tool.href}`}
+                href={`${tool.href}`}
                 className="p-6 bg-white dark:bg-neutral-800 rounded-3xl shadow-lg border border-neutral-100 dark:border-neutral-700 font-bold text-neutral-900 dark:text-white hover:text-yellow-500 transition-colors"
               >
                 {tool.title}
@@ -123,7 +123,7 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
                 View public Snapchat profiles and content directly in your browser, entirely anonymously.
             </p>
             <Link 
-                href={`${locale === 'en' ? '' : '/' + locale}/snapchat-profile-viewer`}
+                href={`/snapchat-profile-viewer`}
                 className="px-12 py-5 bg-black text-yellow-400 rounded-full font-black uppercase tracking-widest hover:scale-105 transition-transform inline-block shadow-2xl"
             >
                 View Profile

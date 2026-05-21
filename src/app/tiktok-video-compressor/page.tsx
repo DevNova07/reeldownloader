@@ -46,9 +46,9 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
       <StructuredData
         type="BreadcrumbList"
         data={[
-          { name: "Home", item: `${locale === 'en' ? '/' : '/' + locale}` },
-          { name: "TikTok", item: `${locale === 'en' ? '' : '/' + locale}/tiktok-video-downloader` },
-          { name: "Compressor", item: `${locale === 'en' ? '' : '/' + locale}/tiktok-video-compressor` }
+          { name: "Home", item: `/` },
+          { name: "TikTok", item: `/tiktok-video-downloader` },
+          { name: "Compressor", item: `/tiktok-video-compressor` }
         ]}
       />
 
@@ -86,7 +86,7 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
             ].map((tool, i) => (
               <Link 
                 key={i}
-                href={`${locale === 'en' ? '' : '/' + locale}${tool.href}`}
+                href={`${tool.href}`}
                 className="p-6 bg-white dark:bg-neutral-800 rounded-3xl shadow-lg border border-neutral-100 dark:border-neutral-700 font-bold text-neutral-900 dark:text-white hover:text-cyan-600 transition-colors"
               >
                 {tool.title}
@@ -121,7 +121,7 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
                 Compress bulky TikTok videos into lightweight MP4s perfect for WhatsApp or Email.
             </p>
             <Link 
-                href={`${locale === 'en' ? '' : '/' + locale}/tiktok-video-compressor`}
+                href={`/tiktok-video-compressor`}
                 className="px-12 py-5 bg-white text-cyan-600 rounded-full font-black uppercase tracking-widest hover:scale-105 transition-transform inline-block shadow-2xl"
             >
                 Start Compressing

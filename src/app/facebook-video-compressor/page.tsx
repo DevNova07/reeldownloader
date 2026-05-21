@@ -46,9 +46,9 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
       <StructuredData
         type="BreadcrumbList"
         data={[
-          { name: "Home", item: `${locale === 'en' ? '/' : '/' + locale}` },
-          { name: "Facebook", item: `${locale === 'en' ? '' : '/' + locale}/facebook-video-downloader` },
-          { name: "Video Compressor", item: `${locale === 'en' ? '' : '/' + locale}/facebook-video-compressor` }
+          { name: "Home", item: `/` },
+          { name: "Facebook", item: `/facebook-video-downloader` },
+          { name: "Video Compressor", item: `/facebook-video-compressor` }
         ]}
       />
 
@@ -87,7 +87,7 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
             ].map((tool, i) => (
               <Link 
                 key={i}
-                href={`${locale === 'en' ? '' : '/' + locale}${tool.href}`}
+                href={`${tool.href}`}
                 className="p-6 bg-white dark:bg-neutral-800 rounded-3xl shadow-lg border border-neutral-100 dark:border-neutral-700 font-bold text-neutral-900 dark:text-white hover:text-blue-600 transition-colors"
               >
                 {tool.title}
@@ -122,7 +122,7 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
                 Optimize your Facebook videos and save device storage with the world's most intelligent compressor.
             </p>
             <Link 
-                href={`${locale === 'en' ? '' : '/' + locale}/facebook-video-compressor`}
+                href={`/facebook-video-compressor`}
                 className="px-12 py-5 bg-white text-blue-600 rounded-full font-black uppercase tracking-widest hover:scale-105 transition-transform inline-block shadow-2xl"
             >
                 Compress Video Now

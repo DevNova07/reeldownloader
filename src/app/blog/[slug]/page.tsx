@@ -39,7 +39,7 @@ export default async function BlogPostPage(props: { params: Promise<{ locale: Lo
   return (
     <div className="min-h-screen bg-white dark:bg-black pt-24 pb-20">
       <article className="max-w-4xl mx-auto px-4">
-        <Link href={`${locale === 'en' ? '' : '/' + locale}/blog`} className="inline-flex items-center gap-2 text-neutral-400 font-black uppercase tracking-widest text-[10px] mb-12 hover:text-pink-600 transition-colors">
+        <Link href={`/blog`} className="inline-flex items-center gap-2 text-neutral-400 font-black uppercase tracking-widest text-[10px] mb-12 hover:text-pink-600 transition-colors">
           <ChevronLeft className="w-4 h-4" /> Back to Blog
         </Link>
 

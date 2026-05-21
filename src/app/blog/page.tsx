@@ -62,7 +62,7 @@ export default async function BlogListPage(props: { params: Promise<{ locale: Lo
                 <p className="text-neutral-500 dark:text-neutral-400 font-bold mb-8 flex-1 leading-relaxed">
                   {post.excerpt}
                 </p>
-                <Link href={`${locale === 'en' ? '' : '/' + locale}/blog/${post.slug}`} className="inline-flex items-center justify-center w-full py-4 rounded-2xl bg-neutral-50 dark:bg-neutral-950/50 text-neutral-900 dark:text-white border border-neutral-100 dark:border-neutral-800 font-black uppercase tracking-widest text-xs group-hover:bg-neutral-900 group-hover:text-white dark:group-hover:bg-white dark:group-hover:text-black transition-all gap-2">
+                <Link href={`/blog/${post.slug}`} className="inline-flex items-center justify-center w-full py-4 rounded-2xl bg-neutral-50 dark:bg-neutral-950/50 text-neutral-900 dark:text-white border border-neutral-100 dark:border-neutral-800 font-black uppercase tracking-widest text-xs group-hover:bg-neutral-900 group-hover:text-white dark:group-hover:bg-white dark:group-hover:text-black transition-all gap-2">
                   Read Article <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>

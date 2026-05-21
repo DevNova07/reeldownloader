@@ -46,9 +46,9 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
       <StructuredData
         type="BreadcrumbList"
         data={[
-          { name: "Home", item: `${locale === 'en' ? '/' : '/' + locale}` },
-          { name: "Telegram", item: `${locale === 'en' ? '' : '/' + locale}/telegram-video-downloader` },
-          { name: "Private Downloader", item: `${locale === 'en' ? '' : '/' + locale}/telegram-private-video-downloader` }
+          { name: "Home", item: `/` },
+          { name: "Telegram", item: `/telegram-video-downloader` },
+          { name: "Private Downloader", item: `/telegram-private-video-downloader` }
         ]}
       />
 
@@ -88,7 +88,7 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
             ].map((tool, i) => (
               <Link 
                 key={i}
-                href={`${locale === 'en' ? '' : '/' + locale}${tool.href}`}
+                href={`${tool.href}`}
                 className="p-6 bg-white dark:bg-neutral-800 rounded-3xl shadow-lg border border-neutral-100 dark:border-neutral-700 font-bold text-neutral-900 dark:text-white hover:text-sky-500 transition-colors"
               >
                 {tool.title}
@@ -123,7 +123,7 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
                 Download private Telegram videos securely without sharing your account details.
             </p>
             <Link 
-                href={`${locale === 'en' ? '' : '/' + locale}/telegram-private-video-downloader`}
+                href={`/telegram-private-video-downloader`}
                 className="px-12 py-5 bg-white text-sky-600 rounded-full font-black uppercase tracking-widest hover:scale-105 transition-transform inline-block shadow-[0_0_30px_rgba(255,255,255,0.2)]"
             >
                 Secure Download

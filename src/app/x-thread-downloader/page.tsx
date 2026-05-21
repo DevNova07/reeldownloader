@@ -46,9 +46,9 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
       <StructuredData
         type="BreadcrumbList"
         data={[
-          { name: "Home", item: `${locale === 'en' ? '/' : '/' + locale}` },
-          { name: "X (Twitter)", item: `${locale === 'en' ? '' : '/' + locale}/x-video-downloader` },
-          { name: "Thread Downloader", item: `${locale === 'en' ? '' : '/' + locale}/x-thread-downloader` }
+          { name: "Home", item: `/` },
+          { name: "X (Twitter)", item: `/x-video-downloader` },
+          { name: "Thread Downloader", item: `/x-thread-downloader` }
         ]}
       />
 
@@ -88,7 +88,7 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
             ].map((tool, i) => (
               <Link 
                 key={i}
-                href={`${locale === 'en' ? '' : '/' + locale}${tool.href}`}
+                href={`${tool.href}`}
                 className="p-6 bg-white dark:bg-neutral-800 rounded-3xl shadow-lg border border-neutral-100 dark:border-neutral-700 font-bold text-neutral-900 dark:text-white hover:text-blue-500 transition-colors"
               >
                 {tool.title}
@@ -123,7 +123,7 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
                 Compile and save long Twitter threads as clean PDFs for easy offline reading.
             </p>
             <Link 
-                href={`${locale === 'en' ? '' : '/' + locale}/x-thread-downloader`}
+                href={`/x-thread-downloader`}
                 className="px-12 py-5 bg-white text-black rounded-full font-black uppercase tracking-widest hover:scale-105 transition-transform inline-block shadow-[0_0_30px_rgba(255,255,255,0.2)]"
             >
                 Unroll Thread

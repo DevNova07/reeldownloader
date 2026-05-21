@@ -34,9 +34,9 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
       <StructuredData
         type="BreadcrumbList"
         data={[
-          { name: "Home", item: `${locale === 'en' ? '/' : '/' + locale}` },
-          { name: "Telegram", item: `${locale === 'en' ? '' : '/' + locale}/telegram-video-downloader` },
-          { name: "Restricted Content Downloader", item: `${locale === 'en' ? '' : '/' + locale}/telegram-restricted-content-downloader` }
+          { name: "Home", item: `/` },
+          { name: "Telegram", item: `/telegram-video-downloader` },
+          { name: "Restricted Content Downloader", item: `/telegram-restricted-content-downloader` }
         ]}
       />
       

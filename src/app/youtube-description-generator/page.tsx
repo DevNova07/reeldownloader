@@ -46,9 +46,9 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
       <StructuredData
         type="BreadcrumbList"
         data={[
-          { name: "Home", item: `${locale === 'en' ? '/' : '/' + locale}` },
-          { name: "YouTube", item: `${locale === 'en' ? '' : '/' + locale}/youtube-video-downloader` },
-          { name: "Description Generator", item: `${locale === 'en' ? '' : '/' + locale}/youtube-description-generator` }
+          { name: "Home", item: `/` },
+          { name: "YouTube", item: `/youtube-video-downloader` },
+          { name: "Description Generator", item: `/youtube-description-generator` }
         ]}
       />
 
@@ -88,7 +88,7 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
             ].map((tool, i) => (
               <Link 
                 key={i}
-                href={`${locale === 'en' ? '' : '/' + locale}${tool.href}`}
+                href={`${tool.href}`}
                 className="p-6 bg-white dark:bg-neutral-800 rounded-3xl shadow-lg border border-neutral-100 dark:border-neutral-700 font-bold text-neutral-900 dark:text-white hover:text-red-600 transition-colors"
               >
                 {tool.title}
@@ -123,7 +123,7 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
                 Generate highly relevant, SEO-optimized descriptions for your YouTube videos in seconds with AI.
             </p>
             <Link 
-                href={`${locale === 'en' ? '' : '/' + locale}/youtube-description-generator`}
+                href={`/youtube-description-generator`}
                 className="px-12 py-5 bg-white text-red-600 rounded-full font-black uppercase tracking-widest hover:scale-105 transition-transform inline-block shadow-2xl"
             >
                 Generate Copy

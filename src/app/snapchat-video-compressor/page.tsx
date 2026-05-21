@@ -46,9 +46,9 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
       <StructuredData
         type="BreadcrumbList"
         data={[
-          { name: "Home", item: `${locale === 'en' ? '/' : '/' + locale}` },
-          { name: "Snapchat", item: `${locale === 'en' ? '' : '/' + locale}/snapchat-video-downloader` },
-          { name: "Compressor", item: `${locale === 'en' ? '' : '/' + locale}/snapchat-video-compressor` }
+          { name: "Home", item: `/` },
+          { name: "Snapchat", item: `/snapchat-video-downloader` },
+          { name: "Compressor", item: `/snapchat-video-compressor` }
         ]}
       />
 
@@ -87,7 +87,7 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
             ].map((tool, i) => (
               <Link 
                 key={i}
-                href={`${locale === 'en' ? '' : '/' + locale}${tool.href}`}
+                href={`${tool.href}`}
                 className="p-6 bg-white dark:bg-neutral-800 rounded-3xl shadow-lg border border-neutral-100 dark:border-neutral-700 font-bold text-neutral-900 dark:text-white hover:text-yellow-500 transition-colors"
               >
                 {tool.title}
@@ -122,7 +122,7 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
                 Compress bulky Snapchat videos into lightweight MP4s perfect for WhatsApp or Email.
             </p>
             <Link 
-                href={`${locale === 'en' ? '' : '/' + locale}/snapchat-video-compressor`}
+                href={`/snapchat-video-compressor`}
                 className="px-12 py-5 bg-black text-yellow-400 rounded-full font-black uppercase tracking-widest hover:scale-105 transition-transform inline-block shadow-2xl"
             >
                 Start Compressing

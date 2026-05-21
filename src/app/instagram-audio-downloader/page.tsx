@@ -46,9 +46,9 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
       <StructuredData
         type="BreadcrumbList"
         data={[
-          { name: "Home", item: `${locale === 'en' ? '/' : '/' + locale}` },
-          { name: "Instagram", item: `${locale === 'en' ? '' : '/' + locale}/instagram-video-downloader` },
-          { name: "Audio Downloader", item: `${locale === 'en' ? '' : '/' + locale}/instagram-audio-downloader` }
+          { name: "Home", item: `/` },
+          { name: "Instagram", item: `/instagram-video-downloader` },
+          { name: "Audio Downloader", item: `/instagram-audio-downloader` }
         ]}
       />
 

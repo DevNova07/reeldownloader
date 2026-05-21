@@ -47,9 +47,9 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
       <StructuredData
         type="BreadcrumbList"
         data={[
-          { name: "Home", item: `${locale === 'en' ? '/' : '/' + locale}` },
-          { name: "Instagram", item: `${locale === 'en' ? '' : '/' + locale}/instagram-video-downloader` },
-          { name: "Reels Downloader", item: `${locale === 'en' ? '' : '/' + locale}/instagram-reels-downloader` }
+          { name: "Home", item: `/` },
+          { name: "Instagram", item: `/instagram-video-downloader` },
+          { name: "Reels Downloader", item: `/instagram-reels-downloader` }
         ]}
       />
       
@@ -88,7 +88,7 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
             ].map((tool, i) => (
               <Link 
                 key={i}
-                href={`${locale === 'en' ? '' : '/' + locale}${tool.href}`}
+                href={`${tool.href}`}
                 className="p-6 bg-white dark:bg-neutral-800 rounded-3xl shadow-lg border border-neutral-100 dark:border-neutral-700 font-bold text-neutral-900 dark:text-white hover:text-pink-600 transition-colors"
               >
                 {tool.title}
@@ -125,7 +125,7 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
               <div key={i} className="group p-8 bg-white dark:bg-neutral-900 rounded-3xl shadow-lg border border-neutral-100 dark:border-neutral-800 hover:border-pink-500/30 transition-all">
                 <h3 className="text-lg font-black text-neutral-900 dark:text-white uppercase italic tracking-tight mb-2 group-hover:text-pink-600 transition-colors">{blog.title}</h3>
                 <p className="text-sm text-neutral-500 dark:text-neutral-400 font-bold mb-4">{blog.desc}</p>
-                <Link href={`${locale === 'en' ? '/' : '/' + locale}`} className="text-xs font-black uppercase tracking-widest text-pink-600 hover:translate-x-1 transition-transform inline-block">Read More →</Link>
+                <Link href={`/`} className="text-xs font-black uppercase tracking-widest text-pink-600 hover:translate-x-1 transition-transform inline-block">Read More →</Link>
               </div>
             ))}
           </div>

@@ -46,9 +46,9 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
       <StructuredData
         type="BreadcrumbList"
         data={[
-          { name: "Home", item: `${locale === 'en' ? '/' : '/' + locale}` },
-          { name: "TikTok", item: `${locale === 'en' ? '' : '/' + locale}/tiktok-video-downloader` },
-          { name: "Anonymous Viewer", item: `${locale === 'en' ? '' : '/' + locale}/anonymous-tiktok-viewer` }
+          { name: "Home", item: `/` },
+          { name: "TikTok", item: `/tiktok-video-downloader` },
+          { name: "Anonymous Viewer", item: `/anonymous-tiktok-viewer` }
         ]}
       />
 
@@ -87,7 +87,7 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
               ].map((tool, i) => (
               <Link 
                 key={i}
-                href={`${locale === 'en' ? '' : '/' + locale}${tool.href}`}
+                href={`${tool.href}`}
                 className="p-6 bg-white dark:bg-neutral-800 rounded-3xl shadow-lg border border-neutral-100 dark:border-neutral-700 font-bold text-neutral-900 dark:text-white hover:text-cyan-600 transition-colors"
               >
                 {tool.title}
@@ -122,7 +122,7 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
                 View TikTok profiles and watch videos in complete secrecy. No account required.
             </p>
             <Link 
-                href={`${locale === 'en' ? '' : '/' + locale}/anonymous-tiktok-viewer`}
+                href={`/anonymous-tiktok-viewer`}
                 className="px-12 py-5 bg-white text-cyan-600 rounded-full font-black uppercase tracking-widest hover:scale-105 transition-transform inline-block shadow-2xl"
             >
                 View Secretly

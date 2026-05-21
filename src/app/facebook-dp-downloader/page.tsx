@@ -46,9 +46,9 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
       <StructuredData
         type="BreadcrumbList"
         data={[
-          { name: "Home", item: `${locale === 'en' ? '/' : '/' + locale}` },
-          { name: "Facebook", item: `${locale === 'en' ? '' : '/' + locale}/facebook-video-downloader` },
-          { name: "DP Downloader", item: `${locale === 'en' ? '' : '/' + locale}/facebook-dp-downloader` }
+          { name: "Home", item: `/` },
+          { name: "Facebook", item: `/facebook-video-downloader` },
+          { name: "DP Downloader", item: `/facebook-dp-downloader` }
         ]}
       />
 
@@ -88,7 +88,7 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
             ].map((tool, i) => (
               <Link 
                 key={i}
-                href={`${locale === 'en' ? '' : '/' + locale}${tool.href}`}
+                href={`${tool.href}`}
                 className="p-6 bg-white dark:bg-neutral-800 rounded-3xl shadow-lg border border-neutral-100 dark:border-neutral-700 font-bold text-neutral-900 dark:text-white hover:text-blue-600 transition-colors"
               >
                 {tool.title}
@@ -123,7 +123,7 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
                 Never miss a detail. Download Facebook DPs in full resolution for free with SavClip.
             </p>
             <Link 
-                href={`${locale === 'en' ? '' : '/' + locale}/facebook-dp-downloader`}
+                href={`/facebook-dp-downloader`}
                 className="px-12 py-5 bg-white text-blue-600 rounded-full font-black uppercase tracking-widest hover:scale-105 transition-transform inline-block shadow-2xl"
             >
                 Download DP Now

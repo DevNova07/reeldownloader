@@ -34,9 +34,9 @@ export default async function Page(props: { params: Promise<{ locale: string }> 
       <StructuredData
         type="BreadcrumbList"
         data={[
-          { name: "Home", item: `${locale === 'en' ? '/' : '/' + locale}` },
-          { name: "Telegram", item: `${locale === 'en' ? '' : '/' + locale}/telegram-video-downloader` },
-          { name: "Channel Link Generator", item: `${locale === 'en' ? '' : '/' + locale}/telegram-channel-link-generator` }
+          { name: "Home", item: `/` },
+          { name: "Telegram", item: `/telegram-video-downloader` },
+          { name: "Channel Link Generator", item: `/telegram-channel-link-generator` }
         ]}
       />
       
