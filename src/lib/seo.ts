@@ -11,15 +11,15 @@ export const SITE_URL = "https://savclip.com";
  */
 export function getSeoAlternates(path: string, currentLocale: string = 'en') {
   const cleanPath = path.startsWith('/') ? path.slice(1) : path;
-  const canonicalPath = cleanPath ? `/${cleanPath}` : `/`;
+  const canonicalUrl = cleanPath ? `${SITE_URL}/${cleanPath}` : `${SITE_URL}/`;
 
   const languages: Record<string, string> = {
-    'x-default': canonicalPath,
-    'en': canonicalPath,
+    'x-default': canonicalUrl,
+    'en': canonicalUrl,
   };
 
   return {
-    canonical: canonicalPath,
+    canonical: canonicalUrl,
     languages,
   };
 }
