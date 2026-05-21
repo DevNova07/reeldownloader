@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "Telegram Photo Downloader – Save TG Photos in HD",
-  description: "Looking to keep Telegram photos permanently? Use our intuitive online utility to get original files in seconds."
+  title: "Telegram Photo Downloader HD - SavClip",
+  description: "Grab shared media grid photos, high-res scenery images, and graphics from public Telegram groups. Pure clarity downloads in one tap."
 };
 
 export const header = {

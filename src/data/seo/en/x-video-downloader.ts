@@ -88,8 +88,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "X Video Downloader – Download Twitter Videos to MP4 in HD",
-  description: "Save your favorite X (Twitter) videos instantly without any logos. Our free online tool gives you crisp quality directly to your device."
+  title: "X Video Downloader HD - SavClip",
+  description: "Download X (Twitter) videos directly into high definition MP4 format. Secure cloud script for crisp clarity with no registration."
 };
 
 export const header = {

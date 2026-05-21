@@ -3,12 +3,10 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Camera, Send, Mail, Globe, ShieldCheck, Zap, HelpCircle, HardDrive, Share2, Apple as AppleIcon, Music, Play, Ghost, Hash, Instagram } from "lucide-react"
-import { useParams, usePathname } from "next/navigation"
-import { locales, languageNames, languageFlags, type Locale } from "@/i18n"
+import { usePathname } from "next/navigation"
 import { ReactNode } from "react"
 
 export function Footer({ locale, dict }: { locale: string, dict: any }) {
-  const normalizedLocale = (locales.includes(locale as any) ? locale : 'en') as Locale;
   const pathname = usePathname() || "";
   
   const branding = dict?.footer_branding || {
@@ -20,9 +18,7 @@ export function Footer({ locale, dict }: { locale: string, dict: any }) {
   }
 
   const getLocalizedHref = (path: string) => {
-    const cleanPath = path.startsWith('/') ? path : `/${path}`
-    if (normalizedLocale === 'en') return cleanPath
-    return `/${normalizedLocale}${cleanPath === '/' ? '' : cleanPath}`
+    return path.startsWith('/') ? path : `/${path}`
   }
 
   return (

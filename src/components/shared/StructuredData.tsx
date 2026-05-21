@@ -24,7 +24,7 @@ export function StructuredData({ type, data }: StructuredDataProps) {
   }
 
   if (type === "SoftwareApplication") {
-    schema = {
+    const appSchema = {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
       "name": data.title,
@@ -41,7 +41,51 @@ export function StructuredData({ type, data }: StructuredDataProps) {
         "priceCurrency": "USD"
       },
       "description": data.description || "Free online social media downloader for videos, reels, and stories."
-    }
+    };
+
+    const howToSchema = {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": `How to use ${data.title}`,
+      "description": `Follow these 3 easy steps to download media using ${data.title}.`,
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Copy the Link",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": `Open the social media application or website, find the media you want to save, and copy its URL or share link.`
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Paste the Link",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": `Go to the ${data.title} page on SavClip, and paste the copied link into the input box at the top.`
+            }
+          ]
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Download the Media",
+          "itemListElement": [
+            {
+              "@type": "HowToDirection",
+              "text": `Click the 'Download' button. Once processed, select your preferred quality to save the file to your device.`
+            }
+          ]
+        }
+      ]
+    };
+
+    schema = [appSchema, howToSchema];
   }
 
   if (type === "HowTo") {
@@ -67,7 +111,7 @@ export function StructuredData({ type, data }: StructuredDataProps) {
       "url": "https://savclip.com",
       "potentialAction": {
         "@type": "SearchAction",
-        "target": "https://savclip.com/en?url={search_term_string}",
+        "target": "https://savclip.com?url={search_term_string}",
         "query-input": "required name=search_term_string"
       }
     }

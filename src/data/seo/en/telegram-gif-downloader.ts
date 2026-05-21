@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "Telegram GIF Downloader – Save TG GIFs in High Quality",
-  description: "Download Telegram GIFs effortlessly. We preserve the original source quality so you never miss a single detail."
+  title: "Telegram GIF Downloader HD - SavClip",
+  description: "Extract and save viral Telegram looped animations and stickers as standard MP4 files. Keep full quality animations for multi-device use."
 };
 
 export const header = {

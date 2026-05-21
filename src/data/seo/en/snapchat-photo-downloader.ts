@@ -111,8 +111,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "Snapchat Photo Downloader – Download Snap Images in HD",
-  description: "Looking to keep Snapchat photos permanently? Use our intuitive online utility to get original files in seconds."
+  title: "Snapchat Photo Downloader HD - SavClip",
+  description: "Download Snapchat picture posts and timeline snaps in full resolution. Save high-quality graphic images before they refresh or disappear."
 };
 
 export const header = {

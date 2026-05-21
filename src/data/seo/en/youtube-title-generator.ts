@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "YouTube Title Generator – AI Catchy & Clickable Titles",
-  description: "A streamlined, 100% free solution for archiving YouTube media. Experience lightning-fast speeds and pristine clarity."
+  title: "YouTube Title Generator - SavClip",
+  description: "Generate high-click-rate (CTR), catchy, and viral video titles for YouTube using specialized AI. Maximize recommended feed impressions."
 };
 
 export const header = {

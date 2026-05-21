@@ -88,8 +88,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "Telegram Video Downloader – Save TG Videos in HD",
-  description: "Download Telegram videos effortlessly. We preserve the original source quality so you never miss a single detail."
+  title: "Telegram Video Downloader HD - SavClip",
+  description: "Grab streaming media and full-length videos from public Telegram public feeds. Fast cloud pipelines for instant offline video access."
 };
 
 export const header = {

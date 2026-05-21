@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "Telegram Bio Generator – AI Powered TG Bio Creator",
-  description: "Save your favorite Telegram media instantly without any logos. Our free online tool gives you crisp quality directly to your device."
+  title: "Telegram Bio Generator - SavClip",
+  description: "Generate unique, catchy, and professional Telegram bios using smart AI. Customize your chat profile with top-tier aesthetic text lines."
 };
 
 export const header = {

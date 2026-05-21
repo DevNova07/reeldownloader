@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "TikTok Video Compressor – Reduce File Size Free",
-  description: "Save your favorite TikTok videos instantly without any logos. Our free online tool gives you crisp quality directly to your device."
+  title: "TikTok Video Compressor HD - SavClip",
+  description: "Compress video resolutions to meet TikTok's strict aspect ratio and upload criteria. Maintain HD clarity while stripping extra file sizes."
 };
 
 export const header = {

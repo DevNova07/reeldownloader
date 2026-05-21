@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "Instagram Video Compressor: Resize IG Videos",
-  description: "Looking to keep Instagram videos permanently? Use our intuitive online utility to get original files in seconds."
+  title: "Instagram Video Compressor HD - SavClip",
+  description: "Compress heavy videos for Instagram feeds, stories, or IGTV. Shrink MP4 files efficiently while maintaining optimal resolution and bitrates."
 };
 
 export const header = {

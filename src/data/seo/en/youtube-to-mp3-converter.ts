@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "YouTube to MP3 Converter – Download YT MP3 320kbps",
-  description: "Easily grab YouTube audio tracks in high resolution. No account required, just paste the link and enjoy fast, secure offline access."
+  title: "YouTube to MP3 Converter HD - SavClip",
+  description: "Convert YouTube streams into high-quality 320kbps MP3 audio tracks. Safe, automated background encoding with zero audio loss."
 };
 
 export const header = {

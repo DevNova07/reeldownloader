@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "X Thread Downloader – Save Twitter Threads as PDF",
-  description: "A streamlined, 100% free solution for archiving X (Twitter) media. Experience lightning-fast speeds and pristine clarity."
+  title: "X Thread Downloader HD - SavClip",
+  description: "Export lengthy X (Twitter) post threads into clean, organized PDFs or text layouts. Archive valuable viral educational essays effortlessly."
 };
 
 export const header = {

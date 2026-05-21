@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "TikTok Private Video Downloader – Save Private TT Videos",
-  description: "A streamlined, 100% free solution for archiving TikTok videos. Experience lightning-fast speeds and pristine clarity."
+  title: "TikTok Private Video Downloader HD - SavClip",
+  description: "Securely download approved private TikTok clips from accounts you follow. Clean background processing to archive personal shorts safely."
 };
 
 export const header = {

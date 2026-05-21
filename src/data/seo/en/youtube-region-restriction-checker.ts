@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "YouTube Region Restriction Checker – Check Blocked Countries",
-  description: "Looking to keep YouTube media permanently? Use our intuitive online utility to get original files in seconds."
+  title: "YouTube Region Restriction Checker - SavClip",
+  description: "Instantly verify if a specific YouTube video faces country blocks or age filters. View international availability maps in real time."
 };
 
 export const header = {

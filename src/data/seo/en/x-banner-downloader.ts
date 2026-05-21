@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "X Banner Downloader – Save Twitter Header Images HD",
-  description: "Looking to keep X (Twitter) media permanently? Use our intuitive online utility to get original files in seconds."
+  title: "X Banner Downloader HD - SavClip",
+  description: "Download X (Twitter) profile cover arts and headers in maximum dimensions. Grab full-size background banners with zero crop losses."
 };
 
 export const header = {

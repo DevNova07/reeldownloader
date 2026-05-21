@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "YouTube Playlist Downloader – Download Full YT Playlists HD",
-  description: "Save your favorite YouTube media instantly without any logos. Our free online tool gives you crisp quality directly to your device."
+  title: "YouTube Playlist Downloader HD - SavClip",
+  description: "Download full YouTube playlist arrays in bulk video or audio layouts. Extract entire curation sets in HD with top downloading speed."
 };
 
 export const header = {

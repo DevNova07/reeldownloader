@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "Snapchat Memories Downloader – Backup Your Snaps Online",
-  description: "Download Snapchat media effortlessly. We preserve the original source quality so you never miss a single detail."
+  title: "Snapchat Memories Downloader HD - SavClip",
+  description: "Backup your saved Snapchat memories, archived drafts, and classic snaps online. Secure export tool with ultra-fast download pathways."
 };
 
 export const header = {

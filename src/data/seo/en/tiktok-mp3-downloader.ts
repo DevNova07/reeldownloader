@@ -93,8 +93,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "TikTok MP3 Downloader – Convert TT Video to MP3 HD",
-  description: "Save your favorite TikTok audio tracks instantly without any logos. Our free online tool gives you crisp quality directly to your device."
+  title: "TikTok MP3 Downloader HD - SavClip",
+  description: "Download trending TikTok soundscapes, background songs, and viral audios. Extract clean, crisp 320kbps MP3 sound files instantly."
 };
 
 export const header = {

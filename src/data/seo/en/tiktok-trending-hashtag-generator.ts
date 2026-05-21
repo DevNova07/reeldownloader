@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "TikTok Trending Hashtag Generator – AI Hashtags Finder",
-  description: "Save your favorite TikTok media instantly without any logos. Our free online tool gives you crisp quality directly to your device."
+  title: "TikTok Trending Hashtag Generator - SavClip",
+  description: "Find low-competition, viral TikTok hashtags using automated AI tracking. Boost algorithmic reach and place posts directly on the For You page."
 };
 
 export const header = {

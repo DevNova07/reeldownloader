@@ -106,8 +106,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "Facebook Story Downloader – View FB Stories Anonymously HD",
-  description: "Easily grab Facebook stories in high resolution. No account required, just paste the link and enjoy fast, secure offline access."
+  title: "Facebook Story Saver HD - SavClip",
+  description: "Save Facebook stories and status updates anonymously before they vanish. Grab original photos and videos from FB stories completely hidden."
 };
 
 export const header = {

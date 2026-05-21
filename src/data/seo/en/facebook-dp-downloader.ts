@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "Facebook DP Downloader",
-  description: "A streamlined, 100% free solution for archiving Facebook profile pictures. Experience lightning-fast speeds and pristine clarity."
+  title: "Facebook DP Downloader HD - SavClip",
+  description: "Save Facebook profile pictures in full resolution and high definition. Bypass privacy locks to download full-size FB display photos securely."
 };
 
 export const header = {

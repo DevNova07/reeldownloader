@@ -70,7 +70,7 @@ export function DownloadCounter({ accentColor = "text-pink-400" }: { accentColor
       <div className="flex items-center gap-2">
         <Download className={`h-4 w-4 ${accentColor}`} />
         <span className="text-sm font-black text-white tabular-nums">
-          {displayed.toLocaleString()}
+          {displayed.toLocaleString("en-US")}
         </span>
         <span className="text-xs font-bold text-white/60 uppercase tracking-wider">
           videos downloaded today

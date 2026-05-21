@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "YouTube Comment Picker – Random Giveaway Winner Generator",
-  description: "Save your favorite YouTube media instantly without any logos. Our free online tool gives you crisp quality directly to your device."
+  title: "YouTube Comment Picker - SavClip",
+  description: "Pick random, transparent giveaway winners from any YouTube video comment section. 100% fair filtering options to run contests smoothly."
 };
 
 export const header = {

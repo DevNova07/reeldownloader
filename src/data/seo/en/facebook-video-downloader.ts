@@ -97,8 +97,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "Facebook Video Downloader HD",
-  description: "Looking to keep Facebook videos permanently? Use our intuitive online utility to get original files in seconds."
+  title: "Facebook Video Downloader HD - SavClip",
+  description: "The premium, free solution to download public Facebook videos in 1080p/4K. Fast servers for pristine clarity and zero download limits."
 };
 
 export const header = {

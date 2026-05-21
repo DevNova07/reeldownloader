@@ -102,8 +102,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "TikTok Story Downloader – View TT Stories Anonymously HD",
-  description: "Looking to keep TikTok stories permanently? Use our intuitive online utility to get original files in seconds."
+  title: "TikTok Story Saver HD - SavClip",
+  description: "Watch and download active TikTok stories secretly. Save daily video snaps before the 24-hour expiration window closes entirely."
 };
 
 export const header = {

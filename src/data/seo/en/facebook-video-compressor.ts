@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "Facebook Video Compressor",
-  description: "A streamlined, 100% free solution for archiving Facebook videos. Experience lightning-fast speeds and pristine clarity."
+  title: "Facebook Video Compressor HD - SavClip",
+  description: "Reduce Facebook video file size online without losing quality. Compress heavy files quickly to optimize for fast social media uploads."
 };
 
 export const header = {

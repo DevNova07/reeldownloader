@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "Telegram Video Compressor – Reduce TG Video File Size",
-  description: "A streamlined, 100% free solution for archiving Telegram videos. Experience lightning-fast speeds and pristine clarity."
+  title: "Telegram Video Compressor HD - SavClip",
+  description: "Shrink massive video files to pass Telegram's attachment limits. Compress video bitrates smoothly while preserving visual detailing."
 };
 
 export const header = {

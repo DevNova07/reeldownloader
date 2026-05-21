@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "YouTube Channel Audit Tool – Analyze YT Channels SEO & Stats",
-  description: "Looking to keep YouTube media permanently? Use our intuitive online utility to get original files in seconds."
+  title: "YouTube Channel Audit Tool - SavClip",
+  description: "Audit YouTube channel SEO elements, visible tag metrics, and search performance stats. Generate quick channel growth optimization audits."
 };
 
 export const header = {

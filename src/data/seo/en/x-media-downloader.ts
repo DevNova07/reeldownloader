@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "X Media Downloader – Download Twitter Photos & Videos",
-  description: "Download X (Twitter) media effortlessly. We preserve the original source quality so you never miss a single detail."
+  title: "X Media Downloader HD - SavClip",
+  description: "Download all images, graphics, and video grids from specific X (Twitter) threads. Bulk fetch dynamic media links seamlessly."
 };
 
 export const header = {

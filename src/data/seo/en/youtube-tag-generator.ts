@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "YouTube Tag Generator – AI SEO Keywords for YT Videos",
-  description: "Save your favorite YouTube media instantly without any logos. Our free online tool gives you crisp quality directly to your device."
+  title: "YouTube Tag Generator - SavClip",
+  description: "Generate high-ranking SEO tags and target keywords for your YouTube videos. Outrank competitors by loading accurate algorithmic tags."
 };
 
 export const header = {

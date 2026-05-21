@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import { defaultLocale } from "@/i18n";
 
 /**
  * Global Share Target Redirector.
- * Catches /share-target calls and redirects to the localized /share-target route.
+ * Catches /share-target calls and redirects to the clean root URL with params.
  */
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -11,8 +10,8 @@ export async function GET(request: NextRequest) {
   const url = searchParams.get('url') || "";
   const title = searchParams.get('title') || "";
 
-  // Simply redirect to the default locale's share target with all params preserved
-  const targetUrl = new URL(`/${defaultLocale}/share-target`, request.url);
+  // Redirect to the clean root page with all params preserved
+  const targetUrl = new URL(`/`, request.url);
   if (text) targetUrl.searchParams.set('text', text);
   if (url) targetUrl.searchParams.set('url', url);
   if (title) targetUrl.searchParams.set('title', title);

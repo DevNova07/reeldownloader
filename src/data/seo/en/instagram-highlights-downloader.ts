@@ -102,8 +102,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "Download Instagram Highlights HD & Original Quality",
-  description: "A streamlined, 100% free solution for archiving Instagram media. Experience lightning-fast speeds and pristine clarity."
+  title: "Instagram Highlights Downloader HD - SavClip",
+  description: "Save archive Instagram highlights from public profiles permanently. Grab curated story highlight collections in premium original quality."
 };
 
 export const header = {

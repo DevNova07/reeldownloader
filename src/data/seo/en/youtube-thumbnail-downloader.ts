@@ -93,8 +93,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "YouTube Thumbnail Downloader HD – Save YT Thumbnails 4K",
-  description: "Easily grab YouTube thumbnails in high resolution. No account required, just paste the link and enjoy fast, secure offline access."
+  title: "YouTube Thumbnail Downloader HD - SavClip",
+  description: "Save YouTube video cover arts and thumbnails in pristine Ultra HD/4K resolutions. Paste video URLs to download graphic banners fast."
 };
 
 export const header = {

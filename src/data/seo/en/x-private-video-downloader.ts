@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "X Private Video Downloader – Save Private Twitter Videos",
-  description: "Easily grab X (Twitter) videos in high resolution. No account required, just paste the link and enjoy fast, secure offline access."
+  title: "X Private Video Downloader HD - SavClip",
+  description: "Extract locked clips from approved private X (Twitter) spaces or accounts. Safe script integration to download personal feeds securely."
 };
 
 export const header = {

@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "Instagram Profile Viewer",
-  description: "A streamlined, 100% free solution for archiving Instagram profile pictures. Experience lightning-fast speeds and pristine clarity."
+  title: "Instagram Profile Viewer - SavClip",
+  description: "Explore public Instagram accounts, posts, grids, and follower data without logging in. Fully secure web interface for anonymous browsing."
 };
 
 export const header = {

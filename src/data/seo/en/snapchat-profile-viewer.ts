@@ -78,14 +78,26 @@ export const faqs = [
     {
       q: "Is it free to use the Profile Viewer?",
       a: "Yes, SavClip's profile viewing tool is 100% free to use. You can search and view as many public profiles as you want without any hidden costs."
+    },
+    {
+      q: "Can I save stories directly from the profile viewer?",
+      a: "Yes. Once the public profile stories load on the dashboard, you will find active save buttons under each story slide, allowing you to save the MP4 video or JPG photo directly to your device."
+    },
+    {
+      q: "Why does a specific Snapchat username show no results?",
+      a: "If a search fails to return data, verify the username spelling. Additionally, the account may be deleted, temporarily deactivated, or set strictly to private, which prevents public web viewers from accessing it."
+    },
+    {
+      q: "Do you save or log any profile searches?",
+      a: "No, we prioritize user privacy. We do not keep logs of searched usernames, viewed profiles, or history. All searches are processed on-the-fly and remain entirely confidential."
     }
   ];
 
 
 
 export const meta = {
-  title: "Snapchat Profile Viewer – View Snap Profiles Online",
-  description: "Looking to keep Snapchat profile pictures permanently? Use our intuitive online utility to get original files in seconds."
+  title: "Snapchat Profile Viewer - SavClip",
+  description: "Check public Snapchat profile metrics, handles, public stories, and spotlights online without notifications or using the native app."
 };
 
 export const header = {

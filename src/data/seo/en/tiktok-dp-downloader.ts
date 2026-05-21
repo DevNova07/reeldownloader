@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "TikTok DP Downloader – Save TikTok Profile Pictures in HD",
-  description: "Looking to keep TikTok profile pictures permanently? Use our intuitive online utility to get original files in seconds."
+  title: "TikTok DP Downloader HD - SavClip",
+  description: "Save full HD TikTok profile pictures by username. Access display avatars in extreme clarity without watermarks or login steps."
 };
 
 export const header = {

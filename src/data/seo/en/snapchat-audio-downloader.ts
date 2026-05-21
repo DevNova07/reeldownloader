@@ -102,8 +102,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "Snapchat MP3 Downloader – Convert Snapchat Video to Audio",
-  description: "A streamlined, 100% free solution for archiving Snapchat audio tracks. Experience lightning-fast speeds and pristine clarity."
+  title: "Snapchat Audio Downloader HD - SavClip",
+  description: "Isolate sound effects, voice notes, and audio from Snapchat videos. Save original audio tracks instantly as high-fidelity music files."
 };
 
 export const header = {

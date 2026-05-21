@@ -84,9 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "Instagram Story Viewer & Downloader: Save IG Stories Privately",
-  description: "View and download Instagram stories anonymously in HD. Our free online IG story viewer and downloader works without login or installation to save original files in seconds.",
-  keywords: ["instagram story viewer", "instagram story downloader", "download instagram stories", "view ig stories anonymously", "ig story saver"]
+  title: "Instagram Story Viewer - SavClip",
+  description: "Watch and download active Instagram stories secretly without letting them know. No login required, view IG highlights and statuses anonymously."
 };
 
 export const header = {

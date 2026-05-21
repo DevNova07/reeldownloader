@@ -110,6 +110,40 @@ export function DownloadPreview({
   const [showSuccess, setShowSuccess] = React.useState(false);
   const [downloadProgress, setDownloadProgress] = React.useState(0);
   const [downloadStatus, setDownloadStatus] = React.useState("Ready");
+  const [skeletonAspect, setSkeletonAspect] = React.useState<string>("aspect-video");
+  const [isListLayout, setIsListLayout] = React.useState<boolean>(false);
+
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      const path = window.location.pathname.toLowerCase();
+      
+      const listKeywords = ["playlist", "profile", "feed", "carousel", "album"];
+      const isList = listKeywords.some(keyword => path.includes(keyword));
+      setIsListLayout(isList);
+      
+      if (
+        path.includes("reels") || 
+        path.includes("story") || 
+        path.includes("stories") || 
+        path.includes("spotlight") || 
+        path.includes("shorts") || 
+        path.includes("tiktok") || 
+        path.includes("snapchat") ||
+        path.includes("instagram-private-downloader")
+      ) {
+        setSkeletonAspect("aspect-[9/16] max-h-[70vh]");
+      } else if (
+        path.includes("dp") || 
+        path.includes("profile") || 
+        path.includes("avatar") || 
+        path.includes("viewer")
+      ) {
+        setSkeletonAspect("aspect-square max-w-sm mx-auto");
+      } else {
+        setSkeletonAspect("aspect-video");
+      }
+    }
+  }, []);
 
   const videoMedia = data?.medias?.find((m: Media) => m.type === "video");
   const audioTargetUrl = videoMedia?.url || data?.medias?.[0]?.url || data?.items?.[0]?.url || "";
@@ -327,30 +361,114 @@ export function DownloadPreview({
             initial={false}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="mx-auto mt-10 w-full max-w-5xl rounded-[2.5rem] p-4 md:p-12 bg-white/10 backdrop-blur-3xl border border-white/20 overflow-hidden relative"
+            className={cn(
+              "mx-auto mt-10 w-full rounded-[2.5rem] border border-white/20 overflow-hidden relative bg-white/10 backdrop-blur-3xl",
+              isListLayout ? "max-w-7xl p-4 md:p-8" : "max-w-5xl p-4 md:p-12"
+            )}
           >
-            <div className="mx-auto flex w-full flex-col gap-10">
-              {/* Media Skeleton */}
-              <div className="mx-auto w-full max-w-2xl">
-                <Skeleton className="aspect-square w-full rounded-2xl md:rounded-3xl bg-white/10" />
-              </div>
-              
-              {/* Action Buttons Skeleton */}
-              <div className="flex flex-col gap-4">
-                <Skeleton className="h-[72px] w-full rounded-2xl bg-white/10" />
-                <Skeleton className="h-[64px] w-full rounded-2xl bg-white/10" />
-                <Skeleton className="h-[64px] w-full rounded-2xl bg-white/10" />
-              </div>
-
-              {/* Stats Skeleton */}
-              <div className="rounded-3xl bg-white/10 p-8 flex justify-between">
-                <div className="flex gap-10">
-                  <div className="space-y-2"><Skeleton className="h-3 w-16 bg-white/5" /><Skeleton className="h-6 w-24 bg-white/10" /></div>
-                  <div className="space-y-2"><Skeleton className="h-3 w-16 bg-white/5" /><Skeleton className="h-6 w-24 bg-white/10" /></div>
+            {isListLayout ? (
+              <div className="mx-auto flex w-full flex-col gap-10">
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-8">
+                  <div className="space-y-3">
+                    <Skeleton className="h-10 w-64 bg-white/10" />
+                    <Skeleton className="h-4 w-40 bg-white/5" />
+                  </div>
+                  <Skeleton className="h-8 w-32 bg-white/10" />
                 </div>
-                <div className="space-y-2 flex flex-col items-end"><Skeleton className="h-3 w-16 bg-white/5" /><Skeleton className="h-5 w-32 bg-white/10" /></div>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                  {[...Array(8)].map((_, i) => (
+                    <div key={i} className="bg-white/5 rounded-3xl border border-white/10 overflow-hidden space-y-4">
+                      <Skeleton className="aspect-video w-full bg-white/10" />
+                      <div className="p-6">
+                        <Skeleton className="h-4 w-3/4 bg-white/10" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
+            ) : (
+              <div className="mx-auto flex w-full flex-col gap-10">
+                {/* Media Skeleton */}
+                <div className="mx-auto w-full max-w-2xl">
+                  <Skeleton className={cn("w-full rounded-2xl md:rounded-3xl bg-white/10", skeletonAspect)} />
+                </div>
+                
+                {/* Action Buttons Skeleton */}
+                <div className="flex flex-col gap-4">
+                  <Skeleton className="h-[72px] w-full rounded-2xl bg-white/10" />
+                  <Skeleton className="h-[64px] w-full rounded-2xl bg-white/10" />
+                  <Skeleton className="h-[64px] w-full rounded-2xl bg-white/10" />
+                </div>
+
+                {/* Skeletons to Match Content Card Expansion */}
+                <div className="mx-auto mt-1 flex w-full flex-col gap-4">
+                  {/* Caption Skeleton */}
+                  <div className="rounded-3xl bg-white/10 p-6 space-y-3">
+                    <Skeleton className="h-4 w-3/4 bg-white/10" />
+                    <Skeleton className="h-4 w-5/6 bg-white/10" />
+                    <Skeleton className="h-4 w-2/3 bg-white/10" />
+                  </div>
+
+                  {/* Stats & Creator Skeleton */}
+                  <div className="rounded-2xl bg-white/5 border border-white/10 p-5 space-y-6">
+                    <div className="flex justify-between items-center">
+                      <div className="flex gap-8">
+                        <div className="flex items-center gap-2">
+                          <Skeleton className="h-5 w-5 rounded-full bg-white/10" />
+                          <div className="space-y-1">
+                            <Skeleton className="h-4 w-12 bg-white/10" />
+                            <Skeleton className="h-2 w-8 bg-white/5" />
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Skeleton className="h-5 w-5 rounded-full bg-white/10" />
+                          <div className="space-y-1">
+                            <Skeleton className="h-4 w-12 bg-white/10" />
+                            <Skeleton className="h-2 w-8 bg-white/5" />
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Skeleton className="h-5 w-5 rounded-full bg-white/10" />
+                          <div className="space-y-1">
+                            <Skeleton className="h-4 w-12 bg-white/10" />
+                            <Skeleton className="h-2 w-8 bg-white/5" />
+                          </div>
+                        </div>
+                      </div>
+                      <Skeleton className="h-5 w-20 rounded-md bg-white/10 hidden sm:block" />
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center gap-2">
+                        <Skeleton className="h-6 w-6 rounded-full bg-white/10" />
+                        <Skeleton className="h-4 w-24 bg-white/10" />
+                      </div>
+                      <Skeleton className="h-3 w-16 bg-white/5" />
+                    </div>
+                  </div>
+
+                  {/* Comments Skeletons */}
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3 px-2">
+                      <Skeleton className="h-2 w-2 rounded-full bg-white/10" />
+                      <Skeleton className="h-4 w-36 bg-white/10" />
+                    </div>
+                    {[1, 2, 3].map((i) => (
+                      <div key={i} className="flex items-start gap-3 rounded-2xl bg-white/5 p-4 border border-white/5">
+                        <Skeleton className="h-8 w-8 rounded-full bg-white/10 shrink-0" />
+                        <div className="space-y-2 w-full">
+                          <div className="flex items-center gap-2">
+                            <Skeleton className="h-3 w-16 bg-white/10" />
+                            <Skeleton className="h-2 w-10 bg-white/5" />
+                          </div>
+                          <Skeleton className="h-4 w-5/6 bg-white/10" />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
           </motion.div>
         ) : data ? (
           <motion.div
@@ -667,21 +785,21 @@ export function DownloadPreview({
                           <div className="flex items-center gap-2">
                             <Heart className="h-5 w-5 text-rose-500 fill-rose-500" />
                             <div className="flex flex-col">
-                              <span className="text-[14px] font-black text-white tabular-nums">{displayLikes.toLocaleString()}</span>
+                              <span className="text-[14px] font-black text-white tabular-nums">{displayLikes.toLocaleString("en-US")}</span>
                               <span className="text-[8px] uppercase tracking-widest text-white/40">Likes</span>
                             </div>
                           </div>
                           <div className="flex items-center gap-2">
                             <MessageCircle className="h-5 w-5 text-sky-400 fill-sky-400" />
                             <div className="flex flex-col">
-                              <span className="text-[14px] font-black text-white tabular-nums">{displayCommentCount.toLocaleString()}</span>
+                              <span className="text-[14px] font-black text-white tabular-nums">{displayCommentCount.toLocaleString("en-US")}</span>
                               <span className="text-[8px] uppercase tracking-widest text-white/40">Comments</span>
                             </div>
                           </div>
                           <div className="flex items-center gap-2">
                             <Send className="h-5 w-5 text-emerald-400 fill-emerald-400" />
                             <div className="flex flex-col">
-                              <span className="text-[14px] font-black text-white tabular-nums">{displayShareCount.toLocaleString()}</span>
+                              <span className="text-[14px] font-black text-white tabular-nums">{displayShareCount.toLocaleString("en-US")}</span>
                               <span className="text-[8px] uppercase tracking-widest text-white/40">Shares</span>
                             </div>
                           </div>

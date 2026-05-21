@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "Facebook Group Video Downloader",
-  description: "Looking to keep Facebook videos permanently? Use our intuitive online utility to get original files in seconds."
+  title: "Facebook Group Video Downloader HD - SavClip",
+  description: "Easily download videos from public and private Facebook groups online. Maintain maximum visual clarity and original MP4 resolution effortlessly."
 };
 
 export const header = {

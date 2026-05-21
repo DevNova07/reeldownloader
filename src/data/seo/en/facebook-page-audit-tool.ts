@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "Facebook Page Audit: Analyze FB Pages Online",
-  description: "A streamlined, 100% free solution for archiving Facebook media. Experience lightning-fast speeds and pristine clarity."
+  title: "Facebook Page Audit Tool - SavClip",
+  description: "Analyze Facebook page metrics, performance stats, and growth potential instantly. Get comprehensive optimization reports with our free audit utility."
 };
 
 export const header = {

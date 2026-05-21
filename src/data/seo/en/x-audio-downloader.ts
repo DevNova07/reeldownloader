@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "X (Twitter) to MP3 Converter: Extract High Quality Audio",
-  description: "Easily grab X (Twitter) audio tracks in high resolution. No account required, just paste the link and enjoy fast, secure offline access."
+  title: "X Audio Downloader HD - SavClip",
+  description: "Extract crystal clear voice notes, audio conversations, and sound tracks from X (Twitter) uploads. Convert video files to MP3 smoothly."
 };
 
 export const header = {

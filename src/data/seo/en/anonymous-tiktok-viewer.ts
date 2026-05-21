@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "Anonymous TikTok Viewer – View TikTok Secretly",
-  description: "Easily grab Anonymous media in high resolution. No account required, just paste the link and enjoy fast, secure offline access."
+  title: "Anonymous TikTok Viewer Online - SavClip",
+  description: "Watch TikTok videos and profiles anonymously without an account. Stay completely hidden, view stories safely, and bypass privacy restrictions easily."
 };
 
 export const header = {

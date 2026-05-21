@@ -106,8 +106,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "Snapchat Video Downloader",
-  description: "Save your favorite Snapchat videos instantly without any logos. Our free online tool gives you crisp quality directly to your device."
+  title: "Snapchat Video Downloader HD - SavClip",
+  description: "Download public Snapchat videos directly to your device storage. Free, automated utility for pulling dynamic short video files instantly."
 };
 
 export const header = {

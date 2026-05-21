@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "Telegram Story Saver – Download TG Stories Anonymously",
-  description: "Looking to keep Telegram stories permanently? Use our intuitive online utility to get original files in seconds."
+  title: "Telegram Story Saver HD - SavClip",
+  description: "Download active Telegram profile stories completely anonymously. Archive modern status updates in full quality before they disappear."
 };
 
 export const header = {

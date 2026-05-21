@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "TikTok Caption Generator – AI Video Captions",
-  description: "Download TikTok media effortlessly. We preserve the original source quality so you never miss a single detail."
+  title: "TikTok Caption Generator - SavClip",
+  description: "Craft viral, highly engaging, and optimized captions for your TikTok short videos using smart AI. Skyrocket your video engagement rates."
 };
 
 export const header = {

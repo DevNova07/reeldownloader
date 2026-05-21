@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "Snapchat Video Compressor – Reduce Video Size Online",
-  description: "Looking to keep Snapchat videos permanently? Use our intuitive online utility to get original files in seconds."
+  title: "Snapchat Video Compressor HD - SavClip",
+  description: "Resize and compress videos to fit Snapchat's tight file limits. Shrink MB sizes quickly so your custom snaps upload in a flash."
 };
 
 export const header = {

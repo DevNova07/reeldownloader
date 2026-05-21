@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "Facebook Live Video Downloader – Save FB Live Streams in HD",
-  description: "Save your favorite Facebook videos instantly without any logos. Our free online tool gives you crisp quality directly to your device."
+  title: "Facebook Live Video Downloader HD - SavClip",
+  description: "Save completed Facebook Live video streams directly to your mobile or PC. Capture full broadcasts in crisp HD quality for offline viewing."
 };
 
 export const header = {

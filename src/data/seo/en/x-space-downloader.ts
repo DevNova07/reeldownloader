@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "X Space Downloader – Record & Save Twitter Spaces as MP3",
-  description: "Download X (Twitter) media effortlessly. We preserve the original source quality so you never miss a single detail."
+  title: "X Space Downloader HD - SavClip",
+  description: "Record and download finished X (Twitter) Spaces audio archives. Convert dynamic live talk podcasts into high-fidelity offline MP3s."
 };
 
 export const header = {

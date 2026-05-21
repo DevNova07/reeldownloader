@@ -84,12 +84,12 @@ export const faqs = [
 
 
 export const meta = {
-  title: "Snapchat Private Story Downloader – Save Private Snaps",
-  description: "Save your favorite Snapchat stories instantly without any logos. Our free online tool gives you crisp quality directly to your device."
+  title: "Snapchat Private Story Downloader HD - SavClip",
+  description: "Save custom private stories from your close friends circle on Snapchat. Safe, discrete extraction utility that honors user connections."
 };
 
 export const header = {
-  title: "Snapchat Private Downloader",
+  title: "Snapchat Private Story Downloader",
   title1: "Download",
   title2: "Private Stories",
   title3: "No Notifications",

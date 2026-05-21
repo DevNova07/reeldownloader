@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "Telegram Private Video Downloader – Save Locked TG Videos",
-  description: "Save your favorite Telegram videos instantly without any logos. Our free online tool gives you crisp quality directly to your device."
+  title: "Telegram Private Video Downloader HD - SavClip",
+  description: "Securely save locked videos and protected stream attachments from private Telegram chats and restricted channels without authorization leaks."
 };
 
 export const header = {

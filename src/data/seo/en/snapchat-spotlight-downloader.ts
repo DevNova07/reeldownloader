@@ -102,8 +102,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "Snapchat Spotlight Downloader: Save Snaps HD",
-  description: "Looking to keep Snapchat media permanently? Use our intuitive online utility to get original files in seconds."
+  title: "Snapchat Spotlight Downloader HD - SavClip",
+  description: "Download viral Snapchat Spotlight short videos in high definition. Save entertaining public clips with zero quality drops or limitations."
 };
 
 export const header = {

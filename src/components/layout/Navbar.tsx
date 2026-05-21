@@ -7,15 +7,17 @@ import { Camera, ChevronDown, ChevronRight, Menu, X, Globe, Ghost, Send, Play, H
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/utils/cn"
 import { usePathname, useRouter } from "next/navigation"
-import { locales, languageNames, languageFlags, type Locale } from "@/i18n"
+
 import { PLATFORM_NAV_CONFIG } from "@/lib/nav-config"
 
 export function Navbar({ dict }: { dict: any }) {
   const [isOpen, setIsOpen] = React.useState(false)
-  const [isLangOpen, setIsLangOpen] = React.useState(false)
   const [isSettingsExpanded, setIsSettingsExpanded] = React.useState(false)
   const [isAIToolsExpanded, setIsAIToolsExpanded] = React.useState(false)
   const [isMounted, setIsMounted] = React.useState(false)
+  const [isLangOpen, setIsLangOpen] = React.useState(false)
+  const langRefDesktop = React.useRef<HTMLDivElement>(null)
+  const langRefMobile = React.useRef<HTMLDivElement>(null)
   const pathname = usePathname()
   const router = useRouter()
 
@@ -23,11 +25,21 @@ export function Navbar({ dict }: { dict: any }) {
     setIsMounted(true)
   }, [])
 
-  const currentLocale = React.useMemo(() => {
-    if (!pathname) return 'en';
-    const segment = pathname.split('/')[1];
-    return locales.includes(segment as Locale) ? segment as Locale : 'en';
-  }, [pathname]);
+  React.useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      const clickedOutsideDesktop = !langRefDesktop.current || !langRefDesktop.current.contains(event.target as Node)
+      const clickedOutsideMobile = !langRefMobile.current || !langRefMobile.current.contains(event.target as Node)
+      if (clickedOutsideDesktop && clickedOutsideMobile) {
+        setIsLangOpen(false)
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [])
+
+  const currentLocale = 'en';
 
   const getLabel = (href: string, fallback: string) => {
     if (!dict || !dict.platforms) return fallback;
@@ -42,23 +54,8 @@ export function Navbar({ dict }: { dict: any }) {
   };
 
   const getLocalizedHref = (path: string) => {
-    const cleanPath = path.startsWith('/') ? path : `/${path}`
-    if (currentLocale === 'en') return cleanPath
-    return `/${currentLocale}${cleanPath === '/' ? '' : cleanPath}`
+    return path.startsWith('/') ? path : `/${path}`
   }
-
-  const handleLanguageChange = (locale: string) => {
-    if (!pathname) return;
-    setIsLangOpen(false);
-    const segments = pathname.split('/');
-    if (locales.includes(segments[1] as Locale)) {
-      segments[1] = locale;
-    } else {
-      segments.splice(1, 0, locale);
-    }
-    const targetPath = segments.join('/') || '/';
-    router.push(targetPath.startsWith('/') ? targetPath : `/${targetPath}`);
-  };
 
   const openHistory = () => {
     window.dispatchEvent(new CustomEvent('toggle-history-drawer'));
@@ -107,44 +104,36 @@ export function Navbar({ dict }: { dict: any }) {
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         <div className="flex h-14 sm:h-16 items-center justify-between">
           <div className="flex items-center gap-4 lg:gap-8">
-            <div className="flex items-center gap-2 sm:hidden">
-              <div className="relative">
-                <button
-                  onClick={() => setIsLangOpen(!isLangOpen)}
-                  className="flex items-center gap-1.5 cursor-pointer hover:bg-neutral-100/50 dark:hover:bg-neutral-800/50 px-3 py-1.5 rounded-xl border border-neutral-200/40 dark:border-neutral-800/40 transition-all bg-white/50 dark:bg-neutral-900/50 backdrop-blur-md shadow-xs active:scale-95"
-                >
-                  <Globe className="h-3.5 w-3.5 text-neutral-500 dark:text-neutral-400" />
-                  <span className="text-xs font-black text-neutral-700 dark:text-neutral-300 uppercase tracking-tight">{currentLocale}</span>
-                </button>
-
-                <AnimatePresence>
-                  {isLangOpen && (
-                    <motion.div
-                      initial={false}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                      className="absolute inset-inline-start-0 mt-3 w-[min(90vw,320px)] max-h-[80vh] overflow-y-auto rounded-2xl border border-neutral-100 bg-white/80 p-3 shadow-2xl backdrop-blur-xl dark:border-neutral-800 dark:bg-neutral-900/90 z-50"
+            {/* Language Selector Dropdown (Mobile-only, left-aligned) */}
+            <div className="sm:hidden relative" ref={langRefMobile}>
+              <button
+                onClick={() => setIsLangOpen(!isLangOpen)}
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-50/40 dark:bg-neutral-900/40 border border-neutral-200/30 dark:border-neutral-800/30 hover:bg-neutral-100/60 dark:hover:bg-neutral-800/60 transition-all active:scale-95 text-neutral-600 dark:text-neutral-400 shadow-xs"
+                title="Select Language"
+              >
+                <Globe className="h-[18px] w-[18px]" />
+              </button>
+              
+              <AnimatePresence>
+                {isLangOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                    className="absolute left-0 mt-2 w-40 bg-white/95 dark:bg-neutral-900/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-neutral-100 dark:border-neutral-800 p-2 z-50"
+                  >
+                    <button
+                      onClick={() => {
+                        setIsLangOpen(false);
+                      }}
+                      className="flex w-full items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-neutral-900 dark:text-white bg-neutral-50 dark:bg-neutral-800/50"
                     >
-                      <div className="grid grid-cols-1 gap-1.5">
-                        {locales.map((loc) => (
-                          <button
-                            key={loc}
-                            onClick={() => handleLanguageChange(loc)}
-                            className={cn(
-                              "group flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-[13px] font-bold transition-all",
-                              currentLocale === loc
-                                ? "bg-linear-to-r from-pink-600 to-rose-600 text-white shadow-lg shadow-pink-500/20"
-                                : "text-neutral-600 hover:bg-neutral-100 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-white"
-                            )}
-                          >
-                            <span className="flex-1 text-left truncate">{languageNames[loc]}</span>
-                          </button>
-                        ))}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+                      <span className="text-sm">🇺🇸</span>
+                      <span>English</span>
+                    </button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
             <Link prefetch={true} href={getLocalizedHref("/")} className="flex items-center gap-2 group shrink-0 sm:static absolute left-1/2 -translate-x-1/2 sm:left-auto sm:translate-x-0">
@@ -224,44 +213,33 @@ export function Navbar({ dict }: { dict: any }) {
           </div>
 
           <div className="flex items-center gap-2 sm:gap-4">
-
-            <div className="relative hidden sm:block">
+            {/* Language Selector Dropdown (Desktop/Tablet, right-aligned) */}
+            <div className="hidden sm:block relative" ref={langRefDesktop}>
               <button
                 onClick={() => setIsLangOpen(!isLangOpen)}
-                className="flex items-center gap-1.5 cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-800 px-2.5 py-1.5 sm:px-3 rounded-xl border border-neutral-200 dark:border-neutral-800 transition-all hover:scale-105 bg-neutral-50 dark:bg-neutral-900/50 shadow-xs active:scale-95"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-50/40 dark:bg-neutral-900/40 border border-neutral-200/30 dark:border-neutral-800/30 hover:bg-neutral-100/60 dark:hover:bg-neutral-800/60 transition-all active:scale-95 text-neutral-600 dark:text-neutral-400 shadow-xs"
+                title="Select Language"
               >
-                <Globe className="h-3.5 w-3.5 text-neutral-500 dark:text-neutral-400" />
-                <span className="text-xs font-bold text-neutral-700 dark:text-neutral-300 uppercase tracking-tight">{currentLocale}</span>
-                <ChevronDown className="h-3 w-3 text-neutral-400" />
+                <Globe className="h-[18px] w-[18px]" />
               </button>
-
+              
               <AnimatePresence>
                 {isLangOpen && (
                   <motion.div
-                    initial={false}
+                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                    className="absolute inset-inline-end-0 mt-3 w-[min(90vw,320px)] max-h-[80vh] overflow-y-auto rounded-2xl border border-neutral-100 bg-white/80 p-3 shadow-2xl backdrop-blur-xl dark:border-neutral-800 dark:bg-neutral-900/90 scrollbar-thin scrollbar-thumb-neutral-200 dark:scrollbar-thumb-neutral-800"
+                    className="absolute right-0 mt-2 w-40 bg-white/95 dark:bg-neutral-900/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-neutral-100 dark:border-neutral-800 p-2 z-50"
                   >
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
-                      {locales.map((loc) => (
-                        <button
-                          key={loc}
-                          onClick={() => handleLanguageChange(loc)}
-                          className={cn(
-                            "group flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-[13px] font-bold transition-all hover:scale-[1.02] active:scale-[0.98]",
-                            currentLocale === loc
-                              ? "bg-linear-to-r from-pink-600 to-rose-600 text-white shadow-lg shadow-pink-500/20"
-                              : "text-neutral-600 hover:bg-neutral-100 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-white"
-                          )}
-                        >
-                          <span className="flex-1 text-left truncate">{languageNames[loc]}</span>
-                          {currentLocale === loc && (
-                            <div className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" />
-                          )}
-                        </button>
-                      ))}
-                    </div>
+                    <button
+                      onClick={() => {
+                        setIsLangOpen(false);
+                      }}
+                      className="flex w-full items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-neutral-900 dark:text-white bg-neutral-50 dark:bg-neutral-800/50"
+                    >
+                      <span className="text-sm">🇺🇸</span>
+                      <span>English</span>
+                    </button>
                   </motion.div>
                 )}
               </AnimatePresence>

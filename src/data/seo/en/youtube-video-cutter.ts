@@ -78,14 +78,26 @@ export const faqs = [
     {
       q: "Is there a limit to how long the clip can be?",
       a: "While there is no strict limit, processing extremely long segments (e.g., several hours) may take longer to complete on our servers."
+    },
+    {
+      q: "Does SavClip add any watermarks to the cut video clips?",
+      a: "No, SavClip does not add any watermarks or branding to your trimmed videos. The final output is completely clean and preserved in its original visual quality."
+    },
+    {
+      q: "Can I cut videos from other social platforms using this tool?",
+      a: "Currently, our cutting and trimming tool is specifically optimized for public YouTube URLs. For other major video sites, we offer dedicated download utilities accessible from our homepage."
+    },
+    {
+      q: "Can I trim videos from private or age-restricted YouTube channels?",
+      a: "No, you can only cut and trim public YouTube videos. If a video is set to private, unlisted, or has age restrictions, our cloud servers will not be able to retrieve it for trimming."
     }
   ];
 
 
 
 export const meta = {
-  title: "YouTube Video Cutter – Trim & Cut YT Videos Online",
-  description: "Easily grab YouTube videos in high resolution. No account required, just paste the link and enjoy fast, secure offline access."
+  title: "YouTube Video Cutter HD - SavClip",
+  description: "Crop, trim, and clip precise segments of YouTube videos directly inside your browser. Download custom duration MP4 outputs easily."
 };
 
 export const header = {

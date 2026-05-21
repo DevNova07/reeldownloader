@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "X Video Compressor – Reduce Twitter Video File Size",
-  description: "A streamlined, 100% free solution for archiving X (Twitter) videos. Experience lightning-fast speeds and pristine clarity."
+  title: "X Video Compressor HD - SavClip",
+  description: "Optimize and compress heavy videos for X (Twitter) feed uploads. Reduce storage foot-print while keeping video playback sharp."
 };
 
 export const header = {

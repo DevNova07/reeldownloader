@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "X GIF Downloader – Save Twitter GIFs as MP4",
-  description: "A streamlined, 100% free solution for archiving X (Twitter) GIFs. Experience lightning-fast speeds and pristine clarity."
+  title: "X GIF Downloader HD - SavClip",
+  description: "Convert and save embedded X (Twitter) GIFs into editable MP4 video loops. Fast, easy extractions to share dynamic media anywhere."
 };
 
 export const header = {

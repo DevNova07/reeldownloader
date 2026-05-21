@@ -78,14 +78,26 @@ export const faqs = [
     {
       q: "Do I need to log in with my X account?",
       a: "No login is required. SavClip is a fully anonymous web-based utility."
+    },
+    {
+      q: "How often is the trending hashtag database updated?",
+      a: "Our finder refreshes trending data continuously in real-time. This ensures that you get the most accurate snapshot of current conversations on X (Twitter), where trends can shift in a matter of minutes."
+    },
+    {
+      q: "Can using these trending hashtags help avoid platform shadowbans?",
+      a: "Yes, utilizing relevant, organic trending hashtags instead of repetitive or spam tags tells the X algorithm that your posts are part of high-quality, natural public discussions."
+    },
+    {
+      q: "Does the hashtag finder support multiple languages?",
+      a: "Yes. If you input search keywords in non-English languages, our finder will scan X discussions in that language to deliver localized trending tags."
     }
   ];
 
 
 
 export const meta = {
-  title: "X Trending Hashtag Finder – Viral Twitter Hashtags AI",
-  description: "Download X (Twitter) media effortlessly. We preserve the original source quality so you never miss a single detail."
+  title: "X Trending Hashtag Finder - SavClip",
+  description: "Monitor hot, trending hashtags and talking points on X (Twitter) by region. Leverage real-time viral data to boost your content reach."
 };
 
 export const header = {

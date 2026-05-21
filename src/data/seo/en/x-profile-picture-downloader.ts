@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "X Profile Picture Downloader – Save Twitter DP in Full HD",
-  description: "A streamlined, 100% free solution for archiving X (Twitter) profile pictures. Experience lightning-fast speeds and pristine clarity."
+  title: "X Profile Picture Downloader HD - SavClip",
+  description: "Save X (Twitter) profile pictures in full resolution. Extract clean display photos from any username without system alerts."
 };
 
 export const header = {

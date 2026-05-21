@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "Telegram DP Downloader – Save TG Profile Pictures HD",
-  description: "Easily grab Telegram profile pictures in high resolution. No account required, just paste the link and enjoy fast, secure offline access."
+  title: "Telegram DP Downloader HD - SavClip",
+  description: "Save Telegram profile pictures and custom group avatars in high-res. View full-size channel display imagery without leaving a trace."
 };
 
 export const header = {

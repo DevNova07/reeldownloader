@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "Telegram File Downloader – Download Any TG Documents",
-  description: "Download Telegram media effortlessly. We preserve the original source quality so you never miss a single detail."
+  title: "Telegram File Downloader HD - SavClip",
+  description: "Streamline downloading huge documents, archives, zip packs, and media attachments from public Telegram chats through our secure interface."
 };
 
 export const header = {

@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "YouTube Description Generator – AI SEO Video Descriptions",
-  description: "Save your favorite YouTube media instantly without any logos. Our free online tool gives you crisp quality directly to your device."
+  title: "YouTube Description Generator - SavClip",
+  description: "Create keyword-rich, SEO-optimized descriptions for YouTube videos using smart AI. Speed up upload times and skyrocket search visibility."
 };
 
 export const header = {

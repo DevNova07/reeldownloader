@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "X Analytics Viewer – Check Twitter Profile Stats Free",
-  description: "Save your favorite X (Twitter) media instantly without any logos. Our free online tool gives you crisp quality directly to your device."
+  title: "X Analytics Viewer - SavClip",
+  description: "Check public engagement statistics, profile trends, and historical metrics for any X (Twitter) handle. Fully automated public scanner tool."
 };
 
 export const header = {

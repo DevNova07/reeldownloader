@@ -106,8 +106,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "Snapchat Story Downloader – Download Snap Stories in HD",
-  description: "Download Snapchat stories effortlessly. We preserve the original source quality so you never miss a single detail."
+  title: "Snapchat Stories Downloader HD - SavClip",
+  description: "Capture public Snapchat community and personal stories effortlessly. Save active daily feeds in 1080p quality before the 24-hour expiration."
 };
 
 export const header = {

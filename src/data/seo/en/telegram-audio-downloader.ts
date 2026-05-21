@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "Telegram Audio Downloader – Extract & Save TG MP3 Music",
-  description: "Looking to keep Telegram audio tracks permanently? Use our intuitive online utility to get original files in seconds."
+  title: "Telegram Audio Downloader HD - SavClip",
+  description: "Download voice messages, audio tracks, and music shared across Telegram channels. Convert files to clean MP3 output formats instantly."
 };
 
 export const header = {

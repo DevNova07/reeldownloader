@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "Telegram Trending Channel Finder – Discover Viral TG Groups",
-  description: "Download Telegram media effortlessly. We preserve the original source quality so you never miss a single detail."
+  title: "Telegram Trending Channel Finder - SavClip",
+  description: "Discover viral, trending, and top-rated public Telegram channels and chat communities by niche. Explore fresh group resources instantly."
 };
 
 export const header = {

@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "Snapchat Lens Saver – Download & Share AR Lenses",
-  description: "Save your favorite Snapchat media instantly without any logos. Our free online tool gives you crisp quality directly to your device."
+  title: "Snapchat Lens Saver HD - SavClip",
+  description: "Discover, backup, and download favorite Snapchat AR lenses and filters. Save dynamic filter links to share creative effects instantly."
 };
 
 export const header = {

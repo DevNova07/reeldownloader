@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "YouTube Subtitle Downloader – Download CC/Subtitles SRT, TXT",
-  description: "Download YouTube media effortlessly. We preserve the original source quality so you never miss a single detail."
+  title: "YouTube Subtitle Downloader HD - SavClip",
+  description: "Extract and download closed captions and multi-language subtitles from YouTube videos. Save files in perfectly timed SRT or TXT formats."
 };
 
 export const header = {

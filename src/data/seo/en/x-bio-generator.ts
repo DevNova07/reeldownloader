@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "X Bio Generator – AI Powered Twitter Bio Creator",
-  description: "A streamlined, 100% free solution for archiving X (Twitter) media. Experience lightning-fast speeds and pristine clarity."
+  title: "X Bio Generator - SavClip",
+  description: "Write punchy, clever, and professional X (Twitter) bios using advanced AI. Maximize follower conversions within character limits."
 };
 
 export const header = {

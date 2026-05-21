@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "Snapchat Map Downloader – Save Snap Map Videos HD",
-  description: "Easily grab Snapchat media in high resolution. No account required, just paste the link and enjoy fast, secure offline access."
+  title: "Snapchat Map Downloader HD - SavClip",
+  description: "Download public videos, stories, and heat-map submissions posted on Snap Map. Grab global platform clips safely in original HD quality."
 };
 
 export const header = {

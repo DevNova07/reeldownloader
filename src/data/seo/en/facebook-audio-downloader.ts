@@ -93,8 +93,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "Facebook Audio Downloader – Convert FB Video to MP3 HD",
-  description: "Easily grab Facebook audio tracks in high resolution. No account required, just paste the link and enjoy fast, secure offline access."
+  title: "Facebook Audio Downloader HD - SavClip",
+  description: "Extract and download clear audio from Facebook videos online. Convert FB clips to high-quality MP3 files instantly without any login required."
 };
 
 export const header = {

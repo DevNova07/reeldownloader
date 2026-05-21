@@ -1,31 +1,25 @@
-import { locales, type Locale } from "@/i18n";
+import { locales } from "@/i18n";
 
 export const SITE_URL = "https://savclip.com";
 
 /**
- * Generates SEO optimized alternates for Next.js Metadata
- * @param path The relative path of the tool (e.g., "", "instagram", "instagram/reels")
- * @param currentLocale The current locale
- * @returns Metadata alternates object with correct canonical and hreflang tags
+ * Generates SEO optimized alternates for Next.js Metadata.
+ * English pages are treated as clean root URLs (no /en prefix).
+ * @param path The relative path of the tool (e.g. "instagram-video-downloader")
+ * @param currentLocale The current locale (defaults to 'en')
+ * @returns Metadata alternates object with canonical and hreflang tags
  */
-export function getSeoAlternates(path: string, currentLocale: string) {
+export function getSeoAlternates(path: string, currentLocale: string = 'en') {
   const cleanPath = path.startsWith('/') ? path.slice(1) : path;
-  
-  const languages: Record<string, string> = {};
-  
-  // Generate hreflang for all supported locales
-  locales.forEach((l) => {
-    const localePath = l === 'en' ? '' : `/${l}`;
-    // Set x-default to English (root)
-    if (l === 'en') {
-      languages['x-default'] = cleanPath ? `/${cleanPath}` : `/`;
-    }
-    languages[l] = cleanPath ? `${localePath}/${cleanPath}` : `${localePath || '/'}`;
-  });
+  const canonicalPath = cleanPath ? `/${cleanPath}` : `/`;
 
-  const currentLocalePath = currentLocale === 'en' ? '' : `/${currentLocale}`;
+  const languages: Record<string, string> = {
+    'x-default': canonicalPath,
+    'en': canonicalPath,
+  };
+
   return {
-    canonical: cleanPath ? `${currentLocalePath}/${cleanPath}` : `${currentLocalePath || '/'}`,
+    canonical: canonicalPath,
     languages,
   };
 }

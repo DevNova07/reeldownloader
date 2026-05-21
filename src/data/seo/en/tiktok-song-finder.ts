@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "TikTok Song Finder – Identify Trending Audio",
-  description: "Save your favorite TikTok media instantly without any logos. Our free online tool gives you crisp quality directly to your device."
+  title: "TikTok Song Finder - SavClip",
+  description: "Identify viral trending music and audios used across popular TikTok videos. Locate video soundtracks and media tags in real time."
 };
 
 export const header = {

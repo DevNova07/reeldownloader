@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "Facebook Profile Viewer",
-  description: "A streamlined, 100% free solution for archiving Facebook profile pictures. Experience lightning-fast speeds and pristine clarity."
+  title: "Facebook Profile Viewer - SavClip",
+  description: "View locked Facebook profiles and display details anonymously. Check public metrics and user accounts securely without leaving footprints."
 };
 
 export const header = {

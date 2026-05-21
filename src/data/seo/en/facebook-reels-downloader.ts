@@ -93,8 +93,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "Facebook Reels Downloader: Save Reels in HD",
-  description: "Download Facebook Reels effortlessly. We preserve the original source quality so you never miss a single detail."
+  title: "Facebook Reels Downloader HD - SavClip",
+  description: "Download Facebook Reels in high definition without losing quality. Save viral FB short videos directly to your camera roll in seconds."
 };
 
 export const header = {

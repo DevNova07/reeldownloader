@@ -84,8 +84,8 @@ export const faqs = [
 
 
 export const meta = {
-  title: "Snapchat DP Downloader – Save Snap Profile Pictures HD",
-  description: "Looking to keep Snapchat profile pictures permanently? Use our intuitive online utility to get original files in seconds."
+  title: "Snapchat DP Downloader HD - SavClip",
+  description: "Grab Snapchat profile avatars and bitmojis in crisp resolution. View and save full-size display pictures without notification triggers."
 };
 
 export const header = {
