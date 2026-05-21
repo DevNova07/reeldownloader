@@ -1,6 +1,8 @@
 import Script from "next/script"
 import { useId } from "react"
 
+const SITE_URL = "https://savclip.com"
+
 interface StructuredDataProps {
   type: "FAQPage" | "HowTo" | "SoftwareApplication" | "BreadcrumbList" | "WebSite"
   data: any
@@ -14,12 +16,17 @@ export function StructuredData({ type, data }: StructuredDataProps) {
     schema = {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
-      "itemListElement": Array.isArray(data) ? data.map((item: any, index: number) => ({
-        "@type": "ListItem",
-        "position": index + 1,
-        "name": item.name,
-        "item": item.item
-      })) : []
+      "itemListElement": Array.isArray(data) ? data.map((item: any, index: number) => {
+        // Normalize item URL to always be absolute (Google requires fully qualified URLs)
+        const rawItem: string = item.item || "/"
+        const absoluteItem = rawItem.startsWith("http") ? rawItem : `${SITE_URL}${rawItem.startsWith("/") ? rawItem : "/" + rawItem}`
+        return {
+          "@type": "ListItem",
+          "position": index + 1,
+          "name": item.name,
+          "item": absoluteItem
+        }
+      }) : []
     }
   }
 
