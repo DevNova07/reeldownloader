@@ -1,5 +1,3 @@
-import { locales } from "@/i18n";
-
 export const SITE_URL = "https://savclip.com";
 
 /**
@@ -7,19 +5,14 @@ export const SITE_URL = "https://savclip.com";
  * English pages are treated as clean root URLs (no /en prefix).
  * @param path The relative path of the tool (e.g. "instagram-video-downloader")
  * @param currentLocale The current locale (defaults to 'en')
- * @returns Metadata alternates object with canonical and hreflang tags
+ * @returns Metadata alternates object with canonical tag only
  */
 export function getSeoAlternates(path: string, currentLocale: string = 'en') {
   const cleanPath = path.startsWith('/') ? path.slice(1) : path;
   const canonicalUrl = cleanPath ? `${SITE_URL}/${cleanPath}` : `${SITE_URL}/`;
 
-  const languages: Record<string, string> = {
-    'x-default': canonicalUrl,
-    'en': canonicalUrl,
-  };
-
   return {
     canonical: canonicalUrl,
-    languages,
   };
 }
+
